@@ -8,6 +8,7 @@ import { Enterprise } from "./models/Enterprise";
 })
 export class AppComponent {
   title = "ruta-turistica-del-norte";
+  date: Date = new Date();
   public enterprises: Array<Enterprise> = [
     {
       location: "Los Chiles",

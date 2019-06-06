@@ -42,3 +42,10 @@ footer{
 mat-card-title{
   font-weight: 200
 }
+ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style-type: none;
+  height: 100%;
+}

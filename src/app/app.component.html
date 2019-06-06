@@ -7,6 +7,9 @@
     <a class="nav-item nav-link white p-1 m-1" href="/#" target="_blank">
       <i class="fa fa-instagram"></i>
     </a>
+    <a class="nav-item nav-link white p-1 m-1" href="/#" target="_blank">
+      <i class="fa fa-address-book"></i> Contact
+    </a>
   </div>
 </nav>
 
@@ -102,9 +105,9 @@
   <div class="container">
     <h1 class="text-center">Oferta turística</h1>
     <div class="container">
-      <mat-list role="list">
-        <mat-list-item class="m-1" *ngFor="let item of enterprises" role="listitem">
-          <mat-card class="container">
+      <ul>
+        <li class="m-2" *ngFor="let item of enterprises">
+          <mat-card>
             <mat-card-header>
               <mat-card-title>{{item.enterpriseName}}</mat-card-title>
             </mat-card-header>
@@ -112,15 +115,15 @@
               <p>{{item.activity}}</p>
             </mat-card-content>
           </mat-card>
-        </mat-list-item>
-      </mat-list>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
 <footer class="shadow-sm">
   <div class="container">
-    <span class="text-muted">
-      Proyecto de Extensión del Instituto Tecnológico de Costa Rica
+    <span class="text-primary">
+      Proyecto de Extensión del Instituto Tecnológico de Costa Rica | {{date | date: 'mediumDate'}}
     </span>
   </div>
 </footer>
