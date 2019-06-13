@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
+import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
 import { 
   MatTabsModule,
   MatListModule,
@@ -19,7 +20,8 @@ import {
     MatListModule,
     MatExpansionModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    NgbCarouselModule
   ],
   exports: [
     MatTabsModule,
@@ -27,7 +29,8 @@ import {
     MatListModule,
     MatExpansionModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    NgbCarouselModule
   ]
 })
 export class SharedModule { }

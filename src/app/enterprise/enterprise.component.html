@@ -1,0 +1,53 @@
+<div id="main" class="container mt-2">
+  <ngb-carousel class="text-centershadow">
+    <ng-template ngbSlide>
+      <img src="../../assets/6907-amarena_f29b4e66-3440-489b-a464-afb2887d01ea_large.png" alt="Random first slide" />
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="../../assets/7449.png" alt="Random second slide" />
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="../../assets/Red.png" alt="Random third slide" />
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="../../assets/rteal-blue-green-solid-color_mirror.png" alt="Random third slide" />
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <div class="container mt-2">
+    <h4 class="text-center text-primary">
+      {{ _main.enterprises[index].enterpriseName }}
+    </h4>
+    <table class="table table-bordered text-center table-borderless">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Localización</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ _main.enterprises[index].location }}</td>
+          <td>{{ _main.enterprises[index].phone }}</td>
+          <td>{{ _main.enterprises[index].email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

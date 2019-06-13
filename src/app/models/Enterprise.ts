@@ -1,5 +1,6 @@
 export class Enterprise {
   constructor(
+    public id?: number,
     public location?: string,
     public enterpriseName?: string,
     public activity?: string,
