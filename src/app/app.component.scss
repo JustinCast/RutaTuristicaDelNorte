@@ -1,0 +1,26 @@
+nav {
+  background-color: #FFCC06;
+  color: #3c3b3d;
+  font-weight: 200;
+  margin: auto;
+  margin-top: 1%;
+  border-radius: 30px;
+  width: 99%;
+}
+i{
+  color: blue;
+  cursor: pointer;
+}
+#links{
+  list-style-type: none;
+}
+
+.link {
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+  cursor: pointer;
+}
+.active-link{
+  font-weight: 800
+}
