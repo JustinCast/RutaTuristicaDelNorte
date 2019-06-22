@@ -1,3 +1,27 @@
-<div *ngIf="tour">
-  {{tour.name}}
+<div *ngIf="tour" id="tour-container">
+  <h4 class="text-center text-primary m-2">{{ tour.name }}</h4>
+  <carousel-component #carousel [mode]="'horizontal'" [morePairSlides]="moreSlides" [angle]="degree">
+    <div class="item-carousel rounded">
+      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
+    </div>
+    <div class="item-carousel rounded">
+      <div class="b">
+        <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
+      </div>
+    </div>
+    <div class="item-carousel rounded">
+      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
+    </div>
+    <div class="item-carousel rounded">
+      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
+    </div>
+  </carousel-component>
+  <div class="container text-center mt-5" id="carousel-footer">
+    <button mat-icon-button class="m-2" (click)="carousel.slidePrev()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-icon-button class="m-2" (click)="carousel.slideNext()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
 </div>
