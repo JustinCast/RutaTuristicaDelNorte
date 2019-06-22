@@ -1,0 +1,36 @@
+<div id="main-container">
+  <h4 class="text-center text-primary">Tours y Servicios de la Ruta Turística del norte</h4>
+  <div id="header">
+    <mat-form-field>
+      <mat-label>Filtrar por..</mat-label>
+      <mat-select>
+        <mat-option value="Tour">
+          Tour
+        </mat-option>
+        <mat-option value="Restaurantes">
+          Restaurantes
+        </mat-option>
+        <mat-option value="Otros">
+          Servicios Varios
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <ul id="content">
+    <mat-card class="service" *ngFor="let item of _tours.tours">
+      <mat-card-title>{{item.name}}</mat-card-title>
+      <hr>
+      <mat-card-content>
+        <p><mat-icon class="accent-icon">info</mat-icon> {{item.additionalInfo}}</p>
+        <ul id="details">
+          <li><mat-icon class="accent-icon">phone</mat-icon> {{item.phone}}</li>
+          <li><mat-icon class="accent-icon">mail</mat-icon> {{item.email}}</li>
+        </ul>
+      </mat-card-content>
+      <hr>
+      <div class="container text-center">
+        <button routerLink="tour/{{item.id}}" class="detail-button" mat-raised-button>Ver más</button>
+      </div>
+    </mat-card>
+  </ul>
+</div>

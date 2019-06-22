@@ -1,8 +1,20 @@
 <nav class="navbar navbar-sm pt-0 pb-0 shadow-sm pl-2 pr-2 mb-4 fixed-top">
   <ul id="links" class="navbar-expand ml-0 navbar-nav">
-    <li routerLinkActive="active-link" [routerLink]="['/general/history']" class="link">Historia</li>
+    <li
+      routerLinkActive="active-link"
+      [routerLink]="['/general/history']"
+      class="link"
+    >
+      Historia
+    </li>
     <li routerLinkActive="active-link" class="link">Veda</li>
-    <li routerLinkActive="active-link" class="link">Tours</li>
+    <li
+      routerLinkActive="active-link"
+      [routerLink]="['/general/tours']"
+      class="link"
+    >
+      Tours
+    </li>
     <li routerLinkActive="active-link" class="link">Actividades</li>
   </ul>
   <div class="navbar-expand ml-auto navbar-nav social">
@@ -24,6 +36,14 @@
     </a>
   </div>
 </nav>
-<div class="mt-5 pt-5 container">
+<div id="outlet" class="mt-5 pt-5">
   <router-outlet></router-outlet>
 </div>
+<footer class="shadow-sm">
+  <div class="container">
+    <span class="text-primary">
+      Proyecto de Extensión del Instituto Tecnológico de Costa Rica |
+      {{ date | date: "mediumDate" }}
+    </span>
+  </div>
+</footer>

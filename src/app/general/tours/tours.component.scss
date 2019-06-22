@@ -1,0 +1,45 @@
+@import '../../../assets/ui-utils/vars';
+#header {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding: 1%
+}
+#main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+h4{
+  font-weight: 200
+}
+#content{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0
+}
+.service {
+  display: inline-block;
+  margin: 2%;
+}
+mat-card-title{
+  font-weight: 200
+}
+#details {
+  list-style-type: none
+}
+mat-icon {
+  vertical-align: middle;
+}
+.accent-icon{
+  color: $primary-color
+}
+.detail-button {
+  background-color: #008000;
+  color: white
+}

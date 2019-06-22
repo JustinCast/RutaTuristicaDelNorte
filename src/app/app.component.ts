@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ruta-turistica-del-norte';
+  date: Date = new Date();
 }
