@@ -6,8 +6,7 @@ import {
   MatIconModule,
   MatSelectModule,
   MatInputModule,
-  MatFormFieldModule,
-  MatOptionModule,
+  MatExpansionModule,
   MatCardModule,
   MatPaginatorModule
 } from "@angular/material";
@@ -24,7 +23,8 @@ import {CarouselModule} from "ngx-carousel-lib";
     MatInputModule,
     MatCardModule,
     MatPaginatorModule,
-    CarouselModule
+    CarouselModule,
+    MatExpansionModule
   ],
   exports: [
     MatMenuModule,
@@ -34,7 +34,8 @@ import {CarouselModule} from "ngx-carousel-lib";
     MatInputModule,
     MatCardModule,
     MatPaginatorModule,
-    CarouselModule
+    CarouselModule,
+    MatExpansionModule
   ]
 })
 export class SharedModule {}
