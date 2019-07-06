@@ -7,10 +7,10 @@ import {
   MatSelectModule,
   MatInputModule,
   MatExpansionModule,
-  MatCardModule,
-  MatPaginatorModule
+  MatCardModule
 } from "@angular/material";
-import {CarouselModule} from "ngx-carousel-lib";
+import { CarouselModule } from "ngx-carousel-lib";
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [],
@@ -22,9 +22,9 @@ import {CarouselModule} from "ngx-carousel-lib";
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatPaginatorModule,
     CarouselModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxPaginationModule
   ],
   exports: [
     MatMenuModule,
@@ -33,9 +33,9 @@ import {CarouselModule} from "ngx-carousel-lib";
     MatIconModule,
     MatInputModule,
     MatCardModule,
-    MatPaginatorModule,
     CarouselModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxPaginationModule
   ]
 })
 export class SharedModule {}

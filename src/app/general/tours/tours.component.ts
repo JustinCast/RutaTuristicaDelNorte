@@ -8,6 +8,7 @@ import { ToursService } from 'src/app/services/tours.service';
   styleUrls: ['./tours.component.scss']
 })
 export class ToursComponent implements OnInit {
+  p: number = 1;
   constructor(public _tours: ToursService) { }
 
   ngOnInit() {
