@@ -27,7 +27,7 @@ progress {
   height: 300px;
   border: 0.5px dashed $primary-color;
   border-radius: 5px;
-  background: white;
+  background: transparent;
   margin: 10px 0;
 
   &.hovering {
@@ -41,4 +41,8 @@ progress {
   flex-direction: row;
   justify-content: space-around;
   margin: 1.5%;
+}
+
+#urls{
+  list-style-type: decimal
 }

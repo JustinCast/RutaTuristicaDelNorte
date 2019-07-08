@@ -34,12 +34,16 @@
 
     <div class="container text-center">
       <input
+        multiple
         style="color: transparent"
         type="file"
         (change)="startUpload($event.target.files)"
       />
     </div>
   </div>
+  <ul id="urls" *ngIf="downloadURLS.length !== 0">
+    <li *ngFor="let u of downloadURLS; let i = index;"><a href="{{u}}">Imagen {{i + 1}}</a></li>
+  </ul>
   <div *ngIf="percentage | async as pct">
     <progress class="progress is-info" [value]="pct" max="100"> </progress>
 
@@ -77,6 +81,6 @@
   </div>
 
   <div class="container text-center">
-    <button mat-raised-button><mat-icon>send</mat-icon></button>
+    <button [disabled]="!addServiceFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>
   </div>
 </form>
