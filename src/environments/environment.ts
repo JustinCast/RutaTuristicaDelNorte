@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase:  {
+    apiKey: "AIzaSyBGBbJZGMUM80XKN96SdN5FTZYe9j43odg",
+    authDomain: "ruta-turistica-del-norte.firebaseapp.com",
+    databaseURL: "https://ruta-turistica-del-norte.firebaseio.com",
+    projectId: "ruta-turistica-del-norte",
+    storageBucket: "",
+    messagingSenderId: "194520690899",
+    appId: "1:194520690899:web:906cb44ae4561912"
+  }
 };
 
 /*

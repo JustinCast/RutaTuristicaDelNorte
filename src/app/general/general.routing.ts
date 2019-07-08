@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { GeneralRootComponent } from './general-root.component';
 import { HistoryComponent } from './history/history.component';
 import { ToursComponent } from './tours/tours.component';
-import { TourComponent } from './tour/tour.component';
+import { TourComponent } from './service/services.component';
 
 export const ROUTES: Routes = [
   {
