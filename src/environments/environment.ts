@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "ruta-turistica-del-norte.firebaseapp.com",
     databaseURL: "https://ruta-turistica-del-norte.firebaseio.com",
     projectId: "ruta-turistica-del-norte",
-    storageBucket: "",
+    storageBucket: "ruta-turistica-del-norte.appspot.com",
     messagingSenderId: "194520690899",
     appId: "1:194520690899:web:906cb44ae4561912"
   }

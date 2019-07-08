@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import {
   AngularFireUploadTask,
   AngularFireStorage
@@ -13,6 +13,7 @@ import { finalize } from "rxjs/operators";
   styleUrls: ["./add-service.component.scss"]
 })
 export class AddServiceComponent implements OnInit {
+  classification: Array<string> = ['Tour', 'Comida', 'Arte y Cultura', 'Otro'];
   addServiceFG: FormGroup;
 
   // Main task
@@ -28,7 +29,16 @@ export class AddServiceComponent implements OnInit {
 
   // State for dropzone CSS toggling
   isHovering: boolean;
-  constructor(private storage: AngularFireStorage) {}
+  constructor(private storage: AngularFireStorage, private _fb: FormBuilder) {
+    this.addServiceFG = this._fb.group({
+      location: ['', Validators.required],
+      name: ['', Validators.required],
+      classification: ['', Validators.required],
+      additional_info: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {}
 
@@ -78,5 +88,9 @@ export class AddServiceComponent implements OnInit {
       snapshot.state === "running" &&
       snapshot.bytesTransferred < snapshot.totalBytes
     );
+  }
+
+  onSubmit() {
+
   }
 }

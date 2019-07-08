@@ -1,0 +1,44 @@
+@import '../../../assets/ui-utils/vars';
+form{
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+mat-form-field{
+  display: block;
+  width: 100%;
+  margin: auto
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1 ease
+}
+progress {
+  width: 100%
+}
+.dropzone { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+  height: 300px;
+  border: 0.5px dashed $primary-color;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+
+  &.hovering {
+      border: 2px solid #f16624;
+      color: #dadada !important;
+  }
+}
+
+#controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 1.5%;
+}

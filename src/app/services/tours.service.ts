@@ -6,7 +6,7 @@ import { Service } from '../models/Service';
 })
 export class ToursService {
   public tours: Array<Service> = [
-    {
+    /*{
       id: 0,
       location: "Los Chiles",
       name: "Hotel y Restaurante Tulipán",
@@ -77,7 +77,7 @@ export class ToursService {
       additionalInfo: "40 habitaciones - 72 camas - 90 pax",
       phone: "24711414",
       email: "main@mail.com"
-    },
+    },*/
 
   ];
   constructor() { }

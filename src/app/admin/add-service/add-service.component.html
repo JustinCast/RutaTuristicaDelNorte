@@ -1,3 +1,82 @@
-<p>
-  add-service works!
-</p>
+<form [formGroup]="addServiceFG" (ngSubmit)="onSubmit()" class="text-center">
+  <h1 class="text-primary">Agregar Servicio</h1>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Nombre" />
+  </mat-form-field>
+  <div class="container text-center">
+    <button mat-raised-button><mat-icon>add_location</mat-icon></button>
+  </div>
+  <mat-form-field>
+    <mat-select placeholder="Clasificación">
+      <mat-option *ngFor="let c of classification" [value]="c">
+        {{ c }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Información adicional"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="tel" placeholder="Teléfono contacto" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="email" placeholder="Correo" />
+  </mat-form-field>
+
+  <div
+    class="dropzone"
+    dropZone
+    (hovered)="toggleHover($event)"
+    (dropped)="startUpload($event)"
+    [class.hovering]="isHovering"
+  >
+    <h3>Seleccione o arrastre el archivo</h3>
+
+    <div class="container text-center">
+      <input
+        style="color: transparent"
+        type="file"
+        (change)="startUpload($event.target.files)"
+      />
+    </div>
+  </div>
+  <div *ngIf="percentage | async as pct">
+    <progress class="progress is-info" [value]="pct" max="100"> </progress>
+
+    {{ pct | number }}%
+  </div>
+  <div id="controls-container" *ngIf="snapshot | async as snap">
+    <button
+      mat-raised-button
+      color="secondary"
+      (click)="task.pause()"
+      [disabled]="!isActive(snap)"
+    >
+      <mat-icon>pause</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="task.cancel()"
+      [disabled]="!isActive(snap)"
+    >
+      <mat-icon>
+        clear
+      </mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="task.resume()"
+      [disabled]="!(snap?.state === 'paused')"
+    >
+      <mat-icon>
+        play_arrow
+      </mat-icon>
+    </button>
+  </div>
+
+  <div class="container text-center">
+    <button mat-raised-button><mat-icon>send</mat-icon></button>
+  </div>
+</form>

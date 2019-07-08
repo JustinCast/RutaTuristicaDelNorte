@@ -5,8 +5,8 @@ import { ToursService } from "src/app/services/tours.service";
 
 @Component({
   selector: "app-tour",
-  templateUrl: "./tour.component.html",
-  styleUrls: ["./tour.component.scss"]
+  templateUrl: "./service.component.html",
+  styleUrls: ["./service.component.scss"]
 })
 export class TourComponent implements OnInit {
   tour: Service;

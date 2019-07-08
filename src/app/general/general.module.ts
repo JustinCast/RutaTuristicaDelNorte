@@ -6,7 +6,7 @@ import { GeneralRootComponent } from "./general-root.component";
 import { ROUTES } from "./general.routing";
 import { ToursComponent } from "./tours/tours.component";
 import { SharedModule } from "../shared.module";
-import { TourComponent } from './service/services.component';
+import { TourComponent } from './service/service.component';
 
 @NgModule({
   declarations: [HistoryComponent, GeneralRootComponent, ToursComponent, TourComponent],
