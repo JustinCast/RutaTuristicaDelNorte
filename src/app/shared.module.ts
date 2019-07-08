@@ -15,6 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from 'src/environments/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,8 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatMenuModule,
@@ -46,6 +49,8 @@ import { environment } from 'src/environments/environment';
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {}

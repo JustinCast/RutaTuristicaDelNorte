@@ -8,6 +8,7 @@ import { SharedModule } from './shared.module';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routing';
 import { GeneralModule } from './general/general.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { GeneralModule } from './general/general.module';
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
     SharedModule,
-    GeneralModule
+    GeneralModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
