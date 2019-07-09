@@ -6,9 +6,10 @@ import { AdminRootComponent } from './admin-root.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './admin.routing';
 import { DropzoneDirective } from './add-service/dropzone.directive';
+import { PickLocationComponent } from './pick-location/pick-location.component';
 
 @NgModule({
-  declarations: [AddServiceComponent, AdminRootComponent, DropzoneDirective],
+  declarations: [AddServiceComponent, AdminRootComponent, DropzoneDirective, PickLocationComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -7,7 +7,8 @@ import {
   MatSelectModule,
   MatInputModule,
   MatExpansionModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule
 } from "@angular/material";
 import { CarouselModule } from "ngx-carousel-lib";
 import { NgxPaginationModule } from "ngx-pagination";
@@ -34,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     MatMenuModule,
@@ -50,7 +52,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class SharedModule {}
