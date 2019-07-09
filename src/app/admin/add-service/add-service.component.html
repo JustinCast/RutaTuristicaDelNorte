@@ -7,20 +7,20 @@
     <button mat-raised-button><mat-icon>add_location</mat-icon></button>
   </div>
   <mat-form-field>
-    <mat-select placeholder="Clasificación">
+    <mat-select [formControl]="addServiceFG.get('classification')" placeholder="Clasificación">
       <mat-option *ngFor="let c of classification" [value]="c">
         {{ c }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput placeholder="Información adicional"></textarea>
+    <textarea matInput [formControl]="addServiceFG.get('addtionalInfo')" placeholder="Información adicional"></textarea>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="tel" placeholder="Teléfono contacto" />
+    <input matInput type="tel" [formControl]="addServiceFG.get('phone')" placeholder="Teléfono contacto" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="email" placeholder="Correo" />
+    <input matInput [formControl]="addServiceFG.get('email')" type="email" placeholder="Correo" />
   </mat-form-field>
 
   <div
