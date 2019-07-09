@@ -1,10 +1,10 @@
 <form [formGroup]="addServiceFG" (ngSubmit)="onSubmit()" class="text-center">
   <h1 class="text-primary">Agregar Servicio</h1>
   <mat-form-field>
-    <input type="text" matInput placeholder="Nombre" />
+    <input type="text" [formControl]="addServiceFG.get('name')" matInput placeholder="Nombre" />
   </mat-form-field>
   <div class="container text-center">
-    <button mat-raised-button><mat-icon>add_location</mat-icon></button>
+    <button mat-raised-button (click)="pickLocation(); false"><mat-icon>add_location</mat-icon></button>
   </div>
   <mat-form-field>
     <mat-select [formControl]="addServiceFG.get('classification')" placeholder="Clasificación">
@@ -14,7 +14,7 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput [formControl]="addServiceFG.get('addtionalInfo')" placeholder="Información adicional"></textarea>
+    <textarea matInput [formControl]="addServiceFG.get('additional_info')" placeholder="Información adicional"></textarea>
   </mat-form-field>
   <mat-form-field>
     <input matInput type="tel" [formControl]="addServiceFG.get('phone')" placeholder="Teléfono contacto" />

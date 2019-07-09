@@ -28,6 +28,8 @@ export class AddServiceComponent implements OnInit {
   // Download URL
   downloadURLS: Array<string> = [];
 
+  location: JSON;
+
   // State for dropzone CSS toggling
   isHovering: boolean;
   constructor(
@@ -36,7 +38,6 @@ export class AddServiceComponent implements OnInit {
     private _dialog: DialogManagerService
   ) {
     this.addServiceFG = this._fb.group({
-      location: ["", Validators.required],
       name: ["", Validators.required],
       classification: ["", Validators.required],
       additional_info: ["", Validators.required],
@@ -52,9 +53,6 @@ export class AddServiceComponent implements OnInit {
   }
 
   startUpload(event: FileList) {
-    /*for (let i = 0; i < event.length; i++) {
-      this.upload(event.item(i));
-    }*/
     this.upload(Array.from(event));
   }
 
@@ -108,9 +106,11 @@ export class AddServiceComponent implements OnInit {
     );
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.addServiceFG.value);
+  }
 
   pickLocation() {
-    this._dialog.openPickLocationDialog().subscribe(location => console.log(location));
+    this._dialog.openPickLocationDialog().subscribe(location => {this.location = location;  console.log(this.location)});
   }
 }
