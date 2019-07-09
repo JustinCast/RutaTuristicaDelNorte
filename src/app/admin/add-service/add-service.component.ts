@@ -7,6 +7,7 @@ import {
 import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
+import { Service } from "src/app/models/Service";
 
 @Component({
   selector: "app-add-service",
@@ -57,7 +58,10 @@ export class AddServiceComponent implements OnInit {
   }
 
   upload(files) {
-    if (files.length === 0) return;
+    if (files.length === 0) {
+      this.percentage = undefined;
+      return;
+    }
     //console.log(files[0])
     // Client-side validation example
     /*if (file.type.split("/")[0] !== "image") {
@@ -107,10 +111,22 @@ export class AddServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.addServiceFG.value);
+    console.log(
+      new Service(
+        JSON.stringify(this.location),
+        this.addServiceFG.get("name").value,
+        this.addServiceFG.get("classification").value,
+        this.addServiceFG.get("additional_info").value,
+        this.addServiceFG.get("phone").value,
+        this.addServiceFG.get("email").value,
+        this.downloadURLS
+      )
+    );
   }
 
   pickLocation() {
-    this._dialog.openPickLocationDialog().subscribe(location => {this.location = location;  console.log(this.location)});
+    this._dialog
+      .openPickLocationDialog()
+      .subscribe(location => (this.location = location));
   }
 }

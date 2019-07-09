@@ -5,14 +5,14 @@ import { SharedModule } from "../shared.module";
 import { AdminRootComponent } from "./admin-root.component";
 import { RouterModule } from "@angular/router";
 import { ROUTES } from "./admin.routing";
-import { DropzoneDirective } from "./add-service/dropzone.directive";
+import { DropZoneDirective } from "./add-service/dropzone.directive";
 import { PickLocationComponent } from "./pick-location/pick-location.component";
 
 @NgModule({
   declarations: [
     AddServiceComponent,
     AdminRootComponent,
-    DropzoneDirective,
+    DropZoneDirective,
     PickLocationComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],

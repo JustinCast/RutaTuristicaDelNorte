@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routing';
 import { GeneralModule } from './general/general.module';
 import { AdminModule } from './admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AdminModule } from './admin/admin.module';
     RouterModule.forRoot(ROUTES),
     SharedModule,
     GeneralModule,
-    AdminModule
+    AdminModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

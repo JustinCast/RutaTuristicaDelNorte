@@ -1,36 +1,60 @@
 <form [formGroup]="addServiceFG" (ngSubmit)="onSubmit()" class="text-center">
   <h1 class="text-primary">Agregar Servicio</h1>
   <mat-form-field>
-    <input type="text" [formControl]="addServiceFG.get('name')" matInput placeholder="Nombre" />
+    <input
+      type="text"
+      [formControl]="addServiceFG.get('name')"
+      matInput
+      placeholder="Nombre"
+    />
   </mat-form-field>
   <div class="container text-center">
-    <button mat-raised-button (click)="pickLocation(); false"><mat-icon>add_location</mat-icon></button>
+    <button mat-raised-button (click)="pickLocation(); (false)">
+      <mat-icon>add_location</mat-icon>
+    </button>
   </div>
   <mat-form-field>
-    <mat-select [formControl]="addServiceFG.get('classification')" placeholder="Clasificación">
+    <mat-select
+      [formControl]="addServiceFG.get('classification')"
+      placeholder="Clasificación"
+    >
       <mat-option *ngFor="let c of classification" [value]="c">
         {{ c }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput [formControl]="addServiceFG.get('additional_info')" placeholder="Información adicional"></textarea>
+    <textarea
+      matInput
+      [formControl]="addServiceFG.get('additional_info')"
+      placeholder="Información adicional"
+    ></textarea>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="tel" [formControl]="addServiceFG.get('phone')" placeholder="Teléfono contacto" />
+    <input
+      matInput
+      type="tel"
+      [formControl]="addServiceFG.get('phone')"
+      placeholder="Teléfono contacto"
+    />
   </mat-form-field>
   <mat-form-field>
-    <input matInput [formControl]="addServiceFG.get('email')" type="email" placeholder="Correo" />
+    <input
+      matInput
+      [formControl]="addServiceFG.get('email')"
+      type="email"
+      placeholder="Correo"
+    />
   </mat-form-field>
 
   <div
-    class="dropzone"
+    class="dropzone shadow-sm bg-dark"
     dropZone
     (hovered)="toggleHover($event)"
     (dropped)="startUpload($event)"
     [class.hovering]="isHovering"
   >
-    <h3>Seleccione o arrastre el archivo</h3>
+    <h3 class="text-white">Seleccione o arrastre el archivo</h3>
 
     <div class="container text-center">
       <input
@@ -42,7 +66,9 @@
     </div>
   </div>
   <ul id="urls" *ngIf="downloadURLS.length !== 0">
-    <li *ngFor="let u of downloadURLS; let i = index;"><a href="{{u}}">Imagen {{i + 1}}</a></li>
+    <li *ngFor="let u of downloadURLS; let i = index">
+      <a href="{{ u }}">Imagen {{ i + 1 }}</a>
+    </li>
   </ul>
   <div *ngIf="percentage | async as pct">
     <progress class="progress is-info" [value]="pct" max="100"> </progress>
@@ -81,6 +107,11 @@
   </div>
 
   <div class="container text-center">
-    <button [disabled]="!addServiceFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>
+    <button
+      [disabled]="!addServiceFG.valid || percentage !== undefined || !location"
+      mat-raised-button
+    >
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </form>

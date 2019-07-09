@@ -7,6 +7,7 @@ export class Service {
     public additional_info?: string,
     public phone?: string,
     public email?: string,
+    public images?: Array<string>,
     public id?: number
   ) {}
 }
