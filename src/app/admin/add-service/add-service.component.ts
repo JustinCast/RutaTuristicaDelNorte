@@ -6,6 +6,7 @@ import {
 } from "angularfire2/storage";
 import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
+import { DialogManagerService } from "src/app/services/dialog-manager.service";
 
 @Component({
   selector: "app-add-service",
@@ -13,7 +14,7 @@ import { finalize } from "rxjs/operators";
   styleUrls: ["./add-service.component.scss"]
 })
 export class AddServiceComponent implements OnInit {
-  classification: Array<string> = ['Tour', 'Comida', 'Arte y Cultura', 'Otro'];
+  classification: Array<string> = ["Tour", "Comida", "Arte y Cultura", "Otro"];
   addServiceFG: FormGroup;
 
   // Main task
@@ -29,14 +30,18 @@ export class AddServiceComponent implements OnInit {
 
   // State for dropzone CSS toggling
   isHovering: boolean;
-  constructor(private storage: AngularFireStorage, private _fb: FormBuilder) {
+  constructor(
+    private storage: AngularFireStorage,
+    private _fb: FormBuilder,
+    private _dialog: DialogManagerService
+  ) {
     this.addServiceFG = this._fb.group({
-      location: ['', Validators.required],
-      name: ['', Validators.required],
-      classification: ['', Validators.required],
-      additional_info: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required]
+      location: ["", Validators.required],
+      name: ["", Validators.required],
+      classification: ["", Validators.required],
+      additional_info: ["", Validators.required],
+      phone: ["", Validators.required],
+      email: ["", Validators.required]
     });
   }
 
@@ -54,8 +59,7 @@ export class AddServiceComponent implements OnInit {
   }
 
   upload(files) {
-    if(files.length === 0)
-      return;
+    if (files.length === 0) return;
     //console.log(files[0])
     // Client-side validation example
     /*if (file.type.split("/")[0] !== "image") {
@@ -87,7 +91,10 @@ export class AddServiceComponent implements OnInit {
     this.snapshot
       .pipe(
         finalize(() => {
-          this.storage.ref(path).getDownloadURL().subscribe(url => this.downloadURLS.push(url));
+          this.storage
+            .ref(path)
+            .getDownloadURL()
+            .subscribe(url => this.downloadURLS.push(url));
         })
       )
       .subscribe();
@@ -101,7 +108,9 @@ export class AddServiceComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  onSubmit() {}
 
+  pickLocation() {
+    this._dialog.openPickLocationDialog().subscribe(location => console.log(location));
   }
 }
