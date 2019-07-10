@@ -1,0 +1,49 @@
+<nav class="navbar navbar-sm pt-0 pb-0 shadow-sm pl-2 pr-2 mb-4 fixed-top">
+  <ul id="links" class="navbar-expand ml-0 navbar-nav">
+    <li
+      routerLinkActive="active-link"
+      [routerLink]="['/general/history']"
+      class="link"
+    >
+      Historia
+    </li>
+    <li routerLinkActive="active-link" class="link">Veda</li>
+    <li
+      routerLinkActive="active-link"
+      [routerLink]="['/general/tours']"
+      class="link"
+    >
+      Tours
+    </li>
+    <li routerLinkActive="active-link" class="link">Actividades</li>
+  </ul>
+  <div class="navbar-expand ml-auto navbar-nav social">
+    <a [matMenuTriggerFor]="menu" class="nav-item nav-link white p-1 m-1">
+      <i class="fa fa-language"></i>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+    </a>
+    <a class="nav-item nav-link white p-1 m-1">
+      <i class="fa fa-facebook"></i>
+    </a>
+    <a class="nav-item nav-link white p-1 m-1">
+      <i class="fa fa-instagram"></i>
+    </a>
+    <a class="nav-item nav-link white p-1 m-1">
+      <i class="fa fa-address-book"></i> Contact
+    </a>
+  </div>
+</nav>
+<div id="outlet" class="mt-5 pt-5">
+  <router-outlet></router-outlet>
+</div>
+<footer class="shadow-sm">
+  <div class="container">
+    <span class="text-primary">
+      Proyecto de Extensión del Instituto Tecnológico de Costa Rica |
+      {{ date | date: "mediumDate" }}
+    </span>
+  </div>
+</footer>
