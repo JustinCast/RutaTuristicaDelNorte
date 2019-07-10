@@ -21,3 +21,12 @@ CREATE OR REPLACE FUNCTION save_service(location VARCHAR, name VARCHAR, classifi
       INSERT INTO service VALUES (location, name, classification, additional_info, phone, email);
     END;
   $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION save_image(url VARCHAR, id_service INTEGER)
+  RETURNS VOID AS
+  $$
+    BEGIN
+      INSERT INTO images VALUES(url, id_service);
+    END;
+  $$ LANGUAGE plpgsql;

@@ -1,16 +1,17 @@
 const db = require("../config/db");
+const ImagesCTRL = require("./image-controller");
 
 const pg = require("pg");
 var client;
 
 function saveService(req, res) {
-  client = new pg.Client(config);
+  client = new pg.Client(db);
 
   client.connect(err => {
     if (err) {
       client.end();
       res.status(400).send(err);
-      console.log(`err when connecting on getProducts: ${err}`);
+      console.log(`err when connecting on saveService: ${err}`);
     } else {
       let service = req.body;
       let query = {
@@ -26,15 +27,20 @@ function saveService(req, res) {
       };
       client
         .query(query)
-        .then(data => {
-          res.status(200).send(data.rows);
+        .then(id_service => {
+          ImagesCTRL.saveImages(service.images, id_service)
+          res.status(200).send(true);
           client.end();
         })
         .catch(err => {
           client.end();
           res.status(400).send(err);
-          console.log(`err when query on getProducts: ${err}`);
+          console.log(`err when query on saveService: ${err}`);
         });
     }
   });
 }
+
+module.exports = {
+  saveService: saveService
+};
