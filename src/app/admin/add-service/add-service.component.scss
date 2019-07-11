@@ -46,3 +46,19 @@ progress {
 #urls{
   list-style-type: decimal
 }
+.imgCarousel {
+  background-size: cover;
+  width: 100%;
+  height: 50%;
+  margin: 0;
+  border-radius: 10px;
+}
+
+ngb-carousel {
+  margin: auto;
+  width: 70%;
+  margin-top: 0;
+  padding: 1% 0;
+  border-radius: 2px;
+  top: 0;
+}

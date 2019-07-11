@@ -8,9 +8,11 @@ import {
   MatInputModule,
   MatExpansionModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 } from "@angular/material";
 import { CarouselModule } from "ngx-carousel-lib";
+import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxPaginationModule } from "ngx-pagination";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -36,7 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFireStorageModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    NgbCarouselModule
   ],
   exports: [
     MatMenuModule,
@@ -53,7 +57,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFireStorageModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    NgbCarouselModule,
   ]
 })
 export class SharedModule {}

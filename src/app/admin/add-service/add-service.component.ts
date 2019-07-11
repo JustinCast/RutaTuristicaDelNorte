@@ -1,22 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import {
   AngularFireUploadTask,
   AngularFireStorage
 } from "angularfire2/storage";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
+import { ToursService } from "src/app/services/tours.service";
 
 @Component({
   selector: "app-add-service",
   templateUrl: "./add-service.component.html",
   styleUrls: ["./add-service.component.scss"]
 })
-export class AddServiceComponent implements OnInit {
+export class AddServiceComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   classification: Array<string> = ["Tour", "Comida", "Arte y Cultura", "Otro"];
   addServiceFG: FormGroup;
+  files: FileList;
 
   // Main task
   task: AngularFireUploadTask;
@@ -36,7 +39,8 @@ export class AddServiceComponent implements OnInit {
   constructor(
     private storage: AngularFireStorage,
     private _fb: FormBuilder,
-    private _dialog: DialogManagerService
+    private _dialog: DialogManagerService,
+    private _tour: ToursService
   ) {
     this.addServiceFG = this._fb.group({
       name: ["", Validators.required],
@@ -53,8 +57,14 @@ export class AddServiceComponent implements OnInit {
     this.isHovering = event;
   }
 
-  startUpload(event: FileList) {
-    this.upload(Array.from(event));
+  prepareFiles(event: FileList) {
+    this.files = event;
+    console.log(event)
+    //this.upload(Array.from(event));
+  }
+
+  startUpload() {
+    this.upload(Array.from(this.files));
   }
 
   upload(files) {
@@ -80,7 +90,6 @@ export class AddServiceComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
     this.task
       .then(() => {
-        console.log("success");
         files.splice(0, 1);
         this.upload(files);
       })
@@ -111,17 +120,25 @@ export class AddServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(
-      new Service(
-        JSON.stringify(this.location),
-        this.addServiceFG.get("name").value,
-        this.addServiceFG.get("classification").value,
-        this.addServiceFG.get("additional_info").value,
-        this.addServiceFG.get("phone").value,
-        this.addServiceFG.get("email").value,
-        this.downloadURLS
+    this.subscription = this._tour
+      .saveService(
+        new Service(
+          JSON.stringify(this.location),
+          this.addServiceFG.get("name").value,
+          this.addServiceFG.get("classification").value,
+          this.addServiceFG.get("additional_info").value,
+          this.addServiceFG.get("phone").value,
+          this.addServiceFG.get("email").value,
+          this.downloadURLS
+        )
       )
-    );
+      .subscribe(() => {
+        this._tour.openSnackBar("Servicio guardado correctamente", "Ok", 2500);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   pickLocation() {
