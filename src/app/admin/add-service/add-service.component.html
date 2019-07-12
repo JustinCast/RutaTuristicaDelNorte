@@ -65,14 +65,6 @@
       />
       <hr>
       <button [disabled]="!files" (click)="startUpload(); false" mat-raised-button><mat-icon>cloud_upload</mat-icon></button>
-      <ngb-carousel class="text-center shadowm-lg m-auto" *ngIf="downloadURLS.length !== 0">
-        <ng-template ngbSlide *ngFor="let img of downloadURLS">
-          <img src="{{img}}" width="auto" height="auto" class="container imgCarousel" >
-          <div class="carousel-caption text-center">
-            <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
-          </div>
-        </ng-template>
-      </ngb-carousel>
     </div>
   </div>
   <ul id="urls" *ngIf="downloadURLS.length !== 0">
@@ -80,6 +72,9 @@
       <a href="{{ u }}">Imagen {{ i + 1 }}</a>
     </li>
   </ul>
+  <div class="container text-center" *ngIf="downloadURLS.length > 0">
+    <button (click)="openShowImages(); false" mat-stroked-button><mat-icon>collections</mat-icon></button>
+  </div>
   <div *ngIf="percentage | async as pct">
     <progress class="progress is-info" [value]="pct" max="100"> </progress>
 

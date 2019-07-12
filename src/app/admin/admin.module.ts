@@ -7,16 +7,18 @@ import { RouterModule } from "@angular/router";
 import { ROUTES } from "./admin.routing";
 import { DropZoneDirective } from "./add-service/dropzone.directive";
 import { PickLocationComponent } from "./pick-location/pick-location.component";
+import { ShowImagesComponent } from "./add-service/show-images/show-images.component";
 
 @NgModule({
   declarations: [
     AddServiceComponent,
     AdminRootComponent,
     DropZoneDirective,
-    PickLocationComponent
+    PickLocationComponent,
+    ShowImagesComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
-  entryComponents: [PickLocationComponent],
+  entryComponents: [PickLocationComponent, ShowImagesComponent],
   exports: [AdminRootComponent]
 })
 export class AdminModule {}

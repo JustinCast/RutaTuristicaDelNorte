@@ -67,6 +67,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     this.upload(Array.from(this.files));
   }
 
+  openShowImages() {
+    this._dialog.openImagesDialog(this.downloadURLS);
+  }
+
   upload(files) {
     if (files.length === 0) {
       this.percentage = undefined;

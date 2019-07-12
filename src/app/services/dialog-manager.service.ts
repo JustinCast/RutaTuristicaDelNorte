@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { PickLocationComponent } from '../admin/pick-location/pick-location.component';
+import { ShowImagesComponent } from '../admin/add-service/show-images/show-images.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,18 @@ export class DialogManagerService {
     dialogRef = this.dialog.open(PickLocationComponent, {
       width: `${window.innerWidth < 400 ? '90%' : '50%'}`,
       height: `${window.innerHeight <= 812 ? '55%' : '50%'}`,
+      panelClass: "dialog"
+    });
+    return dialogRef.afterClosed();
+  }
+
+  public openImagesDialog(images: Array<string>) {
+    let dialogRef: MatDialogRef<ShowImagesComponent>;
+    console.log(window.innerHeight)
+    dialogRef = this.dialog.open(ShowImagesComponent, {
+      width: `${window.innerWidth < 400 ? '90%' : '50%'}`,
+      height: `${window.innerHeight <= 812 ? '65%' : '60%'}`,
+      data: images,
       panelClass: "dialog"
     });
     return dialogRef.afterClosed();

@@ -1,0 +1,13 @@
+<div id="main">
+  <ngb-carousel class="text-center shadowm-lg m-auto bg-dark">
+    <ng-template ngbSlide *ngFor="let img of images">
+      <img src="{{img}}" width="auto" height="auto" class="container imgCarousel" >
+      <div class="carousel-caption text-center">
+        <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <div class="container text-center m-2">
+    <button mat-raised-button color="primary"><mat-icon>check</mat-icon></button>
+  </div>
+</div>
