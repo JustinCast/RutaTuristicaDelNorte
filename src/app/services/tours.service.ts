@@ -9,11 +9,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ToursService {
-  public tours: Array<Service> = [];
+  public tours: Array<Service>;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) { }
 
   saveService(service: Service): Observable<any> {
     return this._http.post(`${environment.SERVER_BASE_URL}saveService`, service);
+  }
+
+  getServices() {
+    this._http.get<Array<Service>>(`${environment.SERVER_BASE_URL}getServices`)
+    .subscribe(
+      services => {
+        this.tours = services;
+        console.log(this.tours);
+      },
+      (err: HttpErrorResponse) => this.handleError(err)
+    )
   }
 
   openSnackBar(message: string, action: string, duration: number) {

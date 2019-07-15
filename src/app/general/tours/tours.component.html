@@ -18,26 +18,29 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <ul id="content">
+  <ul id="content" *ngIf="_tours.tours">
     <mat-card
       class="service"
       *ngFor="
         let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
       "
     >
-      <mat-card-title>{{ item.name }}</mat-card-title>
+      <div class="container text-center">
+        <img id="main-img" src="{{item.imgs[0]}}" alt="">
+      </div>
+      <hr>
+      <mat-card-title class="text-center">{{ item._name }}</mat-card-title>
       <hr />
-      <mat-card-content>
-        <p>
-          <mat-icon class="accent-icon">info</mat-icon>
-          {{ item.additionalInfo }}
-        </p>
+      <mat-card-content class="text-left">
         <ul id="details">
           <li>
-            <mat-icon class="accent-icon">phone</mat-icon> {{ item.phone }}
+            <mat-icon class="accent-icon">info</mat-icon> {{ item._additional_info }}
           </li>
           <li>
-            <mat-icon class="accent-icon">mail</mat-icon> {{ item.email }}
+            <mat-icon class="accent-icon">phone</mat-icon> {{ item._phone }}
+          </li>
+          <li>
+            <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
           </li>
         </ul>
       </mat-card-content>
@@ -54,4 +57,7 @@
     </mat-card>
   </ul>
 </div>
-<pagination-controls (pageChange)="p = $event" class="container text-center"></pagination-controls>
+<pagination-controls
+  (pageChange)="p = $event"
+  class="container text-center"
+></pagination-controls>

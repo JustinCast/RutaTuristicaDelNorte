@@ -59,7 +59,6 @@ export class AddServiceComponent implements OnInit, OnDestroy {
 
   prepareFiles(event: FileList) {
     this.files = event;
-    console.log(event)
     //this.upload(Array.from(event));
   }
 

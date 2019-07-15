@@ -14,22 +14,23 @@ function saveService(req, res) {
       console.log(`err when connecting on saveService: ${err}`);
     } else {
       let service = req.body;
+      console.log(service)
       let query = {
         text: "SELECT save_service($1, $2, $3, $4, $5, $6)",
         values: [
-          service.location,
-          service.name,
-          service.classification,
-          service.additional_info,
-          service.phone,
-          service.email
+          service._location,
+          service._name,
+          service._classification,
+          service._additional_info,
+          service._phone,
+          service._email
         ]
       };
       client
         .query(query)
         .then(data => {
           let id_service = data.rows[0].save_service;
-          ImagesCTRL.saveImages(service.images, Number(id_service))
+          ImagesCTRL.saveImages(service._imgs, Number(id_service))
           res.status(200).send(true);
           client.end();
         })
@@ -52,7 +53,7 @@ function getServices(req, res) {
       console.log(`err when connecting on getServices: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM service;"
+        text: "SELECT * FROM get_services();"
       };
       client
         .query(query)

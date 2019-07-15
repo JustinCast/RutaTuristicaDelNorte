@@ -12,6 +12,7 @@ export class ToursComponent implements OnInit {
   constructor(public _tours: ToursService) { }
 
   ngOnInit() {
+    this._tours.getServices();
   }
 
 }
