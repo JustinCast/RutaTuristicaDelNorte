@@ -19,6 +19,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -40,7 +41,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    HttpClientModule
   ],
   exports: [
     MatMenuModule,
@@ -60,6 +62,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatSnackBarModule,
     NgbCarouselModule,
+    HttpClientModule
   ]
 })
 export class SharedModule {}

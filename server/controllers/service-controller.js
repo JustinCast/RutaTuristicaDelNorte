@@ -15,7 +15,7 @@ function saveService(req, res) {
     } else {
       let service = req.body;
       let query = {
-        text: "SELECT * FROM save_service($1, $2, $3, $4, $5, $6)",
+        text: "SELECT save_service($1, $2, $3, $4, $5, $6)",
         values: [
           service.location,
           service.name,
@@ -27,8 +27,9 @@ function saveService(req, res) {
       };
       client
         .query(query)
-        .then(id_service => {
-          ImagesCTRL.saveImages(service.images, id_service)
+        .then(data => {
+          let id_service = data.rows[0].save_service;
+          ImagesCTRL.saveImages(service.images, Number(id_service))
           res.status(200).send(true);
           client.end();
         })

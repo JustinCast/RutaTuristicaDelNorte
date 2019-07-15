@@ -1,9 +1,9 @@
 <div id="main">
   <ngb-carousel class="text-center shadowm-lg m-auto bg-dark">
-    <ng-template ngbSlide *ngFor="let img of images">
+    <ng-template ngbSlide *ngFor="let img of images; let i = index">
       <img src="{{img}}" width="auto" height="auto" class="container imgCarousel" >
       <div class="carousel-caption text-center">
-        <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+        <button mat-raised-button (click)="deleteImage(i)" color="warn"><mat-icon>delete</mat-icon></button>
       </div>
     </ng-template>
   </ngb-carousel>

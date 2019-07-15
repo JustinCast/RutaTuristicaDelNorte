@@ -14,7 +14,7 @@ function saveImages(images, id_service) {
       images.forEach(image => {
         let query = {
           text: "SELECT * FROM save_image($1, $2)",
-          values: [image.url, id_service]
+          values: [image, id_service]
         };
         client.query(query).catch(err => {
           client.end();
