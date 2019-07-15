@@ -42,6 +42,34 @@ function saveService(req, res) {
   });
 }
 
+function getServices(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on getServices: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM service;"
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on getServices: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
-  saveService: saveService
+  saveService: saveService,
+  getServices: getServices
 };
