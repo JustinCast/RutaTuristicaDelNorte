@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Service } from "src/app/models/Service";
 import { ToursService } from "src/app/services/tours.service";
+import { DialogManagerService } from 'src/app/services/dialog-manager.service';
 
 @Component({
   selector: "app-tour",
@@ -15,7 +16,8 @@ export class TourComponent implements OnInit {
   constructor(
     private _tours: ToursService,
     private route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _dialog: DialogManagerService,
   ) {}
 
   ngOnInit() {
@@ -23,5 +25,14 @@ export class TourComponent implements OnInit {
     if (this.route.snapshot.paramMap.get("id_service") && this._tours.tours)
       this.tour = this._tours.tours.find(t => t.id_service === Number(id_service));
     else this._router.navigateByUrl("/general/tours");
+  }
+
+  showLoc() {
+    let location = JSON.parse(this.tour._location);
+    console.log(location);
+    this._dialog.showTourLocation({
+      lat: location.lat,
+      lng: location.lng
+    }, false);
   }
 }

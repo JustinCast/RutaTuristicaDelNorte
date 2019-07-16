@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { PickLocationComponent } from '../admin/pick-location/pick-location.component';
 import { ShowImagesComponent } from '../admin/add-service/show-images/show-images.component';
+import { SeeLocationComponent } from '../general/see-location/see-location.component';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,19 @@ export class DialogManagerService {
       panelClass: "dialog"
     });
     return dialogRef.afterClosed();
+  }
+
+  public showTourLocation(location: any, edit: boolean) {
+    return this.dialog
+      .open(SeeLocationComponent, {
+        width: "90%",
+        height: "70%",
+        panelClass: "dialog",
+        data: {
+          location: location,
+          edit: edit
+        }
+      })
+      .afterClosed();
   }
 }
