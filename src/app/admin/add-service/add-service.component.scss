@@ -1,15 +1,35 @@
 @import '../../../assets/ui-utils/vars';
+@media screen and (min-width: 601px) {
+  mat-form-field {
+    width: 70%
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-form-field {
+    width: 95%
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .dropzone {
+    width: 70%
+  }
+}
+@media screen and (max-width: 700px) {
+  .dropzone{
+    width: 95%
+  }
+}
+
 form{
   flex-direction: column;
   height: 100%;
-  width: 60%;
-  margin: auto;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: center;
 }
 
 mat-form-field{
   display: block;
-  width: 100%;
   margin: auto
 }
 
@@ -28,7 +48,11 @@ progress {
   border: 0.5px dashed $primary-color;
   border-radius: 5px;
   background: transparent;
-  margin: 10px 0;
+  background-color: #FF9A8B;
+  background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+
+
+
 
   &.hovering {
       border: 2px solid #f16624;
@@ -45,4 +69,18 @@ progress {
 
 #urls{
   list-style-type: decimal
+}
+mat-list {
+  border: 0.5px solid lightgray
+}
+
+.phone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%
+}
+
+h3{
+  font-weight: 200
 }

@@ -17,7 +17,7 @@ import { ToursService } from "src/app/services/tours.service";
 })
 export class AddServiceComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  classification: Array<string> = ["Tour", "Comida", "Arte y Cultura", "Otro"];
+  classification: Array<string> = ["Tour", "Servicio de Alimentación", "Arte y Cultura", "Otro"];
   addServiceFG: FormGroup;
   files: FileList;
 
@@ -33,6 +33,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   downloadURLS: Array<string> = [];
 
   location: JSON;
+  service: Service;
 
   // State for dropzone CSS toggling
   isHovering: boolean;
@@ -46,12 +47,22 @@ export class AddServiceComponent implements OnInit, OnDestroy {
       name: ["", Validators.required],
       classification: ["", Validators.required],
       additional_info: ["", Validators.required],
-      phone: ["", Validators.required],
-      email: ["", Validators.required]
+      phone: [""],
+      email: ["", Validators.required],
+      website: [""],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.service = new Service("", "", "", "", [], "", []);
+  }
+
+  addPhone(phone) {
+    if (phone.length > 0) {
+      this.service._phones.unshift(phone);
+      this.addServiceFG.get("phone").reset();
+    }
+  }
 
   toggleHover(event: boolean) {
     this.isHovering = event;
@@ -59,6 +70,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
 
   prepareFiles(event: FileList) {
     this.files = event;
+    console.log(this.files);
     //this.upload(Array.from(event));
   }
 
@@ -67,7 +79,9 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   }
 
   openShowImages() {
-    this._dialog.openImagesDialog(this.downloadURLS).subscribe(imgs => this.downloadURLS = imgs);
+    this._dialog
+      .openImagesDialog(this.downloadURLS)
+      .subscribe(imgs => (this.downloadURLS = imgs));
   }
 
   upload(files) {
