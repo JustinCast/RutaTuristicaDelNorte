@@ -21,7 +21,6 @@ export class ToursService {
     .subscribe(
       services => {
         this.tours = services;
-        console.log(this.tours);
       },
       (err: HttpErrorResponse) => this.handleError(err)
     )

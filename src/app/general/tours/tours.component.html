@@ -20,17 +20,15 @@
   </div>
   <ul id="content" *ngIf="_tours.tours">
     <mat-card
-      class="service"
+      class="service animated bounceInRight"
       *ngFor="
         let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
       "
     >
-      <mat-card-header>
-        <mat-card-title class="text-center">{{ item._name }}</mat-card-title>
-      </mat-card-header>
+      <h1 class="text-center">{{ item._name }}</h1>
       <hr>
       <div id="img-container"class="text-center">
-        <img id="main-img" src="{{item.imgs[0]}}" alt="">
+        <img id="main-img" class="rounded shadow-sm" src="{{item.imgs[0]}}" alt="">
       </div>
       <hr />
       <mat-card-content class="text-left">

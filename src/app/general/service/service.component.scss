@@ -1,3 +1,14 @@
+@media screen and (min-width: 601px) {
+  .item-carousel {
+    width: 10%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .item-carousel {
+    width: 60%
+  }
+}
+
 #tour-container {
   display: flex;
   justify-content: center;
