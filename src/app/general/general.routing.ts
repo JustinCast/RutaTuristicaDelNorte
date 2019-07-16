@@ -9,7 +9,7 @@ export const ROUTES: Routes = [
     path: 'general', component: GeneralRootComponent, children: [
       {path: 'history', component: HistoryComponent},
       {path: 'tours', component: ToursComponent},
-      {path: 'tour/:id', component: TourComponent}
+      {path: 'tour/:id_service', component: TourComponent}
     ]
   }
 ];

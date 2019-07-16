@@ -19,8 +19,9 @@ export class TourComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.route.snapshot.paramMap.get("id"))
-      this.tour = this._tours.tours[Number(this.route.snapshot.paramMap.get("id"))];
-    else this._router.navigate["/general/tours"];
+    let id_service = this.route.snapshot.paramMap.get("id_service");
+    if (this.route.snapshot.paramMap.get("id_service") && this._tours.tours)
+      this.tour = this._tours.tours.find(t => t.id_service === Number(id_service));
+    else this._router.navigateByUrl("/general/tours");
   }
 }

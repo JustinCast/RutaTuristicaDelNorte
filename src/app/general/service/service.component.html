@@ -1,19 +1,14 @@
 <div *ngIf="tour" id="tour-container">
-  <h4 class="text-center text-primary m-2">{{ tour.name }}</h4>
-  <carousel-component class="shadow-sm" #carousel [mode]="'horizontal'" [morePairSlides]="moreSlides" [angle]="degree">
-    <div class="item-carousel rounded">
-      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
-    </div>
-    <div class="item-carousel rounded">
-      <div class="b">
-        <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
-      </div>
-    </div>
-    <div class="item-carousel rounded">
-      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
-    </div>
-    <div class="item-carousel rounded">
-      <img class="rounded" src="https://picsum.photos/600/400?random&t=${Math.random()}" />
+  <h2 class="text-center text-primary m-2">{{ tour._name }}</h2>
+  <carousel-component
+    class="shadow-lg"
+    #carousel
+    [mode]="'horizontal'"
+    [morePairSlides]="moreSlides"
+    [angle]="degree"
+  >
+    <div class="item-carousel rounded shadow" *ngFor="let img of tour.imgs">
+      <img class="rounded" src="{{ img }}" />
     </div>
   </carousel-component>
   <div class="container text-center mt-2" id="carousel-footer">
@@ -26,10 +21,16 @@
   </div>
   <ul id="details" class="container text-left p-3 shadow-sm">
     <h5 class="text-center text-muted">Información</h5>
-    <hr>
-    <li><strong>Ubicación: </strong> <button mat-stroked-button><mat-icon>map</mat-icon></button></li>
-    <li><strong>Información adicional: </strong> <p>{{tour.additionalInfo}}</p></li>
-    <li><mat-icon>phone</mat-icon>{{tour.phone}}</li>
-    <li><mat-icon>mail</mat-icon>{{tour.email}}</li>
+    <hr />
+    <li>
+      <strong>Ubicación: </strong>
+      <button mat-stroked-button><mat-icon>map</mat-icon></button>
+    </li>
+    <li>
+      <strong>Información adicional: </strong>
+      <p>{{ tour.a_dditional_info }}</p>
+    </li>
+    <li><mat-icon>phone</mat-icon>{{ tour._phone }}</li>
+    <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
   </ul>
 </div>
