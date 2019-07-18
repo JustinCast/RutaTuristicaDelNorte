@@ -4,6 +4,7 @@ import { PickLocationComponent } from '../admin/pick-location/pick-location.comp
 import { ShowImagesComponent } from '../admin/add-service/show-images/show-images.component';
 import { SeeLocationComponent } from '../general/see-location/see-location.component';
 import { RatesComponent } from '../admin/rates/rates.component';
+import { LoginDialogComponent } from '../admin/login-dialog/login-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,16 @@ export class DialogManagerService {
   public openRatesDialog() {
     return this.dialog
       .open(RatesComponent, {
+        width: "90%",
+        height: "70%",
+        panelClass: "dialog",
+      })
+      .afterClosed();
+  }
+
+  public openLoginDialog() {
+    return this.dialog
+      .open(LoginDialogComponent, {
         width: "90%",
         height: "70%",
         panelClass: "dialog",
