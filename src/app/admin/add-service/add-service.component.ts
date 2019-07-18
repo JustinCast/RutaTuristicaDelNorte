@@ -163,4 +163,8 @@ export class AddServiceComponent implements OnInit, OnDestroy {
       .openPickLocationDialog()
       .subscribe(location => (this.location = location));
   }
+
+  addRates() {
+    this._dialog.openRatesDialog().subscribe(rates => console.log(rates));
+  }
 }

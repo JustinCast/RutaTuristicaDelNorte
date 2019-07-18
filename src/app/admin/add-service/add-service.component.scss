@@ -11,6 +11,17 @@
 }
 
 @media screen and (min-width: 601px) {
+  mat-list {
+    width: 70%
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-lists {
+    width: 95%
+  }
+}
+
+@media screen and (min-width: 601px) {
   .dropzone {
     width: 70%
   }
@@ -71,7 +82,8 @@ progress {
   list-style-type: decimal
 }
 mat-list {
-  border: 0.5px solid lightgray
+  border: 0.5px solid lightgray;
+  margin: auto
 }
 
 .phone {

@@ -20,7 +20,6 @@ export class ShowImagesComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   deleteImage(index: number) {
-    console.log(this.images[index]);
     /*this.subscription = */this.storage
       .ref(this.images[index])
       .delete()

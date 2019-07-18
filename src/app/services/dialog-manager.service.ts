@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from "@angular/material";
 import { PickLocationComponent } from '../admin/pick-location/pick-location.component';
 import { ShowImagesComponent } from '../admin/add-service/show-images/show-images.component';
 import { SeeLocationComponent } from '../general/see-location/see-location.component';
+import { RatesComponent } from '../admin/rates/rates.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,16 @@ export class DialogManagerService {
           location: location,
           edit: edit
         }
+      })
+      .afterClosed();
+  }
+
+  public openRatesDialog() {
+    return this.dialog
+      .open(RatesComponent, {
+        width: "90%",
+        height: "70%",
+        panelClass: "dialog",
       })
       .afterClosed();
   }
