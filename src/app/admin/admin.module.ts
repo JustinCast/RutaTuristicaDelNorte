@@ -10,6 +10,7 @@ import { PickLocationComponent } from "./pick-location/pick-location.component";
 import { ShowImagesComponent } from "./add-service/show-images/show-images.component";
 import { RatesComponent } from "./rates/rates.component";
 import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
+import { AUTH_PROVIDERS } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
     RatesComponent,
     LoginDialogComponent
   ],
+  providers: [AUTH_PROVIDERS],
   exports: [AdminRootComponent]
 })
 export class AdminModule {}
