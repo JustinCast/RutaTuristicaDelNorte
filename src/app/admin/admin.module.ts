@@ -9,6 +9,7 @@ import { DropZoneDirective } from "./add-service/dropzone.directive";
 import { PickLocationComponent } from "./pick-location/pick-location.component";
 import { ShowImagesComponent } from "./add-service/show-images/show-images.component";
 import { RatesComponent } from "./rates/rates.component";
+import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
 
 @NgModule({
   declarations: [
@@ -17,10 +18,16 @@ import { RatesComponent } from "./rates/rates.component";
     DropZoneDirective,
     PickLocationComponent,
     ShowImagesComponent,
-    RatesComponent
+    RatesComponent,
+    LoginDialogComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
-  entryComponents: [PickLocationComponent, ShowImagesComponent, RatesComponent],
+  entryComponents: [
+    PickLocationComponent,
+    ShowImagesComponent,
+    RatesComponent,
+    LoginDialogComponent
+  ],
   exports: [AdminRootComponent]
 })
 export class AdminModule {}
