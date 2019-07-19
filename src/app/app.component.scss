@@ -1,6 +1,9 @@
 @import '../assets/ui-utils/vars';
 nav {
   background-color: $primary-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: #3c3b3d;
   font-weight: 200;
   margin: auto;

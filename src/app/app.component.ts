@@ -9,6 +9,12 @@ import { DialogManagerService } from './services/dialog-manager.service';
 export class AppComponent {
   title = 'ruta-turistica-del-norte';
   date: Date = new Date();
+  navbarOpen = false;
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 
   constructor(private _dialog: DialogManagerService) {}
 
