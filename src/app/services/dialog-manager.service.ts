@@ -63,8 +63,8 @@ export class DialogManagerService {
   public openLoginDialog() {
     return this.dialog
       .open(LoginDialogComponent, {
-        width: "90%",
-        height: "70%",
+        width: `${window.innerWidth < 400 ? '90%' : '30%'}`,
+      height: `${window.innerHeight <= 812 ? '55%' : '40%'}`,
         panelClass: "dialog",
       })
       .afterClosed();

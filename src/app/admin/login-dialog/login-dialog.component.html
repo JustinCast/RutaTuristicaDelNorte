@@ -1,3 +1,14 @@
-<p>
-  login-dialog works!
-</p>
+<form [formGroup]="loginFG" (ngSubmit)="onSubmit()" class="p-2">
+  <h1 class="text-muted text-center">Inicio de sesión</h1>
+  <div class="container" id="fields-container">
+    <mat-form-field>
+      <input [formControl]="loginFG.get('username')" matInput type="text" placeholder="Ingrese su nombre de usuario">
+    </mat-form-field>
+    <mat-form-field>
+      <input [formControl]="loginFG.get('password')" matInput type="password" placeholder="Ingrese su contraseña">
+    </mat-form-field>
+  </div>
+  <div class="container text-center">
+    <button mat-raised-button [disabled]="!loginFG.valid" color="primary"><mat-icon>send</mat-icon></button>
+  </div>
+</form>

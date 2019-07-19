@@ -11,7 +11,7 @@ export class UserService {
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) { }
 
   login(username: string, password: string) {
-    this._http.post(`${environment.SERVER_BASE_URL}`, {username: username, password: password})
+    this._http.post(`${environment.SERVER_BASE_URL}login`, {username: username, password: password})
     .subscribe(login => console.log(login));
   }
 
