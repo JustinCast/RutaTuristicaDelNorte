@@ -1,23 +1,32 @@
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { AuthService } from "./auth.service";
+import { User } from '../models/User';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
+  constructor(
+    private _http: HttpClient,
+    private _snackbar: MatSnackBar,
+    private _auth: AuthService
+  ) {}
 
-  constructor(private _http: HttpClient, private _snackbar: MatSnackBar) { }
-
-  login(username: string, password: string) {
-    this._http.post(`${environment.SERVER_BASE_URL}login`, {username: username, password: password})
-    .subscribe(login => console.log(login));
+  login(username: string, password: string): Observable<any> {
+    return this._http
+      .post<any>(`${environment.SERVER_BASE_URL}login`, {
+        username: username,
+        password: password
+      });
   }
 
   openSnackBar(message: string, action: string, duration: number) {
     this._snackbar.open(message, action, {
-      duration: duration,
+      duration: duration
     });
   }
 
