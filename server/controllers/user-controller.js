@@ -20,7 +20,6 @@ function login(req, res) {
       client
         .query(query)
         .then(data => {
-          console.log(data.rows);
           res.status(200).send(data.rows[0]);
           client.end();
         })

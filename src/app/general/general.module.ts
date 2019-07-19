@@ -8,6 +8,7 @@ import { ToursComponent } from "./tours/tours.component";
 import { SharedModule } from "../shared.module";
 import { TourComponent } from "./service/service.component";
 import { SeeLocationComponent } from "./see-location/see-location.component";
+import { VedaComponent } from './veda/veda.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SeeLocationComponent } from "./see-location/see-location.component";
     GeneralRootComponent,
     ToursComponent,
     TourComponent,
-    SeeLocationComponent
+    SeeLocationComponent,
+    VedaComponent
   ],
   imports: [CommonModule, RouterModule.forRoot(ROUTES), SharedModule],
   entryComponents: [SeeLocationComponent],
