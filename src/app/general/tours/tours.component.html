@@ -18,33 +18,36 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <ul id="content">
+  <ul id="content" *ngIf="_tours.tours">
     <mat-card
-      class="service"
+      class="service animated bounceInRight"
       *ngFor="
         let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
       "
     >
-      <mat-card-title>{{ item.name }}</mat-card-title>
+      <h1 class="text-center">{{ item._name }}</h1>
+      <hr>
+      <div id="img-container"class="text-center">
+        <img id="main-img" class="rounded shadow-sm" src="{{item.imgs[0]}}" alt="">
+      </div>
       <hr />
-      <mat-card-content>
-        <p>
-          <mat-icon class="accent-icon">info</mat-icon>
-          {{ item.additionalInfo }}
-        </p>
+      <mat-card-content class="text-left">
         <ul id="details">
           <li>
-            <mat-icon class="accent-icon">phone</mat-icon> {{ item.phone }}
+            <mat-icon class="accent-icon">info</mat-icon> {{ item._additional_info }}
           </li>
           <li>
-            <mat-icon class="accent-icon">mail</mat-icon> {{ item.email }}
+            <mat-icon class="accent-icon">phone</mat-icon> {{ item._phone }}
+          </li>
+          <li>
+            <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
           </li>
         </ul>
       </mat-card-content>
       <hr />
       <div class="container text-center">
         <button
-          routerLink="../tour/{{ item.id }}"
+          routerLink="../tour/{{ item.id_service }}"
           class="detail-button"
           mat-raised-button
         >
@@ -54,4 +57,7 @@
     </mat-card>
   </ul>
 </div>
-<pagination-controls (pageChange)="p = $event" class="container text-center"></pagination-controls>
+<pagination-controls
+  (pageChange)="p = $event"
+  class="container text-center p-0"
+></pagination-controls>

@@ -1,45 +1,89 @@
-@import '../../../assets/ui-utils/vars';
+@import "../../../assets/ui-utils/vars";
+@media screen and (min-width: 601px) {
+  .service {
+    width: 25%
+  }
+}
+@media screen and (max-width: 700px) {
+  .service {
+    width: 95%
+  }
+}
+
+@media screen and (min-width: 601px) {
+  h1 {
+    font-size: 25px;
+    font-weight: 200;
+  }
+}
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 15px;
+    font-weight: 100
+  }
+}
+
+@media screen and (min-width: 601px) {
+  #main-img {
+    height: 250px;
+  }
+}
+@media screen and (max-width: 700px) {
+  #main-img {
+    height: 200px;
+  }
+}
+
 #header {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
-  padding: 1%
+  padding: 1%;
 }
-#main-container{
+#main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   width: 100%;
 }
-h4{
-  font-weight: 200
+h4 {
+  font-weight: 200;
 }
-#content{
+#content {
   list-style-type: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 0
+  padding: 0;
 }
 .service {
   display: inline-block;
   margin: 2%;
-}
-mat-card-title{
-  font-weight: 200
+  padding: 5px
 }
 #details {
-  list-style-type: none
+  list-style-type: none;
+  padding: 0
 }
 mat-icon {
   vertical-align: middle;
 }
-.accent-icon{
-  color: $primary-color
+.accent-icon {
+  color: $primary-color;
 }
 .detail-button {
   background-color: #008000;
-  color: white
+  color: white;
+}
+
+#main-img{
+  margin: auto;
+  width: 100%;
+}
+#img-container {
+  display: flex;
+  justify-content: center;
+  padding: 0;
 }

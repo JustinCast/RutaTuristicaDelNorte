@@ -1,22 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import {
   AngularFireUploadTask,
   AngularFireStorage
 } from "angularfire2/storage";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
+import { ToursService } from "src/app/services/tours.service";
 
 @Component({
   selector: "app-add-service",
   templateUrl: "./add-service.component.html",
   styleUrls: ["./add-service.component.scss"]
 })
-export class AddServiceComponent implements OnInit {
-  classification: Array<string> = ["Tour", "Comida", "Arte y Cultura", "Otro"];
+export class AddServiceComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  classification: Array<string> = ["Tour", "Servicio de Alimentación", "Arte y Cultura", "Otro"];
   addServiceFG: FormGroup;
+  files: FileList;
 
   // Main task
   task: AngularFireUploadTask;
@@ -30,31 +33,55 @@ export class AddServiceComponent implements OnInit {
   downloadURLS: Array<string> = [];
 
   location: JSON;
+  service: Service;
 
   // State for dropzone CSS toggling
   isHovering: boolean;
   constructor(
     private storage: AngularFireStorage,
     private _fb: FormBuilder,
-    private _dialog: DialogManagerService
+    private _dialog: DialogManagerService,
+    private _tour: ToursService
   ) {
     this.addServiceFG = this._fb.group({
       name: ["", Validators.required],
       classification: ["", Validators.required],
       additional_info: ["", Validators.required],
-      phone: ["", Validators.required],
-      email: ["", Validators.required]
+      phone: [""],
+      email: ["", Validators.required],
+      website: [""],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.service = new Service("", "", "", "", [], "", []);
+  }
+
+  addPhone(phone) {
+    if (phone.length > 0) {
+      this.service._phones.unshift(phone);
+      this.addServiceFG.get("phone").reset();
+    }
+  }
 
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
 
-  startUpload(event: FileList) {
-    this.upload(Array.from(event));
+  prepareFiles(event: FileList) {
+    this.files = event;
+    console.log(this.files);
+    //this.upload(Array.from(event));
+  }
+
+  startUpload() {
+    this.upload(Array.from(this.files));
+  }
+
+  openShowImages() {
+    this._dialog
+      .openImagesDialog(this.downloadURLS)
+      .subscribe(imgs => (this.downloadURLS = imgs));
   }
 
   upload(files) {
@@ -80,7 +107,6 @@ export class AddServiceComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
     this.task
       .then(() => {
-        console.log("success");
         files.splice(0, 1);
         this.upload(files);
       })
@@ -111,22 +137,34 @@ export class AddServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(
-      new Service(
-        JSON.stringify(this.location),
-        this.addServiceFG.get("name").value,
-        this.addServiceFG.get("classification").value,
-        this.addServiceFG.get("additional_info").value,
-        this.addServiceFG.get("phone").value,
-        this.addServiceFG.get("email").value,
-        this.downloadURLS
+    this.subscription = this._tour
+      .saveService(
+        new Service(
+          JSON.stringify(this.location),
+          this.addServiceFG.get("name").value,
+          this.addServiceFG.get("classification").value,
+          this.addServiceFG.get("additional_info").value,
+          this.addServiceFG.get("phone").value,
+          this.addServiceFG.get("email").value,
+          this.downloadURLS
+        )
       )
-    );
+      .subscribe(() => {
+        this._tour.openSnackBar("Servicio guardado correctamente", "Ok", 2500);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   pickLocation() {
     this._dialog
       .openPickLocationDialog()
       .subscribe(location => (this.location = location));
+  }
+
+  addRates() {
+    this._dialog.openRatesDialog().subscribe(rates => console.log(rates));
   }
 }

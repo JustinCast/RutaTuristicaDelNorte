@@ -1,117 +1,143 @@
 <form [formGroup]="addServiceFG" (ngSubmit)="onSubmit()" class="text-center">
-  <h1 class="text-primary">Agregar Servicio</h1>
-  <mat-form-field>
-    <input
-      type="text"
-      [formControl]="addServiceFG.get('name')"
-      matInput
-      placeholder="Nombre"
-    />
-  </mat-form-field>
-  <div class="container text-center">
-    <button mat-raised-button (click)="pickLocation(); (false)">
-      <mat-icon>add_location</mat-icon>
-    </button>
-  </div>
-  <mat-form-field>
-    <mat-select
-      [formControl]="addServiceFG.get('classification')"
-      placeholder="Clasificación"
-    >
-      <mat-option *ngFor="let c of classification" [value]="c">
-        {{ c }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <textarea
-      matInput
-      [formControl]="addServiceFG.get('additional_info')"
-      placeholder="Información adicional"
-    ></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      type="tel"
-      [formControl]="addServiceFG.get('phone')"
-      placeholder="Teléfono contacto"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      [formControl]="addServiceFG.get('email')"
-      type="email"
-      placeholder="Correo"
-    />
-  </mat-form-field>
-
-  <div
-    class="dropzone shadow-sm bg-dark"
-    dropZone
-    (hovered)="toggleHover($event)"
-    (dropped)="startUpload($event)"
-    [class.hovering]="isHovering"
-  >
-    <h3 class="text-white">Seleccione o arrastre el archivo</h3>
-
-    <div class="container text-center">
+  <div class="container">
+    <h1 class="text-primary">Agregar Servicio</h1>
+    <mat-form-field>
       <input
-        multiple
-        style="color: transparent"
-        type="file"
-        (change)="startUpload($event.target.files)"
+        type="text"
+        [formControl]="addServiceFG.get('name')"
+        matInput
+        placeholder="Nombre"
       />
+    </mat-form-field>
+    <div class="container text-center">
+      <button color="accent" mat-raised-button (click)="pickLocation(); (false)">
+        Añadir ubicación
+        <mat-icon>add_location</mat-icon>
+      </button>
     </div>
-  </div>
-  <ul id="urls" *ngIf="downloadURLS.length !== 0">
-    <li *ngFor="let u of downloadURLS; let i = index">
-      <a href="{{ u }}">Imagen {{ i + 1 }}</a>
-    </li>
-  </ul>
-  <div *ngIf="percentage | async as pct">
-    <progress class="progress is-info" [value]="pct" max="100"> </progress>
-
-    {{ pct | number }}%
-  </div>
-  <div id="controls-container" *ngIf="snapshot | async as snap">
-    <button
-      mat-raised-button
-      color="secondary"
-      (click)="task.pause()"
-      [disabled]="!isActive(snap)"
+    <mat-form-field>
+      <mat-select
+        [formControl]="addServiceFG.get('classification')"
+        placeholder="Clasificación"
+      >
+        <mat-option *ngFor="let c of classification" [value]="c">
+          {{ c }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        [formControl]="addServiceFG.get('additional_info')"
+        placeholder="Información adicional"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        #tel
+        type="tel"
+        [formControl]="addServiceFG.get('phone')"
+        placeholder="Ingrese teléfono de contacto"
+      />
+    </mat-form-field>
+    <button (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
+    <mat-list role="list" *ngIf="service._phones.length > 0" class="rounded mt-2 p-0">
+      <mat-list-item *ngFor="let p of service._phones; let i = index;" role="listitem">
+        <div class="phone">
+          <h3>{{p}}</h3>
+          <button mat-button color="warn" (click)="service._phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="addServiceFG.get('email')"
+        type="email"
+        placeholder="Correo"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="addServiceFG.get('website')"
+        type="url"
+        placeholder="Sitio Web"
+      />
+    </mat-form-field>
+    <button (click)="addRates(); false" class="mb-3" mat-raised-button color="primary">Agregar tarifas<mat-icon>add</mat-icon></button>
+    <div
+      class="dropzone shadow-sm container mb-2"
+      dropZone
+      (hovered)="toggleHover($event)"
+      (dropped)="prepareFiles($event)"
+      [class.hovering]="isHovering"
     >
-      <mat-icon>pause</mat-icon>
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="task.cancel()"
-      [disabled]="!isActive(snap)"
-    >
-      <mat-icon>
-        clear
-      </mat-icon>
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="task.resume()"
-      [disabled]="!(snap?.state === 'paused')"
-    >
-      <mat-icon>
-        play_arrow
-      </mat-icon>
-    </button>
-  </div>
-
-  <div class="container text-center">
-    <button
-      [disabled]="!addServiceFG.valid || percentage !== undefined || !location"
-      mat-raised-button
-    >
-      <mat-icon>send</mat-icon>
-    </button>
+      <h3 class="text-white">Seleccione o arrastre el archivo</h3>
+  
+      <div class="container text-center">
+        <input
+          multiple
+          style="color: transparent"
+          type="file"
+          (change)="prepareFiles($event.target.files)"
+        />
+        <hr>
+        <button [disabled]="!files" (click)="startUpload(); false" mat-raised-button><mat-icon>cloud_upload</mat-icon></button>
+      </div>
+    </div>
+    <ul id="urls" *ngIf="downloadURLS.length !== 0">
+      <li *ngFor="let u of downloadURLS; let i = index">
+        <a href="{{ u }}">Imagen {{ i + 1 }}</a>
+      </li>
+    </ul>
+    <div class="container text-center" *ngIf="downloadURLS.length > 0">
+      <button (click)="openShowImages(); false" mat-stroked-button><mat-icon>collections</mat-icon></button>
+    </div>
+    <div *ngIf="percentage | async as pct">
+      <progress class="progress is-info" [value]="pct" max="100"> </progress>
+  
+      {{ pct | number }}%
+    </div>
+    <div id="controls-container" *ngIf="snapshot | async as snap">
+      <button
+        mat-raised-button
+        color="secondary"
+        (click)="task.pause()"
+        [disabled]="!isActive(snap)"
+      >
+        <mat-icon>pause</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="task.cancel()"
+        [disabled]="!isActive(snap)"
+      >
+        <mat-icon>
+          clear
+        </mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="task.resume()"
+        [disabled]="!(snap?.state === 'paused')"
+      >
+        <mat-icon>
+          play_arrow
+        </mat-icon>
+      </button>
+    </div>
+  
+    <div class="container text-center">
+      <button
+        [disabled]="!addServiceFG.valid || percentage !== undefined || !location"
+        mat-raised-button
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
   </div>
 </form>
