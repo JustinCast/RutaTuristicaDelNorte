@@ -45,9 +45,15 @@
           <button mat-menu-item>Item 2</button>
         </mat-menu>
       </a>
-      <a class="nav-item nav-link white p-1 m-1">
+      <a class="nav-item nav-link white p-1 m-1" *ngIf="!localStorage.getItem('logguedUser'); else logout">
         <mat-icon (click)="openLoginDialog(); (false)">exit_to_app</mat-icon>
       </a>
+      <ng-template #logout>
+        <a class="nav-item nav-link white p-1 m-1">
+          <mat-icon (click)="_auth.logout(); (false)">subdirectory_arrow_left</mat-icon>
+        </a>
+      </ng-template>
+      
       <a class="nav-item nav-link white p-1 m-1">
         <i class="fa fa-facebook"></i>
       </a>
