@@ -1,0 +1,25 @@
+<div id="page-not-found">
+  <mat-card>
+    <div class="container text-center">
+      <mat-icon class="text-white text-center"
+        >sentiment_very_dissatisfied</mat-icon
+      >
+    </div>
+    <hr />
+    <mat-card-content>
+      <h1 class="text-white text-center">
+        <strong>Error 404 </strong> <br />
+        La página que estás buscando, no está disponible
+      </h1>
+    </mat-card-content>
+    <hr />
+    <div class="container text-center">
+      <button
+        [routerLink]="['/general/history']"
+        mat-raised-button
+      >
+        <strong>Inicio</strong>
+      </button>
+    </div>
+  </mat-card>
+</div>

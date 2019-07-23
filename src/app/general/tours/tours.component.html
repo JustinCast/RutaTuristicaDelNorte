@@ -1,4 +1,4 @@
-<div id="main-container">
+<div id="main-container" class="mt-5 pt-5">
   <h4 class="text-center text-primary">
     Tours y Servicios de la Ruta Turística del norte
   </h4>
@@ -18,46 +18,52 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <ul id="content" *ngIf="_tours.tours">
-    <mat-card
-      class="service animated bounceInRight"
-      *ngFor="
-        let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
-      "
-    >
-      <h1 class="text-center">{{ item._name }}</h1>
-      <hr>
-      <div id="img-container"class="text-center">
-        <img id="main-img" class="rounded shadow-sm" src="{{item.imgs[0]}}" alt="">
-      </div>
-      <hr />
-      <mat-card-content class="text-left">
-        <ul id="details">
-          <li>
-            <mat-icon class="accent-icon">info</mat-icon> {{ item._additional_info }}
-          </li>
-          <li>
-            <mat-icon class="accent-icon">phone</mat-icon> {{ item._phone }}
-          </li>
-          <li>
-            <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
-          </li>
-        </ul>
-      </mat-card-content>
-      <hr />
-      <div class="container text-center">
-        <button
-          routerLink="../tour/{{ item.id_service }}"
-          class="detail-button"
-          mat-raised-button
-        >
-          Ver más
-        </button>
-      </div>
-    </mat-card>
-  </ul>
-</div>
-<pagination-controls
-  (pageChange)="p = $event"
-  class="container text-center p-0"
-></pagination-controls>
+  <div *ngIf="_tours.tours; else loading">
+    <ul id="content">
+      <mat-card
+        class="service animated bounceInRight"
+        *ngFor="
+          let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
+        "
+      >
+        <h1 class="text-center">{{ item._name }}</h1>
+        <hr>
+        <div id="img-container"class="text-center">
+          <img id="main-img" class="rounded shadow-sm" src="{{item.imgs[0]}}" alt="">
+        </div>
+        <hr />
+        <mat-card-content class="text-left">
+          <ul id="details">
+            <li>
+              <mat-icon class="accent-icon">info</mat-icon> {{ item._additional_info }}
+            </li>
+            <li>
+              <mat-icon class="accent-icon">phone</mat-icon> {{ item._phone }}
+            </li>
+            <li>
+              <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
+            </li>
+          </ul>
+        </mat-card-content>
+        <hr />
+        <div class="container text-center">
+          <button
+            routerLink="../tour/{{ item.id_service }}"
+            class="detail-button"
+            mat-raised-button
+          >
+            Ver más
+          </button>
+        </div>
+      </mat-card>
+    </ul>
+    <pagination-controls
+      (pageChange)="p = $event"
+      class="container text-center p-0"
+    ></pagination-controls>
+    </div>
+  </div>
+
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

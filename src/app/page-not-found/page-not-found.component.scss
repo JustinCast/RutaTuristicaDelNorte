@@ -1,0 +1,41 @@
+@import '../../assets/ui-utils/vars';
+
+@media screen and (min-width: 601px) {
+  mat-card {
+    width: 50%
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-card {
+    width: 95%
+  }
+}
+
+@media screen and (min-width: 601px) {
+  h1 {
+    font-weight: 200
+  }
+}
+@media screen and (max-width: 700px) {
+  h1 {
+    font-weight: 100;
+    font-size: 25px
+  }
+}
+
+mat-icon {
+  font-size: 30px;
+}
+
+mat-card {
+  margin: auto;
+  background-color: $warn
+}
+
+#page-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%
+}

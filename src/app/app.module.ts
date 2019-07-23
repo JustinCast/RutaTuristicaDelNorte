@@ -9,10 +9,12 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routing';
 import { GeneralModule } from './general/general.module';
 import { AdminModule } from './admin/admin.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
