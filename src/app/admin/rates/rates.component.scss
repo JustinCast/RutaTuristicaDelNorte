@@ -1,11 +1,20 @@
+@import '../../../assets/ui-utils/vars';
 form{
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center
+  height: 100%;
+  padding: 1%;
+  justify-content: space-around
 }
 
 mat-form-field {
-  width: 65%;
+  width: 100%;
   margin: auto;
+}
+thead {
+  background-color: $secondary-light-color
+}
+td, th {
+  padding: 5px;
 }

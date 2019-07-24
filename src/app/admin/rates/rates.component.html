@@ -1,6 +1,49 @@
-<form>
+<form [formGroup]="ratesFG">
   <h1 class="text-primary text-center">Tarifas</h1>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Nombre del tour">
-  </mat-form-field>
+  <div class="table-responsive">
+    <table id="rates" class="table rounded">
+      <thead>
+        <tr>
+          <th>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Campo 1" />
+            </mat-form-field>
+          </th>
+          <th>
+            <mat-form-field appearance="outline">
+              <input value="Tarifa Neta" matInput type="text" placeholder="Campo 2" />
+            </mat-form-field>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <div formArrayName="items">
+          <mat-form-field *ngFor="let item of ratesFG.get('items').controls; let index = index " [formGroupName]="index" appearance="outline">
+            <input matInput formControlName="v1" type="text" placeholder="Valor 1" />
+            <input matInput formControlName="v2" type="text" placeholder="Valor 2" />
+          </mat-form-field>
+        </div>
+        <!-- <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Valor 1" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Valor 2" />
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <div class="container text-center">
+    <button (click)="addItem(); false" mat-raised-button color="primary">Añadir fila</button>
+  </div>
 </form>

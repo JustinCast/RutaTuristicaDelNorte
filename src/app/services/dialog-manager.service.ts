@@ -53,8 +53,8 @@ export class DialogManagerService {
   public openRatesDialog() {
     return this.dialog
       .open(RatesComponent, {
-        width: "90%",
-        height: "70%",
+        width: `${window.innerWidth < 400 ? '99.99%' : '99.99%'}`,
+        height: `${window.innerHeight <= 812 ? '95%' : '80%'}`,
         panelClass: "dialog",
       })
       .afterClosed();
@@ -64,7 +64,7 @@ export class DialogManagerService {
     return this.dialog
       .open(LoginDialogComponent, {
         width: `${window.innerWidth < 400 ? '90%' : '30%'}`,
-      height: `${window.innerHeight <= 812 ? '55%' : '40%'}`,
+        height: `${window.innerHeight <= 812 ? '55%' : '40%'}`,
         panelClass: "dialog",
       })
       .afterClosed();
