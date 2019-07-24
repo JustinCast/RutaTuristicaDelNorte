@@ -13,17 +13,18 @@ function saveService(req, res) {
       res.status(400).send(err);
       console.log(`err when connecting on saveService: ${err}`);
     } else {
-      let service = req.body;
+      let service = req.body.service;
       console.log(service)
       let query = {
-        text: "SELECT save_service($1, $2, $3, $4, $5, $6)",
+        text: "SELECT save_service($1, $2, $3, $4, $5, $6, $7)",
         values: [
           service._location,
           service._name,
           service._classification,
           service._additional_info,
           service._phone,
-          service._email
+          service._email,
+          req.body._id_user
         ]
       };
       client
