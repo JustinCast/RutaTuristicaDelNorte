@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ToursService {
+export class Services {
   public tours: Array<Service>;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) { }
 

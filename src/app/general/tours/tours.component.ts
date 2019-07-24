@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges  } from "@angular/core";
 import { Service } from "src/app/models/Service";
-import { ToursService } from "src/app/services/tours.service";
+import { Services } from 'src/app/services/services.service';
+
 
 @Component({
   selector: "app-tours",
@@ -9,7 +10,7 @@ import { ToursService } from "src/app/services/tours.service";
 })
 export class ToursComponent implements OnInit {
   p: number = 1;
-  constructor(public _tours: ToursService) {}
+  constructor(public _tours: Services) {}
 
   ngOnInit() {
     if (!this._tours.tours) this._tours.getServices();

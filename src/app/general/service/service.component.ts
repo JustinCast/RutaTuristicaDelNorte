@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Service } from "src/app/models/Service";
-import { ToursService } from "src/app/services/tours.service";
 import { DialogManagerService } from 'src/app/services/dialog-manager.service';
+import { Services } from 'src/app/services/services.service';
 
 @Component({
   selector: "app-tour",
@@ -14,7 +14,7 @@ export class TourComponent implements OnInit {
   public degree = 45;
   public moreSlides = 1;
   constructor(
-    private _tours: ToursService,
+    private _tours: Services,
     private route: ActivatedRoute,
     private _router: Router,
     private _dialog: DialogManagerService,

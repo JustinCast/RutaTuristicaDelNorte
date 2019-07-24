@@ -8,7 +8,7 @@ import { Observable, Subscription } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
-import { ToursService } from "src/app/services/tours.service";
+import { Services } from 'src/app/services/services.service';
 
 @Component({
   selector: "app-add-service",
@@ -41,7 +41,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     private storage: AngularFireStorage,
     private _fb: FormBuilder,
     private _dialog: DialogManagerService,
-    private _tour: ToursService
+    private _tour: Services
   ) {
     this.addServiceFG = this._fb.group({
       name: ["", Validators.required],
