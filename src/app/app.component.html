@@ -1,79 +1,88 @@
-<nav
-  class="navbar navbar-expand-lg navbar-sm pt-0 pb-0 pl-2 pr-2 mb-4 fixed-top"
->
-  <a class="navbar-brand ml-2" href="#">
-    Ruta Turística del Norte
-  </a>
-  <button
-    mat-icon-button
-    class="navbar-toggler"
-    type="button"
-    (click)="toggleNavbar()"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div class="collapse navbar-collapse" [ngClass]="{ show: navbarOpen }">
-    <ul id="links" class="navbar-expand ml-0 navbar-nav">
-      <li
-        routerLinkActive="active-link"
-        [routerLink]="['/general/history']"
-        class="link"
+<mat-drawer-container class="drawer-container" hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <h1>a</h1>
+  </mat-drawer>
+  <mat-drawer-content>
+
+    <nav
+      class="navbar navbar-expand-lg navbar-sm pt-0 pb-0 pl-2 pr-2 mb-4 fixed-top"
+    >
+      <a *ngIf="_auth.isLoggedIn()" style="cursor: pointer" class="navbar-brand text-white" (click)="drawer.toggle()"><mat-icon>sort</mat-icon></a>
+      <a class="navbar-brand ml-2" href="#">
+        Ruta Turística del Norte
+      </a>
+      <button
+        mat-icon-button
+        class="navbar-toggler"
+        type="button"
+        (click)="toggleNavbar()"
       >
-        Historia
-      </li>
-      <li
-        routerLinkActive="active-link"
-        [routerLink]="['/general/veda']"
-        class="link"
-      >
-        Veda
-      </li>
-      <li
-        routerLinkActive="active-link"
-        [routerLink]="['/general/tours']"
-        class="link"
-      >
-        Tours
-      </li>
-      <li routerLinkActive="active-link" class="link">Actividades</li>
-    </ul>
-    <div class="navbar-expand ml-auto navbar-nav social">
-      <a [matMenuTriggerFor]="menu" class="nav-item nav-link white p-1 m-1">
-        <i class="fa fa-language"></i>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
-        </mat-menu>
-      </a>
-      <a class="nav-item nav-link white p-1 m-1" *ngIf="!localStorage.getItem('logguedUser'); else logout">
-        <mat-icon (click)="openLoginDialog(); (false)">exit_to_app</mat-icon>
-      </a>
-      <ng-template #logout>
-        <a class="nav-item nav-link white p-1 m-1">
-          <mat-icon (click)="_auth.logout(); (false)">subdirectory_arrow_left</mat-icon>
-        </a>
-      </ng-template>
-      
-      <a class="nav-item nav-link white p-1 m-1">
-        <i class="fa fa-facebook"></i>
-      </a>
-      <a class="nav-item nav-link white p-1 m-1">
-        <i class="fa fa-instagram"></i>
-      </a>
-      <a class="nav-item nav-link white p-1 m-1">
-        <i class="fa fa-address-book"></i> Contact
-      </a>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]="{ show: navbarOpen }">
+        <ul id="links" class="navbar-expand ml-0 navbar-nav">
+          <li
+            routerLinkActive="active-link"
+            [routerLink]="['/general/history']"
+            class="link"
+          >
+            Historia
+          </li>
+          <li
+            routerLinkActive="active-link"
+            [routerLink]="['/general/veda']"
+            class="link"
+          >
+            Veda
+          </li>
+          <li
+            routerLinkActive="active-link"
+            [routerLink]="['/general/tours']"
+            class="link"
+          >
+            Tours
+          </li>
+          <li routerLinkActive="active-link" class="link">Actividades</li>
+        </ul>
+        <div class="navbar-expand ml-auto navbar-nav social">
+          <a [matMenuTriggerFor]="menu" class="nav-item nav-link white p-1 m-1">
+            <i class="fa fa-language"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </a>
+          <a class="nav-item nav-link white p-1 m-1" *ngIf="!localStorage.getItem('logguedUser'); else logout">
+            <mat-icon (click)="openLoginDialog(); (false)">exit_to_app</mat-icon>
+          </a>
+          <ng-template #logout>
+            <a class="nav-item nav-link white p-1 m-1">
+              <mat-icon (click)="_auth.logout(); (false)">subdirectory_arrow_left</mat-icon>
+            </a>
+          </ng-template>
+          
+          <a class="nav-item nav-link white p-1 m-1">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a class="nav-item nav-link white p-1 m-1">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a class="nav-item nav-link white p-1 m-1">
+            <i class="fa fa-address-book"></i> Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div id="outlet" class="">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-</nav>
-<div id="outlet" class="">
-  <router-outlet></router-outlet>
-</div>
-<!-- <footer class="shadow-sm">
-  <div class="container">
-    <span class="text-primary">
-      Proyecto de Extensión del Instituto Tecnológico de Costa Rica |
-      {{ date | date: "mediumDate" }}
-    </span>
-  </div>
-</footer> -->
+    <!-- <footer class="shadow-sm">
+      <div class="container">
+        <span class="text-primary">
+          Proyecto de Extensión del Instituto Tecnológico de Costa Rica |
+          {{ date | date: "mediumDate" }}
+        </span>
+      </div>
+    </footer> -->
+  </mat-drawer-content>
+</mat-drawer-container>
