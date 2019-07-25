@@ -1,49 +1,33 @@
-<form [formGroup]="ratesFG">
+<form [formGroup]="ratesFG" class="container" (ngSubmit)="onSubmit()">
   <h1 class="text-primary text-center">Tarifas</h1>
-  <div class="table-responsive">
-    <table id="rates" class="table rounded">
-      <thead>
-        <tr>
-          <th>
-            <mat-form-field appearance="outline">
-              <input matInput type="text" placeholder="Campo 1" />
-            </mat-form-field>
-          </th>
-          <th>
-            <mat-form-field appearance="outline">
-              <input value="Tarifa Neta" matInput type="text" placeholder="Campo 2" />
-            </mat-form-field>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <div formArrayName="items">
-          <mat-form-field *ngFor="let item of ratesFG.get('items').controls; let index = index " [formGroupName]="index" appearance="outline">
-            <input matInput formControlName="v1" type="text" placeholder="Valor 1" />
-            <input matInput formControlName="v2" type="text" placeholder="Valor 2" />
-          </mat-form-field>
-        </div>
-        <!-- <tr>
-          <td>
-            <mat-form-field appearance="outline">
-              <input matInput type="text" placeholder="Valor 1" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field appearance="outline">
-              <input matInput type="text" placeholder="Valor 2" />
-              <span matPrefix>$&nbsp;</span>
-              <span matSuffix>.00</span>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          
-        </tr> -->
-      </tbody>
-    </table>
+  <div id="header-container" class="container">
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="header1" type="text" placeholder="Campo 1" />
+      <mat-error>Este campo no puede estar vacío</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="header2" type="text" placeholder="Campo 2" />
+      <mat-error>Este campo no puede estar vacío</mat-error>
+    </mat-form-field>
+  </div>
+        
+  <div class="container rounded" formArrayName="items" style="overflow-y: auto; background-color: rgba(250, 250, 250, 0.863)">
+    <div class="row" *ngFor="let item of ratesFG.get('items').controls; let index = index " [formGroupName]="index">
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="v1" type="text" placeholder="Inserte un valor" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>attach_money</mat-icon>
+        <input matInput type="number" formControlName="v2" type="text" placeholder="Inserte un valor" />
+      </mat-form-field>
+      <button class="mt-3" *ngIf="ratesFG.get('items').length > 1" (click)="deleteItem(index); false" matInput mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+    </div>
   </div>
   <div class="container text-center">
-    <button (click)="addItem(); false" mat-raised-button color="primary">Añadir fila</button>
+    <button (click)="addItem(); false" mat-stroked-button color="primary">Añadir fila</button>
+  </div>
+  <hr>
+  <div class="mt-2 container text-center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!ratesFG.valid"><mat-icon>check</mat-icon></button>
   </div>
 </form>
