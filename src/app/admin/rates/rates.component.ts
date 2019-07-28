@@ -44,6 +44,6 @@ export class RatesComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.ratesFG.value);
+    return this.dialogRef.close(this.ratesFG.value);
   }
 }

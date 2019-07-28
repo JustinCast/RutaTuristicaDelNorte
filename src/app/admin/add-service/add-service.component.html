@@ -10,10 +10,11 @@
       />
     </mat-form-field>
     <div class="container text-center">
-      <button color="accent" mat-raised-button (click)="pickLocation(); (false)">
+      <button class="mr-1" color="accent" mat-raised-button (click)="pickLocation(); (false)">
         Añadir ubicación
         <mat-icon>add_location</mat-icon>
       </button>
+      <mat-icon [ngStyle]="{'color': location === undefined ? 'red': 'green'}" class="ml-1">{{locationIcon}}</mat-icon>
     </div>
     <mat-form-field>
       <mat-select
@@ -41,7 +42,7 @@
         placeholder="Ingrese teléfono de contacto"
       />
     </mat-form-field>
-    <button [disabled]="tel.value.length === 0 " (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
+    <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
     <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-2 p-0">
       <mat-list-item *ngFor="let p of phones.phones; let i = index;" role="listitem">
         <div class="phone">
@@ -66,7 +67,10 @@
         placeholder="Sitio Web"
       />
     </mat-form-field>
-    <button (click)="addRates(); false" class="mb-3" mat-raised-button color="primary">Agregar tarifas<mat-icon>add</mat-icon></button>
+    <div class="container text-center">
+      <button (click)="addRates(); false" class="mb-3" mat-raised-button color="primary">Agregar tarifas<mat-icon>add</mat-icon></button>
+      <mat-icon [ngStyle]="{'color': rates === undefined ? 'red': 'green'}" class="ml-1">{{ratesIcon}}</mat-icon>
+    </div>
     <div
       class="dropzone shadow-sm container mb-2"
       dropZone

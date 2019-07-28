@@ -38,6 +38,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   downloadURLS: Array<string> = [];
 
   location: JSON;
+  locationIcon: string = 'priority_hight';
+
+  rates: JSON;
+  ratesIcon: string = 'priority_hight';
   phones = { phones: [] };
 
   // State for dropzone CSS toggling
@@ -164,10 +168,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   pickLocation() {
     this._dialog
       .openPickLocationDialog()
-      .subscribe(location => (this.location = location));
+      .subscribe(location => {this.location = location; this.locationIcon = 'check';});
   }
 
   addRates() {
-    this._dialog.openRatesDialog().subscribe(rates => console.log(rates));
+    this._dialog.openRatesDialog().subscribe(rates => {this.rates = rates; this.ratesIcon = 'check'; console.log(rates)});
   }
 }
