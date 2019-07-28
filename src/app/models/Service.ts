@@ -5,8 +5,9 @@ export class Service {
     public _name?: string,
     public _classification?: string,
     public _additional_info?: string,
-    public _phones?: Array<string>,
     public _email?: string,
+    public _website?: string,
+    public _phones?: string,
     public _imgs?: Array<string>,
     public id_service?: number
   ) {}

@@ -8,7 +8,7 @@ import { Observable, Subscription } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
-import { Services } from 'src/app/services/services.service';
+import { Services } from "src/app/services/services.service";
 
 @Component({
   selector: "app-add-service",
@@ -17,7 +17,12 @@ import { Services } from 'src/app/services/services.service';
 })
 export class AddServiceComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  classification: Array<string> = ["Tour", "Servicio de Alimentación", "Arte y Cultura", "Otro"];
+  classification: Array<string> = [
+    "Tour",
+    "Servicio de Alimentación",
+    "Arte y Cultura",
+    "Otro"
+  ];
   addServiceFG: FormGroup;
   files: FileList;
 
@@ -33,7 +38,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   downloadURLS: Array<string> = [];
 
   location: JSON;
-  service: Service;
+  phones = { phones: [] };
 
   // State for dropzone CSS toggling
   isHovering: boolean;
@@ -49,19 +54,15 @@ export class AddServiceComponent implements OnInit, OnDestroy {
       additional_info: ["", Validators.required],
       phone: [""],
       email: ["", Validators.required],
-      website: [""],
+      website: [""]
     });
   }
 
   ngOnInit() {
-    this.service = new Service("", "", "", "", [], "", []);
   }
 
   addPhone(phone) {
-    if (phone.length > 0) {
-      this.service._phones.unshift(phone);
-      this.addServiceFG.get("phone").reset();
-    }
+    this.phones.phones.unshift(phone);
   }
 
   toggleHover(event: boolean) {
@@ -144,9 +145,11 @@ export class AddServiceComponent implements OnInit, OnDestroy {
           this.addServiceFG.get("name").value,
           this.addServiceFG.get("classification").value,
           this.addServiceFG.get("additional_info").value,
-          this.addServiceFG.get("phone").value,
           this.addServiceFG.get("email").value,
-          this.downloadURLS
+          this.addServiceFG.get("website").value,
+          JSON.stringify(this.phones),
+          this.downloadURLS,
+          undefined
         )
       )
       .subscribe(() => {

@@ -22,8 +22,9 @@ function saveService(req, res) {
           service._name,
           service._classification,
           service._additional_info,
-          service._phone,
           service._email,
+          service._website,
+          service._phones,
           req.body._id_user
         ]
       };

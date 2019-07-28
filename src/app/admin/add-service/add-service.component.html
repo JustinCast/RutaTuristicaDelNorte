@@ -41,12 +41,12 @@
         placeholder="Ingrese teléfono de contacto"
       />
     </mat-form-field>
-    <button (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
-    <mat-list role="list" *ngIf="service._phones.length > 0" class="rounded mt-2 p-0">
-      <mat-list-item *ngFor="let p of service._phones; let i = index;" role="listitem">
+    <button [disabled]="tel.value.length === 0 " (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
+    <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-2 p-0">
+      <mat-list-item *ngFor="let p of phones.phones; let i = index;" role="listitem">
         <div class="phone">
           <h3>{{p}}</h3>
-          <button mat-button color="warn" (click)="service._phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+          <button mat-button color="warn" (click)="phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
         </div>
       </mat-list-item>
     </mat-list>
