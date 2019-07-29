@@ -1,3 +1,5 @@
+import { Rates } from './Rates';
+
 // esta clase es la equivalente para un tour o un servicio que se ofrece
 export class Service {
   constructor(
@@ -9,6 +11,7 @@ export class Service {
     public _website?: string,
     public _phones?: string,
     public _imgs?: Array<string>,
+    public _rates?: Rates,
     public id_service?: number
   ) {}
 }

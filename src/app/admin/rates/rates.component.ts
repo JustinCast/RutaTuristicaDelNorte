@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { FormArray, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Rates } from 'src/app/models/Rates';
 
 @Component({
   selector: "app-rates",
@@ -44,6 +45,6 @@ export class RatesComponent implements OnInit {
   }
 
   onSubmit() {
-    return this.dialogRef.close(this.ratesFG.value);
+    return this.dialogRef.close(this.ratesFG.value as Rates);
   }
 }

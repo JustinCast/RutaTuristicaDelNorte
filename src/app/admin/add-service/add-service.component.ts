@@ -9,6 +9,7 @@ import { finalize } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
 import { Services } from "src/app/services/services.service";
+import { Rates } from 'src/app/models/Rates';
 
 @Component({
   selector: "app-add-service",
@@ -38,10 +39,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   downloadURLS: Array<string> = [];
 
   location: JSON;
-  locationIcon: string = 'priority_hight';
+  locationIcon: string = "priority_hight";
 
-  rates: JSON;
-  ratesIcon: string = 'priority_hight';
+  rates: Rates;
+  ratesIcon: string = "priority_hight";
   phones = { phones: [] };
 
   // State for dropzone CSS toggling
@@ -62,8 +63,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addPhone(phone) {
     this.phones.phones.unshift(phone);
@@ -153,6 +153,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
           this.addServiceFG.get("website").value,
           JSON.stringify(this.phones),
           this.downloadURLS,
+          this.rates,
           undefined
         )
       )
@@ -166,12 +167,19 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   }
 
   pickLocation() {
-    this._dialog
-      .openPickLocationDialog()
-      .subscribe(location => {this.location = location; this.locationIcon = 'check';});
+    this._dialog.openPickLocationDialog().subscribe(location => {
+      this.location = location;
+      this.locationIcon = "check";
+    });
   }
 
+  /**
+   * Open the Rates Dialog wich returns set rates in a 'Rates' model format
+   */
   addRates() {
-    this._dialog.openRatesDialog().subscribe(rates => {this.rates = rates; this.ratesIcon = 'check'; console.log(rates)});
+    this._dialog.openRatesDialog().subscribe((rates: Rates) => {
+      this.rates = rates;
+      this.ratesIcon = "check";
+    });
   }
 }
