@@ -20,7 +20,8 @@ export class RatesComponent implements OnInit {
     this.ratesFG = this._fb.group({
       header1: ["", Validators.required],
       header2: ["Tarifa Neta", Validators.required],
-      items: this._fb.array([this.createItem()])
+      items: this._fb.array([this.createItem()]),
+      observations: ['']
     });
   }
 

@@ -24,10 +24,13 @@
       <button class="mt-3" *ngIf="ratesFG.get('items').length > 1" (click)="deleteItem(index); false" matInput mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
     </div>
   </div>
-  <div class="container text-center">
-    <button (click)="addItem(); false" mat-stroked-button color="primary">Añadir fila</button>
+  <div class="container text-center mt-2">
+    <button (click)="addItem(); false" mat-raised-button color="accent">Añadir fila</button>
   </div>
   <hr>
+  <mat-form-field appearance="outline">
+    <textarea matInput type="text" formControlName="observations" placeholder="Observaciones"></textarea>
+  </mat-form-field>
   <div class="mt-2 container text-center">
     <button mat-raised-button color="primary" type="submit" [disabled]="!ratesFG.valid"><mat-icon>check</mat-icon></button>
   </div>

@@ -1,9 +1,15 @@
 const db = require("../config/db");
 const ImagesCTRL = require("./image-controller");
-
+const RatesCTRL = require("./rates-controller");
 const pg = require("pg");
 var client;
 
+/**
+ * Function to call saveService proc in the db
+ * At the same time this function calls ImageCTRL.saveImages and RatesCTRL.saveRates
+ * @param {*} req 
+ * @param {*} res 
+ */
 function saveService(req, res) {
   client = new pg.Client(db);
 
@@ -14,9 +20,8 @@ function saveService(req, res) {
       console.log(`err when connecting on saveService: ${err}`);
     } else {
       let service = req.body.service;
-      console.log(service)
       let query = {
-        text: "SELECT save_service($1, $2, $3, $4, $5, $6, $7)",
+        text: "SELECT save_service($1, $2, $3, $4, $5, $6, $7, $8)",
         values: [
           service._location,
           service._name,
@@ -32,7 +37,9 @@ function saveService(req, res) {
         .query(query)
         .then(data => {
           let id_service = data.rows[0].save_service;
-          ImagesCTRL.saveImages(service._imgs, Number(id_service))
+          ImagesCTRL.saveImages(service._imgs, Number(id_service));
+          RatesCTRL.saveRates(service._rates, "save_service_rates", id_service);
+
           res.status(200).send(true);
           client.end();
         })
@@ -45,7 +52,12 @@ function saveService(req, res) {
   });
 }
 
-function getServices(req, res) {
+/**
+ * Functions to get all the services in the db
+ * @param {*} _ 
+ * @param {*} res 
+ */
+function getServices(_, res) {
   client = new pg.Client(db);
 
   client.connect(err => {
