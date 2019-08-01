@@ -1,6 +1,55 @@
+
+@media screen and (min-width: 601px) {
+  img {
+    height: 150px;
+  }
+}
+@media screen and (max-width: 700px) {
+  img {
+    height: 100px;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  #main-container {
+    flex-wrap: nowrap;
+  }
+}
+@media screen and (max-width: 700px) {
+  #main-container {
+    flex-wrap: wrap;
+  }
+}
+
+img{
+  margin: auto;
+  width: 100%;
+}
+
 #main-container {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   height: 100%;
+  margin-top: 10%;
+}
+
+
+#services {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-wrap: wrap
+}
+#tours {
+  flex-grow: 1;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25%;
 }

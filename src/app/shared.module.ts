@@ -13,7 +13,8 @@ import {
   MatListModule,
   MatDividerModule,
   MatProgressBarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { CarouselModule } from "ngx-carousel-lib";
 import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatMenuModule,
@@ -74,7 +76,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule {}

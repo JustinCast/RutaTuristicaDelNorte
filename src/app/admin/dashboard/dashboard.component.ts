@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Service } from 'src/app/models/Service';
 
 @Component({
   selector: "app-dashboard",
@@ -8,14 +9,15 @@ import { HttpErrorResponse } from "@angular/common/http";
   styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
-  toursAndServices: Array<any>;
+  services: Array<Service>;
+  tours: Array<any>;  
   constructor(private _user: UserService) {}
 
   ngOnInit() {
     this._user
-      .getServicesAndToursByUser()
+      .getServicesByUser()
       .subscribe(
-        data => console.log(data),
+        data => this.services = data,
         (err: HttpErrorResponse) => this._user.handleError(err)
       );
   }

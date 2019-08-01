@@ -8,7 +8,6 @@ api.get('/getServices', ServiceCTRL.getServices);
 
 // user queries
 api.post('/login', UserCTRL.login);
-api.get('/getServicesByUser/:id', UserCTRL.getServicesAndToursByUser);
 api.get('/getServicesByUser/:id', UserCTRL.getServicesByUser);
 api.get('/getToursByUser/:id', UserCTRL.getToursByUser);
 

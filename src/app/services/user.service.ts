@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
 import { User } from "../models/User";
 import { Observable } from "rxjs";
+import { Service } from '../models/Service';
 
 @Injectable({
   providedIn: "root"
@@ -29,13 +30,22 @@ export class UserService {
     });
   }
 
-  getServicesAndToursByUser() {
+  getServicesByUser() {
+    let id = (JSON.parse(
+      localStorage.getItem(`${environment.localstorage_key}`)
+    ) as User).id;
+    console.log(id);
     return this._http.get<any>(
-      `${environment.SERVER_BASE_URL}getServicesAndToursByUser${
-        (JSON.parse(
-          localStorage.getItem(`${environment.localstorage_key}`)
-        ) as User).id
-      }`
+      `${environment.SERVER_BASE_URL}getServicesByUser/${id}`
+    );
+  }
+
+  getToursByUser() {
+    let id = (JSON.parse(
+      localStorage.getItem(`${environment.localstorage_key}`)
+    ) as User).id;
+    return this._http.get<Array<Service>>(
+      `${environment.SERVER_BASE_URL}getToursByUser/${id}`
     );
   }
 
