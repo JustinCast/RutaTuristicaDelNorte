@@ -1,32 +1,54 @@
 <mat-drawer-container class="drawer-container" hasBackdrop="true">
   <mat-drawer #drawer mode="over">
     <div *ngIf="loggedUser" class="container text-center">
-      <h1>{{loggedUser.fullname}}</h1>
-      <small class="text-secondary">{{loggedUser.username}}</small>
-      <hr>
+      <h1>{{ loggedUser.fullname }}</h1>
+      <small class="text-secondary">{{ loggedUser.username }}</small>
+      <hr />
     </div>
     <div id="body">
-      <button tabindex=-1 class="body-drawer-btn mb-1" mat-stroked-button><mat-icon>assignment</mat-icon> Gestionar Tours y Servicios</button>
-      <button tabindex=-1 class="body-drawer-btn mt-1" mat-button color="primary"><mat-icon color="accent">account_circle</mat-icon> Perfil</button>
+      <button
+        routerLinkActive="active-link"
+        [routerLink]="['/admin/dashboard']"
+        tabindex="-1"
+        class="body-drawer-btn mb-1"
+        mat-stroked-button
+      >
+        <mat-icon>assignment</mat-icon> Gestionar Tours y Servicios
+      </button>
+      <button
+        tabindex="-1"
+        class="body-drawer-btn mt-1"
+        mat-button
+        color="primary"
+      >
+        <mat-icon color="accent">account_circle</mat-icon> Perfil
+      </button>
     </div>
-    <hr>
+    <hr />
     <footer class="shadow-sm">
       <div class="container">
         <span class="text-secondary">
           Justin A. Castilo Valladares |
           {{ date | date: "mediumDate" }}
         </span>
-        <br>
-        <small><a tabindex=-1 href="www.justin-overview.com">Website</a></small>
+        <br />
+        <small
+          ><a tabindex="-1" href="www.justin-overview.com">Website</a></small
+        >
       </div>
     </footer>
   </mat-drawer>
   <mat-drawer-content>
-
     <nav
       class="navbar navbar-expand-lg navbar-sm pt-0 pb-0 pl-2 pr-2 mb-4 fixed-top"
     >
-      <a *ngIf="_auth.isLoggedIn()" style="cursor: pointer" class="navbar-brand text-white" (click)="drawer.toggle()"><mat-icon>sort</mat-icon></a>
+      <a
+        *ngIf="_auth.isLoggedIn()"
+        style="cursor: pointer"
+        class="navbar-brand text-white"
+        (click)="drawer.toggle()"
+        ><mat-icon>sort</mat-icon></a
+      >
       <a class="navbar-brand ml-2" href="#">
         Ruta Turística del Norte
       </a>
@@ -71,15 +93,22 @@
               <button mat-menu-item>Item 2</button>
             </mat-menu>
           </a>
-          <a class="nav-item nav-link white p-1 m-1" *ngIf="!localStorage.getItem('logguedUser'); else logout">
-            <mat-icon (click)="openLoginDialog(); (false)">exit_to_app</mat-icon>
+          <a
+            class="nav-item nav-link white p-1 m-1"
+            *ngIf="!localStorage.getItem('logguedUser'); else logout"
+          >
+            <mat-icon (click)="openLoginDialog(); (false)"
+              >exit_to_app</mat-icon
+            >
           </a>
           <ng-template #logout>
             <a class="nav-item nav-link white p-1 m-1">
-              <mat-icon (click)="_auth.logout(); (false)">subdirectory_arrow_left</mat-icon>
+              <mat-icon (click)="_auth.logout(); (false)"
+                >subdirectory_arrow_left</mat-icon
+              >
             </a>
           </ng-template>
-          
+
           <a class="nav-item nav-link white p-1 m-1">
             <i class="fa fa-facebook"></i>
           </a>

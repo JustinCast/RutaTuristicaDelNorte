@@ -11,6 +11,7 @@ import { ShowImagesComponent } from "./add-service/show-images/show-images.compo
 import { RatesComponent } from "./rates/rates.component";
 import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
 import { AUTH_PROVIDERS } from '../services/auth.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AUTH_PROVIDERS } from '../services/auth.service';
     PickLocationComponent,
     ShowImagesComponent,
     RatesComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    DashboardComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
   entryComponents: [
