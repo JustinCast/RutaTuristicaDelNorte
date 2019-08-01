@@ -3,8 +3,8 @@ import { MatSnackBar } from "@angular/material";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
-import { User } from '../models/User';
-import { Observable } from 'rxjs';
+import { User } from "../models/User";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -17,17 +17,26 @@ export class UserService {
   ) {}
 
   login(username: string, password: string): Observable<any> {
-    return this._http
-      .post<any>(`${environment.SERVER_BASE_URL}login`, {
-        username: username,
-        password: password
-      });
+    return this._http.post<any>(`${environment.SERVER_BASE_URL}login`, {
+      username: username,
+      password: password
+    });
   }
 
   openSnackBar(message: string, action: string, duration: number) {
     this._snackbar.open(message, action, {
       duration: duration
     });
+  }
+
+  getServicesAndToursByUser() {
+    return this._http.get<any>(
+      `${environment.SERVER_BASE_URL}getServicesAndToursByUser${
+        (JSON.parse(
+          localStorage.getItem(`${environment.localstorage_key}`)
+        ) as User).id
+      }`
+    );
   }
 
   handleError(err: HttpErrorResponse) {
