@@ -12,6 +12,7 @@ import { RatesComponent } from "./rates/rates.component";
 import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
 import { AUTH_PROVIDERS } from '../services/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditServiceDialogComponent } from './dashboard/edit-service-dialog/edit-service-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ShowImagesComponent,
     RatesComponent,
     LoginDialogComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditServiceDialogComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
   entryComponents: [
