@@ -5,6 +5,8 @@ import { ShowImagesComponent } from '../admin/add-service/show-images/show-image
 import { SeeLocationComponent } from '../general/see-location/see-location.component';
 import { RatesComponent } from '../admin/rates/rates.component';
 import { LoginDialogComponent } from '../admin/login-dialog/login-dialog.component';
+import { Observable } from 'rxjs';
+import { Rates } from '../models/Rates';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class DialogManagerService {
 
   constructor(private dialog: MatDialog) { }
 
-  public openPickLocationDialog() {
+  public openPickLocationDialog(): Observable<any> {
     let dialogRef: MatDialogRef<PickLocationComponent>;
     console.log(window.innerHeight)
     dialogRef = this.dialog.open(PickLocationComponent, {
@@ -24,7 +26,7 @@ export class DialogManagerService {
     return dialogRef.afterClosed();
   }
 
-  public openImagesDialog(images: Array<string>) {
+  public openImagesDialog(images: Array<string>): Observable<Array<string>> {
     let dialogRef: MatDialogRef<ShowImagesComponent>;
     console.log(window.innerHeight)
     dialogRef = this.dialog.open(ShowImagesComponent, {
@@ -36,8 +38,8 @@ export class DialogManagerService {
     return dialogRef.afterClosed();
   }
 
-  public showTourLocation(location: any, edit: boolean) {
-    return this.dialog
+  public showTourLocation(location: any, edit: boolean){
+    this.dialog
       .open(SeeLocationComponent, {
         width: "90%",
         height: "70%",
@@ -50,7 +52,7 @@ export class DialogManagerService {
       .afterClosed();
   }
 
-  public openRatesDialog() {
+  public openRatesDialog(): Observable<Rates> {
     return this.dialog
       .open(RatesComponent, {
         width: `${window.innerWidth < 400 ? '99.99%' : '99.99%'}`,
@@ -61,7 +63,7 @@ export class DialogManagerService {
   }
 
   public openLoginDialog() {
-    return this.dialog
+    this.dialog
       .open(LoginDialogComponent, {
         width: `${window.innerWidth < 400 ? '90%' : '30%'}`,
         height: `${window.innerHeight <= 812 ? '55%' : '40%'}`,

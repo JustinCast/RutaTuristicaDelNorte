@@ -94,12 +94,6 @@ export class AddServiceComponent implements OnInit, OnDestroy {
       this.percentage = undefined;
       return;
     }
-    //console.log(files[0])
-    // Client-side validation example
-    /*if (file.type.split("/")[0] !== "image") {
-      console.error("unsupported file type :( ");
-      return;
-    }*/
 
     // The storage path
     const path = `${new Date().getTime()}_${files[0].name}`;
