@@ -1,7 +1,7 @@
 <div id="main-container">
   <div id="header-container" class="text-center pt-3">
     <button [routerLink]="['/admin/add-service']" id="service-btn" mat-raised-button class="ml-1 mr-1 mb-1"><mat-icon>room_service</mat-icon> Añadir servicio</button>
-    <button [routerLink]="" id="tour-btn" mat-raised-button class="ml-1 mb-1"><mat-icon>map</mat-icon> Añadir tour</button>
+    <button [routerLink]="['/admin/add-tour']" id="tour-btn" mat-raised-button class="ml-1 mb-1"><mat-icon>map</mat-icon> Añadir tour</button>
   </div>
   <br>
   <div id="services" *ngIf="services; else loadingServices">

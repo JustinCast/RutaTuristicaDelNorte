@@ -1,3 +1,39 @@
-<p>
-  add-tour works!
-</p>
+<form class="text-center pt-5 mt-5">
+  <h1 class="text-primary">Agregar tour</h1>
+  <mat-form-field>
+    <input matInput placeholder="Nombre" [formControl]="tourFG.get('name')">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Description" [formControl]="tourFG.get('description')">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      #tel
+      type="tel"
+      [formControl]="tourFG.get('phone')"
+      placeholder="Ingrese teléfono de contacto"
+    />
+  </mat-form-field>
+  <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
+  <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-2 p-0">
+    <mat-list-item *ngFor="let p of phones.phones; let i = index;" role="listitem">
+      <div class="phone">
+        <h3>{{p}}</h3>
+        <button mat-button color="warn" (click)="phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <mat-form-field>
+    <input type="email" matInput placeholder="Correo electrónico" [formControl]="tourFG.get('email')">
+    <mat-error *ngIf="tourFG.get('email').hasError('email') && !tourFG.get('email').hasError('required')">
+      Introduzca una dirección válida
+    </mat-error>
+    <mat-error *ngIf="tourFG.get('email').hasError('required')">
+      El correo es <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <div class="container text-center">
+    <button [disabled]="!tourFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>
+  </div>
+</form>

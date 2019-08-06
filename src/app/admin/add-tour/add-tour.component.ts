@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-tour',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-tour.component.scss']
 })
 export class AddTourComponent implements OnInit {
+  tourFG: FormGroup;
+  phones = { phones: [] };
 
-  constructor() { }
+  constructor(private _fb: FormBuilder) { 
+    this.tourFG = this._fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      phone: [''],
+      email: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
+  }
+
+  addPhone(phone) {
+    this.phones.phones.unshift(phone);
   }
 
 }

@@ -1,0 +1,38 @@
+@media screen and (min-width: 601px) {
+  mat-form-field, mat-list {
+    width: 50%
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-form-field, mat-list {
+    width: 90%
+  }
+}
+
+h1 {
+  font-weight: 200
+}
+
+form{
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+mat-form-field{
+  display: block;
+  margin: auto;
+}
+
+mat-list {
+  border: 0.5px solid lightgray;
+  margin: auto;
+}
+
+.phone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%
+}
