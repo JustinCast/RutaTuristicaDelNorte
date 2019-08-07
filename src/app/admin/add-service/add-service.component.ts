@@ -19,10 +19,10 @@ import { Rates } from 'src/app/models/Rates';
 export class AddServiceComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   classification: Array<string> = [
-    "Tour",
     "Servicio de Alimentación",
-    "Arte y Cultura",
-    "Otro"
+    "Artesanía",
+    "Servicio de hospedaje",
+    "Guía turístico"
   ];
   addServiceFG: FormGroup;
   files: FileList;

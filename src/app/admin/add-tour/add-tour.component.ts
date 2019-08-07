@@ -26,4 +26,8 @@ export class AddTourComponent implements OnInit {
     this.phones.phones.unshift(phone);
   }
 
+  onSubmit() {
+    console.log(this.tourFG.value);
+  }
+
 }

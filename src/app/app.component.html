@@ -49,7 +49,7 @@
         (click)="drawer.toggle()"
         ><mat-icon>sort</mat-icon></a
       >
-      <a class="navbar-brand ml-2" href="#">
+      <a class="navbar-brand ml-1" href="#">
         Ruta Turística del Norte
       </a>
       <button
@@ -81,9 +81,8 @@
             [routerLink]="['/general/tours']"
             class="link"
           >
-            Tours
+            <span>Oferta Turística</span>
           </li>
-          <li routerLinkActive="active-link" class="link">Actividades</li>
         </ul>
         <div class="navbar-expand ml-auto navbar-nav social">
           <a [matMenuTriggerFor]="menu" class="nav-item nav-link white p-1 m-1">
@@ -108,16 +107,6 @@
               >
             </a>
           </ng-template>
-
-          <a class="nav-item nav-link white p-1 m-1">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a class="nav-item nav-link white p-1 m-1">
-            <i class="fa fa-instagram"></i>
-          </a>
-          <a class="nav-item nav-link white p-1 m-1">
-            <i class="fa fa-address-book"></i> Contact
-          </a>
         </div>
       </div>
     </nav>
