@@ -35,7 +35,8 @@ import { SearchRelatedComponent } from './search-related/search-related.componen
     PickLocationComponent,
     ShowImagesComponent,
     RatesComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    SearchRelatedComponent
   ],
   providers: [AUTH_PROVIDERS],
   exports: [AdminRootComponent]
