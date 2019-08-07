@@ -14,6 +14,7 @@ import { AUTH_PROVIDERS } from '../services/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditServiceDialogComponent } from './dashboard/edit-service-dialog/edit-service-dialog.component';
 import { AddTourComponent } from './add-tour/add-tour.component';
+import { SearchRelatedComponent } from './search-related/search-related.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddTourComponent } from './add-tour/add-tour.component';
     LoginDialogComponent,
     DashboardComponent,
     EditServiceDialogComponent,
-    AddTourComponent
+    AddTourComponent,
+    SearchRelatedComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
   entryComponents: [
