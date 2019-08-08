@@ -31,6 +31,10 @@ export class Services {
       );
   }
 
+  getServiceNameId(name: string): Observable<any> {
+    return this._http.get<any>(`${environment.SERVER_BASE_URL}getServiceNameId/${name}`);
+  }
+
   openSnackBar(message: string, action: string, duration: number) {
     this._snackbar.open(message, action, {
       duration: duration

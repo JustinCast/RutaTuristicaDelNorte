@@ -1,3 +1,12 @@
-<p>
-  search-related works!
-</p>
+<div id="main-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Búsqueda de servicio</mat-label>
+    <input matInput type="text" [(ngModel)]="value">
+    <button id="search-btn" mat-raised-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="search(value); false">
+    <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-list *ngIf="results">
+    <mat-list-item *ngFor="let r of results">{{r | json}}</mat-list-item>
+  </mat-list>
+</div>

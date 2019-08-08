@@ -65,8 +65,8 @@ export class DialogManagerService {
   public getRelated(): Observable<number> {
     return this.dialog
       .open(SearchRelatedComponent, {
-        width: `${window.innerWidth < 400 ? "99.99%" : "99.99%"}`,
-        height: `${window.innerHeight <= 812 ? "95%" : "80%"}`,
+        width: `${window.innerWidth < 400 ? "95%" : "50%"}`,
+        height: `${window.innerHeight <= 812 ? "50%" : "80%"}`,
         panelClass: "dialog"
       })
       .afterClosed();
