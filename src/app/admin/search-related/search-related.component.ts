@@ -8,11 +8,17 @@ import { Services } from "src/app/services/services.service";
 })
 export class SearchRelatedComponent implements OnInit {
   results: Array<any>;
+  selected: any;
   constructor(private _service: Services) {}
 
   ngOnInit() {}
 
   search(name: string) {
     this._service.getServiceNameId(name).subscribe(data => this.results = data);
+  }
+
+  handleSelectedOpClick(checked) {
+    if(checked)
+      this.selected = undefined;
   }
 }
