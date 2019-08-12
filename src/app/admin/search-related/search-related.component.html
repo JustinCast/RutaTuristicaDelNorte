@@ -27,7 +27,7 @@
     <h5 class="text-center text-secondary">Servicio seleccionado</h5>
     <mat-checkbox class="shadow-sm rounded p-2" #selectedOp (click)="handleSelectedOpClick(selectedOp.checked); false" [checked]="selected !== undefined">{{selected.name}}</mat-checkbox>
     <div class="container text-center">
-      <button color="primary" mat-raised-button>Aceptar | <mat-icon>check</mat-icon></button>
+      <button color="primary" mat-raised-button (click)="closeSearch()">Aceptar | <mat-icon>check</mat-icon></button>
     </div>
   </div>
 </div>

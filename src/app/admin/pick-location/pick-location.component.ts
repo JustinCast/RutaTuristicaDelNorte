@@ -16,7 +16,7 @@ export class PickLocationComponent implements OnInit {
   }
   
   setLocation() {
-    this.dialogRef.close(this.lp.getMarkerPosition())
+    this.dialogRef.close(this.lp.getMarkerPosition());
   }
 
 }

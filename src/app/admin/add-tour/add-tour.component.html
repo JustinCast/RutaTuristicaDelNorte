@@ -1,22 +1,24 @@
 <form class="text-center pt-5 mt-5" [formGroup]="tourFG" (ngSubmit)="onSubmit(); false">
   <h1 class="text-primary">Agregar tour</h1>
-  <mat-form-field>
-    <input matInput placeholder="Nombre" [formControl]="tourFG.get('name')">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput [formControl]="tourFG.get('name')">
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Description" [formControl]="tourFG.get('description')">
+  <mat-form-field appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <input matInput [formControl]="tourFG.get('description')">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ingrese teléfono de contacto</mat-label>
     <input
       matInput
       #tel
       type="tel"
       [formControl]="tourFG.get('phone')"
-      placeholder="Ingrese teléfono de contacto"
     />
   </mat-form-field>
   <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
-  <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-2 p-0">
+  <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-3 mb-3 p-0">
     <mat-list-item *ngFor="let p of phones.phones; let i = index;" role="listitem">
       <div class="phone">
         <h3>{{p}}</h3>
@@ -24,8 +26,9 @@
       </div>
     </mat-list-item>
   </mat-list>
-  <mat-form-field>
-    <input type="email" matInput placeholder="Correo electrónico" [formControl]="tourFG.get('email')">
+  <mat-form-field appearance="outline">
+    <mat-label>Correo electrónico</mat-label>
+    <input type="email" matInput [formControl]="tourFG.get('email')">
     <mat-error *ngIf="tourFG.get('email').hasError('email') && !tourFG.get('email').hasError('required')">
       Introduzca una dirección válida
     </mat-error>
@@ -35,6 +38,7 @@
   </mat-form-field>
   <div class="container text-center mb-3">
     <button mat-raised-button (click)="getRelated(); false"><mat-icon>call_merge</mat-icon> Enlazar con servicio</button>
+    <p *ngIf="related"><strong>Selección: </strong>{{related.name}}</p>
   </div>
   <div class="container text-center">
     <button type="submit" [disabled]="!tourFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>

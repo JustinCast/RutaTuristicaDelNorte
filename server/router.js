@@ -2,10 +2,14 @@ var express = require("express");
 var api = express.Router();
 var ServiceCTRL = require('./controllers/service-controller');
 var UserCTRL = require('./controllers/user-controller');
+var TourCTRL = require('./controllers/tour-controller');
 
 api.post('/saveService', ServiceCTRL.saveService);
 api.get('/getServices', ServiceCTRL.getServices);
 api.get('/getServiceNameId/:name', ServiceCTRL.getServiceNameId);
+
+// tour queries
+api.post('/saveTour', TourCTRL.saveTour);
 
 // user queries
 api.post('/login', UserCTRL.login);
