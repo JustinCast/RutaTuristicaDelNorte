@@ -33,4 +33,37 @@
     <li><mat-icon>phone</mat-icon>{{ tour._phone }}</li>
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
   </ul>
+
+  <h1 *ngIf="relatedTours; else loading_related" class="text-secondary text-center font-weight-light m-2">Tours relacionados</h1>
+  <ng-template #loading_related>
+    <div class="container text-center">
+      <p class="animated pulse infinite">Cargando información relacionada</p>
+    </div>
+  </ng-template>
+  
+  <div *ngIf="relatedTours" id="related-tours">
+    <div *ngFor="let r of relatedTours" class="related-tour shadow-sm rounded p-0 m-2">
+      <h3 class="font-weight-light text-center mt-2">{{r.name}}</h3>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              + Info
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <hr>
+          <p class="text-center text-secondary"><i>{{r.description}}</i></p>
+          <hr>
+          <mat-list *ngIf="r.phones" class="p-0">
+            <mat-list-item *ngFor="let p of r.phones.phones"><mat-icon class="text-muted">phone</mat-icon> - {{p}}</mat-list-item>
+          </mat-list>
+          <p><mat-icon class="text-muted">mail</mat-icon> {{r.email}}</p>
+          <div class="container text-center">
+            <button mat-stroked-button class="open-in-new"><mat-icon>open_in_new</mat-icon></button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    
+  </div>
 </div>

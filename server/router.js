@@ -10,6 +10,7 @@ api.get('/getServiceNameId/:name', ServiceCTRL.getServiceNameId);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);
+api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 
 // user queries
 api.post('/login', UserCTRL.login);

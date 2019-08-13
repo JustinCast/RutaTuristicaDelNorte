@@ -33,6 +33,34 @@ function saveTour(req, res) {
   });
 }
 
+function getRelatedTours(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on getRelatedTours: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM tour WHERE related_service = $1",
+        values: [
+          Number(req.params.related_service)
+        ]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on getRelatedTours: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
-  saveTour: saveTour
+  saveTour: saveTour,
+  getRelatedTours: getRelatedTours
 };

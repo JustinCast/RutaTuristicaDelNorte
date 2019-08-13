@@ -1,3 +1,5 @@
+@import '../../../assets/ui-utils/vars';
+
 @media screen and (min-width: 601px) {
   .item-carousel {
     width: 10%;
@@ -51,4 +53,22 @@ mat-icon {
 carousel-component {
   background-color: #FBAB7E;
   background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+}
+
+#related-tours {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.related-tour {
+  width: 25%
+}
+
+h3 {
+  color: $secondary-color
+}
+
+.open-in-new {
+  background-color: $primary-color
 }
