@@ -11,6 +11,30 @@
   }
 }
 
+@media screen and (min-width: 601px) {
+  .related-tour {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .related-tour {
+    width: 95%
+  }
+}
+
+@media screen and (min-width: 601px) {
+  #related-tours {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #related-tours {
+    flex-direction: column;
+  }
+}
+
 #tour-container {
   display: flex;
   justify-content: center;
@@ -57,12 +81,8 @@ carousel-component {
 
 #related-tours {
   display: flex;
-  flex-direction: row;
   width: 100%;
   justify-content: center;
-}
-.related-tour {
-  width: 25%
 }
 
 h3 {
