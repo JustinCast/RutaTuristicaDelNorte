@@ -1,0 +1,28 @@
+@media screen and (min-width: 601px) {
+  mat-form-field {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-form-field {
+    width: 95%
+  }
+}
+
+
+#progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+mat-form-field {
+  margin: auto;
+}

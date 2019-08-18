@@ -1,15 +1,37 @@
-<!-- <form (ngSubmit)="onSubmit()">
+<form *ngIf="s; else loading" (ngSubmit)="onSubmit()">
+  <h1 class="font-weight-light text-center">Editar servicio</h1>
   <mat-form-field appearance="outline">
-    <input type="text" [(ngModel)]="s._name">
+    <mat-label>Nombre</mat-label>
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.name">
+  </mat-form-field>
+  <div class="container text-center m-1">
+    <button color="primary" mat-raised-button (click)="pickLocation(); (false)">
+      Ver ubicación
+      <mat-icon>add_location</mat-icon>
+    </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Clasificación</mat-label>
+    <mat-select
+    [(ngModel)]="s.classification"
+    [ngModelOptions]="{standalone: true}"
+    >
+      <mat-option *ngFor="let c of _common.classification" [value]="c">
+        {{ c }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input type="text" [(ngModel)]="s._classification">
+    <mat-label>Información adicional</mat-label>
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.additional_info">
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input type="text" [(ngModel)]="s._name">
+    <mat-label>Correo</mat-label>
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.email">
   </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input type="text" [(ngModel)]="s._name">
-  </mat-form-field>
-</form> -->
-<span>{{this.s._name}}</span>
+</form>
+<ng-template #loading>
+  <div class="container" id="progress-container">
+    <mat-progress-bar mod e="indeterminate"></mat-progress-bar>
+  </div>
+</ng-template>

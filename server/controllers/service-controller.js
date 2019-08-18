@@ -86,6 +86,41 @@ function getServices(_, res) {
 }
 
 /**
+ * Functions to get all the services in the db
+ * @param {*} req 
+ * @param {*} res 
+ */
+function getService(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on getService: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM service WHERE id = $1",
+        values: [
+          req.params.id_service
+        ]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows[0]);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on getServices: ${err}`);
+        });
+    }
+  });
+}
+
+/**
  * @param {*} req 
  * @param {*} res 
  */
@@ -118,5 +153,6 @@ function getServiceNameId(req, res) {
 module.exports = {
   saveService: saveService,
   getServices: getServices,
+  getService: getService,
   getServiceNameId: getServiceNameId
 };

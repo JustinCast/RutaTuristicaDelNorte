@@ -10,6 +10,7 @@ import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
 import { Services } from "src/app/services/services.service";
 import { Rates } from 'src/app/models/Rates';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: "app-add-service",
@@ -18,12 +19,7 @@ import { Rates } from 'src/app/models/Rates';
 })
 export class AddServiceComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  classification: Array<string> = [
-    "Servicio de Alimentación",
-    "Artesanía",
-    "Servicio de hospedaje",
-    "Guía turístico"
-  ];
+  classification: Array<string>;
   addServiceFG: FormGroup;
   files: FileList;
 
@@ -39,10 +35,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   downloadURLS: Array<string> = [];
 
   location: JSON;
-  locationIcon: string = "priority_hight";
+  locationIcon: string;
 
   rates: Rates;
-  ratesIcon: string = "priority_hight";
+  ratesIcon: string;
   phones = { phones: [] };
 
   // State for dropzone CSS toggling
@@ -51,7 +47,8 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     private storage: AngularFireStorage,
     private _fb: FormBuilder,
     private _dialog: DialogManagerService,
-    private _tour: Services
+    private _tour: Services,
+    private _common: CommonService
   ) {
     this.addServiceFG = this._fb.group({
       name: ["", Validators.required],
@@ -63,7 +60,11 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.classification = this._common.classification;
+    this.locationIcon = this._common.locationIcon;
+    this.ratesIcon = this._common.ratesIcon
+  }
 
   addPhone(phone) {
     this.phones.phones.unshift(phone);

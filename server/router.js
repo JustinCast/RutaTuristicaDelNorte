@@ -4,8 +4,10 @@ var ServiceCTRL = require('./controllers/service-controller');
 var UserCTRL = require('./controllers/user-controller');
 var TourCTRL = require('./controllers/tour-controller');
 
+// service queries
 api.post('/saveService', ServiceCTRL.saveService);
 api.get('/getServices', ServiceCTRL.getServices);
+api.get('/getService/:id_service', ServiceCTRL.getService);
 api.get('/getServiceNameId/:name', ServiceCTRL.getServiceNameId);
 
 // tour queries

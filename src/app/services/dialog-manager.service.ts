@@ -84,13 +84,13 @@ export class DialogManagerService {
       .afterClosed();
   }
 
-  public openEditServiceDialog(s: Service) {
+  public openEditServiceDialog(id_service: number) {
     this.dialog
       .open(EditServiceDialogComponent, {
-        width: `${window.innerWidth < 400 ? "90%" : "30%"}`,
-        height: `${window.innerHeight <= 812 ? "55%" : "40%"}`,
+        width: `${window.innerWidth < 400 ? "90%" : "60%"}`,
+        height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
         panelClass: "dialog",
-        data : s
+        data : id_service
       })
       .afterClosed();
   }

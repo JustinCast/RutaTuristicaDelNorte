@@ -27,6 +27,6 @@ export class DashboardComponent implements OnInit {
   }
 
   editService(i: number): void {
-    this._dialog.openEditServiceDialog(this.services[i]);
+    this._dialog.openEditServiceDialog(this.services[i].id_service);
   }
 }

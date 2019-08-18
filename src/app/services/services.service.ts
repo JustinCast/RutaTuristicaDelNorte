@@ -31,6 +31,10 @@ export class Services {
       );
   }
 
+  getService(id_service: number): Observable<Service> {
+    return this._http.get<Service>(`${environment.SERVER_BASE_URL}getService/${id_service}`);
+  }
+
   getServiceNameId(name: string): Observable<any> {
     return this._http.get<any>(`${environment.SERVER_BASE_URL}getServiceNameId/${name}`);
   }
