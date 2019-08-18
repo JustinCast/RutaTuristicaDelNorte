@@ -36,7 +36,8 @@ import { SearchRelatedComponent } from './search-related/search-related.componen
     ShowImagesComponent,
     RatesComponent,
     LoginDialogComponent,
-    SearchRelatedComponent
+    SearchRelatedComponent,
+    EditServiceDialogComponent
   ],
   providers: [AUTH_PROVIDERS],
   exports: [AdminRootComponent]

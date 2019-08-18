@@ -7,14 +7,14 @@
   <h1 *ngIf="services;" class="text-center text-muted">Servicios</h1>
   <div id="services" *ngIf="services; else loadingServices">
     <div id="services-container">
-      <mat-card *ngFor="let s of services" class="mb-2 mr-1 ml-1">
+      <mat-card *ngFor="let s of services; let i = index" class="mb-2 mr-1 ml-1">
         <h1 class="text-center">{{s._name}}</h1>
         <hr>
         <img id="main-img" class="shadow-sm rounded" src="{{s.first_img}}" alt="Imagen Servicio">
         <hr>
         <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>
         <div class="text-center p-1">
-          <button class="mr-1" mat-stroked-button><mat-icon>edit</mat-icon></button>
+          <button (click)="editService(i); false"  class="mr-1" mat-stroked-button><mat-icon>edit</mat-icon></button>
           <button class="ml-1" mat-button color="warn"><mat-icon>delete</mat-icon></button>
         </div>
       </mat-card>

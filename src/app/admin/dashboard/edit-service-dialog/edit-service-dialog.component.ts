@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Service } from 'src/app/models/Service';
 
 @Component({
   selector: 'app-edit-service-dialog',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditServiceDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<EditServiceDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public s: Service
+  ) { }
 
   ngOnInit() {
+  }
+
+  onNoClick(): void {
+    return this.dialogRef.close();
+  }
+
+  onSubmit() {
+    return this.dialogRef.close(this.s);
   }
 
 }

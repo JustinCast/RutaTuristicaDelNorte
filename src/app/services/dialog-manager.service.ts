@@ -8,6 +8,8 @@ import { LoginDialogComponent } from "../admin/login-dialog/login-dialog.compone
 import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
 import { SearchRelatedComponent } from "../admin/search-related/search-related.component";
+import { EditServiceDialogComponent } from '../admin/dashboard/edit-service-dialog/edit-service-dialog.component';
+import { Service } from '../models/Service';
 
 @Injectable({
   providedIn: "root"
@@ -78,6 +80,17 @@ export class DialogManagerService {
         width: `${window.innerWidth < 400 ? "90%" : "30%"}`,
         height: `${window.innerHeight <= 812 ? "55%" : "40%"}`,
         panelClass: "dialog"
+      })
+      .afterClosed();
+  }
+
+  public openEditServiceDialog(s: Service) {
+    this.dialog
+      .open(EditServiceDialogComponent, {
+        width: `${window.innerWidth < 400 ? "90%" : "30%"}`,
+        height: `${window.innerHeight <= 812 ? "55%" : "40%"}`,
+        panelClass: "dialog",
+        data : s
       })
       .afterClosed();
   }
