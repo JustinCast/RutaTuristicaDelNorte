@@ -8,13 +8,15 @@ import { Service } from 'src/app/models/Service';
   styleUrls: ['./edit-service-dialog.component.scss']
 })
 export class EditServiceDialogComponent implements OnInit {
-
+  s: any;
   constructor(
     public dialogRef: MatDialogRef<EditServiceDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public s: Service
+    @Inject(MAT_DIALOG_DATA) public _s: any
   ) { }
 
   ngOnInit() {
+    this.s = this._s;
+    console.log(this.s._name);
   }
 
   onNoClick(): void {

@@ -10,11 +10,12 @@ import { PickLocationComponent } from "./pick-location/pick-location.component";
 import { ShowImagesComponent } from "./add-service/show-images/show-images.component";
 import { RatesComponent } from "./rates/rates.component";
 import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
-import { AUTH_PROVIDERS } from '../services/auth.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EditServiceDialogComponent } from './dashboard/edit-service-dialog/edit-service-dialog.component';
-import { AddTourComponent } from './add-tour/add-tour.component';
-import { SearchRelatedComponent } from './search-related/search-related.component';
+import { AUTH_PROVIDERS } from "../services/auth.service";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { EditServiceDialogComponent } from "./dashboard/edit-service-dialog/edit-service-dialog.component";
+import { AddTourComponent } from "./add-tour/add-tour.component";
+import { SearchRelatedComponent } from "./search-related/search-related.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,13 @@ import { SearchRelatedComponent } from './search-related/search-related.componen
     AddTourComponent,
     SearchRelatedComponent
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forRoot(ROUTES)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    RouterModule.forRoot(ROUTES)
+  ],
   entryComponents: [
     PickLocationComponent,
     ShowImagesComponent,
