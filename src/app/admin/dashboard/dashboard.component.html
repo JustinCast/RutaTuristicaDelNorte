@@ -4,13 +4,13 @@
     <button [routerLink]="['/admin/add-tour']" id="tour-btn" mat-raised-button class="ml-1 mb-1"><mat-icon>map</mat-icon> Añadir tour</button>
   </div>
   <br>
+  <h1 *ngIf="services;" class="text-center text-muted">Servicios</h1>
   <div id="services" *ngIf="services; else loadingServices">
-    <h1 class="text-center text-muted">Servicios</h1>
     <div id="services-container">
       <mat-card *ngFor="let s of services" class="mb-2 mr-1 ml-1">
         <h1 class="text-center">{{s._name}}</h1>
         <hr>
-        <img class="shadow-sm rounded" src="{{s.first_img}}" alt="Imagen Servicio">
+        <img id="main-img" class="shadow-sm rounded" src="{{s.first_img}}" alt="Imagen Servicio">
         <hr>
         <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>
         <div class="text-center p-1">
@@ -30,7 +30,8 @@
     tours
   </div>
   <ng-template #noToursData>
-    <small class="text-muted">No hay información sobre tours</small>  
+    <hr>
+    <small class="text-muted text-center">No hay información sobre tours</small>  
   </ng-template>
   
 </div>

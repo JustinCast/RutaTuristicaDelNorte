@@ -1,12 +1,12 @@
 <form [formGroup]="addServiceFG" (ngSubmit)="onSubmit()" class="text-center pt-5 mt-5">
   <div class="container">
     <h1 class="text-primary">Agregar Servicio</h1>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
       <input
         type="text"
         [formControl]="addServiceFG.get('name')"
         matInput
-        placeholder="Nombre"
       />
     </mat-form-field>
     <div class="container text-center">
@@ -16,30 +16,30 @@
       </button>
       <mat-icon [ngStyle]="{'color': location === undefined ? 'red': 'green'}" class="ml-1">{{locationIcon}}</mat-icon>
     </div>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Clasificación</mat-label>
       <mat-select
         [formControl]="addServiceFG.get('classification')"
-        placeholder="Clasificación"
       >
         <mat-option *ngFor="let c of classification" [value]="c">
           {{ c }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Información adicional</mat-label>
       <textarea
         matInput
         [formControl]="addServiceFG.get('additional_info')"
-        placeholder="Información adicional"
       ></textarea>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono de contacto</mat-label>
       <input
         matInput
         #tel
         type="tel"
         [formControl]="addServiceFG.get('phone')"
-        placeholder="Ingrese teléfono de contacto"
       />
     </mat-form-field>
     <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
@@ -51,20 +51,20 @@
         </div>
       </mat-list-item>
     </mat-list>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Correo</mat-label>
       <input
         matInput
         [formControl]="addServiceFG.get('email')"
         type="email"
-        placeholder="Correo"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Sitio web</mat-label>
       <input
         matInput
         [formControl]="addServiceFG.get('website')"
         type="url"
-        placeholder="Sitio Web"
       />
     </mat-form-field>
     <div class="container text-center">
