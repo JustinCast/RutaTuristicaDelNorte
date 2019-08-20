@@ -224,6 +224,6 @@ RETURNS VOID AS
 
 SELECT * FROM tour WHERE related_service = 31;
 
-SELECT * FROM service;
+SELECT * FROM service WHERE id = 44;
 
 SELECT * FROM service WHERE lower(name) SIMILAR TO lower('%ur%');

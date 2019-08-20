@@ -163,7 +163,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   }
 
   pickLocation() {
-    this._dialog.openPickLocationDialog().subscribe(location => {
+    this._dialog.openPickLocationDialog(undefined).subscribe(location => {
       this.location = location;
       this.locationIcon = "check";
     });

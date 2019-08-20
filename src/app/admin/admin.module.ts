@@ -12,10 +12,10 @@ import { RatesComponent } from "./rates/rates.component";
 import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
 import { AUTH_PROVIDERS } from "../services/auth.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { EditServiceDialogComponent } from "./dashboard/edit-service-dialog/edit-service-dialog.component";
 import { AddTourComponent } from "./add-tour/add-tour.component";
 import { SearchRelatedComponent } from "./search-related/search-related.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { EditServiceComponent } from './dashboard/edit-service/edit-service.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     RatesComponent,
     LoginDialogComponent,
     DashboardComponent,
-    EditServiceDialogComponent,
+    EditServiceComponent,
     AddTourComponent,
     SearchRelatedComponent
   ],
@@ -43,8 +43,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ShowImagesComponent,
     RatesComponent,
     LoginDialogComponent,
-    SearchRelatedComponent,
-    EditServiceDialogComponent
+    SearchRelatedComponent
   ],
   providers: [AUTH_PROVIDERS],
   exports: [AdminRootComponent]

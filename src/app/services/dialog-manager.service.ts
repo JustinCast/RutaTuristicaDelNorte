@@ -8,7 +8,6 @@ import { LoginDialogComponent } from "../admin/login-dialog/login-dialog.compone
 import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
 import { SearchRelatedComponent } from "../admin/search-related/search-related.component";
-import { EditServiceDialogComponent } from '../admin/dashboard/edit-service-dialog/edit-service-dialog.component';
 import { Service } from '../models/Service';
 
 @Injectable({
@@ -17,20 +16,19 @@ import { Service } from '../models/Service';
 export class DialogManagerService {
   constructor(private dialog: MatDialog) {}
 
-  public openPickLocationDialog(): Observable<any> {
+  public openPickLocationDialog(value: string): Observable<any> {
     let dialogRef: MatDialogRef<PickLocationComponent>;
-    console.log(window.innerHeight);
     dialogRef = this.dialog.open(PickLocationComponent, {
       width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
       height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
-      panelClass: "dialog"
+      panelClass: "dialog",
+      data: value !== undefined ? JSON.parse(value) : null
     });
     return dialogRef.afterClosed();
   }
 
   public openImagesDialog(images: Array<string>): Observable<Array<string>> {
     let dialogRef: MatDialogRef<ShowImagesComponent>;
-    console.log(window.innerHeight);
     dialogRef = this.dialog.open(ShowImagesComponent, {
       width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
       height: `${window.innerHeight <= 812 ? "65%" : "60%"}`,
@@ -80,17 +78,6 @@ export class DialogManagerService {
         width: `${window.innerWidth < 400 ? "90%" : "30%"}`,
         height: `${window.innerHeight <= 812 ? "55%" : "40%"}`,
         panelClass: "dialog"
-      })
-      .afterClosed();
-  }
-
-  public openEditServiceDialog(id_service: number) {
-    this.dialog
-      .open(EditServiceDialogComponent, {
-        width: `${window.innerWidth < 400 ? "90%" : "60%"}`,
-        height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
-        panelClass: "dialog",
-        data : id_service
       })
       .afterClosed();
   }

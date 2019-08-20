@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import LocationPicker from 'location-picker';
 
 @Component({
@@ -9,10 +9,20 @@ import LocationPicker from 'location-picker';
 })
 export class PickLocationComponent implements OnInit {
   lp: LocationPicker;
-  constructor(public dialogRef: MatDialogRef<PickLocationComponent>){}
+  constructor(
+    public dialogRef: MatDialogRef<PickLocationComponent>,
+    @Inject(MAT_DIALOG_DATA) public location: any
+  ){}
 
   ngOnInit(){
-    this.lp = new LocationPicker('map');
+    if(!this.location)
+      this.lp = new LocationPicker('map');
+    else {
+      this.lp = new LocationPicker('map', {
+            lat: this.location.lat,
+            lng: this.location.lng
+          });
+    }
   }
   
   setLocation() {

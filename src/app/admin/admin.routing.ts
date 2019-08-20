@@ -4,6 +4,7 @@ import { AddServiceComponent } from "./add-service/add-service.component";
 import { LoggedInGuard } from './logged-in.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddTourComponent } from './add-tour/add-tour.component';
+import { EditServiceComponent } from './dashboard/edit-service/edit-service.component';
 
 export const ROUTES: Routes = [
   {
@@ -21,6 +22,10 @@ export const ROUTES: Routes = [
       {
         path: "dashboard",
         component: DashboardComponent
+      },
+      {
+        path: "edit-service/:id_service",
+        component: EditServiceComponent
       },
     ],
     canActivateChild: [LoggedInGuard]
