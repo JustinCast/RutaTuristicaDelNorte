@@ -24,14 +24,39 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  
   <mat-form-field appearance="outline">
     <mat-label>Información adicional</mat-label>
     <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.additional_info">
   </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Añadir teléfono</mat-label>
+    <input
+      matInput
+      #tel
+      type="tel"
+    />
+  </mat-form-field>
+  <div class="container text-center">
+    <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
+  </div>
+  <mat-list role="list" *ngIf="s" class="container text-center rounded mt-2 mb-2">
+    <mat-list-item *ngFor="let p of s.phones.phones; let i = index;" role="listitem" class="mb-2">
+      <div class="phone p-1 shadow-sm">
+        <h3>{{p}}</h3>
+        <button mat-button color="warn" (click)="phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
     <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.email">
   </mat-form-field>
+  <div class="text-center container">
+    <button color="primary" mat-raised-button><mat-icon>send</mat-icon></button>
+  </div>
 </form>
 <ng-template #loading>
   <div class="container" id="progress-container">

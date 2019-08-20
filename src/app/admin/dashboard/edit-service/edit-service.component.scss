@@ -9,6 +9,25 @@
   }
 }
 
+@media screen and (min-width: 601px) {
+  mat-list {
+    width: 70%
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-list {
+    width: 95%
+  }
+}
+.phone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border: 0.5px rgb(206, 206, 206) solid;
+  border-radius: 10px
+}
+
 
 #progress-container {
   display: flex;
