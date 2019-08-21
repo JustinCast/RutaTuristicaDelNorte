@@ -3,7 +3,7 @@
   <h1 class="font-weight-light text-center">Editar servicio</h1>
   <mat-form-field appearance="outline">
     <mat-label>Nombre</mat-label>
-    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.name">
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s._name">
   </mat-form-field>
   
   <div class="container text-center mb-2">
@@ -16,7 +16,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Clasificación</mat-label>
     <mat-select
-    [(ngModel)]="s.classification"
+    [(ngModel)]="s._classification"
     [ngModelOptions]="{standalone: true}"
     >
       <mat-option *ngFor="let c of _common.classification" [value]="c">
@@ -27,7 +27,7 @@
   
   <mat-form-field appearance="outline">
     <mat-label>Información adicional</mat-label>
-    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.additional_info">
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s._additional_info">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -42,20 +42,20 @@
     <button [disabled]="tel.value.length === 0" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
   </div>
   <mat-list role="list" *ngIf="s" class="container text-center rounded mt-2 mb-2">
-    <mat-list-item *ngFor="let p of s.phones.phones; let i = index;" role="listitem" class="mb-2">
+    <mat-list-item *ngFor="let p of s._phones.phones; let i = index;" role="listitem" class="mb-2">
       <div class="phone p-1 shadow-sm">
         <h3>{{p}}</h3>
-        <button mat-button color="warn" (click)="phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+        <button mat-button color="warn" (click)="_phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
       </div>
     </mat-list-item>
   </mat-list>
 
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
-    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s.email">
+    <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s._email">
   </mat-form-field>
   <div class="text-center container">
-    <button color="primary" mat-raised-button><mat-icon>send</mat-icon></button>
+    <button type="submit"lor="primary" mat-raised-button><mat-icon>send</mat-icon></button>
   </div>
 </form>
 <ng-template #loading>

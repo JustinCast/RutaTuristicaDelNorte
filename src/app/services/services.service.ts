@@ -20,6 +20,14 @@ export class Services {
     });
   }
 
+  updateService(updatedService: Service) {
+    this._http.put(`${environment.SERVER_BASE_URL}updateService`, updatedService)
+    .subscribe({
+      next: res => this.openSnackBar('Servicio actualizado', 'Ok', 2500),
+      error: (err: HttpErrorResponse) => this.handleError(err)
+    });
+  }
+
   getServices() {
     this._http
       .get<Array<Service>>(`${environment.SERVER_BASE_URL}getServices`)

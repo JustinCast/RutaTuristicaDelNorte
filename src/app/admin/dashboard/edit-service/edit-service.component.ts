@@ -6,6 +6,7 @@ import LocationPicker from "location-picker";
 import { ActivatedRoute } from "@angular/router";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
+import { nextTick } from 'q';
 
 @Component({
   selector: "app-edit-service",
@@ -57,6 +58,6 @@ export class EditServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    //return this.Ref.close(this.s);
+    this._service.updateService(this.s);
   }
 }

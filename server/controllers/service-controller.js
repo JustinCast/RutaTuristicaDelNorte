@@ -54,6 +54,38 @@ function saveService(req, res) {
 }
 
 /**
+ * updateService function
+ * @param {*} req 
+ * @param {*} res 
+ */
+function updateService(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on udpateService: ${err}`);
+    } else {
+      let updatedService = req.body;
+      console.log(req.body)
+      let query = {
+        text: "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8);",
+        values: [
+          updatedService._location,
+          updatedService._name,
+          updatedService._classification,
+          updatedService._additional_info,
+          updatedService._email,
+          updatedService._website,
+          updatedService._phones,
+          updatedService.id,
+        ]
+      }
+    }
+  })
+}
+
+/**
  * Functions to get all the services in the db
  * @param {*} _ 
  * @param {*} res 
@@ -100,7 +132,14 @@ function getService(req, res) {
       console.log(`err when connecting on getService: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM service WHERE id = $1",
+        text: `SELECT name _name,
+                      location _location,
+                      classification _classification,
+                      additional_info _additional_info,
+                      email _email,
+                      website _website,
+                      phones _phones  
+               FROM service WHERE id = $1`,
         values: [
           req.params.id_service
         ]
@@ -152,6 +191,7 @@ function getServiceNameId(req, res) {
 
 module.exports = {
   saveService: saveService,
+  updateService: updateService,
   getServices: getServices,
   getService: getService,
   getServiceNameId: getServiceNameId

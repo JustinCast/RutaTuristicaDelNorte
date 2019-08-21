@@ -221,9 +221,20 @@ RETURNS VOID AS
         END;
     $$ LANGUAGE plpgsql;
 
-
-SELECT * FROM tour WHERE related_service = 31;
-
-SELECT * FROM service WHERE id = 44;
-
-SELECT * FROM service WHERE lower(name) SIMILAR TO lower('%ur%');
+DROP FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR, _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER);
+CREATE OR REPLACE FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR,
+    _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER)
+RETURNS VOID AS
+    $$
+        BEGIN
+           UPDATE service SET
+                              location = _location,
+                              name = _name,
+                              classification = _classification,
+                              additional_info = _additional_info,
+                              email = _email,
+                              website = _website,
+                              phones = _phones
+            WHERE id = _id;
+        END;
+    $$ LANGUAGE plpgsql;
