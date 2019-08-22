@@ -1,5 +1,5 @@
 <form class="text-center pt-5 mt-5" [formGroup]="tourFG" (ngSubmit)="onSubmit(); false">
-  <h1 class="text-primary">Agregar tour</h1>
+  <h1 class="font-weight-light text-center">Añadir tour</h1>
   <mat-form-field appearance="outline">
     <mat-label>Nombre</mat-label>
     <input matInput [formControl]="tourFG.get('name')">
