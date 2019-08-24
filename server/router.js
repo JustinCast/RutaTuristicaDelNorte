@@ -9,7 +9,7 @@ api.post('/saveService', ServiceCTRL.saveService);
 api.put('/updateService', ServiceCTRL.updateService);
 api.get('/getServices', ServiceCTRL.getServices);
 api.get('/getService/:id_service', ServiceCTRL.getService);
-api.get('/getServiceNameId/:name', ServiceCTRL.getServiceNameId);
+api.get('/getServiceNameId/:name/:id_user', ServiceCTRL.getServiceNameId);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);

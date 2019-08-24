@@ -7,8 +7,8 @@ var client;
 /**
  * Function to call saveService proc in the db
  * At the same time this function calls ImageCTRL.saveImages and RatesCTRL.saveRates
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function saveService(req, res) {
   client = new pg.Client(db);
@@ -38,8 +38,12 @@ function saveService(req, res) {
         .then(data => {
           let id_service = data.rows[0].save_service;
           ImagesCTRL.saveImages(service._imgs, Number(id_service));
-          if(service._rates)
-            RatesCTRL.saveRates(service._rates, "save_service_rates", id_service);
+          if (service._rates)
+            RatesCTRL.saveRates(
+              service._rates,
+              "save_service_rates",
+              id_service
+            );
 
           res.status(200).send(true);
           client.end();
@@ -55,8 +59,8 @@ function saveService(req, res) {
 
 /**
  * updateService function
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function updateService(req, res) {
   client = new pg.Client(db);
@@ -67,7 +71,7 @@ function updateService(req, res) {
       console.log(`err when connecting on udpateService: ${err}`);
     } else {
       let updatedService = req.body;
-      console.log(req.body)
+      console.log(req.body);
       let query = {
         text: "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8);",
         values: [
@@ -78,17 +82,17 @@ function updateService(req, res) {
           updatedService._email,
           updatedService._website,
           updatedService._phones,
-          updatedService.id,
+          updatedService.id
         ]
-      }
+      };
     }
-  })
+  });
 }
 
 /**
  * Functions to get all the services in the db
- * @param {*} _ 
- * @param {*} res 
+ * @param {*} _
+ * @param {*} res
  */
 function getServices(_, res) {
   client = new pg.Client(db);
@@ -119,8 +123,8 @@ function getServices(_, res) {
 
 /**
  * Functions to get all the services in the db
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function getService(req, res) {
   client = new pg.Client(db);
@@ -140,9 +144,7 @@ function getService(req, res) {
                       website _website,
                       phones _phones  
                FROM service WHERE id = $1`,
-        values: [
-          req.params.id_service
-        ]
+        values: [req.params.id_service]
       };
       client
         .query(query)
@@ -160,8 +162,8 @@ function getService(req, res) {
 }
 
 /**
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function getServiceNameId(req, res) {
   client = new pg.Client(db);
@@ -172,7 +174,11 @@ function getServiceNameId(req, res) {
       console.log(`err when connecting on getServicesNameId: ${err}`);
     } else {
       let query = {
-        text: `SELECT name, id FROM service WHERE lower(name) SIMILAR TO lower('%${req.params.name}%')`
+        text: `SELECT * FROM get_service_name_id($1, $2)`,
+        values: [
+          req.params.id_user,
+          req.params.name,
+        ]
       };
       client
         .query(query)

@@ -238,3 +238,12 @@ RETURNS VOID AS
             WHERE id = _id;
         END;
     $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION get_related_services_by_user()
+RETURNS VOID AS
+    $$
+        BEGIN
+
+        END;
+    $$ LANGUAGE plpgsql;

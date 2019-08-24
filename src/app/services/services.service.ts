@@ -44,7 +44,8 @@ export class Services {
   }
 
   getServiceNameId(name: string): Observable<any> {
-    return this._http.get<any>(`${environment.SERVER_BASE_URL}getServiceNameId/${name}`);
+    let user_id = (JSON.parse(localStorage.getItem(`${environment.localstorage_key}`)) as User).id;
+    return this._http.get<any>(`${environment.SERVER_BASE_URL}getServiceNameId/${name}/${user_id}`);
   }
 
   openSnackBar(message: string, action: string, duration: number) {
