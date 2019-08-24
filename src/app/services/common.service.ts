@@ -8,7 +8,8 @@ export class CommonService {
     "Servicio de Alimentación",
     "Artesanía",
     "Servicio de hospedaje",
-    "Guía turístico"
+    "Guía turístico",
+    "Actividades turísticas"
   ];
   ratesIcon: string = "priority_hight";
   locationIcon: string = "priority_hight";

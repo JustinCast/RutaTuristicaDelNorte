@@ -3,20 +3,11 @@
     Tours y Servicios de la Ruta Turística del norte
   </h4>
   <div id="header">
-    <mat-form-field>
-      <mat-label>Filtrar por..</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrar por...</mat-label>
       <mat-select>
-        <mat-option value="Tour">
-          Servicio de alimentación
-        </mat-option>
-        <mat-option value="Restaurantes">
-          Artesanía
-        </mat-option>
-        <mat-option value="Otros">
-          Servicios de hospedaje
-        </mat-option>
-        <mat-option value="Otros">
-          Guía turístico
+        <mat-option [(ngModel)]="filter" *ngFor="let c of _common.classification" [value]="c">
+          {{c}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -60,10 +51,14 @@
         </div>
       </mat-card>
     </ul>
-    <pagination-controls
+    <mat-paginator class="bg-transparent" [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+    <!-- <pagination-controls
       (pageChange)="p = $event"
       class="container text-center p-0"
-    ></pagination-controls>
+    ></pagination-controls> -->
     </div>
   </div>
 

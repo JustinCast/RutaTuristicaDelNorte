@@ -2,6 +2,7 @@ const db = require("../config/db");
 const ImagesCTRL = require("./image-controller");
 const RatesCTRL = require("./rates-controller");
 const pg = require("pg");
+//import paginate from 'jw-paginate';
 var client;
 
 /**
@@ -94,7 +95,7 @@ function updateService(req, res) {
  * @param {*} _
  * @param {*} res
  */
-function getServices(_, res) {
+function getServices(req, res) {
   client = new pg.Client(db);
 
   client.connect(err => {
@@ -104,7 +105,11 @@ function getServices(_, res) {
       console.log(`err when connecting on getServices: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM get_services();"
+        text: "SELECT * FROM services LIMIT = $1 OFFSET = $2",
+        values: [
+          req.query.limit,
+          req.query.filter
+        ]
       };
       client
         .query(query)
