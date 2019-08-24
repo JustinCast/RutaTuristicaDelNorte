@@ -5,8 +5,8 @@
   <div id="header">
     <mat-form-field appearance="outline">
       <mat-label>Filtrar por...</mat-label>
-      <mat-select>
-        <mat-option [(ngModel)]="filter" *ngFor="let c of _common.classification" [value]="c">
+      <mat-select [(ngModel)]="filter">
+        <mat-option (click)="applyFilter(c); false" *ngFor="let c of _common.classification" [value]="c">
           {{c}}
         </mat-option>
       </mat-select>

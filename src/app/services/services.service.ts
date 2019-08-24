@@ -28,9 +28,9 @@ export class Services {
     });
   }
 
-  getServices(filter: string) {
+  getServices(limit:number, offset: number, filter: string) {
     this._http
-      .get<Array<Service>>(`${environment.SERVER_BASE_URL}getServices?limit=10&filter=${filter}`)
+      .get<Array<Service>>(`${environment.SERVER_BASE_URL}getServices?limit=${limit}&offset=${offset}&filter=${filter}`)
       .subscribe(
         services => {
           this.tours = services;

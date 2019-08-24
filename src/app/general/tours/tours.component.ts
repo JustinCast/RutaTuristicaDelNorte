@@ -9,23 +9,18 @@ import { CommonService } from "src/app/services/common.service";
   styleUrls: ["./tours.component.scss"]
 })
 export class ToursComponent implements OnInit {
-  p: number = 1;
+  limit: number = 10;
+  offset: number = 0;
   filter: string = "";
   constructor(public _tours: Services, private _common: CommonService) {}
 
   ngOnInit() {
     //:TODO recordar primero llamar a tabla para el conteo de total e ítemenes por página 
-    if (!this._tours.tours) this._tours.getServices(this.filter);
-    else if(this.filter.length === 0) this._tours.getServices(this.filter);
-    else {
-      switch (this.filter) {
-        case this._common.classification[0]: // "Servicio de Alimentación"
-          
-          break;
-      
-        default:
-          break;
-      }
-    }
+
+    if (!this._tours.tours) this._tours.getServices(this.limit, this.offset, this.filter);
+  }
+
+  applyFilter() {
+    this._tours.getServices(this.limit, this.offset, this.filter);
   }
 }

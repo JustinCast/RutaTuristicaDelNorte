@@ -105,9 +105,10 @@ function getServices(req, res) {
       console.log(`err when connecting on getServices: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM services LIMIT = $1 OFFSET = $2",
+        text: "SELECT * FROM get_services($1, $2, $3);",
         values: [
-          req.query.limit,
+          Number(req.query.limit), 
+          Number(req.query.offset), 
           req.query.filter
         ]
       };
