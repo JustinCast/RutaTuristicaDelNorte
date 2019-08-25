@@ -20,7 +20,6 @@ import {
 } from "@angular/material";
 import { CarouselModule } from "ngx-carousel-lib";
 import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
-import { NgxPaginationModule } from "ngx-pagination";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule } from "angularfire2/storage";
@@ -40,7 +39,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     CarouselModule,
     MatExpansionModule,
-    NgxPaginationModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
@@ -67,7 +65,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     CarouselModule,
     MatExpansionModule,
-    NgxPaginationModule,
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

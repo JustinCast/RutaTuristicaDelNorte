@@ -13,12 +13,11 @@
     </mat-form-field>
   </div>
   <div *ngIf="_tours.tours; else loading">
-    <ul id="content">
+    <ul id="content" *ngIf="_tours.tours.length > 0; else empty">
       <mat-card
         class="service animated bounceInRight"
         *ngFor="
-          let item of _tours.tours | paginate: { itemsPerPage: 5, currentPage: p }
-        "
+          let item of _tours.tours"
       >
         <h1 class="text-center">{{ item._name }}</h1>
         <hr>
@@ -51,14 +50,15 @@
         </div>
       </mat-card>
     </ul>
-    <mat-paginator class="bg-transparent" [length]="100"
+    <mat-paginator *ngIf="_tours.tours.length > 0;" class="bg-transparent" [length]="100"
               [pageSize]="10"
               [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
-    <!-- <pagination-controls
-      (pageChange)="p = $event"
-      class="container text-center p-0"
-    ></pagination-controls> -->
+
+    <ng-template #empty>
+      <p>Sin información que mostrar</p>
+    </ng-template>
+    
     </div>
   </div>
 
