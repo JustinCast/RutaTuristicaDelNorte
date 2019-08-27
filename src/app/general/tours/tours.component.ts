@@ -15,7 +15,16 @@ export class ToursComponent implements OnInit {
   filter: string = "";
   options: Array<number> = [];
   count: number = 0;
-  constructor(public _tours: Services, private _common: CommonService) {}
+  imagesList = [];
+  constructor(public _tours: Services, private _common: CommonService) {
+    for (let i = 0; i < 50; i++) {
+      const url = 'https://loremflickr.com/640/480?random=' + (i +1);
+      this.imagesList[i] = {
+        url: url,
+        show: false
+    };
+  }
+  }
 
   ngOnInit() {
     //:TODO recordar primero llamar a tabla para el conteo de total e ítemenes por página 

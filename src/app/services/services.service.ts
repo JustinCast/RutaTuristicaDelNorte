@@ -38,9 +38,22 @@ export class Services {
       .subscribe(
         services => {
           this.tours = services;
+          this.setLazyLoading();
         },
         (err: HttpErrorResponse) => this.handleError(err)
       );
+  }
+
+  setLazyLoading(): void {
+    this.tours.forEach(t => t._imgs_lazy = this.setImgsLazyLoading(t.imgs));
+  }
+
+  public setImgsLazyLoading(imgs): Array<any> {
+    let aux = [];
+    imgs.forEach(img => {
+      aux.unshift({img: img, show: false})
+    });
+    return aux;
   }
 
   getService(id_service: number): Observable<Service> {

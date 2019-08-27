@@ -10,9 +10,10 @@ export class Service {
     public _email?: string,
     public _website?: string,
     public _phones?: string,
-    public _imgs?: Array<string>,
+    public imgs?: Array<string>,
     public _rates?: Rates,
     public id_service?: number,
-    public _count?: number
+    public _count?: number,
+    public _imgs_lazy?: Array<any>
   ) {}
 }

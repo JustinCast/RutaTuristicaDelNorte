@@ -7,8 +7,8 @@
     [morePairSlides]="moreSlides"
     [angle]="degree"
   >
-    <div class="item-carousel rounded shadow" *ngFor="let img of tour.imgs">
-      <img class="rounded i" src="{{ img }}" />
+    <div class="item-carousel rounded shadow" *ngFor="let imageObject of tour._imgs_lazy" (deferLoad)="imageObject.show = true">
+      <img class="rounded i" src="{{ imageObject.img }}" />
     </div>
   </carousel-component>
   <div class="container text-center mt-2" id="carousel-footer">

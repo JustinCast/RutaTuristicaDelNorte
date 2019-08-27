@@ -26,6 +26,7 @@ import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 @NgModule({
   declarations: [],
@@ -54,7 +55,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DeferLoadModule
   ],
   exports: [
     MatMenuModule,
@@ -80,7 +82,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DeferLoadModule
   ]
 })
 export class SharedModule {}

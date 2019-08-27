@@ -17,12 +17,14 @@
       <mat-card
         class="service animated bounceInRight"
         *ngFor="
-          let item of _tours.tours"
+          let item of _tours.tours; let i = index"
       >
         <h1 class="text-center">{{ item._name }}</h1>
         <hr>
-        <div id="img-container"class="text-center">
-          <img id="main-img" class="rounded shadow-sm" src="{{item.imgs[0]}}" alt="">
+        <div id="img-container"class="text-center" (deferLoad)="item._imgs_lazy[0].show = true">
+          <ng-container *ngIf="item._imgs_lazy[0].show">
+            <img class="rounded shadow-sm" alt="" id="main-img" src={{item._imgs_lazy[0].img}}>
+          </ng-container>
         </div>
         <hr />
         <mat-card-content class="text-left">
@@ -62,6 +64,7 @@
     
     </div>
   </div>
+
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
