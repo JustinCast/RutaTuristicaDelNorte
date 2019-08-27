@@ -1,7 +1,4 @@
 <div id="main-container" class="mt-5 pt-5">
-  <h4 class="text-center text-primary">
-    Tours y Servicios de la Ruta Turística del norte
-  </h4>
   <div id="header">
     <mat-form-field appearance="outline">
       <mat-label>Filtrar por...</mat-label>
@@ -13,6 +10,9 @@
     </mat-form-field>
   </div>
   <div *ngIf="_tours.tours; else loading">
+    <h4 class="text-center text-primary">
+      Servicios
+    </h4> 
     <ul id="content" *ngIf="_tours.tours.length > 0; else empty">
       <mat-card
         class="service animated bounceInRight"
@@ -50,10 +50,11 @@
         </div>
       </mat-card>
     </ul>
-    <mat-paginator *ngIf="_tours.tours.length > 0;" class="bg-transparent" [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator *ngIf="count" class="bg-transparent" [length]="count"
+      [pageSize]="limit"
+      [pageSizeOptions]="options">
     </mat-paginator>
+
 
     <ng-template #empty>
       <p>Sin información que mostrar</p>
@@ -61,7 +62,6 @@
     
     </div>
   </div>
-
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>

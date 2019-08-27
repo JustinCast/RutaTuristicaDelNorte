@@ -10,6 +10,7 @@ api.put('/updateService', ServiceCTRL.updateService);
 api.get('/getServices', ServiceCTRL.getServices);
 api.get('/getService/:id_service', ServiceCTRL.getService);
 api.get('/getServiceNameId/:name/:id_user', ServiceCTRL.getServiceNameId);
+api.get('/getServicesCount', ServiceCTRL.getServicesCount);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);

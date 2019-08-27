@@ -201,10 +201,40 @@ function getServiceNameId(req, res) {
   });
 }
 
+/**
+ * 
+ * @param {*} _ 
+ * @param {*} res 
+ */
+function getServicesCount(_, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on getServicesCount: ${err}`);
+    } else {
+      let query = "SELECT COUNT(*) FROM service;";
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows[0].count);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on getServicesCount: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
   saveService: saveService,
   updateService: updateService,
   getServices: getServices,
   getService: getService,
-  getServiceNameId: getServiceNameId
+  getServiceNameId: getServiceNameId,
+  getServicesCount: getServicesCount
 };

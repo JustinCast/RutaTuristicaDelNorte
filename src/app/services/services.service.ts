@@ -13,6 +13,10 @@ export class Services {
   public tours: Array<Service>;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
 
+  getServicesCount(): Observable<number> {
+    return this._http.get<number>(`${environment.SERVER_BASE_URL}getServicesCount`);
+  }
+
   saveService(service: Service): Observable<any> {
     return this._http.post(`${environment.SERVER_BASE_URL}saveService`, {
       service: service,
@@ -23,7 +27,7 @@ export class Services {
   updateService(updatedService: Service) {
     this._http.put(`${environment.SERVER_BASE_URL}updateService`, updatedService)
     .subscribe({
-      next: res => this.openSnackBar('Servicio actualizado', 'Ok', 2500),
+      next: () => this.openSnackBar('Servicio actualizado', 'Ok', 2500),
       error: (err: HttpErrorResponse) => this.handleError(err)
     });
   }

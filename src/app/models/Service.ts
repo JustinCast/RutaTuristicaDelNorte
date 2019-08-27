@@ -12,6 +12,7 @@ export class Service {
     public _phones?: string,
     public _imgs?: Array<string>,
     public _rates?: Rates,
-    public id_service?: number
+    public id_service?: number,
+    public _count?: number
   ) {}
 }
