@@ -12,6 +12,7 @@ import { User } from 'src/app/models/User';
 })
 export class LoginDialogComponent implements OnInit {
   loginFG: FormGroup;
+  password_recovery_flag = false;
 
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
