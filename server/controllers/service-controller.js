@@ -107,8 +107,8 @@ function getServices(req, res) {
       let query = {
         text: "SELECT * FROM get_services($1, $2, $3);",
         values: [
-          Number(req.query.limit), 
-          Number(req.query.offset), 
+          Number(req.query.limit),
+          Number(req.query.offset),
           req.query.filter
         ]
       };
@@ -181,10 +181,7 @@ function getServiceNameId(req, res) {
     } else {
       let query = {
         text: `SELECT * FROM get_service_name_id($1, $2)`,
-        values: [
-          req.params.id_user,
-          req.params.name,
-        ]
+        values: [req.params.id_user, req.params.name]
       };
       client
         .query(query)
@@ -202,11 +199,11 @@ function getServiceNameId(req, res) {
 }
 
 /**
- * 
- * @param {*} _ 
- * @param {*} res 
+ *
+ * @param {*} _
+ * @param {*} res
  */
-function getServicesCount(_, res) {
+function getServicesCount(req, res) {
   client = new pg.Client(db);
   client.connect(err => {
     if (err) {
@@ -214,7 +211,11 @@ function getServicesCount(_, res) {
       res.status(400).send(err);
       console.log(`err when connecting on getServicesCount: ${err}`);
     } else {
-      let query = "SELECT COUNT(*) FROM service;";
+      let query;
+      if (req.query.column === "undefined")
+        query = "SELECT COUNT(*) FROM service;";
+      else
+        query = `SELECT COUNT(*) FROM service WHERE classification = '${req.query.value}';`;
       client
         .query(query)
         .then(data => {

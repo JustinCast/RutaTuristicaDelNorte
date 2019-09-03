@@ -7,6 +7,7 @@ export class CommonService {
   classification: Array<string> = [
     "Servicio de Alimentación",
     "Artesanía",
+    "Tour",
     "Servicio de hospedaje",
     "Guía turístico",
     "Actividades turísticas"

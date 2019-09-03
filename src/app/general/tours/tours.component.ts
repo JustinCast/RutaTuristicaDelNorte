@@ -17,27 +17,22 @@ export class ToursComponent implements OnInit {
   count: number = 0;
   imagesList = [];
   constructor(public _tours: Services, private _common: CommonService) {
-    for (let i = 0; i < 50; i++) {
-      const url = 'https://loremflickr.com/640/480?random=' + (i +1);
-      this.imagesList[i] = {
-        url: url,
-        show: false
-    };
-  }
   }
 
   ngOnInit() {
-    //:TODO recordar primero llamar a tabla para el conteo de total e ítemenes por página 
-    this._tours.getServicesCount().subscribe({
+    this.getTableCountData(undefined, undefined);
+  }
+
+  getTableCountData(columm: string, value: string) {
+    this._tours.getServicesCount(columm, value).subscribe({
       next: count => {
         this.count = count;
+        this._tours.tours = undefined;
         this.setPaginatorOptions();
         if (!this._tours.tours) this._tours.getServices(this.limit, this.offset, this.filter);
       },
       error: (err: HttpErrorResponse) => this._tours.handleError(err)
     });
-
-    //if (!this._tours.tours) this._tours.getServices(this.limit, this.offset, this.filter);
   }
 
   setPaginatorOptions() {
@@ -59,6 +54,7 @@ export class ToursComponent implements OnInit {
   }
 
   applyFilter() {
-    this._tours.getServices(this.limit, this.offset, this.filter);
+    this.getTableCountData("classification", this.filter);
+    //this._tours.getServices(this.limit, this.offset, this.filter);
   }
 }
