@@ -22,9 +22,9 @@
       >
         <h1 class="text-center">{{ item._name }}</h1>
         <hr>
-        <div id="img-container"class="text-center" (deferLoad)="item._imgs_lazy[0].show = true">
+        <div id="img-container"class="p-0 text-center" (deferLoad)="item._imgs_lazy[0].show = true">
           <ng-container *ngIf="item._imgs_lazy[0].show">
-            <img class="rounded shadow-sm" alt="" id="main-img" src={{item._imgs_lazy[0].img}}>
+            <img class="main-img rounded shadow-sm" alt="" src={{item._imgs_lazy[0].img}}>
           </ng-container>
         </div>
         <hr />

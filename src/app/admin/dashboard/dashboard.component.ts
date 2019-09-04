@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editService(i: number): void {
+    console.log(this.services);
     if(this.services[i].id_service)
       this._router.navigate(['/admin/edit-service', this.services[i].id_service])
     else

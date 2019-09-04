@@ -4,13 +4,13 @@
     <button [routerLink]="['/admin/add-tour']" id="tour-btn" mat-raised-button class="ml-1 mb-1"><mat-icon>map</mat-icon> Añadir tour</button>
   </div>
   <br>
-  <h1 *ngIf="services;" class="text-center text-muted">Servicios</h1>
+  <h1 *ngIf="services;" class="text-center text-muted font-weight-light">Servicios</h1>
   <div id="services" *ngIf="services; else loadingServices">
     <div id="services-container">
-      <mat-card *ngFor="let s of services; let i = index" class="mb-2 mr-1 ml-1">
-        <h1 class="text-center">{{s._name}}</h1>
+      <mat-card *ngFor="let s of services; let i = index" class="service mb-2 mr-1 ml-1">
+        <h3 class="text-center font-weight-light">{{s._name}}</h3>
         <hr>
-        <img id="main-img" class="shadow-sm rounded" src="{{s.first_img}}" alt="Imagen Servicio">
+        <img class="s-img shadow-sm rounded" src="{{s.first_img}}" alt="Imagen Servicio">
         <hr>
         <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>
         <div class="text-center p-1">

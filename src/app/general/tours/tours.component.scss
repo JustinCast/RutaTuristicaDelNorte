@@ -24,12 +24,12 @@
 }
 
 @media screen and (min-width: 601px) {
-  #main-img {
+  .main-img {
     height: 250px;
   }
 }
 @media screen and (max-width: 700px) {
-  #main-img {
+  .main-img {
     height: 200px;
   }
 }
@@ -78,7 +78,7 @@ mat-icon {
   color: white;
 }
 
-#main-img{
+.main-img{
   margin: auto;
   width: 100%;
 }

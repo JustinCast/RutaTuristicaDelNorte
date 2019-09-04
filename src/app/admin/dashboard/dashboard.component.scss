@@ -23,25 +23,24 @@
 }
 
 @media screen and (min-width: 601px) {
-  h1 {
-    font-weight: 200;
+  .s-img {
+    height: 350px;
   }
 }
 @media screen and (max-width: 700px) {
-  h1 {
-    font-weight: 100;
-    font-size: 25px;
+  .s-img {
+    height: 250px;
   }
 }
 
 @media screen and (min-width: 601px) {
-  #main-img {
-    height: 250px;
+  .service {
+    width: 25%
   }
 }
 @media screen and (max-width: 700px) {
-  #main-img {
-    height: 200px;
+  .service {
+    width: 95%
   }
 }
 
@@ -56,7 +55,7 @@
   }
 }
 
-img{
+.s-img{
   margin: auto;
   width: 100%;
 }
@@ -70,7 +69,6 @@ img{
 
 
 #services {
-  flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

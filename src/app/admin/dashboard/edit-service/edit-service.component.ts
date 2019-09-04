@@ -30,7 +30,6 @@ export class EditServiceComponent implements OnInit {
       this._service.getService(Number(id_service)).subscribe(
         service => {
           this.s = service;
-          console.log(this.s);
         },
         (err: HttpErrorResponse) => this._service.handleError(err)
       );
