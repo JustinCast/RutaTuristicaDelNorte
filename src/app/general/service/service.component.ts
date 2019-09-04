@@ -31,6 +31,7 @@ export class TourComponent implements OnInit {
       this.tour = this._tours.tours.find(
         t => t.id_service === Number(id_service)
       );
+      console.log(this.tour);
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
     } else this._router.navigateByUrl("/general/tours");

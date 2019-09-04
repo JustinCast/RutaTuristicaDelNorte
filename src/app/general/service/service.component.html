@@ -28,9 +28,15 @@
     </li>
     <li>
       <strong>Información adicional: </strong>
-      <p>{{ tour.a_dditional_info }}</p>
+      <p>{{ tour._additional_info }}</p>
     </li>
-    <li><mat-icon>phone</mat-icon>{{ tour._phone }}</li>
+    <li>
+      <mat-list>
+        <mat-list-item *ngFor="let p of tour._phones.phones">
+          <mat-icon>phone</mat-icon>{{ p }}
+        </mat-list-item>
+      </mat-list>
+    </li>
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
   </ul>
 
