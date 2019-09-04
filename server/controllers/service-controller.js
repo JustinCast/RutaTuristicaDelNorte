@@ -38,7 +38,7 @@ function saveService(req, res) {
         .query(query)
         .then(data => {
           let id_service = data.rows[0].save_service;
-          ImagesCTRL.saveImages(service._imgs, Number(id_service));
+          ImagesCTRL.saveImages(service.imgs, Number(id_service));
           if (service._rates)
             RatesCTRL.saveRates(
               service._rates,
