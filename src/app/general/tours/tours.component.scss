@@ -87,3 +87,14 @@ mat-icon {
   justify-content: center;
   padding: 0;
 }
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+mat-expansion-panel {
+  background-color: $primary-color
+}
