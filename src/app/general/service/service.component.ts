@@ -17,6 +17,7 @@ export class TourComponent implements OnInit {
   public degree = 45;
   public moreSlides = 1;
   relatedTours: Array<Tour>;
+  showRelatedLoadingInfo: boolean = true;
   constructor(
     private _tours: Services,
     private route: ActivatedRoute,
@@ -41,6 +42,8 @@ export class TourComponent implements OnInit {
     this._tour.getRelatedTours(id_service).subscribe(
       related_tours => {
         this.relatedTours = related_tours;
+        if(this.relatedTours.length === 0)
+          this.showRelatedLoadingInfo = false;
       },
       (err: HttpErrorResponse) => this._tour.handleError(err)
     );

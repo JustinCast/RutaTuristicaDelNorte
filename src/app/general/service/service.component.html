@@ -40,8 +40,8 @@
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
   </ul>
 
-  <h1 *ngIf="relatedTours; else loading_related" class="text-secondary text-center font-weight-light m-2">Tours relacionados</h1>
-  <ng-template #loading_related>
+  <h1 *ngIf="relatedTours && relatedTours.length > 0; else loading_related" class="text-secondary text-center font-weight-light m-2">Tours relacionados</h1>
+  <ng-template #loading_related *ngIf="showRelatedLoadingInfo">
     <div class="container text-center">
       <p class="animated pulse infinite">Cargando información relacionada</p>
     </div>
