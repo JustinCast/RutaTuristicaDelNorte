@@ -2,13 +2,15 @@
   <div id="header">
     <mat-form-field appearance="outline">
       <mat-label>Filtrar por...</mat-label>
-      <mat-select [(ngModel)]="filter">
+      <mat-select panelClass="example-panel-green" [(ngModel)]="filter">
         <mat-option (click)="applyFilter(c); false" *ngFor="let c of _common.classification" [value]="c">
           {{c}}
         </mat-option>
       </mat-select>
+      <div class="text-center p-0 mt-2" *ngIf="filter">
+        <button id="clear-btn" (click)="reset(); false" mat-raised-button><mat-icon>clear</mat-icon></button>
+      </div>
     </mat-form-field>
-    <button mat-button><mat-icon>clear</mat-icon></button>
   </div>
   <div *ngIf="_tours.tours; else loading">
     <h4 class="text-center text-primary">
@@ -32,7 +34,7 @@
           <ul id="details">
             <li>
               <mat-accordion>
-                <mat-expansion-panel>
+                <mat-expansion-panel panelClass="yellow-panel.mat-expansion-panel">
                   <mat-expansion-panel-header>
                     <mat-panel-title class="font-weight-bold">
                       Información adicional

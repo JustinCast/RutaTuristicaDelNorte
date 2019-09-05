@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from "@angular/core";
+import { Component, OnInit, OnChanges, ViewEncapsulation } from "@angular/core";
 import { Service } from "src/app/models/Service";
 import { Services } from "src/app/services/services.service";
 import { CommonService } from "src/app/services/common.service";
@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: "app-tours",
   templateUrl: "./tours.component.html",
-  styleUrls: ["./tours.component.scss"]
+  styleUrls: ["./tours.component.scss"],
 })
 export class ToursComponent implements OnInit {
   limit: number = 0;
@@ -56,5 +56,10 @@ export class ToursComponent implements OnInit {
   applyFilter() {
     this.getTableCountData("classification", this.filter);
     //this._tours.getServices(this.limit, this.offset, this.filter);
+  }
+
+  reset() {
+    this.filter = "";
+    this.getTableCountData(undefined, undefined);
   }
 }
