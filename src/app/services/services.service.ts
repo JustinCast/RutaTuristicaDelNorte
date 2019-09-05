@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { MatSnackBar } from "@angular/material";
 import { Observable } from "rxjs";
 import { User } from "../models/User";
+import { Rates } from "../models/Rates";
 
 @Injectable({
   providedIn: "root"
@@ -35,6 +36,12 @@ export class Services {
         next: () => this.openSnackBar("Servicio actualizado", "Ok", 2500),
         error: (err: HttpErrorResponse) => this.handleError(err)
       });
+  }
+
+  getServiceRates(id_service: number): Observable<Rates> {
+    return this._http.get<Rates>(
+      `${environment.SERVER_BASE_URL}getServiceRates/${id_service}`
+    );
   }
 
   getServices(limit: number, offset: number, filter: string) {

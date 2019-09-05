@@ -38,6 +38,13 @@
       </mat-list>
     </li>
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
+    <li>
+      <table class="table">
+        <thead>
+          <tr scope="col">#</tr>
+        </thead>
+      </table>
+    </li>
   </ul>
 
   <h1 *ngIf="relatedTours && relatedTours.length > 0; else loading_related" class="text-secondary text-center font-weight-light m-2">Tours relacionados</h1>

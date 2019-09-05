@@ -6,6 +6,7 @@ import { Services } from "src/app/services/services.service";
 import { TourService } from "src/app/services/tour.service";
 import { Tour } from "src/app/models/Tour";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Rates } from 'src/app/models/Rates';
 
 @Component({
   selector: "app-tour",
@@ -17,6 +18,7 @@ export class TourComponent implements OnInit {
   public degree = 45;
   public moreSlides = 1;
   relatedTours: Array<Tour>;
+  rates: Rates;
   showRelatedLoadingInfo: boolean = true;
   constructor(
     private _tours: Services,
@@ -32,18 +34,25 @@ export class TourComponent implements OnInit {
       this.tour = this._tours.tours.find(
         t => t.id_service === Number(id_service)
       );
+      this.getServiceRates(Number(id_service));
       console.log(this.tour);
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
     } else this._router.navigateByUrl("/general/tours");
   }
 
+  getServiceRates(id_service: number) {
+    this._tours.getServiceRates(id_service).subscribe({
+      next: rates => console.log(rates),
+      error: (err: HttpErrorResponse) => this._tours.handleError(err)
+    });
+  }
+
   handleGetRelatedToursSubscription(id_service: number) {
     this._tour.getRelatedTours(id_service).subscribe(
       related_tours => {
         this.relatedTours = related_tours;
-        if(this.relatedTours.length === 0)
-          this.showRelatedLoadingInfo = false;
+        if (this.relatedTours.length === 0) this.showRelatedLoadingInfo = false;
       },
       (err: HttpErrorResponse) => this._tour.handleError(err)
     );
