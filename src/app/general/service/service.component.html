@@ -20,7 +20,7 @@
     </button>
   </div>
   <ul id="details" class="container text-left p-3 shadow-sm">
-    <h5 class="text-center text-muted font-weight-light">Información</h5>
+    <h2 class="text-center text-muted font-weight-light">Información</h2>
     <hr />
     <li>
       <strong>Ubicación: </strong>
@@ -30,7 +30,7 @@
       <strong>Información adicional: </strong>
       <p>{{ tour._additional_info }}</p>
     </li>
-    <li>
+    <li *ngIf="tour._phones !== null">
       <mat-list>
         <mat-list-item *ngFor="let p of tour._phones.phones">
           <mat-icon>phone</mat-icon>{{ p }}
@@ -38,7 +38,7 @@
       </mat-list>
     </li>
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
-    <li *ngIf="rates">
+    <li *ngIf="rates; else loading_rates">
       <h3 class="font-weight-light text-center text-muted">Tarifas</h3>
       <table class="table">
         <thead>
@@ -63,6 +63,12 @@
       <p class="animated pulse infinite">Cargando información relacionada</p>
     </div>
   </ng-template>
+
+  <ng-template #loading_rates *ngIf="showLoadingRatesInfo">
+    <div class="container text-center">
+      <p class="animated pulse infinite">Cargando información de tarifas</p>
+    </div>
+  </ng-template>
   
   <div *ngIf="relatedTours" id="related-tours">
     <div *ngFor="let r of relatedTours" class="related-tour shadow-sm rounded p-0 m-2">
@@ -77,7 +83,7 @@
           <hr>
           <p class="text-center text-secondary"><i>{{r.description}}</i></p>
           <hr>
-          <mat-list *ngIf="r.phones" class="p-0">
+          <mat-list *ngIf="r.phones !== null" class="p-0">
             <mat-list-item *ngFor="let p of r.phones.phones"><mat-icon class="text-muted">phone</mat-icon> - {{p}}</mat-list-item>
           </mat-list>
           <p><mat-icon class="text-muted">mail</mat-icon> {{r.email}}</p>

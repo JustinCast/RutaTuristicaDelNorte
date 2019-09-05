@@ -6,7 +6,7 @@ import { Services } from "src/app/services/services.service";
 import { TourService } from "src/app/services/tour.service";
 import { Tour } from "src/app/models/Tour";
 import { HttpErrorResponse } from "@angular/common/http";
-import { Rates } from 'src/app/models/Rates';
+import { Rates } from "src/app/models/Rates";
 
 @Component({
   selector: "app-tour",
@@ -20,6 +20,7 @@ export class TourComponent implements OnInit {
   relatedTours: Array<Tour>;
   rates: Rates;
   showRelatedLoadingInfo: boolean = true;
+  showLoadingRatesInfo: boolean = true;
   constructor(
     private _tours: Services,
     private route: ActivatedRoute,
@@ -43,7 +44,12 @@ export class TourComponent implements OnInit {
 
   getServiceRates(id_service: number) {
     this._tours.getServiceRates(id_service).subscribe({
-      next: rates =>{ console.log(rates); this.rates = rates},
+      next: rates => {
+        this.rates = rates;
+        this.rates === null
+          ? (this.showLoadingRatesInfo = false)
+          : (this.showLoadingRatesInfo = true);
+      },
       error: (err: HttpErrorResponse) => this._tours.handleError(err)
     });
   }
