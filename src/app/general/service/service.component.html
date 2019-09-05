@@ -38,11 +38,21 @@
       </mat-list>
     </li>
     <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
-    <li>
+    <li *ngIf="rates">
+      <h3 class="font-weight-light text-center text-muted">Tarifas</h3>
       <table class="table">
         <thead>
-          <tr scope="col">#</tr>
+          <th scope="col">#</th>
+          <th scope="col">{{rates.header1}}</th>
+          <th scope="col">{{rates.header2}}</th>
         </thead>
+        <tbody>
+          <tr *ngFor="let v of rates._values; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{v.v1}}</td>
+            <td>{{v.v2}}</td>
+          </tr>
+        </tbody>
       </table>
     </li>
   </ul>

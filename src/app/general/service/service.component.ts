@@ -43,7 +43,7 @@ export class TourComponent implements OnInit {
 
   getServiceRates(id_service: number) {
     this._tours.getServiceRates(id_service).subscribe({
-      next: rates => console.log(rates),
+      next: rates =>{ console.log(rates); this.rates = rates},
       error: (err: HttpErrorResponse) => this._tours.handleError(err)
     });
   }

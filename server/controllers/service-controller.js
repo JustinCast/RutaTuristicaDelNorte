@@ -182,7 +182,7 @@ function getServiceRates(req, res) {
       client
         .query(query)
         .then(data => {
-          res.status(200).send(data.rows);
+          res.status(200).send(data.rows[0]);
           client.end();
         })
         .catch(err => {
