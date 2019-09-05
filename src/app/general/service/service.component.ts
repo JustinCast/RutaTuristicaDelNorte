@@ -36,7 +36,6 @@ export class TourComponent implements OnInit {
         t => t.id_service === Number(id_service)
       );
       this.getServiceRates(Number(id_service));
-      console.log(this.tour);
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
     } else this._router.navigateByUrl("/general/tours");

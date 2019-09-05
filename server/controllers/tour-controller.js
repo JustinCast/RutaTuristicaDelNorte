@@ -1,5 +1,6 @@
 const db = require("../config/db");
 const pg = require("pg");
+const ImagesCTRL = require("./image-controller");
 var client;
 
 function saveTour(req, res) {
@@ -22,6 +23,8 @@ function saveTour(req, res) {
       client
         .query(query)
         .then(() => {
+          let id_tour = data.rows[0].id_tour;
+          ImagesCTRL.saveTourImages(service.imgs, Number(id_tour));
           res.status(200).send(true);
           client.end();
         })

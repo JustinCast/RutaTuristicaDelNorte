@@ -20,7 +20,8 @@ export class ToursComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTableCountData(undefined, undefined);
+    if (!this._tours.tours)
+      this.getTableCountData(undefined, undefined);
   }
 
   getTableCountData(columm: string, value: string) {
