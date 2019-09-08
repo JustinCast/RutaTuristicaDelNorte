@@ -3,10 +3,10 @@
 // ===================================
 
 const config = {
-  host: "santuarionatura.clh2aphgkhvt.us-east-2.rds.amazonaws.com",
+  host: "rtdn.ckyfmjmxjbg8.us-east-2.rds.amazonaws.com",
   user: "dev",
-  password: "ikgs0941",
-  database: "test1",
+  password: 'gm(B3.kf)nRVhkx\\',
+  database: "rtdn",
   port: 5427
 };
 
