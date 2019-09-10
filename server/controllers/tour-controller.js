@@ -10,21 +10,23 @@ function saveTour(req, res) {
       client.end();
       console.log(`err when connecting on saveTour: ${err}`);
     } else {
+      let tour = req.body;
       let query = {
-        text: "SELECT * FROM save_tour($1, $2, $3, $4, $5)",
+        text: "SELECT * FROM save_tour($1, $2, $3, $4, $5, $6)",
         values: [
-          req.body.name,
-          req.body.description,
-          req.body.phones,
-          req.body.email,
-          req.body.related_service
+          tour.name,
+          tour.description,
+          tour.phones,
+          tour.email,
+          tour.id_user,
+          tour.related_service
         ]
       };
       client
         .query(query)
-        .then(() => {
-          let id_tour = data.rows[0].id_tour;
-          ImagesCTRL.saveTourImages(service.imgs, Number(id_tour));
+        .then((data) => {
+          let id_tour = data.rows[0].save_tour;
+          ImagesCTRL.saveTourImages(tour.imgs, Number(id_tour));
           res.status(200).send(true);
           client.end();
         })

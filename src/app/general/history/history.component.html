@@ -1,113 +1,126 @@
-<section id="timeline" class="animated bounceInUp">
-  <h1>Historia</h1>
-  <p class="leader">
-    Caño Negro es el segundo distrito del cantón de Los Chiles, en la provincia
-    de Alajuela, al norte de Costa Rica. El distrito mide 298,52 km² y cuenta
-    con una población estimada de 1808 habitantes (2011).
-  </p>
-  <div class="demo-card-wrapper">
-    <div class="demo-card demo-card--step1 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>1890</span>
+<mat-tab-group class="mt-5" (focusChange)="getSiteInfo()">
+  <mat-tab label="Historia">
+    <section id="timeline" class="animated bounceInUp">
+      <h1>Historia</h1>
+      <p class="leader">
+        Caño Negro es el segundo distrito del cantón de Los Chiles, en la provincia
+        de Alajuela, al norte de Costa Rica. El distrito mide 298,52 km² y cuenta
+        con una población estimada de 1808 habitantes (2011).
+      </p>
+      <div class="demo-card-wrapper">
+        <div class="demo-card demo-card--step1 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>1890</span>
+            </div>
+            <h2><span class="small">Primeros</span> habitantes</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+              <button mat-button><span class="text-primary">Leer más</span></button>
+            </p>
+            <img src="http://placehold.it/900x400" alt="Graphic" />
+          </div>
         </div>
-        <h2><span class="small">Primeros</span> habitantes</h2>
+    
+        <div class="demo-card demo-card--step2 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>1920</span>
+            </div>
+            <h2><span class="small">Primeros</span> Asentamientos</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+              <button mat-button><span class="text-primary">Leer más</span></button>
+            </p>
+            <img src="http://placehold.it/900x400" alt="Graphic" />
+          </div>
+        </div>
+    
+        <div class="demo-card demo-card--step3 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>03</span>
+            </div>
+            <h2><span class="small">Subtitle</span> Adaptation</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+            </p>
+            <img src="http://placehold.it/1000x500" alt="Graphic" />
+          </div>
+        </div>
+    
+        <div class="demo-card demo-card--step4 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>04</span>
+            </div>
+            <h2><span class="small">Subtitle</span> Consistency</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+            </p>
+            <img src="http://placehold.it/1000x500" alt="Graphic" />
+          </div>
+        </div>
+    
+        <div class="demo-card demo-card--step5 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>05</span>
+            </div>
+            <h2><span class="small">Subtitle</span> Conversion</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+            </p>
+            <img src="http://placehold.it/1000x500" alt="Graphic" />
+          </div>
+        </div>
+    
+        <div class="demo-card demo-card--step6 rounded">
+          <div class="head">
+            <div class="number-box">
+              <span>06</span>
+            </div>
+            <h2><span class="small">Subtitle</span> Conversion</h2>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+              reiciendis deserunt doloribus consequatur, laudantium odio dolorum
+              laboriosam.
+            </p>
+            <img src="http://placehold.it/1000x500" alt="Graphic" />
+          </div>
+        </div>
       </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-          <button mat-button><span class="text-primary">Leer más</span></button>
-        </p>
-        <img src="http://placehold.it/900x400" alt="Graphic" />
-      </div>
+    </section>
+  </mat-tab>
+  <mat-tab label="Second">
+    <div *ngIf="siteInfo; else loading">
+      content
     </div>
+    <ng-template #loading>
+      <span>loading</span>
+    </ng-template>
 
-    <div class="demo-card demo-card--step2 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>1920</span>
-        </div>
-        <h2><span class="small">Primeros</span> Asentamientos</h2>
-      </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-          <button mat-button><span class="text-primary">Leer más</span></button>
-        </p>
-        <img src="http://placehold.it/900x400" alt="Graphic" />
-      </div>
-    </div>
-
-    <div class="demo-card demo-card--step3 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>03</span>
-        </div>
-        <h2><span class="small">Subtitle</span> Adaptation</h2>
-      </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-        </p>
-        <img src="http://placehold.it/1000x500" alt="Graphic" />
-      </div>
-    </div>
-
-    <div class="demo-card demo-card--step4 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>04</span>
-        </div>
-        <h2><span class="small">Subtitle</span> Consistency</h2>
-      </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-        </p>
-        <img src="http://placehold.it/1000x500" alt="Graphic" />
-      </div>
-    </div>
-
-    <div class="demo-card demo-card--step5 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>05</span>
-        </div>
-        <h2><span class="small">Subtitle</span> Conversion</h2>
-      </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-        </p>
-        <img src="http://placehold.it/1000x500" alt="Graphic" />
-      </div>
-    </div>
-
-    <div class="demo-card demo-card--step6 rounded">
-      <div class="head">
-        <div class="number-box">
-          <span>06</span>
-        </div>
-        <h2><span class="small">Subtitle</span> Conversion</h2>
-      </div>
-      <div class="body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          reiciendis deserunt doloribus consequatur, laudantium odio dolorum
-          laboriosam.
-        </p>
-        <img src="http://placehold.it/1000x500" alt="Graphic" />
-      </div>
-    </div>
-  </div>
-</section>
+  </mat-tab>
+</mat-tab-group>

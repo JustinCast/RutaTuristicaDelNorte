@@ -80,6 +80,7 @@ export class Services {
     let user_id = (JSON.parse(
       localStorage.getItem(`${environment.localstorage_key}`)
     ) as User).id;
+    console.log(user_id);
     return this._http.get<any>(
       `${environment.SERVER_BASE_URL}getServiceNameId/${name}/${user_id}`
     );

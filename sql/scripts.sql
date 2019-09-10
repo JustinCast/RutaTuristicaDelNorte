@@ -69,6 +69,7 @@ CREATE TABLE user_tour(
   PRIMARY KEY (id_user, id)
 );
 
+
 DROP FUNCTION save_service(location VARCHAR, name VARCHAR, classification VARCHAR,
 additional_info VARCHAR, email VARCHAR, website VARCHAR, phones JSON, _id_user INTEGER);
 
@@ -103,6 +104,14 @@ RETURNS VOID AS
     $$
         BEGIN
             INSERT INTO images (url, id_service_fk) VALUES(url, id_service);
+        END;
+    $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION save_tour_image(url VARCHAR, id_tour INTEGER)
+RETURNS VOID AS
+    $$
+        BEGIN
+            INSERT INTO tour_images (url, id_tour_fk) VALUES(url, id_tour);
         END;
     $$ LANGUAGE plpgsql;
 
@@ -231,12 +240,20 @@ AS
 
 SELECT * FROM get_services_by_user(1);
 
-CREATE OR REPLACE FUNCTION save_tour(_name VARCHAR, _description VARCHAR, _phones JSON, _email VARCHAR, _related_service INTEGER)
-RETURNS VOID AS
+ALTER TABLE tour ADD COLUMN phones JSON;
+
+CREATE OR REPLACE FUNCTION save_tour(_name VARCHAR, _description VARCHAR, _phones JSON, _email VARCHAR, _id_user INTEGER, _related_service INTEGER)
+RETURNS INTEGER AS
     $$
+        DECLARE
+            id_tour integer;
         BEGIN
             INSERT INTO tour (name, description, phones, email, related_service)
-            VALUES (_name, _description, _phones, _email, _related_service);
+            VALUES (_name, _description, _phones, _email, _related_service) RETURNING id INTO id_tour;
+
+            INSERT INTO user_tour (id_user, id) VALUES (_id_user, id_tour);
+
+            RETURN id_tour;
         END;
     $$ LANGUAGE plpgsql;
 
@@ -267,6 +284,38 @@ RETURNS VOID AS
         END;
     $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION get_service_name_id(_id_user INTEGER, _name VARCHAR)
+    RETURNS TABLE(name VARCHAR, id INTEGER)
+    language plpgsql
+AS
+$$
+BEGIN
+            RETURN QUERY SELECT service.name AS name,
+                   service.id AS id
+            FROM service
+                JOIN user_service us ON us.id = service.id
+                                            AND us.id_user = _id_user
+                WHERE (lower(service.name) SIMILAR TO lower('%'||_name||'%'));
+        END
+$$;
+create function get_service_rates(id_service integer)
+    returns TABLE(id integer, header1 character varying, header2 character varying, _values json, observations character varying, _id_service_fk integer)
+    language plpgsql
+as
+$$
+BEGIN
+            RETURN QUERY SELECT
+                                sr.id id,
+                                sr.header1 header1,
+                                sr.header2 header2,
+                                sr.values _values,
+                                sr.observations observations,
+                                sr.id_service_fk _id_service_fk
+
+            FROM service_rates sr
+            WHERE id_service_fk = id_service;
+        END;
+$$;
 
 INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (31, '{"lat":10.4013824,"lng":-84.32271359999999}', 'Agami Tour', 'Tour', 'agami tour additional_info', 'agami@mail.com', null, null);
 INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (33, '{"lat":10.4462727,"lng":-84.36470959999997}', 'Caño Negro Experience Tours', 'Tour', 'aquí va la información adicional', 'mail@mail.com', null, null);
@@ -308,4 +357,8 @@ INSERT INTO public.images (id, url, id_service_fk) VALUES (31, 'https://firebase
 --
 INSERT INTO public._user (id_user, fullname, username, password) VALUES (1, 'USUARIO 1', 'us1', '$2a$05$8cQb54mU.PgsuhaIqtz//eU3hLZSrAovpKPFOBFm7CsnBZSYLcE7q');
 
-SELECT * FROM _user;
+INSERT INTO public.user_service (id_user, id) VALUES (1, 49);
+INSERT INTO public.user_service (id_user, id) VALUES (1, 50);
+INSERT INTO public.user_service (id_user, id) VALUES (1, 51);
+INSERT INTO public.user_service (id_user, id) VALUES (1, 52);
+

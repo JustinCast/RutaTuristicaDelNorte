@@ -6,6 +6,8 @@ import { TourService } from "src/app/services/tour.service";
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: "app-add-tour",
@@ -115,7 +117,11 @@ export class AddTourComponent implements OnInit {
       this.tourFG.get("name").value,
       this.tourFG.get("description").value,
       JSON.stringify(this.phones),
+      this.downloadURLS,
       this.tourFG.get("email").value,
+      (JSON.parse(
+        localStorage.getItem(`${environment.localstorage_key}`)
+      ) as User).id,
       this.related !== undefined ? this.related.id : null
     );
     this._tour.saveTour(tour);
