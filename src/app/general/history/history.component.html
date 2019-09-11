@@ -1,11 +1,11 @@
-<mat-tab-group class="mt-5" (focusChange)="getSiteInfo()">
+<mat-tab-group class="mt-5 pt-4">
   <mat-tab label="Historia">
     <section id="timeline" class="animated bounceInUp">
       <h1>Historia</h1>
       <p class="leader">
-        Caño Negro es el segundo distrito del cantón de Los Chiles, en la provincia
-        de Alajuela, al norte de Costa Rica. El distrito mide 298,52 km² y cuenta
-        con una población estimada de 1808 habitantes (2011).
+        Caño Negro es el segundo distrito del cantón de Los Chiles, en la
+        provincia de Alajuela, al norte de Costa Rica. El distrito mide 298,52
+        km² y cuenta con una población estimada de 1808 habitantes (2011).
       </p>
       <div class="demo-card-wrapper">
         <div class="demo-card demo-card--step1 rounded">
@@ -20,12 +20,14 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
               reiciendis deserunt doloribus consequatur, laudantium odio dolorum
               laboriosam.
-              <button mat-button><span class="text-primary">Leer más</span></button>
+              <button mat-button>
+                <span class="text-primary">Leer más</span>
+              </button>
             </p>
             <img src="http://placehold.it/900x400" alt="Graphic" />
           </div>
         </div>
-    
+
         <div class="demo-card demo-card--step2 rounded">
           <div class="head">
             <div class="number-box">
@@ -38,12 +40,14 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
               reiciendis deserunt doloribus consequatur, laudantium odio dolorum
               laboriosam.
-              <button mat-button><span class="text-primary">Leer más</span></button>
+              <button mat-button>
+                <span class="text-primary">Leer más</span>
+              </button>
             </p>
             <img src="http://placehold.it/900x400" alt="Graphic" />
           </div>
         </div>
-    
+
         <div class="demo-card demo-card--step3 rounded">
           <div class="head">
             <div class="number-box">
@@ -60,7 +64,7 @@
             <img src="http://placehold.it/1000x500" alt="Graphic" />
           </div>
         </div>
-    
+
         <div class="demo-card demo-card--step4 rounded">
           <div class="head">
             <div class="number-box">
@@ -77,7 +81,7 @@
             <img src="http://placehold.it/1000x500" alt="Graphic" />
           </div>
         </div>
-    
+
         <div class="demo-card demo-card--step5 rounded">
           <div class="head">
             <div class="number-box">
@@ -94,7 +98,7 @@
             <img src="http://placehold.it/1000x500" alt="Graphic" />
           </div>
         </div>
-    
+
         <div class="demo-card demo-card--step6 rounded">
           <div class="head">
             <div class="number-box">
@@ -114,13 +118,156 @@
       </div>
     </section>
   </mat-tab>
-  <mat-tab label="Second">
-    <div *ngIf="siteInfo; else loading">
-      content
-    </div>
-    <ng-template #loading>
-      <span>loading</span>
-    </ng-template>
+  <mat-tab label="Caño Negro" class="wrapper">
+    <div class="container text-center pt-2">
+      <h1 class="font-weight-light">
+        Refugio Nacional de Vida Silvestre Mixto Caño Negro
+      </h1>
+      <p class="card-info shadow-sm rounded p-2 text-justify">
+        <span class="font-weight-bold subtitle"
+          >Localización <mat-icon>my_location</mat-icon></span
+        >
+        <br />
+        Se ubica en el norte del país, cerca de la frontera con Nicaragua entre
+        los cantones de Guatuso y Los Chiles, en la provincia de Alajuela, con
+        un área de 9969 Ha. A esto debemos sumar el área de amortiguamiento de
+        aproximadamente otras 10.000 Ha. dentro de la zona de influencia, lo que
+        amplía las opciones para la observación de flora y fauna. Fue creado
+        para proteger humedales de gran importancia para la vida silvestre,
+        tanto terrestre como acuática y como un reservorio a perpetuidad de
+        especies únicas de la zona.
+      </p>
 
+      <p class="card-info shadow-sm rounded p-2 text-justify ">
+        <span class="font-weight-bold subtitle"
+          >Sitio RAMSAR <mat-icon>grade</mat-icon></span
+        >
+        <br />
+        El Refugio fue declarado Sitio RAMSAR el 27 de diciembre de 1991, por
+        considerarse de importancia internacional por los recursos que protege,
+        es uno de los dos primeros para Costa Rica y el cuarto en importancia
+        del mundo. <br />
+        La Convención RAMSAR declaró al Humedal de Caño Negro como hábitat de
+        aves acuáticas, endémicas y migratorias y donde además, hay plantas y
+        árboles únicos. También el Refugio Caño Negro está dentro del Territorio
+        del Corredor Biológico Ruta Los Malecu-Medio Queso y es una zona núcleo
+        de la Reserva de la Biosfera Agua y Paz declarada a nivel mundial por la
+        UNESCO en el año 2007.
+      </p>
+      <p class="card-info shadow-sm rounded p-2 text-justify">
+        <span class="font-weight-bold subtitle"
+          >Aborígenes <mat-icon>face</mat-icon></span
+        >
+        <br />
+        Antes de ser creado como refugio era un Sistema de Humedales utilizados
+        ancestralmente por los aborígenes Maleku, como zona de pesca, ritos
+        tribales y culto.  Para esta cultura aborigen Caño Negro es un sitio
+        Sagrado donde habitan sus dioses.
+      </p>
+      <p class="card-info shadow-sm rounded p-2 text-justify">
+        <span class="font-weight-bold subtitle"
+          >Clima<mat-icon class="ml-2">cloud</mat-icon></span
+        >
+        <br />
+        Caño Negro se caracteriza por presentar un clima tropical lluvioso,
+        influenciado por las masas de aires procedentes del Pacífico, del Lago
+        de Nicaragua y los vientos alisios que penetran por la costa caribeña
+        del país, dando como resultado un clima tropical húmedo en una de las
+        zonas más lluviosas del país y con una diversidad ecológica de gran
+        importancia que sirve como refugio y fuente de alimentación para una
+        gran variedad de especies, entre ellas las aves migratorias, peces y
+        mamíferos.
+      </p>
+      <p class="card-info shadow-sm rounded p-2 text-justify">
+        <span class="font-weight-bold subtitle"
+          >Avifauna<mat-icon class="ml-2">eco</mat-icon></span
+        >
+        <br />
+        La avifauna es uno de los grupos zoológicos más diversos e importantes
+        del área. Está constituida por 365 especies de aves, de los cuales 206
+        son especies residentes y más de 150 migratorias. Posee más de 45 tipos
+        de peces también, lo que lo hace un sitio ideal para la pesca deportiva,
+        artesanal y de orilla.
+      </p>
+      <div class="card-info shadow-sm rounded p-2 text-justify mb-3">
+        <span class="font-weight-bold subtitle"
+          >En el distrito de Caño Negro tendrá a su disposición<mat-icon
+            class="ml-2"
+            >local_dining</mat-icon
+          ><mat-icon>local_drink</mat-icon
+          ><mat-icon>local_grocery_store</mat-icon></span
+        >
+        <br />
+        <ul>
+          <li>
+            Centro de Visitantes con área de cobro, parqueo, Servicios
+            sanitarios, zonas verdes con mesas al aire libre y servicio de
+            información
+          </li>
+          <li>
+            Hospedaje en Hoteles y Cabinas con A/C, WiFi, parqueo privado
+          </li>
+          <li>
+            Restaurantes y Sodas con gastronomía criolla y menú a la carta
+          </li>
+          <li>
+            Tours Ecológicos Acuáticos por el Refugio
+          </li>
+          <li>
+            Tours de Observación de Aves y Fotografía
+          </li>
+          <li>
+            Tours de Pesca Deportiva, Artesanal y de Orilla
+          </li>
+          <li>
+            Paseos a caballo
+          </li>
+          <li>
+            Tours en Kayak y Canoa
+          </li>
+          <li>
+            Caminatas por Senderos para Observación de Aves, Mamíferos y
+            Reptiles
+          </li>
+          <li>
+            Mariposario y Centro de Artesanía
+          </li>
+          <li>
+            Finca Ecológica Senderos y Hospedaje
+          </li>
+          <li>
+            Finca con Área de Camping
+          </li>
+          <li>
+            Servicio de guiado, con guías locales bilingües experimentados
+          </li>
+          <li>
+            Torre de observación de más de 20 metros de altura para observación de
+            lagunas y aves
+          </li>
+          <li>
+            Sendero elevado, de unos 800 metros de largo, que permite caminar y
+            observar parte del sistema lagunar y el Río Frio.
+          </li>
+        </ul>
+      </div>
+      <p class="card-info shadow-sm rounded p-2 text-justify">
+        <span class="font-weight-bold subtitle"
+          >¿Cómo llegar?<mat-icon class="ml-2">commute</mat-icon></span
+        >
+        <br />
+        Se toma la carretera, Ruta 35, que va de Ciudad Quesada a Los Chiles, a
+        la altura  del Jobo unos 7 kilómetros antes de llegar al centro de Los
+        Chiles, se toma desvío a la izquierda el cual se encuentra bien
+        señalizado, continuando luego 19 km hacia el oeste por una ruta de
+        lastre hasta llegar a la comunidad de Caño Negro. <br />
+        Es posible también ingresar por Upala, se debe de tomar la carretera que
+        comunica Upala con Guatuso, recorriendo 10 km luego de pasar sobre el
+        puente del río Sapote, antes de llegar a la comunidad de Colonia
+        Puntarenas (contiguo a Agrologos) se debe de desviar en una intersección
+        la cual cuenta con suficiente información para no desviarse, de ahí se
+        continua 25 km sobre una carretera de lastre hasta llegar a Caño Negro.
+      </p>
+    </div>
   </mat-tab>
 </mat-tab-group>
