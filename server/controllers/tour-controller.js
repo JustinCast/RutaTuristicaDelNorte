@@ -46,7 +46,7 @@ function getRelatedTours(req, res) {
       console.log(`err when connecting on getRelatedTours: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM tour WHERE related_service = $1",
+        text: "SELECT * FROM get_related_tours($1);",
         values: [
           Number(req.params.related_service)
         ]

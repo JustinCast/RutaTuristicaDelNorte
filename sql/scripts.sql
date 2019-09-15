@@ -212,6 +212,33 @@ AS
         END
     $$ LANGUAGE plpgsql;
 
+DROP FUNCTION get_related_tours(id_service INTEGER);
+CREATE OR REPLACE FUNCTION get_related_tours(id_service INTEGER)
+RETURNS TABLE (id INTEGER, _name VARCHAR, description VARCHAR, email VARCHAR, phones JSON, imgs VARCHAR[])
+AS
+    $$
+        BEGIN
+           RETURN QUERY
+            SELECT t.id id,
+                   t.name _name,
+                   t.description description,
+                   t.email email,
+                   t.phones phones,
+                   array_agg(i.url) imgs
+            FROM tour t
+            JOIN (
+               SELECT url,
+                      id_tour_fk
+               FROM tour_images
+                    JOIN tour ON
+                        tour_images.id_tour_fk = tour.id
+           ) i on t.id = i.id_tour_fk WHERE t.related_service = id_service GROUP BY t.id;
+        END;
+    $$ LANGUAGE plpgsql;
+
+SELECT * FROM tour_images;
+SELECT * FROM get_related_tours(51);
+
 
 CREATE OR REPLACE FUNCTION get_tours_by_user(_id INTEGER)
 RETURNS TABLE (_name VARCHAR, _classification VARCHAR, first_img VARCHAR)
@@ -236,7 +263,6 @@ AS
            ) i on service.id = i.id_service_fk;
         END
     $$ LANGUAGE plpgsql;
-
 
 SELECT * FROM get_services_by_user(1);
 
@@ -316,49 +342,3 @@ BEGIN
             WHERE id_service_fk = id_service;
         END;
 $$;
-
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (31, '{"lat":10.4013824,"lng":-84.32271359999999}', 'Agami Tour', 'Tour', 'agami tour additional_info', 'agami@mail.com', null, null);
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (33, '{"lat":10.4462727,"lng":-84.36470959999997}', 'Caño Negro Experience Tours', 'Tour', 'aquí va la información adicional', 'mail@mail.com', null, null);
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (49, '{"lat":10.3592886,"lng":-84.5117219}', 'Caño Negro Wetlands Lodge', 'Servicio de hospedaje', 'El Refugio de Vida Silvestre Caño Negro fue declarado en 1991 “Humedal de
-importancia Internacional”. Este tesoro ecológico es el hábitat natural de más de 600
-especies de aves entre locales y migratorias, 6.500 especies de plantas y 150 especies de
-mamíferos.', 'wetlandslodge@gmail.com', 'nd', '{"phones":["2471-1582"]}');
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (50, '{"lat":10.3592886,"lng":-84.5117219}', 'Hotel Wilson Tulipán', 'Servicio de hospedaje', 'sin información adicional', 'mail@mail.com', '', '{"phones":[]}');
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (51, '{"lat":10.3592886,"lng":-84.5117219}', 'Rancho Tabacón Veracruz', 'Servicio de hospedaje', 'Aquí va la info adicional', 'mail@mail.com', '', '{"phones":[]}');
-INSERT INTO public.service (id, location, name, classification, additional_info, email, website, phones) VALUES (52, '{"lat":10.3592886,"lng":-84.5117219}', 'Poponjoche', 'Servicio de Alimentación', 'aquí va la información adicional', 'mail@mail.com', '', '{"phones":[]}');
-
---
-INSERT INTO public.service_rates (id, header1, header2, values, observations, id_service_fk) VALUES (4, 'Habitación', 'Tarifa Neta', '[{"v1":"Sgl","v2":40}]', '', 49);
-INSERT INTO public.service_rates (id, header1, header2, values, observations, id_service_fk) VALUES (5, 'Habitación', 'Tarifa Neta', '[{"v1":"1 habitación","v2":40}]', '', 50);
-INSERT INTO public.service_rates (id, header1, header2, values, observations, id_service_fk) VALUES (6, 'Comida', 'Tarifa Neta', '[{"v1":"1 plato","v2":5}]', '', 51);
-INSERT INTO public.service_rates (id, header1, header2, values, observations, id_service_fk) VALUES (7, 'Comida', 'Tarifa Neta', '[{"v1":"1 plato","v2":5}]', '', 52);
-
---
-INSERT INTO public.images (id, url, id_service_fk) VALUES (6, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563229037560_FB_IMG_15546811344312652.jpg?alt=media&token=ab31d189-1926-4e58-8a7d-281a368bfbc1', 31);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (7, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563229040676_IMG-20190513-WA0023.jpg?alt=media&token=f45f037a-70a9-4072-9813-5bc83317d0e9', 31);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (8, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563229041936_IMG-20190513-WA0029.jpg?alt=media&token=c6576bb9-548f-410a-b9db-06ab077b1336', 31);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (9, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563289682254_Catuchi%201.jpg?alt=media&token=46e94f64-4cc8-47a3-a69b-05dc212c4d39', 33);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (10, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563289710385_Global%20Bid%20Day%20Oc%2018.jpg?alt=media&token=7975d277-56e8-450c-8aaf-6fc60d20ebbc', 33);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (11, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1563289738344_vuelo.jpg?alt=media&token=28686d35-ed28-4dd7-83a0-c6757725ab51', 33);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (19, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567612786103_Piscina.jpg?alt=media&token=353ef6d2-53cd-49dd-ab02-c0db7ebc32e2', 49);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (20, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567612786759_Caba%C3%B1as%202011.jpg?alt=media&token=353fe385-df4d-4569-ba8a-18d55520723c', 49);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (21, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567612787520_Bar%20%26%20restaurant.jpeg?alt=media&token=f7cc6fa4-8d5e-48da-b5b4-7153c8524fd7', 49);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (22, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567617425575_IMG_2524.jpeg?alt=media&token=5371e3fd-0612-4e57-8aca-a3334c66da87', 50);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (23, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567617429166_675045f4-7012-4100-a13a-024b6da9c2ed.jpeg?alt=media&token=c5a02abe-b734-4138-bb50-b52bde8822e1', 50);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (24, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567617429858_9f3f660e-4188-4e54-a727-b95797f4d422.jpeg?alt=media&token=b152fda1-d59e-432c-af05-c4cb1d7ca5cb', 50);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (25, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567617430575_5e0f2dce-0c27-4627-a205-37d6c6935364.jpeg?alt=media&token=fb103906-9c15-4169-8b73-3c79a5882aaf', 50);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (26, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636146305_FB_IMG_1541118222571.jpg?alt=media&token=9851beb5-bcc0-4447-80c5-e4b8d35ba3a3', 51);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (27, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636147014_FB_IMG_1560458635736.jpg?alt=media&token=d29a4c2a-5326-4b2f-a31a-c1312f49f375', 51);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (28, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636147575_FB_IMG_1560459919936.jpg?alt=media&token=45f23f2d-f810-44f4-805e-73cc819705de', 51);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (29, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636245672_IMG_3032.JPG?alt=media&token=fbab9b17-489a-4e3f-98ed-7d082c4ff693', 52);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (30, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636251277_IMG_3070.JPG?alt=media&token=b77cd2bd-d2c9-4f68-86ac-8e3aca75a673', 52);
-INSERT INTO public.images (id, url, id_service_fk) VALUES (31, 'https://firebasestorage.googleapis.com/v0/b/ruta-turistica-del-norte.appspot.com/o/1567636256489_IMG_3152.JPG?alt=media&token=505db4c6-fdbd-45b8-87e1-40d5fc3e7b75', 52);
-
---
-INSERT INTO public._user (id_user, fullname, username, password) VALUES (1, 'USUARIO 1', 'us1', '$2a$05$8cQb54mU.PgsuhaIqtz//eU3hLZSrAovpKPFOBFm7CsnBZSYLcE7q');
-
-INSERT INTO public.user_service (id_user, id) VALUES (1, 49);
-INSERT INTO public.user_service (id_user, id) VALUES (1, 50);
-INSERT INTO public.user_service (id_user, id) VALUES (1, 51);
-INSERT INTO public.user_service (id_user, id) VALUES (1, 52);
-

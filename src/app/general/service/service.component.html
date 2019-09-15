@@ -73,6 +73,7 @@
   <div *ngIf="relatedTours" id="related-tours">
     <div *ngFor="let r of relatedTours" class="related-tour shadow-sm rounded p-0 m-2">
       <h3 class="font-weight-light text-center mt-2">{{r.name}}</h3>
+      <img class="main-img rounded shadow-sm" src="{{r.imgs[0]}}" alt="">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
