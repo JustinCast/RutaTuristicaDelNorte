@@ -194,7 +194,8 @@ AS
         BEGIN
            RETURN QUERY
                SELECT
-                       service.id id_service,
+
+                       DISTINCT ON(service.id) id_service,
                        name _name,
                        classification _classification,
                        i.url first_img
