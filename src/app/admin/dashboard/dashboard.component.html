@@ -26,8 +26,19 @@
     </div>
   </ng-template>
   
+  <h1 *ngIf="tours;" class="text-center text-muted font-weight-light">Tours</h1>
   <div id="tours" *ngIf="tours; else noToursData">
-    tours
+    <mat-card *ngFor="let t of tours; let i = index" class="service mb-2 mr-1 ml-1">
+      <h3 class="text-center font-weight-light">{{t._name}}</h3>
+      <hr>
+      <img class="s-img shadow-sm rounded" src="{{t.imgs[0]}}" alt="Imagen Tour">
+      <hr>
+      <p><strong>Descripción: </strong> <span>{{t.description}}</span></p>
+      <div class="text-center p-1">
+        <button (click)="editService(i); false"  class="mr-1" mat-stroked-button><mat-icon>edit</mat-icon></button>
+        <button class="ml-1" mat-button color="warn"><mat-icon>delete</mat-icon></button>
+      </div>
+    </mat-card>
   </div>
   <ng-template #noToursData>
     <hr>

@@ -78,7 +78,7 @@ function getToursByUser(req, res) {
       client
         .query(query)
         .then(data => {
-          res.status(200).send(data.rows[0]);
+          res.status(200).send(data.rows);
           client.end();
         })
         .catch(err => {

@@ -237,35 +237,35 @@ AS
         END;
     $$ LANGUAGE plpgsql;
 
-SELECT * FROM tour_images;
-SELECT * FROM get_related_tours(51);
-
-
+DROP FUNCTION get_tours_by_user(_id INTEGER);
 CREATE OR REPLACE FUNCTION get_tours_by_user(_id INTEGER)
-RETURNS TABLE (_name VARCHAR, _classification VARCHAR, first_img VARCHAR)
+RETURNS TABLE (id_tour INTEGER, _name VARCHAR, description VARCHAR, email VARCHAR, _phones JSONB, related_service INTEGER, imgs VARCHAR[])
 AS
     $$
         BEGIN
            RETURN QUERY
-               SELECT
-                       name _name,
-                       classification _classification,
-                       i.url first_img
-           FROM service JOIN user_tour us ON
-               service.id = us.id AND us.id_user = _id
+           SELECT
+               DISTINCT t.id id_tour,
+               t.name _name,
+               t.description description,
+               t.email email,
+               t.phones::JSONB AS _phones,
+               t.related_service related_service,
+               array_agg(i.url) imgs
+           FROM tour t JOIN user_tour us ON
+               t.id = us.id AND us.id_user = _id
            JOIN (
                SELECT url,
-                      id_service_fk
-               FROM images
-                    JOIN service s ON
-                        images.id_service_fk = s.id
+                      id_tour_fk
+               FROM tour_images
+                    JOIN tour ON
+                        tour_images.id_tour_fk = tour.id
                     JOIN user_tour u ON
-                        s.id = u.id AND u.id_user = _id
-           ) i on service.id = i.id_service_fk;
+                        tour.id = u.id AND u.id_user = _id
+           ) i on t.id = i.id_tour_fk GROUP BY t.id;
         END
     $$ LANGUAGE plpgsql;
 
-SELECT * FROM get_services_by_user(1);
 
 ALTER TABLE tour ADD COLUMN phones JSON;
 
