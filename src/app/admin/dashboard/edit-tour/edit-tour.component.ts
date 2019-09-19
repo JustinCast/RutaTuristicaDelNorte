@@ -25,4 +25,8 @@ export class EditTourComponent implements OnInit {
       );
   }
 
+  addPhone(phone) {
+    this.t.phones.phones.unshift(phone);
+  }
+
 }

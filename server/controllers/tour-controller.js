@@ -53,8 +53,8 @@ function getTour(req, res) {
       console.log(`err when connecting on getTour: ${err}`);
     } else {
       let query = {
-        text: `SELECT name _name,
-                      description ,
+        text: `SELECT name,
+                      description,
                       email,
                       related_service,
                       phones

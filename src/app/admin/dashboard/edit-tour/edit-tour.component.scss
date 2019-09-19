@@ -1,0 +1,47 @@
+@media screen and (min-width: 601px) {
+  mat-form-field {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-form-field {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  mat-list {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 700px) {
+  mat-list {
+    width: 95%;
+  }
+}
+
+.phone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border: 0.5px rgb(206, 206, 206) solid;
+  border-radius: 10px
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+mat-form-field {
+  margin: auto;
+}
+
+#progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}

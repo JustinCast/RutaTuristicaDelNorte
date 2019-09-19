@@ -1,3 +1,79 @@
-<p>
-  edit-tour works!
-</p>
+<form *ngIf="t; else loading" (ngSubmit)="onSubmit()" class="mt-5 pt-5">
+  <h1 class="font-weight-light text-center">Editar Tour</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      type="text"
+      [ngModelOptions]="{ standalone: true }"
+      [(ngModel)]="t.name"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <input
+      matInput
+      type="text"
+      [ngModelOptions]="{ standalone: true }"
+      [(ngModel)]="t.description"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      type="text"
+      [ngModelOptions]="{ standalone: true }"
+      [(ngModel)]="t.email"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Añadir teléfono</mat-label>
+    <input matInput #tel type="tel" />
+  </mat-form-field>
+
+  <div class="container text-center">
+    <button
+      [disabled]="tel.value.length === 0"
+      (click)="addPhone(tel.value); (false)"
+      mat-raised-button
+      color="accent"
+    >
+      Agregar teléfono<mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-list
+    role="list"
+    *ngIf="t"
+    class="container text-center rounded mt-2 mb-2"
+  >
+    <mat-list-item
+      *ngFor="let p of t.phones.phones; let i = index"
+      role="listitem"
+      class="mb-2"
+    >
+      <div class="phone p-1 shadow-sm">
+        <h3>{{ p }}</h3>
+        <button
+          mat-button
+          color="warn"
+          (click)="phones.phones.splice(i, 1); (false)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <mat-list *ngIf="t.related_service" role="list" class="container text-center mt-2 mb-2">
+    <mat-list-item>
+      {{t.related_service}}
+    </mat-list-item>
+  </mat-list>
+</form>
+
+<ng-template #loading>
+  <div class="container" id="progress-container">
+    <mat-progress-bar mod e="indeterminate"></mat-progress-bar>
+  </div>
+</ng-template>
