@@ -343,3 +343,5 @@ BEGIN
             WHERE id_service_fk = id_service;
         END;
 $$;
+
+SELECT * FROM tour;

@@ -23,6 +23,12 @@ export class TourService {
       );
   }
 
+  getTour(id_tour: number): Observable<Tour> {
+    return this._http.get<Tour>(
+      `${environment.SERVER_BASE_URL}getTour/${id_tour}`
+    );
+  }
+
   /**
    * Get all related tours when open a specific service
    * @param related_service

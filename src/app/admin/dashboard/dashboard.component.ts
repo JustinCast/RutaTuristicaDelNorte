@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
       data => {
         this.services = data;
         this._user.getToursByUser().subscribe({
-          next: data => {this.tours = data; console.log(this.tours)},
+          next: data => {this.tours = data;},
           error: (err: HttpErrorResponse) => this._user.handleError(err)
         });
       },
@@ -33,11 +33,19 @@ export class DashboardComponent implements OnInit {
   }
 
   editService(i: number): void {
-    console.log(this.services);
     if (this.services[i].id_service)
       this._router.navigate([
         "/admin/edit-service",
         this.services[i].id_service
+      ]);
+    else this._user.openSnackBar("Ha ocurrido un error inesperado", "Ok", 2500);
+  }
+
+  editTour(i: number): void {
+    if (this.tours[i].id_tour)
+      this._router.navigate([
+        "/admin/edit-tour",
+        this.tours[i].id_tour
       ]);
     else this._user.openSnackBar("Ha ocurrido un error inesperado", "Ok", 2500);
   }

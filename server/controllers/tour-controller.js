@@ -38,6 +38,44 @@ function saveTour(req, res) {
   });
 }
 
+/**
+ * Functions to get all the services in the db
+ * @param {*} req
+ * @param {*} res
+ */
+function getTour(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on getTour: ${err}`);
+    } else {
+      let query = {
+        text: `SELECT name _name,
+                      description ,
+                      email,
+                      related_service,
+                      phones
+               FROM tour WHERE id = $1`,
+        values: [req.params.id_tour]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows[0]);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on getServices: ${err}`);
+        });
+    }
+  });
+}
+
 function getRelatedTours(req, res) {
   client = new pg.Client(db);
   client.connect(err => {
@@ -67,5 +105,6 @@ function getRelatedTours(req, res) {
 
 module.exports = {
   saveTour: saveTour,
+  getTour: getTour,
   getRelatedTours: getRelatedTours
 };
