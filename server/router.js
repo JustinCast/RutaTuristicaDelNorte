@@ -16,6 +16,8 @@ api.get('/getServiceRates/:id_service', ServiceCTRL.getServiceRates);
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);
 api.get('/getTour/:id_tour', TourCTRL.getTour);
+api.put('/updateTour:/id_tour', TourCTRL.updateTour)
+api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 
 // user queries

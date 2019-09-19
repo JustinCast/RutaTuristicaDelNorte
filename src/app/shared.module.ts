@@ -17,7 +17,8 @@ import {
   MatProgressSpinnerModule,
   MatCheckboxModule,
   MatPaginatorModule,
-  MatTabsModule
+  MatTabsModule,
+  MatAutocompleteModule
 } from "@angular/material";
 import { CarouselModule } from "ngx-carousel-lib";
 import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
@@ -58,7 +59,8 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatCheckboxModule,
     MatPaginatorModule,
     DeferLoadModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatMenuModule,
@@ -86,7 +88,8 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatCheckboxModule,
     MatPaginatorModule,
     DeferLoadModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule {}

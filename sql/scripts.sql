@@ -344,4 +344,42 @@ BEGIN
         END;
 $$;
 
-SELECT * FROM tour;
+DROP FUNCTION get_tour_for_update(id_tour INTEGER);
+CREATE OR REPLACE FUNCTION get_tour_for_update(id_tour INTEGER)
+RETURNS TABLE (name VARCHAR, description VARCHAR, email VARCHAR, phones JSON, related_service INTEGER,service_name VARCHAR)
+AS
+    $$
+        BEGIN
+            RETURN QUERY
+            SELECT tour.name,
+                   tour.description,
+                   tour.email,
+                   tour.phones,
+                   tour.related_service,
+                   s.name service_name
+            FROM tour
+            LEFT JOIN service s on tour.related_service = s.id
+            WHERE tour.id = $1;
+        END;
+    $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_tour(
+    _name VARCHAR,
+    _description VARCHAR,
+    _email VARCHAR,
+    _related_service INTEGER,
+    _phones JSON,
+    id_tour INTEGER
+)
+RETURNS VOID
+AS
+    $$
+        BEGIN
+            UPDATE tour SET name = $1,
+                            description = $2,
+                            email = $3,
+                            related_service = $4,
+                            phones = $5
+            WHERE id = $6;
+        END;
+    $$ LANGUAGE plpgsql;

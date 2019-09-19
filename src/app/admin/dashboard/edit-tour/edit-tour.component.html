@@ -65,11 +65,28 @@
       </div>
     </mat-list-item>
   </mat-list>
-  <mat-list *ngIf="t.related_service" role="list" class="container text-center mt-2 mb-2">
-    <mat-list-item>
-      {{t.related_service}}
+  <mat-list
+    *ngIf="t.service_name"
+    role="list"
+    class="container text-center mt-2 mb-2"
+  >
+    <h3 class="font-weight-light">Servicio relacionado</h3>
+    <mat-list-item class="card shadow-sm bg-transparent rounded">
+      <div id="related_tour">
+        <h3 class="font-weight-light">{{ t.service_name }}</h3>
+        <button
+          mat-button
+          color="warn"
+          (click)="deleteRelatedService(); (false)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </mat-list-item>
   </mat-list>
+  <div class="text-center container">
+    <button type="submit" color="primary" mat-raised-button><mat-icon>send</mat-icon></button>
+  </div>
 </form>
 
 <ng-template #loading>

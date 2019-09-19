@@ -29,6 +29,13 @@
   border-radius: 10px
 }
 
+#related_tour {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 form {
   display: flex;
   flex-direction: column;

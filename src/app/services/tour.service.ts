@@ -29,6 +29,16 @@ export class TourService {
     );
   }
 
+  updateTour(tour: any): Observable<any> {
+    return this._http.put(`${environment.SERVER_BASE_URL}updateTour`, tour);
+  }
+
+  deleteRelatedService(): Observable<any> {
+    return this._http.get(
+      `${environment.SERVER_BASE_URL}deleteRelatedService`
+    );
+  }
+
   /**
    * Get all related tours when open a specific service
    * @param related_service

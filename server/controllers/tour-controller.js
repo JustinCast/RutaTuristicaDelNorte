@@ -24,7 +24,7 @@ function saveTour(req, res) {
       };
       client
         .query(query)
-        .then((data) => {
+        .then(data => {
           let id_tour = data.rows[0].save_tour;
           ImagesCTRL.saveTourImages(tour.imgs, Number(id_tour));
           res.status(200).send(true);
@@ -53,13 +53,8 @@ function getTour(req, res) {
       console.log(`err when connecting on getTour: ${err}`);
     } else {
       let query = {
-        text: `SELECT name,
-                      description,
-                      email,
-                      related_service,
-                      phones
-               FROM tour WHERE id = $1`,
-        values: [req.params.id_tour]
+        text: "SELECT * FROM get_tour_for_update($1);",
+        values: [Number(req.params.id_tour)]
       };
       client
         .query(query)
@@ -76,6 +71,31 @@ function getTour(req, res) {
   });
 }
 
+function deleteRelatedService(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on deleteTour: ${err}`);
+    } else {
+      let query = `UPDATE tour SET related_service = NULL`;
+      client
+        .query(query)
+        .then(data => {
+          res.status(204).send();
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on deleteTour: ${err}`);
+        });
+    }
+  });
+}
+
 function getRelatedTours(req, res) {
   client = new pg.Client(db);
   client.connect(err => {
@@ -85,9 +105,7 @@ function getRelatedTours(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_related_tours($1);",
-        values: [
-          Number(req.params.related_service)
-        ]
+        values: [Number(req.params.related_service)]
       };
       client
         .query(query)
@@ -103,8 +121,42 @@ function getRelatedTours(req, res) {
   });
 }
 
+function updateTour(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on updateTour: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM update_tour($1, $2, $3, $4, $5, $6);",
+        values: [
+          req.body.name,
+          req.body.description,
+          req.body.email,
+          req.body.related_service,
+          req.body.phones,
+          Number(req.params.id_tour)
+        ]
+      };
+      client
+        .query(query)
+        .then(() => {
+          res.status(204).send();
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on updateTour: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
   saveTour: saveTour,
   getTour: getTour,
-  getRelatedTours: getRelatedTours
+  getRelatedTours: getRelatedTours,
+  deleteRelatedService: deleteRelatedService,
+  updateTour: updateTour
 };
