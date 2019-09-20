@@ -65,15 +65,18 @@
       </div>
     </mat-list-item>
   </mat-list>
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" *ngIf="!t.service_name">
     <mat-label>Escriba para cambiar tour relacionado</mat-label>
-    <input matInput [formControl]="serviceCtrl" type="text" [matAutocomplete]="auto">
+    <input #relatedService matInput [formControl]="serviceCtrl" type="text" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let service of filteredServices | async" [value]="service">
+      <mat-option *ngFor="let service of filteredServices | async" [value]="service.name">
         <span>{{service.name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+  <div *ngIf="!t.service_name" class="container text-center mb-3">
+    <button (click)="linkRelated(); false" [disabled]="!serviceCtrl.value" mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+  </div>
   <mat-list
     *ngIf="t.service_name"
     role="list"

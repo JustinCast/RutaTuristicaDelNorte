@@ -266,7 +266,7 @@ function getServiceNames(req, res) {
       res.status(400).send(err);
       console.log(`err when connecting on getServiceNames: ${err}`);
     } else {
-      let query = `SELECT name FROM service;`;
+      let query = `SELECT id, name FROM service;`;
       client
         .query(query)
         .then(data => {

@@ -20,7 +20,7 @@ export class EditTourComponent implements OnInit {
 
   constructor(
     private _active: ActivatedRoute,
-    private _tour: TourService,
+    private   _tour: TourService,
     private _service: Services
   ) {}
 
@@ -67,7 +67,11 @@ export class EditTourComponent implements OnInit {
   }
 
   onSubmit() {
-    this._tour;
+    this._tour.updateTour(this.t)
+    .subscribe({
+      next: () => this._tour.openSnackBar('Tour actualizado con éxito', 'Ok', 2500),
+      error: err => this._tour.handleError(err)
+    });
   }
 
   deleteRelatedService() {
@@ -75,8 +79,14 @@ export class EditTourComponent implements OnInit {
       next: () => {
         this._tour.openSnackBar("Servicio relacionado eliminado", "Ok", 2000);
         this.t.related_service = undefined;
+        this.t.service_name = undefined;
       },
       error: (err: HttpErrorResponse) => this._tour.handleError(err)
     });
+  }
+
+  linkRelated() {
+    let newRelated = this.servicesNames.find(s => s.name === this.serviceCtrl.value);
+    newRelated ? this.t.related_service = newRelated.id : null;
   }
 }

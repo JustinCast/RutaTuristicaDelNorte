@@ -4,8 +4,6 @@ import { MatSnackBar } from "@angular/material";
 import { Tour } from "../models/Tour";
 import { environment } from "src/environments/environment.prod";
 import { Observable } from "rxjs";
-import { User } from '../models/User';
-
 @Injectable({
   providedIn: "root"
 })
