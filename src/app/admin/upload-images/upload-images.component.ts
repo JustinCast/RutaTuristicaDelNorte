@@ -5,6 +5,7 @@ import {
 } from "angularfire2/storage";
 import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
+import { DialogManagerService } from "src/app/services/dialog-manager.service";
 
 @Component({
   selector: "app-upload-images",
@@ -30,9 +31,16 @@ export class UploadImagesComponent implements OnInit {
 
   @Output() downloadUrlsChange = new EventEmitter();
 
-  constructor(private storage: AngularFireStorage) {}
+  constructor(
+    private _dialog: DialogManagerService,
+    private storage: AngularFireStorage
+  ) {}
 
   ngOnInit() {}
+
+  openShowImages() {
+    this._dialog.openImagesDialog(this.downloadURLS);
+  }
 
   toggleHover(event: boolean) {
     this.isHovering = event;

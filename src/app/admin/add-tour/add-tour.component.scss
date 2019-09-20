@@ -37,31 +37,3 @@ mat-list {
   justify-content: space-between;
   width: 100%
 }
-
-.dropzone { 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; 
-  height: 300px;
-  border: 0.5px dashed $primary-color;
-  border-radius: 5px;
-  background: transparent;
-  background-color: #FF9A8B;
-  background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-
-
-
-
-  &.hovering {
-      border: 2px solid #f16624;
-      color: #dadada !important;
-  }
-}
-
-#controls-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 1.5%;
-}
