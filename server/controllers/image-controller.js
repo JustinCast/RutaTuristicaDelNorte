@@ -47,7 +47,33 @@ function saveTourImages(images, id_tour) {
   });
 }
 
+function getTourImages(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on getTourImages: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT id, url FROM tour_images WHERE id_tour_fk = $1;",
+        values: [req.params.id_tour]
+      };
+      client.query(query)
+      .then(images => {
+        res.status(200).send(images.rows);
+        client.end();
+      })
+      .catch(err => {
+        client.end();
+        console.log(`err when query on getTourImages: ${err}`);
+      });
+    }
+  });
+}
+
 module.exports = {
   saveImages: saveImages,
-  saveTourImages: saveTourImages
+  saveTourImages: saveTourImages,
+  getTourImages: getTourImages
 };

@@ -346,12 +346,13 @@ $$;
 
 DROP FUNCTION get_tour_for_update(id_tour INTEGER);
 CREATE OR REPLACE FUNCTION get_tour_for_update(id_tour INTEGER)
-RETURNS TABLE (name VARCHAR, description VARCHAR, email VARCHAR, phones JSON, related_service INTEGER,service_name VARCHAR)
+RETURNS TABLE (id INTEGER, name VARCHAR, description VARCHAR, email VARCHAR, phones JSON, related_service INTEGER,service_name VARCHAR)
 AS
     $$
         BEGIN
             RETURN QUERY
-            SELECT tour.name,
+            SELECT tour.id,
+                   tour.name,
                    tour.description,
                    tour.email,
                    tour.phones,

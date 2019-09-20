@@ -3,6 +3,7 @@ var api = express.Router();
 var ServiceCTRL = require('./controllers/service-controller');
 var UserCTRL = require('./controllers/user-controller');
 var TourCTRL = require('./controllers/tour-controller');
+var ImagesCTRL = require('./controllers/image-controller');
 
 // service queries
 api.post('/saveService', ServiceCTRL.saveService);
@@ -20,6 +21,7 @@ api.get('/getTour/:id_tour', TourCTRL.getTour);
 api.put('/updateTour:/id_tour', TourCTRL.updateTour)
 api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
+api.get('/getTourImages/:id_tour', ImagesCTRL.getTourImages);
 
 // user queries
 api.post('/login', UserCTRL.login);

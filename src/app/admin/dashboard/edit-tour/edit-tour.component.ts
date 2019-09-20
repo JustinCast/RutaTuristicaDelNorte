@@ -17,10 +17,11 @@ export class EditTourComponent implements OnInit {
   filteredServices: Observable<any[]>;
   servicesNames: Array<any>;
   serviceCtrl = new FormControl();
+  tourImages: Array<string>;
 
   constructor(
     private _active: ActivatedRoute,
-    private   _tour: TourService,
+    private _tour: TourService,
     private _service: Services
   ) {}
 
@@ -52,10 +53,19 @@ export class EditTourComponent implements OnInit {
     );
   }
 
+  getTourImages() {
+    console.log(this.t.id);
+    this._tour.getTourImages(this.t.id).subscribe({
+      next: images => {this.tourImages = images; console.log(this.tourImages)},
+      error: err => this._tour.handleError(err)
+    });
+  }
+
   getToursNames() {
     this._service.getServicesNames().subscribe({
       next: data => {
         this.servicesNames = data;
+        this.getTourImages();
         this.configFormControl();
       },
       error: err => this._service.handleError(err)
@@ -67,9 +77,9 @@ export class EditTourComponent implements OnInit {
   }
 
   onSubmit() {
-    this._tour.updateTour(this.t)
-    .subscribe({
-      next: () => this._tour.openSnackBar('Tour actualizado con éxito', 'Ok', 2500),
+    this._tour.updateTour(this.t).subscribe({
+      next: () =>
+        this._tour.openSnackBar("Tour actualizado con éxito", "Ok", 2500),
       error: err => this._tour.handleError(err)
     });
   }
@@ -86,7 +96,9 @@ export class EditTourComponent implements OnInit {
   }
 
   linkRelated() {
-    let newRelated = this.servicesNames.find(s => s.name === this.serviceCtrl.value);
-    newRelated ? this.t.related_service = newRelated.id : null;
+    let newRelated = this.servicesNames.find(
+      s => s.name === this.serviceCtrl.value
+    );
+    newRelated ? (this.t.related_service = newRelated.id) : null;
   }
 }
