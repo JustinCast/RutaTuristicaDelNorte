@@ -1,0 +1,77 @@
+<div id="main-container">
+  <div
+    class="dropzone shadow-sm container mb-2"
+    dropZone
+    (hovered)="toggleHover($event)"
+    (dropped)="prepareFiles($event)"
+    [class.hovering]="isHovering"
+  >
+    <h3 class="text-white">Seleccione o arrastre el archivo</h3>
+  
+    <div class="container text-center">
+      <input
+        multiple
+        style="color: transparent"
+        type="file"
+        (change)="prepareFiles($event.target.files)"
+      />
+      <hr />
+      <button
+        [disabled]="!files"
+        (click)="startUpload(); (false)"
+        mat-raised-button
+      >
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  <ul id="urls" *ngIf="downloadURLS.length !== 0">
+    <li *ngFor="let u of downloadURLS; let i = index">
+      <a href="{{ u }}">Imagen {{ i + 1 }}</a>
+    </li>
+  </ul>
+  
+  <div class="container text-center" *ngIf="downloadURLS.length > 0">
+    <button (click)="openShowImages(); (false)" mat-stroked-button>
+      <mat-icon>collections</mat-icon>
+    </button>
+  </div>
+  
+  <div *ngIf="percentage | async as pct">
+    <progress class="progress is-info" [value]="pct" max="100"> </progress>
+  
+    {{ pct | number }}%
+  </div>
+  
+  <div id="controls-container" *ngIf="snapshot | async as snap">
+    <button
+      mat-raised-button
+      color="secondary"
+      (click)="task.pause()"
+      [disabled]="!isActive(snap)"
+    >
+      <mat-icon>pause</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="task.cancel()"
+      [disabled]="!isActive(snap)"
+    >
+      <mat-icon>
+        clear
+      </mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="task.resume()"
+      [disabled]="!(snap?.state === 'paused')"
+    >
+      <mat-icon>
+        play_arrow
+      </mat-icon>
+    </button>
+  </div>
+</div>

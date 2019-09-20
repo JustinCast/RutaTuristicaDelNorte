@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { Services } from "src/app/services/services.service";
 import { startWith, map } from "rxjs/operators";
-import { DialogManagerService } from 'src/app/services/dialog-manager.service';
+import { DialogManagerService } from "src/app/services/dialog-manager.service";
 
 @Component({
   selector: "app-edit-tour",
@@ -58,14 +58,14 @@ export class EditTourComponent implements OnInit {
   getTourImages() {
     console.log(this.t.id);
     this._tour.getTourImages(this.t.id).subscribe({
-      next: images => {this.tourImages = images; console.log(this.tourImages)},
+      next: images => (this.tourImages = images),
       error: err => this._tour.handleError(err)
     });
   }
 
   openImagesDialog() {
     console.log(this.tourImages);
-    this._dialog.openImagesDialog(this.tourImages.map(i => i = i.url));
+    this._dialog.openImagesDialog(this.tourImages.map(i => (i = i.url)));
   }
 
   getToursNames() {

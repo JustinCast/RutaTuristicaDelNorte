@@ -71,7 +71,7 @@
     </mat-list-item>
   </mat-list>
   <mat-form-field appearance="outline" *ngIf="!t.service_name">
-    <mat-label>Escriba para cambiar tour relacionado</mat-label>
+    <mat-label>Vincular a servicio</mat-label>
     <input #relatedService matInput [formControl]="serviceCtrl" type="text" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let service of filteredServices | async" [value]="service.name">
