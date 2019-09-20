@@ -187,20 +187,19 @@ AS
     $$ LANGUAGE plpgsql;
 
 DROP FUNCTION get_services_by_user(_id INTEGER);
-CREATE OR REPLACE FUNCTION get_services_by_user(_id_service INTEGER)
-RETURNS TABLE (id_service INTEGER,_name VARCHAR, _classification VARCHAR, first_img VARCHAR)
+CREATE OR REPLACE FUNCTION get_services_by_user(_id_user INTEGER)
+RETURNS TABLE (id_service INTEGER, _name VARCHAR, _classification VARCHAR, imgs VARCHAR[])
 AS
     $$
         BEGIN
            RETURN QUERY
                SELECT
-
-                       DISTINCT ON(service.id) id_service,
+                       DISTINCT service.id id_service,
                        name _name,
                        classification _classification,
-                       i.url first_img
+                       array_agg(i.url) imgs
            FROM service JOIN user_service us ON
-               service.id = us.id AND us.id_user = _id_service
+               service.id = us.id AND us.id_user = _id_user
            JOIN (
                SELECT url,
                       id_service_fk
@@ -208,10 +207,12 @@ AS
                     JOIN service s ON
                         images.id_service_fk = s.id
                     JOIN user_service u ON
-                        s.id = u.id AND u.id_user = _id_service
-           ) i on service.id = i.id_service_fk;
+                        s.id = u.id AND u.id_user = _id_user
+           ) i on service.id = i.id_service_fk GROUP BY service.id;
         END
     $$ LANGUAGE plpgsql;
+
+
 
 DROP FUNCTION get_related_tours(id_service INTEGER);
 CREATE OR REPLACE FUNCTION get_related_tours(id_service INTEGER)

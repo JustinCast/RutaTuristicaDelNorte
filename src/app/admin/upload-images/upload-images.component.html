@@ -26,7 +26,7 @@
     </div>
   </div>
   
-  <ul id="urls" *ngIf="downloadURLS.length !== 0">
+  <ul id="urls" *ngIf="downloadURLS.length !== 0" class="container text-center">
     <li *ngFor="let u of downloadURLS; let i = index">
       <a href="{{ u }}">Imagen {{ i + 1 }}</a>
     </li>

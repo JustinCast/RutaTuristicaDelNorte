@@ -20,6 +20,9 @@ export class EditTourComponent implements OnInit {
   serviceCtrl = new FormControl();
   tourImages: Array<any>;
 
+  // Download URL
+  downloadURLS: Array<string> = [];
+
   constructor(
     private _active: ActivatedRoute,
     private _tour: TourService,
@@ -63,8 +66,12 @@ export class EditTourComponent implements OnInit {
     });
   }
 
+  catchUploadedImages(url) {
+    if(url)
+      this.tourImages.push({id: undefined, url: url});
+  }
+
   openImagesDialog() {
-    console.log(this.tourImages);
     this._dialog.openImagesDialog(this.tourImages.map(i => (i = i.url)));
   }
 
