@@ -28,7 +28,7 @@ export class TourService {
   }
 
   updateTour(tour: any): Observable<any> {
-    return this._http.put(`${environment.SERVER_BASE_URL}updateTour`, tour);
+    return this._http.put(`${environment.SERVER_BASE_URL}updateTour/${tour.id}`, tour);
   }
 
   getTourImages(id_tour: number): Observable<any> {

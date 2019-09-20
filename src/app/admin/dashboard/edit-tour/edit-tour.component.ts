@@ -59,7 +59,6 @@ export class EditTourComponent implements OnInit {
   }
 
   getTourImages() {
-    console.log(this.t.id);
     this._tour.getTourImages(this.t.id).subscribe({
       next: images => (this.tourImages = images),
       error: err => this._tour.handleError(err)
@@ -91,6 +90,7 @@ export class EditTourComponent implements OnInit {
   }
 
   onSubmit() {
+    this.t.imgs = this.tourImages.map(i => i = i.url);
     this._tour.updateTour(this.t).subscribe({
       next: () =>
         this._tour.openSnackBar("Tour actualizado con éxito", "Ok", 2500),

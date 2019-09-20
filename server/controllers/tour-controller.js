@@ -142,6 +142,7 @@ function updateTour(req, res) {
       client
         .query(query)
         .then(() => {
+          ImagesCTRL.saveTourImages(req.body.imgs, req.params.id_tour);
           res.status(204).send();
           client.end();
         })
