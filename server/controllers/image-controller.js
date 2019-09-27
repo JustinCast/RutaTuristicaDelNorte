@@ -47,6 +47,31 @@ function saveTourImages(images, id_tour) {
   });
 }
 
+function getServiceImages(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on getServiceImages: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT id, url FROM imges WHERE id_service_fk = $1;",
+        values: [req.params.id_service]
+      };
+      client.query(query)
+      .then(images => {
+        res.status(200).send(images.rows);
+        client.end();
+      })
+      .catch(err => {
+        client.end();
+        console.log(`err when query on getServiceImages: ${err}`);
+      });
+    }
+  });
+}
+
 function getTourImages(req, res) {
   client = new pg.Client(db);
 
@@ -75,5 +100,6 @@ function getTourImages(req, res) {
 module.exports = {
   saveImages: saveImages,
   saveTourImages: saveTourImages,
+  getServiceImages: getServiceImages,
   getTourImages: getTourImages
 };

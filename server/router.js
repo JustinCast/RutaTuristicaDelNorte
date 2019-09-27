@@ -14,6 +14,7 @@ api.get('/getServiceNameId/:name/:id_user', ServiceCTRL.getServiceNameId);
 api.get('/getServicesCount', ServiceCTRL.getServicesCount);
 api.get('/getServiceRates/:id_service', ServiceCTRL.getServiceRates);
 api.get('/getServiceNames', ServiceCTRL.getServiceNames);
+api.get('/getServiceImages/:id_service', ImagesCTRL.getServiceImages);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);

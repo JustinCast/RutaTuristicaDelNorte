@@ -30,6 +30,7 @@ export class EditServiceComponent implements OnInit {
       this._service.getService(Number(id_service)).subscribe(
         service => {
           this.s = service;
+          this.getServiceImages();
         },
         (err: HttpErrorResponse) => this._service.handleError(err)
       );
@@ -39,8 +40,8 @@ export class EditServiceComponent implements OnInit {
     this.s.phones.phones.unshift(phone);
   }
 
-  onNoClick(): void {
-    //return this.Ref.close();
+  getServiceImages() {
+
   }
 
   editLocation() {

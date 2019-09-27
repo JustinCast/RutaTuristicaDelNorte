@@ -142,7 +142,8 @@ function getService(req, res) {
       console.log(`err when connecting on getService: ${err}`);
     } else {
       let query = {
-        text: `SELECT name _name,
+        text: `SELECT id,
+                      name _name,
                       location _location,
                       classification _classification,
                       additional_info _additional_info,

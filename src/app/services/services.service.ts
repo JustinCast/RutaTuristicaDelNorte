@@ -58,6 +58,10 @@ export class Services {
       );
   }
 
+  getServiceImages(id_service: number): Observable<Array<string>> {
+    return this._http.get<Array<string>>(`${environment.SERVER_BASE_URL}getServiceImages/${id_service}`);
+  }
+
   setLazyLoading(): void {
     this.tours.forEach(t => (t._imgs_lazy = this.setImgsLazyLoading(t.imgs)));
   }
