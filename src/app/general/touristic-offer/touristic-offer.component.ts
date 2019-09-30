@@ -5,11 +5,11 @@ import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-tours",
-  templateUrl: "./tours.component.html",
-  styleUrls: ["./tours.component.scss"]
+  templateUrl: "./touristic-offer.component.html",
+  styleUrls: ["./touristic-offer.component.scss"]
 })
-export class ToursComponent implements OnInit {
-  limit: number = 3;
+export class TouristicOfferComponent implements OnInit {
+  limit: number = 6;
   offset: number = 0;
   filter: string = "";
   imagesList = [];

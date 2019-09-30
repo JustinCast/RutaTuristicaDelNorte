@@ -4,7 +4,7 @@ import { HistoryComponent } from "./history/history.component";
 import { RouterModule } from "@angular/router";
 import { GeneralRootComponent } from "./general-root.component";
 import { ROUTES } from "./general.routing";
-import { ToursComponent } from "./tours/tours.component";
+import { TouristicOfferComponent } from "./touristic-offer/touristic-offer.component";
 import { SharedModule } from "../shared.module";
 import { TourComponent } from "./service/service.component";
 import { SeeLocationComponent } from "./see-location/see-location.component";
@@ -15,7 +15,7 @@ import { NgxPaginationModule } from "ngx-pagination";
   declarations: [
     HistoryComponent,
     GeneralRootComponent,
-    ToursComponent,
+    TouristicOfferComponent,
     TourComponent,
     SeeLocationComponent,
     VedaComponent
