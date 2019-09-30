@@ -8,7 +8,8 @@ import { ToursComponent } from "./tours/tours.component";
 import { SharedModule } from "../shared.module";
 import { TourComponent } from "./service/service.component";
 import { SeeLocationComponent } from "./see-location/see-location.component";
-import { VedaComponent } from './veda/veda.component';
+import { VedaComponent } from "./veda/veda.component";
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { VedaComponent } from './veda/veda.component';
     SeeLocationComponent,
     VedaComponent
   ],
-  imports: [CommonModule, RouterModule.forRoot(ROUTES), SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(ROUTES),
+    SharedModule,
+    NgxPaginationModule
+  ],
   entryComponents: [SeeLocationComponent],
   exports: [GeneralRootComponent]
 })

@@ -12,6 +12,7 @@ import { Rates } from "../models/Rates";
 })
 export class Services {
   public tours: Array<Service>;
+  public page: number;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
 
   getServicesCount(column: String, value: String): Observable<number> {

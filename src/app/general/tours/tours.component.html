@@ -3,30 +3,47 @@
     <mat-form-field appearance="outline">
       <mat-label>Filtrar por...</mat-label>
       <mat-select panelClass="example-panel-green" [(ngModel)]="filter">
-        <mat-option (click)="applyFilter(c); false" *ngFor="let c of _common.classification" [value]="c">
-          {{c}}
+        <mat-option
+          (click)="applyFilter(c); (false)"
+          *ngFor="let c of _common.classification"
+          [value]="c"
+        >
+          {{ c }}
         </mat-option>
       </mat-select>
       <div class="text-center p-0 mt-2" *ngIf="filter">
-        <button id="clear-btn" (click)="reset(); false" mat-raised-button><mat-icon>clear</mat-icon></button>
+        <button id="clear-btn" (click)="reset(); (false)" mat-raised-button>
+          <mat-icon>clear</mat-icon>
+        </button>
       </div>
     </mat-form-field>
   </div>
   <div *ngIf="_tours.tours; else loading">
     <h4 class="text-center text-primary">
       Servicios
-    </h4> 
+    </h4>
     <ul id="content" *ngIf="_tours.tours.length > 0; else empty">
       <mat-card
         class="service animated bounceInRight"
         *ngFor="
-          let item of _tours.tours; let i = index"
+          let item of _tours.tours
+            | paginate: { itemsPerPage: [limit], currentPage: _tours.page, totalItems: [count] };
+          let i = index
+        "
       >
         <h1 class="text-center">{{ item._name }}</h1>
-        <hr>
-        <div id="img-container"class="p-0 text-center" (deferLoad)="item._imgs_lazy[0].show = true">
+        <hr />
+        <div
+          id="img-container"
+          class="p-0 text-center"
+          (deferLoad)="item._imgs_lazy[0].show = true"
+        >
           <ng-container *ngIf="item._imgs_lazy[0].show">
-            <img class="main-img rounded shadow-sm" alt="" src={{item._imgs_lazy[0].img}}>
+            <img
+              class="main-img rounded shadow-sm"
+              alt=""
+              src="{{ item._imgs_lazy[0].img }}"
+            />
           </ng-container>
         </div>
         <hr />
@@ -34,7 +51,9 @@
           <ul id="details">
             <li>
               <mat-accordion>
-                <mat-expansion-panel panelClass="yellow-panel.mat-expansion-panel">
+                <mat-expansion-panel
+                  panelClass="yellow-panel.mat-expansion-panel"
+                >
                   <mat-expansion-panel-header>
                     <mat-panel-title class="font-weight-bold">
                       Información adicional
@@ -47,7 +66,12 @@
                 </mat-expansion-panel>
               </mat-accordion>
             </li>
-            <li *ngIf="item._phones !== null && item._phones.phones.length > 0; else noPhones">
+            <li
+              *ngIf="
+                item._phones !== null && item._phones.phones.length > 0;
+                else noPhones
+              "
+            >
               <mat-list>
                 <mat-list-item *ngFor="let p of item._phones.phones">
                   <mat-icon>phone</mat-icon>{{ p }}
@@ -56,10 +80,13 @@
             </li>
             <ng-template #noPhones>
               <mat-list>
-                <mat-list-item><mat-icon color="warn">info</mat-icon> No hay números de teléfono asociados</mat-list-item>
+                <mat-list-item
+                  ><mat-icon color="warn">info</mat-icon> No hay números de
+                  teléfono asociados</mat-list-item
+                >
               </mat-list>
             </ng-template>
-            
+
             <li>
               <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
             </li>
@@ -77,18 +104,22 @@
         </div>
       </mat-card>
     </ul>
-    <mat-paginator *ngIf="count" class="bg-transparent" [length]="count"
-      [pageSize]="limit"
-      [pageSizeOptions]="options">
-    </mat-paginator>
+    <pagination-controls
+    (pageChange)="pageChanged($event)"
 
+    >
+    </pagination-controls>
+    <!-- <mat-paginator class="bg-transparent" [length]="count"
+      [pageSize]="limit"
+      (page)="pageEvent = setPageSizeOptions($event)"
+      [pageSizeOptions]="options">
+    </mat-paginator> -->
 
     <ng-template #empty>
       <p>Sin información que mostrar</p>
     </ng-template>
-    
-    </div>
   </div>
+</div>
 
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
