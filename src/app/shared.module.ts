@@ -16,7 +16,6 @@ import {
   MatSidenavModule,
   MatProgressSpinnerModule,
   MatCheckboxModule,
-  MatPaginatorModule,
   MatTabsModule,
   MatAutocompleteModule
 } from "@angular/material";
@@ -57,7 +56,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule,
     DeferLoadModule,
     MatTabsModule,
     MatAutocompleteModule
@@ -86,7 +84,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule,
     DeferLoadModule,
     MatTabsModule,
     MatAutocompleteModule
