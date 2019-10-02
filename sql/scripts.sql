@@ -164,6 +164,35 @@ BEGIN
         END;
 $$;
 
+DROP FUNCTION get_tours(_limit INTEGER, _offset INTEGER);
+CREATE OR REPLACE FUNCTION get_tours(_limit INTEGER, _offset INTEGER)
+    RETURNS TABLE (
+        _name VARCHAR,
+        _description VARCHAR,
+        _email VARCHAR,
+        _related_service INTEGER,
+        _phones JSON,
+        imgs VARCHAR[]
+    )
+AS
+    $$
+        BEGIN
+            RETURN QUERY
+                SELECT
+                    t.name _name,
+                    t.description _description,
+                    t.email _email,
+                    t.related_service _related_service,
+                    t.phones _phones,
+                    array_agg(ti.url) as imgs
+                FROM tour t
+                JOIN tour_images ti on t.id = ti.id_tour_fk
+                GROUP BY t.id
+                LIMIT COALESCE(_limit, (SELECT COUNT(*) FROM tour)) OFFSET COALESCE(_offset, 0);
+        END
+    $$ LANGUAGE plpgsql;
+
+
 CREATE OR REPLACE FUNCTION save_user(_fullname VARCHAR, _username VARCHAR, _password VARCHAR)
 RETURNS VOID
 AS

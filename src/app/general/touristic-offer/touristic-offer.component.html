@@ -18,16 +18,16 @@
       </div>
     </mat-form-field>
   </div>
-  <div *ngIf="_tours.tours; else loading">
+  <div *ngIf="_service.tours; else loading">
     <h4 class="text-center text-primary">
       Servicios
     </h4>
-    <ul id="content" *ngIf="_tours.tours.length > 0; else empty">
+    <ul id="content" *ngIf="_service.tours.length > 0; else empty">
       <mat-card
         class="service animated bounceInRight"
         *ngFor="
-          let item of _tours.tours
-            | paginate: { itemsPerPage: [limit], currentPage: _tours.page, totalItems: [count] };
+          let item of _service.tours
+            | paginate: { itemsPerPage: [limit], currentPage: _service.page, totalItems: [count] };
           let i = index
         "
       >
@@ -113,8 +113,15 @@
       <p>Sin información que mostrar</p>
     </ng-template>
   </div>
+
+  <div *ngIf="tours; else loadingTours">
+    {{tours | json}}
+  </div>
 </div>
 
 <ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<ng-template #loadingTours>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>

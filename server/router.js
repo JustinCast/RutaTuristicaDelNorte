@@ -18,6 +18,7 @@ api.get('/getServiceImages/:id_service', ImagesCTRL.getServiceImages);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);
+api.get('/getTours', TourCTRL.getTours);
 api.get('/getTour/:id_tour', TourCTRL.getTour);
 api.put('/updateTour/:id_tour', TourCTRL.updateTour)
 api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);

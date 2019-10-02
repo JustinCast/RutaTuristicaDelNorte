@@ -10,7 +10,11 @@ import { Observable } from "rxjs";
 export class TourService {
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
 
-  getTours() {}
+  getTours(limit: number, offset: number): Observable<Array<Tour>> {
+    return this._http.get<Array<Tour>>(
+      `${environment.SERVER_BASE_URL}getTours?limit=${limit}&offset=${offset}`
+    );
+  }
 
   saveTour(tour: Tour) {
     this._http
@@ -28,17 +32,20 @@ export class TourService {
   }
 
   updateTour(tour: any): Observable<any> {
-    return this._http.put(`${environment.SERVER_BASE_URL}updateTour/${tour.id}`, tour);
+    return this._http.put(
+      `${environment.SERVER_BASE_URL}updateTour/${tour.id}`,
+      tour
+    );
   }
 
   getTourImages(id_tour: number): Observable<any> {
-    return this._http.get<any>(`${environment.SERVER_BASE_URL}getTourImages/${id_tour}`);
+    return this._http.get<any>(
+      `${environment.SERVER_BASE_URL}getTourImages/${id_tour}`
+    );
   }
 
   deleteRelatedService(): Observable<any> {
-    return this._http.get(
-      `${environment.SERVER_BASE_URL}deleteRelatedService`
-    );
+    return this._http.get(`${environment.SERVER_BASE_URL}deleteRelatedService`);
   }
 
   /**

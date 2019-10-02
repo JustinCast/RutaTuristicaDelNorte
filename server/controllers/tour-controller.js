@@ -43,6 +43,39 @@ function saveTour(req, res) {
  * @param {*} req
  * @param {*} res
  */
+function getTours(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on getTours: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM get_tours($1, $2);",
+        values: [Number(req.query.limit), Number(req.query.offset)]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on getTours: ${err}`);
+        });
+    }
+  });
+}
+
+/**
+ * Functions to get all the services in the db
+ * @param {*} req
+ * @param {*} res
+ */
 function getTour(req, res) {
   client = new pg.Client(db);
 
@@ -65,7 +98,7 @@ function getTour(req, res) {
         .catch(err => {
           client.end();
           res.status(400).send(err);
-          console.log(`err when query on getServices: ${err}`);
+          console.log(`err when query on getTour: ${err}`);
         });
     }
   });
@@ -156,6 +189,7 @@ function updateTour(req, res) {
 
 module.exports = {
   saveTour: saveTour,
+  getTours: getTours,
   getTour: getTour,
   getRelatedTours: getRelatedTours,
   deleteRelatedService: deleteRelatedService,
