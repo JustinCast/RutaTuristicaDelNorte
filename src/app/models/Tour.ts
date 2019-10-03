@@ -6,7 +6,8 @@ export class Tour {
     public imgs?: Array<string>,
     public email?: string,
     public id_user?: number,
-    public related_service?: number
+    public related_service?: number,
+    public _imgs_lazy?: Array<any>
     ) {}
     
 }

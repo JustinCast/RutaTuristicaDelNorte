@@ -31,8 +31,8 @@ export class TourComponent implements OnInit {
 
   ngOnInit() {
     let id_service = this.route.snapshot.paramMap.get("id_service");
-    if (this.route.snapshot.paramMap.get("id_service") && this._tours.tours) {
-      this.tour = this._tours.tours.find(
+    if (this.route.snapshot.paramMap.get("id_service") && this._tours.services) {
+      this.tour = this._tours.services.find(
         t => t.id_service === Number(id_service)
       );
       this.getServiceRates(Number(id_service));

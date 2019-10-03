@@ -18,16 +18,21 @@
       </div>
     </mat-form-field>
   </div>
-  <div *ngIf="_service.tours; else loading">
+  <div *ngIf="_service.services; else loading">
     <h4 class="text-center text-primary">
       Servicios
     </h4>
-    <ul id="content" *ngIf="_service.tours.length > 0; else empty">
+    <ul id="content" *ngIf="_service.services.length > 0; else empty">
       <mat-card
         class="service animated bounceInRight"
         *ngFor="
-          let item of _service.tours
-            | paginate: { itemsPerPage: [limit], currentPage: _service.page, totalItems: [count] };
+          let item of _service.services
+            | paginate
+              : {
+                  itemsPerPage: [limit],
+                  currentPage: _service.page,
+                  totalItems: [count]
+                };
           let i = index
         "
       >
@@ -104,24 +109,50 @@
         </div>
       </mat-card>
     </ul>
-    <pagination-controls
-    (pageChange)="pageChanged($event)"
-
-    >
+    <pagination-controls (pageChange)="pageChanged($event)">
     </pagination-controls>
     <ng-template #empty>
       <p>Sin información que mostrar</p>
     </ng-template>
   </div>
 
-  <div *ngIf="tours; else loadingTours">
-    {{tours | json}}
+  <div *ngIf="tours && tours.length > 0">
+    <h4 class="text-center text-primary">
+      Tours
+    </h4>
+    <ul>
+      <mat-card
+        class="service"
+        *ngFor="
+          let t of tours
+            | paginate
+              : {
+                  itemsPerPage: [limit],
+                  currentPage: toursPage
+                };
+          let i = index
+        "
+      >
+        <h1 class="text-center">{{ t._name }}</h1>
+        <hr />
+        <div
+          id="tour-img-container"
+          class="p-0 text-center"
+          (deferLoad)="t._imgs_lazy[0].show = true"
+        >
+          <ng-container *ngIf="t._imgs_lazy[0].show">
+            <img
+              class="main-img rounded shadow-sm"
+              alt=""
+              src="{{ t._imgs_lazy[0].img }}"
+            />
+          </ng-container>
+        </div>
+      </mat-card>
+    </ul>
   </div>
 </div>
 
 <ng-template #loading>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
-<ng-template #loadingTours>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>

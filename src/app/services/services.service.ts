@@ -11,7 +11,7 @@ import { Rates } from "../models/Rates";
   providedIn: "root"
 })
 export class Services {
-  public tours: Array<Service>;
+  public services: Array<Service>;
   public page: number;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
 
@@ -52,7 +52,7 @@ export class Services {
       )
       .subscribe(
         services => {
-          this.tours = services;
+          this.services = services;
           this.setLazyLoading();
         },
         (err: HttpErrorResponse) => this.handleError(err)
@@ -64,7 +64,7 @@ export class Services {
   }
 
   setLazyLoading(): void {
-    this.tours.forEach(t => (t._imgs_lazy = this.setImgsLazyLoading(t.imgs)));
+    this.services.forEach(t => (t._imgs_lazy = this.setImgsLazyLoading(t.imgs)));
   }
 
   public setImgsLazyLoading(imgs): Array<any> {
