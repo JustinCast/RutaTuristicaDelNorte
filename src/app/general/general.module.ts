@@ -10,6 +10,7 @@ import { TourComponent } from "./service/service.component";
 import { SeeLocationComponent } from "./see-location/see-location.component";
 import { VedaComponent } from "./veda/veda.component";
 import { NgxPaginationModule } from "ngx-pagination";
+import { ProjectInfoComponent } from './project-info/project-info.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgxPaginationModule } from "ngx-pagination";
     TouristicOfferComponent,
     TourComponent,
     SeeLocationComponent,
-    VedaComponent
+    VedaComponent,
+    ProjectInfoComponent
   ],
   imports: [
     CommonModule,
