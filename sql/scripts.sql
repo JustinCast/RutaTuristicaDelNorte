@@ -416,4 +416,4 @@ AS
     $$ LANGUAGE plpgsql;
 
 
-SELECT * FROM tour;
+SELECT * FROM service;

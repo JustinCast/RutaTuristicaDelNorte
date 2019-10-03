@@ -85,6 +85,6 @@ export class TouristicOfferComponent implements OnInit {
 
   reset() {
     this.filter = "";
-    //this.getTableCountData(undefined, undefined);
+    this.getTableCountData(undefined, undefined);
   }
 }
