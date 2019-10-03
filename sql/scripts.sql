@@ -414,3 +414,6 @@ AS
             WHERE id = $6;
         END;
     $$ LANGUAGE plpgsql;
+
+
+SELECT * FROM tour;
