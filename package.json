@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
+    "@sendgrid/mail": "^6.4.0",
     "@trademe/ng-defer-load": "^3.0.1",
     "@types/googlemaps": "^3.36.6",
     "angularfire2": "^5.1.3",

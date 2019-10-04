@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  constructor(private _dialog: DialogManagerService, private _auth: AuthService) {}
+  constructor(private _dialog: DialogManagerService, public _auth: AuthService) {}
 
   openLoginDialog() {
     this._dialog.openLoginDialog();

@@ -22,8 +22,8 @@ export class TouristicOfferComponent implements OnInit {
 
   constructor(
     public _service: Services,
-    private _common: CommonService,
-    private _tour: TourService
+    public _common: CommonService,
+    public _tour: TourService
   ) {}
 
   ngOnInit() {
@@ -67,6 +67,7 @@ export class TouristicOfferComponent implements OnInit {
     this._service.services = undefined;
     this._service.getServices(this.limit, this.offset, this.filter);
   }
+
 
   toursPageChanged(event) {
     this.toursPage < event

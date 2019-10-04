@@ -128,7 +128,8 @@
             | paginate
               : {
                   itemsPerPage: [limit],
-                  currentPage: toursPage
+                  currentPage: toursPage,
+                  id: 'second'
                 };
           let i = index
         "
@@ -194,8 +195,19 @@
             </li>
           </ul>
         </mat-card-content>
+        <hr>
+        <div class="container text-center">
+          <button
+            class="detail-button"
+            mat-raised-button
+          >
+            Ver más
+          </button>
+        </div>
       </mat-card>
     </ul>
+    <pagination-controls id="second" (pageChange)="toursPageChanged($event)">
+    </pagination-controls>
   </div>
 </div>
 
