@@ -24,6 +24,10 @@ export class UserService {
     });
   }
 
+  passwordRecovery(username: string): Observable<any> {
+    return this._http.get<any>(`${environment.SERVER_BASE_URL}passwordRecovery/${username}`);
+  }
+
   openSnackBar(message: string, action: string, duration: number) {
     this._snackbar.open(message, action, {
       duration: duration

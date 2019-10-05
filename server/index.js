@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const api = require('./router');
+const dotenv = require('dotenv');
+dotenv.config();
 
 /**
  * Server config

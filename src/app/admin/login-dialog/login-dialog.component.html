@@ -23,14 +23,10 @@
     </div>
     <mat-form-field appearance="outline">
       <mat-label>Nombre de usuario</mat-label>
-      <input matInput [value]="loginFG.get('username').value">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Ingrese su email registrado</mat-label>
-      <input matInput>
+      <input matInput [formControl]="loginFG.get('username')">
     </mat-form-field>
     <div class="container text-center">
-      <button mat-raised-button color="primary"><mat-icon>search</mat-icon>Comprobar</button>
+      <button (click)="passwordRecovery(); false" mat-raised-button color="primary"><mat-icon>search</mat-icon>Comprobar</button>
     </div>
   </div>
 </ng-template>

@@ -416,4 +416,5 @@ AS
     $$ LANGUAGE plpgsql;
 
 
-SELECT * FROM service;
+SELECT * FROM _user;
+UPDATE _user SET email = 'justincastillovalladares@gmail.com' WHERE id_user = 1;
