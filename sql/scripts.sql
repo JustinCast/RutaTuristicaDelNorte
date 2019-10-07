@@ -57,6 +57,13 @@ CREATE TABLE _user(
     password VARCHAR NOT NULL
 );
 
+CREATE TABLE recovery_password_code(
+    id SERIAL NOT NULL PRIMARY KEY,
+    code VARCHAR(6),
+    id_user_fk INTEGER REFERENCES _user(id_user),
+    date TIMESTAMP
+);
+
 CREATE TABLE user_service(
   id_user INTEGER REFERENCES _user,
   id INTEGER REFERENCES service,
@@ -416,5 +423,25 @@ AS
     $$ LANGUAGE plpgsql;
 
 
-SELECT * FROM _user;
-UPDATE _user SET email = 'justincastillovalladares@gmail.com' WHERE id_user = 1;
+CREATE OR REPLACE FUNCTION gen_recovery_code(_username VARCHAR)
+RETURNS VARCHAR
+AS
+    $$
+        DECLARE
+            _code VARCHAR;
+        BEGIN
+            INSERT INTO recovery_password_code(code, id_user_fk, date)
+            VALUES(
+                   (SELECT floor(random()*(999999-0+1))+0),
+                   (SELECT id_user FROM _user WHERE _user.username = _username),
+                   (SELECT NOW())
+            ) RETURNING code INTO _code;
+
+            RETURN _code;
+        END;
+    $$ LANGUAGE plpgsql;
+
+
+SELECT * FROM gen_recovery_code('us1');
+
+SELECT * FROM recovery_password_code;

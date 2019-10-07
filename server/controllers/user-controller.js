@@ -12,10 +12,7 @@ function login(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM login($1, $2);",
-        values: [
-          req.body.username,
-          req.body.password
-        ]
+        values: [req.body.username, req.body.password]
       };
       client
         .query(query)
@@ -42,9 +39,7 @@ function getServicesByUser(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_services_by_user($1);",
-        values: [
-          req.params.id
-        ]
+        values: [req.params.id]
       };
       client
         .query(query)
@@ -71,9 +66,7 @@ function getToursByUser(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_tours_by_user($1);",
-        values: [
-          req.params.id
-        ]
+        values: [req.params.id]
       };
       client
         .query(query)
@@ -100,20 +93,21 @@ function passwordRecovery(req, res) {
     } else {
       let query = {
         text: "SELECT email FROM _user WHERE username = $1;",
-        values: [
-          req.params.username
-        ]
+        values: [req.params.username]
       };
       client
         .query(query)
         .then(data => {
-          console.log(data.rows);
-          if(data.rows[0] !== null) {
-            let body = {to: data.rows[0].email, username: req.params.username};
-            console.log(body);
-            sendMail(body)
+          if (data.rows[0] !== null) {
+            sendMail({
+              to: data.rows[0].email,
+              username: req.params.username
+            });
+            res.status(200).send(true);
           }
-          res.status(200).send(true);
+          else 
+            res.status(200).send(false);
+
           client.end();
         })
         .catch(err => {
@@ -127,20 +121,21 @@ function passwordRecovery(req, res) {
 
 function sendMail(body) {
   const sgMail = require("@sendgrid/mail");
-  sgMail.setApiKey(
-    process.env.SENDGRID_API_KEY
-  );
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   console.log(process.env.SENDGRID_API_KEY);
   const msg = {
     to: body.to,
     from: "catuchi.site@gmail.com",
-    templateId: "168b7e9d520147089cdd4c19d51a7d11",
+    templateId: "d-168b7e9d520147089cdd4c19d51a7d11",
     dynamic_template_data: {
       username: body.username
     }
   };
-  sgMail.send(msg);
+  sgMail
+    .send(msg)
+    .then(() => console.log(200))
+    .catch(err => console.error(`ERROR AL ENVIAR EL CORREO: ${err}`));
 }
 
 module.exports = {
@@ -148,4 +143,4 @@ module.exports = {
   passwordRecovery: passwordRecovery,
   getServicesByUser: getServicesByUser,
   getToursByUser: getToursByUser
-}
+};

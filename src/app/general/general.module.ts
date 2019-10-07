@@ -11,6 +11,7 @@ import { SeeLocationComponent } from "./see-location/see-location.component";
 import { VedaComponent } from "./veda/veda.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { ProjectInfoComponent } from './project-info/project-info.component';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProjectInfoComponent } from './project-info/project-info.component';
     TourComponent,
     SeeLocationComponent,
     VedaComponent,
-    ProjectInfoComponent
+    ProjectInfoComponent,
+    PasswordRecoveryComponent
   ],
   imports: [
     CommonModule,
