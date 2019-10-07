@@ -18,4 +18,8 @@ export class PasswordRecoveryComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    
+  }
+
 }

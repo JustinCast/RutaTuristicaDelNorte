@@ -52,6 +52,10 @@ export class UserService {
     );
   }
 
+  verifyCode(username: string, code: string) {
+    
+  }
+
   handleError(err: HttpErrorResponse) {
     if (err.error instanceof Error) {
       // Error del lado del cliente
