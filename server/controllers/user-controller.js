@@ -123,7 +123,7 @@ function passwordRecovery(req, res) {
       console.log(`err when connecting on passwordRecovery: ${err}`);
     } else {
       let query = {
-        text: "SELECT email FROM _user WHERE username = $1;",
+        text: "SELECT * FROM gen_recovery_code($1)",
         values: [req.params.username]
       };
       client
@@ -132,6 +132,7 @@ function passwordRecovery(req, res) {
           if (data.rows[0] !== null) {
             sendMail({
               to: data.rows[0].email,
+              code: data.rows[0].code,
               username: req.params.username
             });
             res.status(200).send(true);
@@ -152,13 +153,14 @@ function sendMail(body) {
   const sgMail = require("@sendgrid/mail");
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-  console.log(process.env.SENDGRID_API_KEY);
+  console.log(body);
   const msg = {
     to: body.to,
     from: "catuchi.site@gmail.com",
     templateId: "d-168b7e9d520147089cdd4c19d51a7d11",
     dynamic_template_data: {
-      username: body.username
+      username: body.username,
+      code: body.code
     }
   };
   sgMail

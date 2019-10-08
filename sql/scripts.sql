@@ -424,29 +424,29 @@ AS
 
 DROP FUNCTION gen_recovery_code(_username VARCHAR);
 CREATE OR REPLACE FUNCTION gen_recovery_code(_username VARCHAR)
-RETURNS anyelement
+RETURNS TABLE(email VARCHAR, code VARCHAR)
 AS
     $$
-        DECLARE
-            result ALIAS FOR $0;
         BEGIN
-            RETURN QUERY
 
-            ((INSERT INTO recovery_password_code(code, id_user_fk, date)
+            INSERT INTO recovery_password_code(code, id_user_fk, date)
             VALUES(
                    (SELECT floor(random()*(999999-0+1))+0),
                    (SELECT id_user FROM _user WHERE _user.username = $1),
                    (SELECT NOW())
-            ) RETURNING code INTO result);
+            );
 
-            SELECT email INTO result FROM _user WHERE username = $1;
-
-            RETURN result);
+            RETURN QUERY SELECT
+                                u.email email,
+                                rpc.code code
+            FROM _user u
+                JOIN recovery_password_code rpc
+                    ON u.id_user = rpc.id_user_fk WHERE u.username = $1;
         END;
     $$ LANGUAGE plpgsql;
 
 
-SELECT * FROM gen_recovery_code('us1') AS r(result varchar);
+SELECT * FROM gen_recovery_code('us1');
 
 SELECT * FROM recovery_password_code;
 SELECT * FROM _user;
