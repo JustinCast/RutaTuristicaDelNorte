@@ -54,11 +54,19 @@ export class UserService {
     );
   }
 
-  verifyCodeUsername(username: string, code: string, newPassword: string): Observable<any> {
-    return this._http.post<any>(`${environment.SERVER_BASE_URL}verifyCodeUsername`, {
-      username: username,
-      code: code
-    });
+  verifyCodeUsername(
+    username: string,
+    code: string,
+    newPassword: string
+  ): Observable<any> {
+    return this._http.post<any>(
+      `${environment.SERVER_BASE_URL}verifyCodeUsername`,
+      {
+        username: username,
+        code: code,
+        newPassword: newPassword
+      }
+    );
   }
 
   handleError(err: HttpErrorResponse) {
