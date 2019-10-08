@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
 import { ErrorStateMatcher } from "src/app/models/ErrorStateMatcher";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-password-recovery",
@@ -43,11 +44,22 @@ export class PasswordRecoveryComponent implements OnInit {
 
   onSubmit() {
     let recoveryInfo = this.recoveryFG.value;
-    console.log(recoveryInfo);
-    this._user.verifyCodeUsername(
-      recoveryInfo.username,
-      recoveryInfo.code,
-      recoveryInfo.newPassword
-    );
+    this._user
+      .verifyCodeUsername(
+        recoveryInfo.username,
+        recoveryInfo.code,
+        recoveryInfo.newPassword
+      )
+      .subscribe({
+        next: r =>
+          this._user.openSnackBar(
+            r === false
+              ? "Problema al actualizar la contraseña"
+              : "Contraseña actualizada con éxito",
+            "Ok",
+            2500
+          ),
+        error: (err: HttpErrorResponse) => this._user.handleError(err)
+      });
   }
 }

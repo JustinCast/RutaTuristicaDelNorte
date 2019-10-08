@@ -450,5 +450,6 @@ SELECT * FROM gen_recovery_code('us1');
 
 SELECT * FROM recovery_password_code;
 SELECT * FROM _user;
-
-select exists(select 1 from recovery_password_code where id_user_fk = (SELECT id_user FROM _user WHERE username = 'us12') AND code = '429902');
+create extension pgcrypto;
+UPDATE _user SET password = crypt('asdfg', gen_salt('bf', 5)) WHERE id_user = 1;
+select exists(select 1 from recovery_password_code where id_user_fk = (SELECT id_user FROM _user WHERE username = 'us1') AND code = '429902');

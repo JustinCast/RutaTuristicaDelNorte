@@ -98,18 +98,31 @@ function verifyCodeUsername(req, res) {
                               SELECT id_user FROM _user WHERE username = $1) AND code = $2);`,
         values: [req.body.username, req.body.code]
       };
-      client.query(query)
-      .then(
-        data => {
-          console.log(data.rows);
+      client
+        .query(query)
+        .then(data => {
+          if (data.rows[0].exists) {
+            client
+              .query({
+                text:
+                  "UPDATE _user SET password = crypt($1, gen_salt('bf', 5)) WHERE username = $2",
+                values: [req.body.newPassword, req.body.username]
+              })
+              .then(() => {
+                res.status(200).send();
+                client.end();
+              })
+              .catch(err => console.log(`Error updating new password: ${err}`));
+          } else {
+            res.status(200).send(false);
+            client.end()
+          };
+        })
+        .catch(err => {
           client.end();
-        }
-      )
-      .catch(err => {
-        client.end();
-        res.status(400).send(err);
-        console.log(`err when query on verifyCodeUsername: ${err}`);
-      });
+          res.status(400).send(err);
+          console.log(`err when query on verifyCodeUsername: ${err}`);
+        });
     }
   });
 }
