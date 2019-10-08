@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
 import { User } from "../models/User";
 import { Observable } from "rxjs";
-import { Service } from '../models/Service';
+import { Service } from "../models/Service";
 
 @Injectable({
   providedIn: "root"
@@ -25,7 +25,9 @@ export class UserService {
   }
 
   passwordRecovery(username: string): Observable<any> {
-    return this._http.get<any>(`${environment.SERVER_BASE_URL}passwordRecovery/${username}`);
+    return this._http.get<any>(
+      `${environment.SERVER_BASE_URL}passwordRecovery/${username}`
+    );
   }
 
   openSnackBar(message: string, action: string, duration: number) {
@@ -52,8 +54,11 @@ export class UserService {
     );
   }
 
-  verifyCode(username: string, code: string) {
-    
+  verifyCodeUsername(username: string, code: string) {
+    this._http.post(`${environment.SERVER_BASE_URL}verifyCodeUsername`, {
+      username: username,
+      code: code
+    });
   }
 
   handleError(err: HttpErrorResponse) {

@@ -83,6 +83,37 @@ function getToursByUser(req, res) {
   });
 }
 
+function verifyCodeUsername(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on verifyCodeUsername: ${err}`);
+    } else {
+      let query = {
+        text: `select EXISTS(
+                            SELECT 1 FROM recovery_password_code 
+                            where id_user_fk = (
+                              SELECT id_user FROM _user WHERE username = $1) AND code = $2);`,
+        values: [req.body.username, req.body.code]
+      };
+      client.query(query)
+      .then(
+        data => {
+          console.log(data.rows);
+          client.end();
+        }
+      )
+      .catch(err => {
+        client.end();
+        res.status(400).send(err);
+        console.log(`err when query on verifyCodeUsername: ${err}`);
+      });
+    }
+  });
+}
+
 function passwordRecovery(req, res) {
   client = new pg.Client(db);
   client.connect(err => {
@@ -104,9 +135,7 @@ function passwordRecovery(req, res) {
               username: req.params.username
             });
             res.status(200).send(true);
-          }
-          else 
-            res.status(200).send(false);
+          } else res.status(200).send(false);
 
           client.end();
         })
@@ -140,6 +169,7 @@ function sendMail(body) {
 
 module.exports = {
   login: login,
+  verifyCodeUsername: verifyCodeUsername,
   passwordRecovery: passwordRecovery,
   getServicesByUser: getServicesByUser,
   getToursByUser: getToursByUser

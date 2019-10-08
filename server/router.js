@@ -27,6 +27,7 @@ api.get('/getTourImages/:id_tour', ImagesCTRL.getTourImages);
 
 // user queries
 api.post('/login', UserCTRL.login);
+api.post('/verifyCodeUsername', UserCTRL.verifyCodeUsername);
 api.get("/passwordRecovery/:username", UserCTRL.passwordRecovery);
 api.get('/getServicesByUser/:id', UserCTRL.getServicesByUser);
 api.get('/getToursByUser/:id', UserCTRL.getToursByUser);
