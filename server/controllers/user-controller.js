@@ -152,8 +152,6 @@ function passwordRecovery(req, res) {
 function sendMail(body) {
   const sgMail = require("@sendgrid/mail");
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-  console.log(body);
   const msg = {
     to: body.to,
     from: "catuchi.site@gmail.com",
