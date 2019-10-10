@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, AfterViewInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Service } from "src/app/models/Service";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
@@ -13,7 +13,7 @@ import { Rates } from "src/app/models/Rates";
   templateUrl: "./service.component.html",
   styleUrls: ["./service.component.scss"]
 })
-export class TourComponent implements OnInit {
+export class TourComponent implements OnInit, AfterViewInit {
   tour: Service;
   public degree = 45;
   public moreSlides = 1;
@@ -30,28 +30,26 @@ export class TourComponent implements OnInit {
       "<div class='nav-btn next-slide'></div>"
     ],
     responsiveClass: true,
-    // responsive: {
-    //   0: {
-    //     items: 1,
-    //     nav: true,
-    //     loop: true
-    //   },
-    //   600: {
-    //     items: 1,
-    //     nav: true,
-    //     loop: true
-    //   },
-    //   1000: {
-    //     items: 2,
-    //     nav: true,
-    //     loop: true
-    //   },
-    //   1500: {
-    //     items: 3,
-    //     nav: true,
-    //     loop: true
-    //   }
-    // }
+    responsive: {
+      0: {
+        items: 1,
+        nav: true,
+        loop: true
+      },
+      600: {
+        items: 1,
+        nav: true,
+        loop: true
+      },
+      1000: {
+        items: 2,
+        nav: true
+      },
+      1500: {
+        items: 3,
+        nav: true
+      }
+    }
   };
 
   public mode: string = "horizontal";
@@ -79,6 +77,18 @@ export class TourComponent implements OnInit {
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
     } else this._router.navigateByUrl("/general/tours");
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class
+    let e = document.getElementsByTagName(
+      "owl-carousel-child"
+    )[0] as HTMLElement;
+    if (e) {
+      e.style.marginRight = "0px";
+      e.style.marginLeft = "0px";
+    }
   }
 
   @HostListener("window:resize", ["$event"])
