@@ -1,24 +1,14 @@
 <div *ngIf="tour" id="tour-container">
-  <h2 class="text-center text-primary m-2">{{ tour._name }}</h2>
-  <carousel-component
-    class="shadow-lg"
-    #carousel
-    [mode]="'horizontal'"
-    [morePairSlides]="moreSlides"
-    [angle]="degree"
-  >
-    <div class="item-carousel rounded shadow" *ngFor="let imageObject of tour._imgs_lazy" (deferLoad)="imageObject.show = true">
-      <img class="rounded i" src="{{ imageObject.img }}" />
+  <h2 class="text-center text-primary m-2 p-2">{{ tour._name }}</h2>
+
+  <owl-carousel class="m-auto" [options]="carouselOptions" [items]="tour._imgs_lazy" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+    <div class="item" *ngFor="let imageObject of tour._imgs_lazy" (deferLoad)="imageObject.show = true">
+      <img class="rounded slide-image" src="{{imageObject.img}}" >
     </div>
-  </carousel-component>
-  <div class="container text-center mt-2" id="carousel-footer">
-    <button mat-icon-button class="m-2" (click)="carousel.slidePrev()">
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-    <button mat-icon-button class="m-2" (click)="carousel.slideNext()">
-      <mat-icon>navigate_next</mat-icon>
-    </button>
-  </div>
+  </owl-carousel>
+
+  
+
   <ul id="details" class="container text-left p-3 shadow-sm">
     <h2 class="text-center text-muted font-weight-light">Información</h2>
     <hr />

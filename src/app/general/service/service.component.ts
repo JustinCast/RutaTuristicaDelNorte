@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Service } from "src/app/models/Service";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
@@ -21,6 +21,40 @@ export class TourComponent implements OnInit {
   rates: Rates;
   showRelatedLoadingInfo: boolean = true;
   showLoadingRatesInfo: boolean = true;
+
+  carouselOptions = {
+    margin: 25,
+    nav: true,
+    navText: [
+      "<div class='nav-btn prev-slide'></div>",
+      "<div class='nav-btn next-slide'></div>"
+    ],
+    responsiveClass: true,
+    // responsive: {
+    //   0: {
+    //     items: 1,
+    //     nav: true,
+    //     loop: true
+    //   },
+    //   600: {
+    //     items: 1,
+    //     nav: true,
+    //     loop: true
+    //   },
+    //   1000: {
+    //     items: 2,
+    //     nav: true,
+    //     loop: true
+    //   },
+    //   1500: {
+    //     items: 3,
+    //     nav: true,
+    //     loop: true
+    //   }
+    // }
+  };
+
+  public mode: string = "horizontal";
   constructor(
     private _tours: Services,
     private route: ActivatedRoute,
@@ -30,8 +64,14 @@ export class TourComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.innerWidth < 700
+      ? (this.mode = "vertical")
+      : (this.mode = "horizontal");
     let id_service = this.route.snapshot.paramMap.get("id_service");
-    if (this.route.snapshot.paramMap.get("id_service") && this._tours.services) {
+    if (
+      this.route.snapshot.paramMap.get("id_service") &&
+      this._tours.services
+    ) {
       this.tour = this._tours.services.find(
         t => t.id_service === Number(id_service)
       );
@@ -39,6 +79,13 @@ export class TourComponent implements OnInit {
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
     } else this._router.navigateByUrl("/general/tours");
+  }
+
+  @HostListener("window:resize", ["$event"])
+  onResize(event) {
+    window.innerWidth < 700
+      ? (this.mode = "vertical")
+      : (this.mode = "horizontal");
   }
 
   getServiceRates(id_service: number) {

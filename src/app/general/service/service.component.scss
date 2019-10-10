@@ -1,15 +1,4 @@
-@import '../../../assets/ui-utils/vars';
-
-@media screen and (min-width: 601px) {
-  .item-carousel {
-    width: 10%;
-  }
-}
-@media screen and (max-width: 700px) {
-  .item-carousel {
-    width: 60%
-  }
-}
+@import "../../../assets/ui-utils/vars";
 
 @media screen and (min-width: 601px) {
   .related-tour {
@@ -19,7 +8,7 @@
 
 @media screen and (max-width: 700px) {
   .related-tour {
-    width: 95%
+    width: 95%;
   }
 }
 
@@ -46,7 +35,19 @@
   }
 }
 
-.main-img{
+@media screen and (min-width: 601px) {
+  img {
+    height: 250px;
+    width: 250px;
+  }
+}
+@media screen and (max-width: 700px) {
+  img {
+    height: 250px;
+    width: 250px;
+  }
+}
+.main-img {
   margin: auto;
   width: 100%;
 }
@@ -58,41 +59,26 @@
   height: 100%;
   width: 100%;
 }
-h2{
-  font-weight: 200
-}
-:host .item-carousel{
-  width: 25%;
-  height: 25%;
-  border-color: transparent
-}
-:host carousel-component{
-  border: 0.5px solid lightgray;
-  border-radius: 15px;
-  display: block;
-  overflow: hidden;
-  padding: 8vh 6vh;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 2vh;
+h2 {
+  font-weight: 200;
 }
 
-.item-carousel div, .item-carousel img{
-  height: 100%;
-  width: 100%;
+.item {
+  width: 100%
 }
+
 #details {
   list-style-type: none;
-  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
 }
 
 mat-icon {
   vertical-align: middle;
-}
-
-carousel-component {
-  background-color: #FBAB7E;
-  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 }
 
 #related-tours {
@@ -102,9 +88,9 @@ carousel-component {
 }
 
 h3 {
-  color: $secondary-color
+  color: $secondary-color;
 }
 
 .open-in-new {
-  background-color: $primary-color
+  background-color: $primary-color;
 }
