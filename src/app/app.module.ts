@@ -22,8 +22,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
     SharedModule,
+    AdminModule,
     GeneralModule,
-    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class CarouselComponent implements OnInit {
 
-  @Input() images: Array<any>;
+  @Input() public images: Array<any>;
 
   carouselOptions = {
     margin: 25,
@@ -41,5 +41,7 @@ export class CarouselComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.images);
+  }
 }

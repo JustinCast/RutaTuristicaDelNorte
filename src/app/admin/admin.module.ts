@@ -52,6 +52,6 @@ import { CarouselComponent } from './carousel/carousel.component';
     SearchRelatedComponent
   ],
   providers: [AUTH_PROVIDERS],
-  exports: [AdminRootComponent]
+  exports: [AdminRootComponent, CarouselComponent]
 })
 export class AdminModule {}
