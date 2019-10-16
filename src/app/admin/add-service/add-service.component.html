@@ -72,6 +72,7 @@
       <mat-icon [ngStyle]="{'color': rates === undefined ? 'red': 'green'}" class="ml-1">{{ratesIcon}}</mat-icon>
     </div>
     <app-upload-images (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
+    <button (click)="openShowImages(); (false)" mat-stroked-button>aaa</button>
     <div class="container text-center">
       <button
         [disabled]="!addServiceFG.valid !== undefined || !location"

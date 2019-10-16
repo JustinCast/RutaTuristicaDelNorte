@@ -30,8 +30,8 @@ export class DialogManagerService {
   public openImagesDialog(images: Array<string>): Observable<Array<string>> {
     let dialogRef: MatDialogRef<ShowImagesComponent>;
     dialogRef = this.dialog.open(ShowImagesComponent, {
-      width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
-      height: `${window.innerHeight <= 812 ? "65%" : "60%"}`,
+      width: `${window.innerWidth < 400 ? "90%" : "75%"}`,
+      height: `${window.innerHeight <= 812 ? "65%" : "70%"}`,
       data: images,
       panelClass: "dialog"
     });

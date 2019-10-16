@@ -43,6 +43,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
     });
   }
 
+  openShowImages() {
+    this._dialog.openImagesDialog([]);
+  }
+
   ngOnInit() {
     this.classification = this._common.classification;
     this.locationIcon = this._common.locationIcon;

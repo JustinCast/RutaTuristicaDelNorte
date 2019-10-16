@@ -16,6 +16,7 @@ export class CarouselComponent implements OnInit {
       "<div class='nav-btn prev-slide'></div>",
       "<div class='nav-btn next-slide'></div>"
     ],
+    center: true,
     responsiveClass: true,
     responsive: {
       0: {
@@ -29,11 +30,11 @@ export class CarouselComponent implements OnInit {
         loop: true
       },
       1000: {
-        items: 2,
-        nav: true
+        items: 1,
+        nav: true,
       },
       1500: {
-        items: 3,
+        items: 1,
         nav: true
       }
     }
