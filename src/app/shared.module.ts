@@ -19,8 +19,6 @@ import {
   MatTabsModule,
   MatAutocompleteModule
 } from "@angular/material";
-import { CarouselModule } from "ngx-carousel-lib";
-import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule } from "angularfire2/storage";
@@ -28,6 +26,7 @@ import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
+import { OwlModule } from 'ngx-owl-carousel';
 
 @NgModule({
   declarations: [],
@@ -39,7 +38,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    CarouselModule,
     MatExpansionModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -48,7 +46,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
-    NgbCarouselModule,
     HttpClientModule,
     MatListModule,
     MatDividerModule,
@@ -58,7 +55,8 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatCheckboxModule,
     DeferLoadModule,
     MatTabsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    OwlModule
   ],
   exports: [
     MatMenuModule,
@@ -67,7 +65,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatIconModule,
     MatInputModule,
     MatCardModule,
-    CarouselModule,
     MatExpansionModule,
     AngularFireModule,
     AngularFirestoreModule,
@@ -76,7 +73,6 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
-    NgbCarouselModule,
     HttpClientModule,
     MatListModule,
     MatDividerModule,
@@ -86,7 +82,8 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     MatCheckboxModule,
     DeferLoadModule,
     MatTabsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    OwlModule
   ]
 })
 export class SharedModule {}

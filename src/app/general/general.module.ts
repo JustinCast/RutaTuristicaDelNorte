@@ -12,7 +12,6 @@ import { VedaComponent } from "./veda/veda.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { ProjectInfoComponent } from './project-info/project-info.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
-import { OwlModule } from 'ngx-owl-carousel';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { OwlModule } from 'ngx-owl-carousel';
     CommonModule,
     RouterModule.forRoot(ROUTES),
     SharedModule,
-    NgxPaginationModule,
-    OwlModule
+    NgxPaginationModule
   ],
   entryComponents: [SeeLocationComponent],
   exports: [GeneralRootComponent]

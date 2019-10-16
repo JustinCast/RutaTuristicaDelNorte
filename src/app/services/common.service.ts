@@ -15,4 +15,12 @@ export class CommonService {
   ratesIcon: string = "priority_hight";
   locationIcon: string = "priority_hight";
   constructor() { }
+
+  public setImgsLazyLoading(imgs): Array<any> {
+    let aux = [];
+    imgs.forEach(img => {
+      aux.unshift({ img: img, show: false });
+    });
+    return aux;
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
 import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from "@angular/material";
 import { AngularFireStorage } from "angularfire2/storage";
 import { Subscription } from "rxjs";
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: "app-show-images",
@@ -14,10 +15,13 @@ export class ShowImagesComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public images: Array<string>,
     private storage: AngularFireStorage,
     private snackbar: MatSnackBar,
-    public dialogRef: MatDialogRef<ShowImagesComponent>
+    public dialogRef: MatDialogRef<ShowImagesComponent>,
+    private _common: CommonService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.images = this._common.setImgsLazyLoading(this.images);
+  }
 
   deleteImage(index: number) {
     /*this.subscription = */this.storage

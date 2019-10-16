@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EditServiceComponent } from './dashboard/edit-service/edit-service.component';
 import { EditTourComponent } from './dashboard/edit-tour/edit-tour.component';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
     AddTourComponent,
     SearchRelatedComponent,
     EditTourComponent,
-    UploadImagesComponent
+    UploadImagesComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,

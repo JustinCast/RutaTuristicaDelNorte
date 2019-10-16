@@ -6,6 +6,7 @@ import { MatSnackBar } from "@angular/material";
 import { Observable } from "rxjs";
 import { User } from "../models/User";
 import { Rates } from "../models/Rates";
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,7 @@ import { Rates } from "../models/Rates";
 export class Services {
   public services: Array<Service>;
   public page: number;
-  constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
+  constructor(private _http: HttpClient, private _snackbar: MatSnackBar, private _common: CommonService) {}
 
   getServicesCount(column: String, value: String): Observable<number> {
     return this._http.get<number>(
@@ -64,15 +65,7 @@ export class Services {
   }
 
   setLazyLoading(): void {
-    this.services.forEach(t => (t._imgs_lazy = this.setImgsLazyLoading(t.imgs)));
-  }
-
-  public setImgsLazyLoading(imgs): Array<any> {
-    let aux = [];
-    imgs.forEach(img => {
-      aux.unshift({ img: img, show: false });
-    });
-    return aux;
+    this.services.forEach(t => (t._imgs_lazy = this._common.setImgsLazyLoading(t.imgs)));
   }
 
   getService(id_service: number): Observable<Service> {

@@ -55,11 +55,9 @@ mat-drawer-container {
 }
 
 nav {
-  background-color: $primary-color;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #3c3b3d;
   font-weight: 200;
   margin: auto;
   margin-top: 1%;
@@ -82,7 +80,8 @@ i, mat-icon {
   cursor: pointer;
 }
 .active-link{
-  font-weight: 800
+  font-weight: 800;
+  font-style: bold;
 }
 #outlet{
   width: 100%;
