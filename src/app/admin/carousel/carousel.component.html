@@ -1,10 +1,5 @@
-<!-- <owl-carousel class="mb-2 container" [items]="images" [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+<owl-carousel class="mb-2 container" [items]="images" [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
   <div class="item" *ngFor="let i of images" (deferLoad)="i.show = true">
-    <img class="rounded slide-image" src="{{i.img}}" >
-  </div>
-</owl-carousel> -->
-<owl-carousel [items]="images" [options]="carouselOptions" [carouselClasses]="['owl-theme', 'sliding']">
-  <div class="container item" *ngFor="let i of images">
-    <img class="img-fluid" src="{{i}}" >
+    <img class="rounded img-fluid slide-image" src="{{i.img}}" >
   </div>
 </owl-carousel>

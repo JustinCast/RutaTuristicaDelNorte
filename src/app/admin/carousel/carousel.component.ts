@@ -6,7 +6,6 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./carousel.component.scss"]
 })
 export class CarouselComponent implements OnInit {
-
   @Input() public images: Array<any>;
 
   carouselOptions = {
@@ -16,33 +15,30 @@ export class CarouselComponent implements OnInit {
       "<div class='nav-btn prev-slide'></div>",
       "<div class='nav-btn next-slide'></div>"
     ],
-    center: true,
     responsiveClass: true,
     responsive: {
       0: {
         items: 1,
-        nav: true,
-        loop: true
+        nav: true
       },
       600: {
         items: 1,
-        nav: true,
-        loop: true
+        nav: true
       },
       1000: {
-        items: 1,
+        items: 2,
         nav: true,
+        loop: false
       },
       1500: {
-        items: 1,
-        nav: true
+        items: 3,
+        nav: true,
+        loop: false
       }
     }
   };
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.images);
-  }
+  ngOnInit() {}
 }
