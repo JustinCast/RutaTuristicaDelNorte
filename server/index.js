@@ -31,10 +31,10 @@ function config() {
  * Endpoints Config
  */
 function routerConfig() {
-  app.use(express.static(__dirname + "../dist/ruta-turistica-del-norte"));
+  app.use(express.static("../dist/ruta-turistica-del-norte"));
   app.use('/api', api);
   app.get("/*", function(req, res) {
-    res.sendFile(path.join(__dirname + "../dist/ruta-turistica-del-norte/index.html"));
+    res.sendFile(path.join("../dist/ruta-turistica-del-norte/index.html"));
   });
 }
 
