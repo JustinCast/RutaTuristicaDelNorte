@@ -1,7 +1,7 @@
-<div *ngIf="tour" class="mb-auto" id="tour-container">
-  <h2 class="text-center text-primary m-2 p-2">{{ tour._name }}</h2>
+<div *ngIf="tour" id="tour-container">
+  <h2 class="text-center text-primary">{{ tour._name }}</h2>
   <div class="container">
-    <app-carousel class="w-75" style="height: 100px;" *ngIf="tour._imgs_lazy" [images]="tour._imgs_lazy"></app-carousel>
+    <app-carousel *ngIf="tour._imgs_lazy" [images]="tour._imgs_lazy"></app-carousel>
   </div>
   
   <ul id="details" class="container text-left p-3 shadow-sm">
