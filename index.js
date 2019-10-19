@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
-const api = require('./router');
+const api = require('./server/router');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -31,10 +31,10 @@ function config() {
  * Endpoints Config
  */
 function routerConfig() {
-  app.use(express.static("../dist/ruta-turistica-del-norte"));
+  app.use(express.static(__dirname + "/dist/ruta-turistica-del-norte"));
   app.use('/api', api);
   app.get("/*", function(req, res) {
-    res.sendFile(path.join(__dirname + "../dist/ruta-turistica-del-norte/index.html"));
+    res.sendFile(path.join(__dirname + "/dist/ruta-turistica-del-norte/index.html"));
   });
 }
 
