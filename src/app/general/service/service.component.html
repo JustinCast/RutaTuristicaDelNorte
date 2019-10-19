@@ -1,7 +1,7 @@
 <div *ngIf="tour" id="tour-container">
   <h2 class="text-center text-primary">{{ tour._name }}</h2>
   <div class="container">
-    <app-carousel *ngIf="tour._imgs_lazy" [images]="tour._imgs_lazy"></app-carousel>
+    <app-carousel *ngIf="tour._imgs_lazy" [allowDelete]="false" [images]="tour._imgs_lazy"></app-carousel>
   </div>
   
   <ul id="details" class="container text-left p-3 shadow-sm">

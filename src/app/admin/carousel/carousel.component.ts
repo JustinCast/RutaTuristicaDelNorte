@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-carousel",
@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class CarouselComponent implements OnInit {
   @Input() public images: Array<any>;
+  @Input() public allowDelete: boolean;
+  @Output() deleteImageEvent = new EventEmitter();
 
   carouselOptions = {
     margin: 25,
@@ -41,4 +43,8 @@ export class CarouselComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  emitImageDeletion(index: number) {
+    this.deleteImageEvent.emit(index);
+  }
 }
