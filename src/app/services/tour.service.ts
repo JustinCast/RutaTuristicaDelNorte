@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpErrorResponse, HttpClient } from "@angular/common/http";
 import { MatSnackBar } from "@angular/material";
 import { Tour } from "../models/Tour";
-import { environment } from "src/environments/environment.prod";
+import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"

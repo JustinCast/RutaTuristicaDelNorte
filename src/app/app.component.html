@@ -89,7 +89,7 @@
             [routerLink]="['/general/info']"
             class="link"
           >
-            Acerca de este proyecto
+            +Info
           </li>
         </ul>
         <div class="navbar-expand ml-auto navbar-nav social">
@@ -102,7 +102,7 @@
             >
           </a>
           <ng-template #logout>
-            <a class="nav-item nav-link white p-1 m-1" (click)="_auth.logout(); (false)">
+            <a class="nav-item nav-link white p-1 m-1" style="cursor: pointer;" (click)="_auth.logout(); (false)">
               Salir
             </a>
           </ng-template>
