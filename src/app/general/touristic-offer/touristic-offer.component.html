@@ -45,7 +45,7 @@
         >
           <ng-container *ngIf="item._imgs_lazy[0].show">
             <img
-              class="main-img rounded shadow-sm"
+              class="main-img rounded shadow"
               alt=""
               src="{{ item._imgs_lazy[0].img }}"
             />
@@ -168,30 +168,6 @@
                   <p>{{ t._description }}</p>
                 </mat-expansion-panel>
               </mat-accordion>
-            </li>
-            <!-- <li
-              *ngIf="
-                item._phones !== null && item._phones.phones.length > 0;
-                else noPhones
-              "
-            >
-              <mat-list>
-                <mat-list-item *ngFor="let p of item._phones.phones">
-                  <mat-icon>phone</mat-icon>{{ p }}
-                </mat-list-item>
-              </mat-list>
-            </li> -->
-            <!-- <ng-template #noPhones>
-              <mat-list>
-                <mat-list-item
-                  ><mat-icon color="warn">info</mat-icon> No hay números de
-                  teléfono asociados</mat-list-item
-                >
-              </mat-list>
-            </ng-template> -->
-
-            <li>
-              <!-- <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }} -->
             </li>
           </ul>
         </mat-card-content>
