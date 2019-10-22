@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
       data => {
         this.services = data;
         this._user.getToursByUser().subscribe({
-          next: data => {this.tours = data;},
+          next: data => {this.tours = data; console.log(this.tours)},
           error: (err: HttpErrorResponse) => this._user.handleError(err)
         });
       },
