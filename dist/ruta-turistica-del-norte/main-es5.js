@@ -3312,7 +3312,7 @@ var environment = {
         messagingSenderId: "194520690899",
         appId: "1:194520690899:web:906cb44ae4561912"
     },
-    SERVER_BASE_URL: "http://localhost:5000/api/",
+    SERVER_BASE_URL: "api/",
     localstorage_key: 'loggedUser'
 };
 /*
