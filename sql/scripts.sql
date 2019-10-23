@@ -193,7 +193,7 @@ AS
                     t.phones _phones,
                     array_agg(ti.url) as imgs
                 FROM tour t
-                JOIN tour_images ti on t.id = ti.id_tour_fk
+                LEFT OUTER JOIN tour_images ti on t.id = ti.id_tour_fk
                 GROUP BY t.id
                 LIMIT COALESCE(_limit, (SELECT COUNT(*) FROM tour)) OFFSET COALESCE(_offset, 0);
         END
@@ -291,7 +291,7 @@ AS
                array_agg(i.url) imgs
            FROM tour t JOIN user_tour us ON
                t.id = us.id AND us.id_user = _id
-           JOIN (
+           LEFT OUTER JOIN (
                SELECT url,
                       id_tour_fk
                FROM tour_images
@@ -446,4 +446,4 @@ AS
     $$ LANGUAGE plpgsql;
 
 
-DELETE FROM tour;
+SELECT * FROM get_tours(6, 0);

@@ -109,7 +109,7 @@
         </div>
       </mat-card>
     </ul>
-    <pagination-controls class="container text-center" (pageChange)="pageChanged($event)">
+    <pagination-controls class="my-pagination container text-center" (pageChange)="pageChanged($event)">
     </pagination-controls>
     <ng-template #empty>
       <p>Sin información que mostrar</p>
@@ -120,7 +120,7 @@
     <h4 class="text-center text-primary">
       Tours
     </h4>
-    <ul>
+    <ul class="pl-0">
       <mat-card
         class="service"
         *ngFor="
@@ -137,6 +137,7 @@
         <h1 class="text-center">{{ t._name }}</h1>
         <hr />
         <div
+          *ngIf="t.imgs[0] !== null"
           id="tour-img-container"
           class="p-0 text-center"
           (deferLoad)="t._imgs_lazy[0].show = true"
@@ -182,7 +183,7 @@
         </div>
       </mat-card>
     </ul>
-    <pagination-controls class="container text-center" id="second" (pageChange)="toursPageChanged($event)">
+    <pagination-controls class="my-pagination container text-center" id="second" (pageChange)="toursPageChanged($event)">
     </pagination-controls>
   </div>
 </div>

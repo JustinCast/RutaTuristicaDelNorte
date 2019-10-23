@@ -1,5 +1,5 @@
 
-<form *ngIf="s; else loading" (ngSubmit)="onSubmit()" class="mt-5 pt-5">
+<form *ngIf="s; else loading" (ngSubmit)="onSubmit()" class="mt-5 pt-5 pb-3">
   <h1 class="font-weight-light text-center">Editar servicio</h1>
   <mat-form-field appearance="outline">
     <mat-label>Nombre</mat-label>
@@ -54,13 +54,6 @@
     <mat-label>Correo</mat-label>
     <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s._email">
   </mat-form-field>
-
-  <!-- <div class="container text-center mb-2" *ngIf="tourImages">
-    <h4 class="font-weight-light">{{tourImages.length}} imagen(es) han sido encontradas</h4>
-    <button (click)="openImagesDialog(); false" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>
-  </div>
-  
-  <h4 class="font-weight-light text-center">Agregar <span *ngIf="tourImages">más</span> imágenes</h4> -->
 
   <div class="text-center container">
     <button type="submit" color="primary" mat-raised-button><mat-icon>send</mat-icon></button>

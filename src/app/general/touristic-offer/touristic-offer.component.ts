@@ -51,7 +51,6 @@ export class TouristicOfferComponent implements OnInit {
     this._tour.getTours(this.limit, this.toursOffset).subscribe({
       next: tours => {
         this.tours = tours;
-        console.log(this.tours);
         this._tour.setLazyLoading(this.tours);
       },
       error: (err: HttpErrorResponse) => this._tour.handleError(err)
