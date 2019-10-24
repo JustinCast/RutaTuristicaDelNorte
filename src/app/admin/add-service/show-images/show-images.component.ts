@@ -27,7 +27,6 @@ export class ShowImagesComponent implements OnInit {
   }
 
   deleteImage(event: any) {
-    console.log(event);
     this.fireStorage.storage
       .refFromURL(this.data.images[event.index].img)
       .delete()
@@ -36,23 +35,27 @@ export class ShowImagesComponent implements OnInit {
           ? this._images
               .deleteServiceImage(this.data.images[event.index].img)
               .subscribe({
-                next: () =>
+                next: () => {
                   this._common.openSnackBar(
                     "Imagen eliminada de la base de datos",
                     "Ok",
                     2500
-                  ),
+                  );
+                  this.data.images.splice(event.index, 1);
+                },
                 error: (err: HttpErrorResponse) => console.log(err)
               })
           : this._images
               .deleteTourImage(this.data.images[event.index].img)
               .subscribe({
-                next: () =>
+                next: () => {
                   this._common.openSnackBar(
                     "Imagen eliminada de la base de datos",
                     "Ok",
                     2500
-                  ),
+                  );
+                  this.data.images.splice(event.index, 1);
+                },
                 error: (err: HttpErrorResponse) => console.log(err)
               });
         this.snackbar.open("Imagen eliminada", "Ok", { duration: 2000 });

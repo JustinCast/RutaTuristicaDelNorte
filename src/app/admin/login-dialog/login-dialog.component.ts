@@ -46,6 +46,7 @@ export class LoginDialogComponent implements OnInit {
             this._user.openSnackBar("Credenciales incorrectas", "Ok", 2500);
             return;
           }
+          this._auth.logout();
           this._auth.login(new User(data._fullname, data.logged, "", data._id));
           this._user.openSnackBar("Inicio de sesión exitoso", "Ok", 2500);
         },
