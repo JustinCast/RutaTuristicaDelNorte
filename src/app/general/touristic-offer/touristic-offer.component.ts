@@ -4,6 +4,7 @@ import { CommonService } from "src/app/services/common.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { TourService } from "src/app/services/tour.service";
 import { Tour } from "src/app/models/Tour";
+import { DialogManagerService } from 'src/app/services/dialog-manager.service';
 
 @Component({
   selector: "app-tours",
@@ -23,7 +24,8 @@ export class TouristicOfferComponent implements OnInit {
   constructor(
     public _service: Services,
     public _common: CommonService,
-    public _tour: TourService
+    public _tour: TourService,
+    public _dialog: DialogManagerService
   ) {}
 
   ngOnInit() {
@@ -86,5 +88,10 @@ export class TouristicOfferComponent implements OnInit {
   reset() {
     this.filter = "";
     this.getTableCountData(undefined, undefined);
+  }
+
+  openTourInfo(i: number) {
+    console.log(i)
+    this._dialog.showTourInfo(this.tours[i])
   }
 }

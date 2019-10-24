@@ -10,10 +10,10 @@ import { ServiceComponent } from "./service/service.component";
 import { SeeLocationComponent } from "./see-location/see-location.component";
 import { VedaComponent } from "./veda/veda.component";
 import { NgxPaginationModule } from "ngx-pagination";
-import { ProjectInfoComponent } from './project-info/project-info.component';
-import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
-import { AdminModule } from '../admin/admin.module';
-import { TourComponent } from './tour/tour.component';
+import { ProjectInfoComponent } from "./project-info/project-info.component";
+import { PasswordRecoveryComponent } from "./password-recovery/password-recovery.component";
+import { AdminModule } from "../admin/admin.module";
+import { TourComponent } from "./tour/tour.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { TourComponent } from './tour/tour.component';
     NgxPaginationModule,
     AdminModule
   ],
-  entryComponents: [SeeLocationComponent],
+  entryComponents: [SeeLocationComponent, TourComponent],
   exports: [GeneralRootComponent]
 })
 export class GeneralModule {}

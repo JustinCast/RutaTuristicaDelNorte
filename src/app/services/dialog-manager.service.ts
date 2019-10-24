@@ -9,6 +9,8 @@ import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
 import { SearchRelatedComponent } from "../admin/search-related/search-related.component";
 import { Service } from "../models/Service";
+import { Tour } from '../models/Tour';
+import { TourComponent } from '../general/tour/tour.component';
 
 @Injectable({
   providedIn: "root"
@@ -23,6 +25,17 @@ export class DialogManagerService {
       height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
       panelClass: "dialog",
       data: value !== undefined ? JSON.parse(value) : null
+    });
+    return dialogRef.afterClosed();
+  }
+
+  public showTourInfo(tour: Tour) {
+    let dialogRef: MatDialogRef<TourComponent>;
+    dialogRef = this.dialog.open(TourComponent, {
+      width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
+      height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
+      panelClass: "dialog",
+      data: tour
     });
     return dialogRef.afterClosed();
   }

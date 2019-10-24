@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Tour } from 'src/app/models/Tour';
 
 @Component({
   selector: 'app-tour',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tour.component.scss']
 })
 export class TourComponent implements OnInit {
-
-  constructor() { }
+  data: any;
+  constructor(
+    public dialogRef: MatDialogRef<TourComponent>,
+    @Inject(MAT_DIALOG_DATA) public tour: Tour
+  ) { }
 
   ngOnInit() {
+    console.log(this.tour);
+    this.data = {images: this.tour.imgs, table: "tour"}
   }
 
 }

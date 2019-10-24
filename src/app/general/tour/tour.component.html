@@ -1,3 +1,18 @@
-<p>
-  tour works!
-</p>
+<div *ngIf="tour" class="d-flex flex-column justify-content-around h-100">
+  <h3 class="text-primary font-weight-light text-center">{{tour._name}}</h3>
+  <app-carousel *ngIf="tour.imgs.length > 0 && tour.imgs[0] !== null" [allowDelete]="false" [data]="data"></app-carousel>
+  
+  <div class="container p-2">
+    <p class="text-muted font-italic">
+      {{tour._description}}
+    </p>
+    <p class="text-muted">
+      <mat-icon>mail</mat-icon>{{tour._email}}
+    </p>
+    <ul class="list-group" *ngIf="tour._phones.phones.length > 0">
+      <li *ngFor="let p of tour._phones.phones" class="list-group-item">
+        <mat-icon>phone</mat-icon> {{p}}
+      </li>
+    </ul>
+  </div>
+</div>
