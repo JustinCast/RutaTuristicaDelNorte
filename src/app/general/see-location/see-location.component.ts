@@ -16,7 +16,6 @@ export class SeeLocationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.data.location);
     this.lp = new LocationPicker("see-loc", {
       lat: this.data.location.lat,
       lng: this.data.location.lng

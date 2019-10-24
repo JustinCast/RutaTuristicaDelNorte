@@ -41,7 +41,7 @@
     <p *ngIf="related"><strong>Selección: </strong>{{related.name}}</p>
   </div>
 
-  <app-upload-images (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
+  <app-upload-images [tablename]="'tour'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
 
   <div class="container text-center">
     <button type="submit" [disabled]="!tourFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>

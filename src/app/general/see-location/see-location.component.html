@@ -1,4 +1,6 @@
-<div id="see-loc"></div>
-<div *ngIf="data.edit" class="container text-center">
-  <button mat-button (click)="editLoc();"><mat-icon>done</mat-icon></button>
+<div class="d-flex flex-column h-100 justify-content center">
+  <div id="see-loc" class="d-flex flex-colum flex-grow-1"></div>
+  <div *ngIf="data.edit" class="container text-center">
+    <button mat-button (click)="editLoc();"><mat-icon>done</mat-icon></button>
+  </div>
 </div>

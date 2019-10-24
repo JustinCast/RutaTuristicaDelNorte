@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
 import {
   AngularFireUploadTask,
   AngularFireStorage
@@ -29,6 +29,7 @@ export class UploadImagesComponent implements OnInit {
   // State for dropzone CSS toggling
   isHovering: boolean;
 
+  @Input() public tablename: string;
   @Output() downloadUrlsChange = new EventEmitter();
 
   constructor(
@@ -39,7 +40,7 @@ export class UploadImagesComponent implements OnInit {
   ngOnInit() {}
 
   openShowImages() {
-    this._dialog.openImagesDialog(this.downloadURLS);
+    this._dialog.openImagesDialog(this.downloadURLS, this.tablename);
   }
 
   toggleHover(event: boolean) {

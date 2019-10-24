@@ -8,7 +8,7 @@ import { LoginDialogComponent } from "../admin/login-dialog/login-dialog.compone
 import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
 import { SearchRelatedComponent } from "../admin/search-related/search-related.component";
-import { Service } from '../models/Service';
+import { Service } from "../models/Service";
 
 @Injectable({
   providedIn: "root"
@@ -27,12 +27,15 @@ export class DialogManagerService {
     return dialogRef.afterClosed();
   }
 
-  public openImagesDialog(images: Array<string>): Observable<Array<string>> {
+  public openImagesDialog(
+    images: Array<string>,
+    tablename: string
+  ): Observable<Array<string>> {
     let dialogRef: MatDialogRef<ShowImagesComponent>;
     dialogRef = this.dialog.open(ShowImagesComponent, {
       width: `${window.innerWidth < 400 ? "90%" : "75%"}`,
       height: `${window.innerHeight <= 812 ? "80%" : "70%"}`,
-      data: images,
+      data: { images: images, table: tablename },
       panelClass: "dialog"
     });
     return dialogRef.afterClosed();

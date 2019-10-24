@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CommonService {
   ];
   ratesIcon: string = "priority_hight";
   locationIcon: string = "priority_hight";
-  constructor() { }
+  constructor(private _snackbar: MatSnackBar) { }
 
   public setImgsLazyLoading(imgs): Array<any> {
     let aux = [];
@@ -22,5 +23,11 @@ export class CommonService {
       aux.unshift({ img: img, show: false });
     });
     return aux;
+  }
+
+  openSnackBar(message: string, action: string, duration: number) {
+    this._snackbar.open(message, action, {
+      duration: duration
+    });
   }
 }

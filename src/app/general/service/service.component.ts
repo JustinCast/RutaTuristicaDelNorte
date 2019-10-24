@@ -21,6 +21,7 @@ export class TourComponent implements OnInit, AfterViewInit {
   rates: Rates;
   showRelatedLoadingInfo: boolean = true;
   showLoadingRatesInfo: boolean = true;
+  public data: any; // data to pass to carousel
 
   carouselOptions = {
     margin: 25,
@@ -73,6 +74,7 @@ export class TourComponent implements OnInit, AfterViewInit {
       this.tour = this._tours.services.find(
         t => t.id_service === Number(id_service)
       );
+      this.data = {images: this.tour._imgs_lazy, table: "service"}
       this.getServiceRates(Number(id_service));
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
@@ -114,7 +116,6 @@ export class TourComponent implements OnInit, AfterViewInit {
     this._tour.getRelatedTours(id_service).subscribe(
       related_tours => {
         this.relatedTours = related_tours;
-        console.log(this.relatedTours);
         if (this.relatedTours.length === 0) this.showRelatedLoadingInfo = false;
       },
       (err: HttpErrorResponse) => this._tour.handleError(err)
@@ -123,7 +124,6 @@ export class TourComponent implements OnInit, AfterViewInit {
 
   showLoc() {
     let location = JSON.parse(this.tour._location);
-    console.log(location);
     this._dialog.showTourLocation(
       {
         lat: location.lat,

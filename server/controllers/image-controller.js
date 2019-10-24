@@ -25,6 +25,51 @@ function saveImages(images, id_service) {
   });
 }
 
+function deleteTourImage(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on deleteTourImage: ${err}`);
+    } else {
+      let query = {
+        text: "DELETE * FROM tour_images WHERE url = $1",
+        values: [req.params.img]
+      };
+      client.query(query)
+      .then(() => res.status(200).send())
+      .catch(err => {
+        client.end();
+        console.log(`err when query on deleteTourImage: ${err}`);
+      });
+    }
+  });
+}
+
+function deleteServiceImage(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on deleteServiceImage: ${err}`);
+    } else {
+      let query = {
+        text: "DELETE * FROM images WHERE url = $1",
+        values: [req.params.img]
+      };
+      client
+        .query(query)
+        .then(() => res.status(200).send())
+        .catch(err => {
+          client.end();
+          console.log(`err when query on deleteServiceImage: ${err}`);
+        });
+    }
+  });
+}
+
 function saveTourImages(images, id_tour) {
   client = new pg.Client(db);
 
@@ -59,15 +104,16 @@ function getServiceImages(req, res) {
         text: "SELECT id, url FROM imges WHERE id_service_fk = $1;",
         values: [req.params.id_service]
       };
-      client.query(query)
-      .then(images => {
-        res.status(200).send(images.rows);
-        client.end();
-      })
-      .catch(err => {
-        client.end();
-        console.log(`err when query on getServiceImages: ${err}`);
-      });
+      client
+        .query(query)
+        .then(images => {
+          res.status(200).send(images.rows);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on getServiceImages: ${err}`);
+        });
     }
   });
 }
@@ -84,15 +130,16 @@ function getTourImages(req, res) {
         text: "SELECT id, url FROM tour_images WHERE id_tour_fk = $1;",
         values: [req.params.id_tour]
       };
-      client.query(query)
-      .then(images => {
-        res.status(200).send(images.rows);
-        client.end();
-      })
-      .catch(err => {
-        client.end();
-        console.log(`err when query on getTourImages: ${err}`);
-      });
+      client
+        .query(query)
+        .then(images => {
+          res.status(200).send(images.rows);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on getTourImages: ${err}`);
+        });
     }
   });
 }
@@ -101,5 +148,7 @@ module.exports = {
   saveImages: saveImages,
   saveTourImages: saveTourImages,
   getServiceImages: getServiceImages,
-  getTourImages: getTourImages
+  getTourImages: getTourImages,
+  deleteTourImage: deleteTourImage,
+  deleteServiceImage: deleteServiceImage
 };

@@ -44,7 +44,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   }
 
   openShowImages() {
-    this._dialog.openImagesDialog(this.downloadURLS);
+    this._dialog.openImagesDialog(this.downloadURLS, "service");
   }
 
   ngOnInit() {

@@ -23,7 +23,11 @@ api.get('/getTour/:id_tour', TourCTRL.getTour);
 api.put('/updateTour/:id_tour', TourCTRL.updateTour)
 api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
+
+// images queries
 api.get('/getTourImages/:id_tour', ImagesCTRL.getTourImages);
+api.delete('/deleteTourImage/:img', ImagesCTRL.deleteTourImage);
+api.delete('/deleteServiceImage/:img', ImagesCTRL.deleteServiceImage);
 
 // user queries
 api.post('/login', UserCTRL.login);

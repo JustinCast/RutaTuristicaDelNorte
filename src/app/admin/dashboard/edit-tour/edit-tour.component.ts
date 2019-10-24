@@ -70,7 +70,7 @@ export class EditTourComponent implements OnInit {
   }
 
   openImagesDialog() {
-    this._dialog.openImagesDialog(this.tourImages.map(i => (i = i.url)));
+    this._dialog.openImagesDialog(this.tourImages.map(i => (i = i.url)), "tour");
   }
 
   getToursNames() {
