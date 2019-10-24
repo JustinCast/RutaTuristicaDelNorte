@@ -34,8 +34,8 @@ function deleteTourImage(req, res) {
       console.log(`err when connecting on deleteTourImage: ${err}`);
     } else {
       let query = {
-        text: "DELETE * FROM tour_images WHERE url = $1",
-        values: [req.params.img]
+        text: "DELETE FROM tour_images WHERE url = $1",
+        values: [req.body.img]
       };
       client.query(query)
       .then(() => res.status(200).send())
@@ -56,8 +56,8 @@ function deleteServiceImage(req, res) {
       console.log(`err when connecting on deleteServiceImage: ${err}`);
     } else {
       let query = {
-        text: "DELETE * FROM images WHERE url = $1",
-        values: [req.params.img]
+        text: "DELETE FROM images WHERE url = $1",
+        values: [req.body.img]
       };
       client
         .query(query)

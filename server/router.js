@@ -26,8 +26,8 @@ api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 
 // images queries
 api.get('/getTourImages/:id_tour', ImagesCTRL.getTourImages);
-api.delete('/deleteTourImage/:img', ImagesCTRL.deleteTourImage);
-api.delete('/deleteServiceImage/:img', ImagesCTRL.deleteServiceImage);
+api.post('/deleteTourImage', ImagesCTRL.deleteTourImage);
+api.post('/deleteServiceImage', ImagesCTRL.deleteServiceImage);
 
 // user queries
 api.post('/login', UserCTRL.login);

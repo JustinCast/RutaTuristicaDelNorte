@@ -451,3 +451,7 @@ SELECT * FROM _user;
 
 SELECT * FROM save_user('Justin Castillo prueba #1', 'jc',
     '1524', 'justinalbertocas@gmail.com');
+
+DELETE FROM tour_images WHERE id_tour_fk = 11;
+
+Select * from tour;
