@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"addServiceFG\" (ngSubmit)=\"onSubmit()\" class=\"text-center pt-5 mt-5\">\n  <div class=\"container\">\n    <h1 class=\"font-weight-light text-center\">Añadir servicio</h1>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Nombre</mat-label>\n      <input\n        type=\"text\"\n        [formControl]=\"addServiceFG.get('name')\"\n        matInput\n      />\n    </mat-form-field>\n    <div class=\"container text-center\">\n      <button class=\"mr-1\" color=\"accent\" mat-raised-button (click)=\"pickLocation(); (false)\">\n        Añadir ubicación\n        <mat-icon>add_location</mat-icon>\n      </button>\n      <mat-icon [ngStyle]=\"{'color': location === undefined ? 'red': 'green'}\" class=\"ml-1\">{{locationIcon}}</mat-icon>\n    </div>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Clasificación</mat-label>\n      <mat-select\n        [formControl]=\"addServiceFG.get('classification')\"\n      >\n        <mat-option *ngFor=\"let c of classification\" [value]=\"c\">\n          {{ c }}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Información adicional</mat-label>\n      <textarea\n        matInput\n        [formControl]=\"addServiceFG.get('additional_info')\"\n      ></textarea>\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Teléfono de contacto</mat-label>\n      <input\n        matInput\n        #tel\n        type=\"tel\"\n        [formControl]=\"addServiceFG.get('phone')\"\n      />\n    </mat-form-field>\n    <button [disabled]=\"tel.value.length === 0\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n    <mat-list role=\"list\" *ngIf=\"phones.phones.length > 0\" class=\"rounded mt-2 p-0\">\n      <mat-list-item *ngFor=\"let p of phones.phones; let i = index;\" role=\"listitem\">\n        <div class=\"phone\">\n          <h3>{{p}}</h3>\n          <button mat-button color=\"warn\" (click)=\"phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n        </div>\n      </mat-list-item>\n    </mat-list>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Correo</mat-label>\n      <input\n        matInput\n        [formControl]=\"addServiceFG.get('email')\"\n        type=\"email\"\n      />\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Sitio web</mat-label>\n      <input\n        matInput\n        [formControl]=\"addServiceFG.get('website')\"\n        type=\"url\"\n      />\n    </mat-form-field>\n    <div class=\"container text-center\">\n      <button (click)=\"addRates(); false\" class=\"mb-3\" mat-raised-button color=\"primary\">Agregar tarifas<mat-icon>add</mat-icon></button>\n      <mat-icon [ngStyle]=\"{'color': rates === undefined ? 'red': 'green'}\" class=\"ml-1\">{{ratesIcon}}</mat-icon>\n    </div>\n    <app-upload-images (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n    <div class=\"container text-center\">\n      <button\n        [disabled]=\"!addServiceFG.valid !== undefined || !location\"\n        mat-raised-button\n      >\n        <mat-icon>send</mat-icon>\n      </button>\n    </div>\n  </div>\n</form>\n"
+module.exports = "<form [formGroup]=\"addServiceFG\" (ngSubmit)=\"onSubmit()\" class=\"text-center pt-5 mt-5\">\n  <div class=\"container\">\n    <h1 class=\"font-weight-light text-center\">Añadir servicio</h1>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Nombre</mat-label>\n      <input\n        type=\"text\"\n        [formControl]=\"addServiceFG.get('name')\"\n        matInput\n      />\n    </mat-form-field>\n    <div class=\"container text-center\">\n      <button class=\"mr-1\" color=\"accent\" mat-raised-button (click)=\"pickLocation(); (false)\">\n        Añadir ubicación\n        <mat-icon>add_location</mat-icon>\n      </button>\n      <mat-icon [ngStyle]=\"{'color': location === undefined ? 'red': 'green'}\" class=\"ml-1\">{{locationIcon}}</mat-icon>\n    </div>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Clasificación</mat-label>\n      <mat-select\n        [formControl]=\"addServiceFG.get('classification')\"\n      >\n        <mat-option *ngFor=\"let c of classification\" [value]=\"c\">\n          {{ c }}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Información adicional</mat-label>\n      <textarea\n        matInput\n        [formControl]=\"addServiceFG.get('additional_info')\"\n      ></textarea>\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Teléfono de contacto</mat-label>\n      <input\n        matInput\n        #tel\n        type=\"tel\"\n        [formControl]=\"addServiceFG.get('phone')\"\n      />\n    </mat-form-field>\n    <button [disabled]=\"tel.value.length === 0\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n    <mat-list role=\"list\" *ngIf=\"phones.phones.length > 0\" class=\"rounded mt-2 p-0\">\n      <mat-list-item *ngFor=\"let p of phones.phones; let i = index;\" role=\"listitem\">\n        <div class=\"phone\">\n          <h3>{{p}}</h3>\n          <button mat-button color=\"warn\" (click)=\"phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n        </div>\n      </mat-list-item>\n    </mat-list>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Correo</mat-label>\n      <input\n        matInput\n        [formControl]=\"addServiceFG.get('email')\"\n        type=\"email\"\n      />\n    </mat-form-field>\n    <mat-form-field appearance=\"outline\">\n      <mat-label>Sitio web</mat-label>\n      <input\n        matInput\n        [formControl]=\"addServiceFG.get('website')\"\n        type=\"url\"\n      />\n    </mat-form-field>\n    <div class=\"container text-center\">\n      <button (click)=\"addRates(); false\" class=\"mb-3\" mat-raised-button color=\"primary\">Agregar tarifas<mat-icon>add</mat-icon></button>\n      <mat-icon [ngStyle]=\"{'color': rates === undefined ? 'red': 'green'}\" class=\"ml-1\">{{ratesIcon}}</mat-icon>\n    </div>\n    <app-upload-images [tablename]=\"'service'\" (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n    <div class=\"container text-center\">\n      <button\n        [disabled]=\"!addServiceFG.valid !== undefined || !location\"\n        mat-raised-button\n      >\n        <mat-icon>send</mat-icon>\n      </button>\n    </div>\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<form [formGroup]=\"addServiceFG\" (ngSubmit)=\"onSubmit()\" c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\">\n  <div class=\"container\">\n    <app-carousel (deleteImageEvent)=\"deleteImage($event)\" style=\"max-height: 25%;\" [allowDelete]=\"true\" [images]=\"images\"></app-carousel>\n  </div>\n  <!-- <div class=\"container text-center mt-1\">\n    <button mat-raised-button color=\"primary\"><mat-icon>check</mat-icon></button>\n  </div> -->\n</div>"
+module.exports = "<div id=\"main\">\n  <div class=\"container\">\n    <app-carousel (deleteImageEvent)=\"deleteImage($event)\" style=\"max-height: 25%;\" [allowDelete]=\"true\" [data]=\"data\"></app-carousel>\n  </div>\n  <!-- <div class=\"container text-center mt-1\">\n    <button mat-raised-button color=\"primary\"><mat-icon>check</mat-icon></button>\n  </div> -->\n</div>"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div id=\"main\">\n  <div class=\"container\">\n    <app-carou
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"text-center pt-5 mt-5\" [formGroup]=\"tourFG\" (ngSubmit)=\"onSubmit(); false\">\n  <h1 class=\"font-weight-light text-center\">Añadir tour</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input matInput [formControl]=\"tourFG.get('name')\">\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Descripción</mat-label>\n    <input matInput [formControl]=\"tourFG.get('description')\">\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Ingrese teléfono de contacto</mat-label>\n    <input\n      matInput\n      #tel\n      type=\"tel\"\n      [formControl]=\"tourFG.get('phone')\"\n    />\n  </mat-form-field>\n  <button [disabled]=\"tel.value.length === 0\" class=\"mb-2\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n  <mat-list role=\"list\" *ngIf=\"phones.phones.length > 0\" class=\"rounded mt-3 mb-3 p-0\">\n    <mat-list-item *ngFor=\"let p of phones.phones; let i = index;\" role=\"listitem\">\n      <div class=\"phone\">\n        <h3>{{p}}</h3>\n        <button mat-button color=\"warn\" (click)=\"phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Correo electrónico</mat-label>\n    <input type=\"email\" matInput [formControl]=\"tourFG.get('email')\">\n    <mat-error *ngIf=\"tourFG.get('email').hasError('email') && !tourFG.get('email').hasError('required')\">\n      Introduzca una dirección válida\n    </mat-error>\n    <mat-error *ngIf=\"tourFG.get('email').hasError('required')\">\n      El correo es <strong>requerido</strong>\n    </mat-error>\n  </mat-form-field>\n  <div class=\"container text-center mb-3\">\n    <button mat-raised-button (click)=\"getRelated(); false\"><mat-icon>call_merge</mat-icon> Enlazar con servicio</button>\n    <p *ngIf=\"related\"><strong>Selección: </strong>{{related.name}}</p>\n  </div>\n\n  <app-upload-images (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n\n  <div class=\"container text-center\">\n    <button type=\"submit\" [disabled]=\"!tourFG.valid\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>"
+module.exports = "<form class=\"text-center pt-5 mt-5\" [formGroup]=\"tourFG\" (ngSubmit)=\"onSubmit(); false\">\n  <h1 class=\"font-weight-light text-center\">Añadir tour</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input matInput [formControl]=\"tourFG.get('name')\">\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Descripción</mat-label>\n    <input matInput [formControl]=\"tourFG.get('description')\">\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Ingrese teléfono de contacto</mat-label>\n    <input\n      matInput\n      #tel\n      type=\"tel\"\n      [formControl]=\"tourFG.get('phone')\"\n    />\n  </mat-form-field>\n  <button [disabled]=\"tel.value.length === 0\" class=\"mb-2\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n  <mat-list role=\"list\" *ngIf=\"phones.phones.length > 0\" class=\"rounded mt-3 mb-3 p-0\">\n    <mat-list-item *ngFor=\"let p of phones.phones; let i = index;\" role=\"listitem\">\n      <div class=\"phone\">\n        <h3>{{p}}</h3>\n        <button mat-button color=\"warn\" (click)=\"phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Correo electrónico</mat-label>\n    <input type=\"email\" matInput [formControl]=\"tourFG.get('email')\">\n    <mat-error *ngIf=\"tourFG.get('email').hasError('email') && !tourFG.get('email').hasError('required')\">\n      Introduzca una dirección válida\n    </mat-error>\n    <mat-error *ngIf=\"tourFG.get('email').hasError('required')\">\n      El correo es <strong>requerido</strong>\n    </mat-error>\n  </mat-form-field>\n  <div class=\"container text-center mb-3\">\n    <button mat-raised-button (click)=\"getRelated(); false\"><mat-icon>call_merge</mat-icon> Enlazar con servicio</button>\n    <p *ngIf=\"related\"><strong>Selección: </strong>{{related.name}}</p>\n  </div>\n\n  <app-upload-images [tablename]=\"'tour'\" (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n\n  <div class=\"container text-center\">\n    <button type=\"submit\" [disabled]=\"!tourFG.valid\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<form class=\"text-center pt-5 mt-5\" [formGroup]=\"tourFG\" (
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<owl-carousel class=\"mb-2 container\" [items]=\"images\" [options]=\"carouselOptions\" [carouselClasses]=\"['owl-theme', 'row', 'sliding']\">\n  <div class=\"item\" *ngFor=\"let i of images; let index = index;\" (deferLoad)=\"i.show = true\">\n    <img class=\"rounded img-fluid slide-image\" src=\"{{i.img}}\" >\n    <div *ngIf=\"allowDelete\" class=\"d-flex flex-row justify-content-around mt-2\">\n      <button (click)=\"emitImageDeletion(index)\" mat-icon-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n    </div>\n  </div>\n</owl-carousel>"
+module.exports = "<owl-carousel class=\"mb-2 container\" [items]=\"images\" [options]=\"carouselOptions\" [carouselClasses]=\"['owl-theme', 'row', 'sliding']\">\n  <div class=\"item\" *ngFor=\"let i of data.images; let index = index;\" (deferLoad)=\"i.show = true\">\n    <img class=\"rounded img-fluid slide-image\" src=\"{{i.img}}\" >\n    <div *ngIf=\"allowDelete\" class=\"d-flex flex-row justify-content-around mt-2\">\n      <button (click)=\"emitImageDeletion(index)\" mat-icon-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n    </div>\n  </div>\n</owl-carousel>"
 
 /***/ }),
 
@@ -74,7 +74,7 @@ module.exports = "<owl-carousel class=\"mb-2 container\" [items]=\"images\" [opt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main-container\">\n  <div id=\"header-container\" class=\"text-center pt-3\">\n    <button [routerLink]=\"['/admin/add-service']\" id=\"service-btn\" mat-raised-button class=\"ml-1 mr-1 mb-1\"><mat-icon>room_service</mat-icon> Añadir servicio</button>\n    <button [routerLink]=\"['/admin/add-tour']\" id=\"tour-btn\" mat-raised-button class=\"ml-1 mb-1\"><mat-icon>map</mat-icon> Añadir tour</button>\n  </div>\n  <br>\n  <h1 *ngIf=\"services;\" class=\"text-center text-muted font-weight-light\">Servicios</h1>\n  <div id=\"services\" *ngIf=\"services; else loadingServices\">\n    <div id=\"services-container\">\n      <mat-card *ngFor=\"let s of services; let i = index\" class=\"service mb-2 mr-1 ml-1\">\n        <h3 class=\"text-center font-weight-light\">{{s._name}}</h3>\n        <hr>\n        <img class=\"s-img shadow-sm rounded\" src=\"{{s.imgs[0]}}\" alt=\"Imagen Servicio\">\n        <hr>\n        <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>\n        <div class=\"text-center p-1\">\n          <button (click)=\"editService(i); false\"  class=\"mr-1\" mat-stroked-button><mat-icon>edit</mat-icon></button>\n          <button class=\"ml-1\" mat-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n        </div>\n      </mat-card>\n    </div>\n  </div>\n  <ng-template #loadingServices>\n    <div class=\"container\">\n      <mat-spinner></mat-spinner>\n    </div>\n  </ng-template>\n  \n  <h1 *ngIf=\"tours && tours.length > 0\" class=\"text-center text-muted font-weight-light\">Tours</h1>\n  <div id=\"tours\" *ngIf=\"tours && tours.length > 0; else noToursData\">\n    <mat-card *ngFor=\"let t of tours; let i = index\" class=\"service mb-2 mr-1 ml-1\">\n      <h3 class=\"text-center font-weight-light\">{{t._name}}</h3>\n      <hr>\n      <img class=\"s-img shadow-sm rounded\" src=\"{{t.imgs[0]}}\" alt=\"Imagen Tour\">\n      <hr>\n      <p><strong>Descripción: </strong> <span>{{t.description}}</span></p>\n      <div class=\"text-center p-1\">\n        <button (click)=\"editTour(i); false\"  class=\"mr-1\" mat-stroked-button><mat-icon>edit</mat-icon></button>\n        <button class=\"ml-1\" mat-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-card>\n  </div>\n  <ng-template #noToursData>\n    <hr>\n    <small class=\"text-muted text-center\">No hay información sobre tours</small>  \n  </ng-template>\n  \n</div>"
+module.exports = "<div id=\"main-container\">\n  <div id=\"header-container\" class=\"text-center pt-3\">\n    <button [routerLink]=\"['/admin/add-service']\" id=\"service-btn\" mat-raised-button class=\"ml-1 mr-1 mb-1\"><mat-icon>room_service</mat-icon> Añadir servicio</button>\n    <button [routerLink]=\"['/admin/add-tour']\" id=\"tour-btn\" mat-raised-button class=\"ml-1 mb-1\"><mat-icon>map</mat-icon> Añadir tour</button>\n  </div>\n  <br>\n  <h1 *ngIf=\"services;\" class=\"text-center text-muted font-weight-light\">Servicios</h1>\n  <div id=\"services\" *ngIf=\"services; else loadingServices\">\n    <div id=\"services-container\">\n      <mat-card *ngFor=\"let s of services; let i = index\" class=\"service mb-2 mr-1 ml-1\">\n        <h3 class=\"text-center font-weight-light\">{{s._name}}</h3>\n        <hr>\n        <img *ngIf=\"s.imgs[0]\" class=\"s-img shadow-sm rounded\" src=\"{{s.imgs[0]}}\" alt=\"Imagen Servicio\">\n        <hr>\n        <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>\n        <div class=\"text-center p-1\">\n          <button (click)=\"editService(i); false\"  class=\"mr-1\" mat-stroked-button><mat-icon>edit</mat-icon></button>\n          <button class=\"ml-1\" mat-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n        </div>\n      </mat-card>\n    </div>\n  </div>\n  <ng-template #loadingServices>\n    <div class=\"container\">\n      <mat-spinner></mat-spinner>\n    </div>\n  </ng-template>\n  \n  <h1 *ngIf=\"tours && tours.length > 0\" class=\"text-center text-muted font-weight-light\">Tours</h1>\n  <div id=\"tours\" class=\"d-flex flex-row justify-content-evenly w-100 flex-wrap\" *ngIf=\"tours && tours.length > 0; else noToursData\">\n    <mat-card *ngFor=\"let t of tours; let i = index\" class=\"service mb-2 mr-1 ml-1\">\n      <h3 class=\"text-center font-weight-light\">{{t._name}}</h3>\n      <hr>\n      <img *ngIf=\"t.imgs[0]\" class=\"s-img shadow-sm rounded\" src=\"{{t.imgs[0]}}\" alt=\"Imagen Tour\">\n      <hr>\n      <p><strong>Descripción: </strong> <span>{{t.description}}</span></p>\n      <div class=\"text-center p-1\">\n        <button (click)=\"editTour(i); false\"  class=\"mr-1\" mat-stroked-button><mat-icon>edit</mat-icon></button>\n        <button class=\"ml-1\" mat-button color=\"warn\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-card>\n  </div>\n  <ng-template #noToursData>\n    <hr>\n    <small class=\"text-muted text-center\">No hay información sobre tours</small>  \n  </ng-template>\n  \n</div>"
 
 /***/ }),
 
@@ -85,7 +85,7 @@ module.exports = "<div id=\"main-container\">\n  <div id=\"header-container\" cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<form *ngIf=\"s; else loading\" (ngSubmit)=\"onSubmit()\" class=\"mt-5 pt-5\">\n  <h1 class=\"font-weight-light text-center\">Editar servicio</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._name\">\n  </mat-form-field>\n  \n  <div class=\"container text-center mb-2\">\n    <button color=\"primary\" mat-raised-button (click)=\"editLocation(); (false)\">\n      Ver ubicación\n      <mat-icon>map</mat-icon>\n    </button>\n  </div>\n  \n  <mat-form-field appearance=\"outline\">\n    <mat-label>Clasificación</mat-label>\n    <mat-select\n    [(ngModel)]=\"s._classification\"\n    [ngModelOptions]=\"{standalone: true}\"\n    >\n      <mat-option *ngFor=\"let c of _common.classification\" [value]=\"c\">\n        {{ c }}\n      </mat-option>\n    </mat-select>\n  </mat-form-field>\n  \n  <mat-form-field appearance=\"outline\">\n    <mat-label>Información adicional</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._additional_info\">\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Añadir teléfono</mat-label>\n    <input\n      matInput\n      #tel\n      type=\"tel\"\n    />\n  </mat-form-field>\n  <div class=\"container text-center\">\n    <button [disabled]=\"tel.value.length === 0\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n  </div>\n  <mat-list role=\"list\" *ngIf=\"s\" class=\"container text-center rounded mt-2 mb-2\">\n    <mat-list-item *ngFor=\"let p of s._phones.phones; let i = index;\" role=\"listitem\" class=\"mb-2\">\n      <div class=\"phone p-1 shadow-sm\">\n        <h3>{{p}}</h3>\n        <button mat-button color=\"warn\" (click)=\"_phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Correo</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._email\">\n  </mat-form-field>\n\n  <!-- <div class=\"container text-center mb-2\" *ngIf=\"tourImages\">\n    <h4 class=\"font-weight-light\">{{tourImages.length}} imagen(es) han sido encontradas</h4>\n    <button (click)=\"openImagesDialog(); false\" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>\n  </div>\n  \n  <h4 class=\"font-weight-light text-center\">Agregar <span *ngIf=\"tourImages\">más</span> imágenes</h4> -->\n\n  <div class=\"text-center container\">\n    <button type=\"submit\" color=\"primary\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>\n<ng-template #loading>\n  <div class=\"container\" id=\"progress-container\">\n    <mat-progress-bar mod e=\"indeterminate\"></mat-progress-bar>\n  </div>\n</ng-template>"
+module.exports = "\n<form *ngIf=\"s; else loading\" (ngSubmit)=\"onSubmit()\" class=\"mt-5 pt-5 pb-3\">\n  <h1 class=\"font-weight-light text-center\">Editar servicio</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._name\">\n  </mat-form-field>\n  \n  <div class=\"container text-center mb-2\">\n    <button color=\"primary\" mat-raised-button (click)=\"editLocation(); (false)\">\n      Ver ubicación\n      <mat-icon>map</mat-icon>\n    </button>\n  </div>\n  \n  <mat-form-field appearance=\"outline\">\n    <mat-label>Clasificación</mat-label>\n    <mat-select\n    [(ngModel)]=\"s._classification\"\n    [ngModelOptions]=\"{standalone: true}\"\n    >\n      <mat-option *ngFor=\"let c of _common.classification\" [value]=\"c\">\n        {{ c }}\n      </mat-option>\n    </mat-select>\n  </mat-form-field>\n  \n  <mat-form-field appearance=\"outline\">\n    <mat-label>Información adicional</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._additional_info\">\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Añadir teléfono</mat-label>\n    <input\n      matInput\n      #tel\n      type=\"tel\"\n    />\n  </mat-form-field>\n  <div class=\"container text-center\">\n    <button [disabled]=\"tel.value.length === 0\" (click)=\"addPhone(tel.value); false\" mat-raised-button color=\"accent\">Agregar teléfono<mat-icon>add</mat-icon></button>\n  </div>\n  <mat-list role=\"list\" *ngIf=\"s\" class=\"container text-center rounded mt-2 mb-2\">\n    <mat-list-item *ngFor=\"let p of s._phones.phones; let i = index;\" role=\"listitem\" class=\"mb-2\">\n      <div class=\"phone p-1 shadow-sm\">\n        <h3>{{p}}</h3>\n        <button mat-button color=\"warn\" (click)=\"_phones.phones.splice(i, 1); false\"><mat-icon>delete</mat-icon></button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Correo</mat-label>\n    <input matInput type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s._email\">\n  </mat-form-field>\n\n  <div class=\"container text-center mb-2\" *ngIf=\"serviceImages\">\n    <h4 class=\"font-weight-light\">{{serviceImages.length}} imagen(es) han sido encontradas</h4>\n    <button (click)=\"openImagesDialog(); false\" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>\n  </div>\n\n  <div class=\"text-center container\">\n    <button type=\"submit\" color=\"primary\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>\n<ng-template #loading>\n  <div class=\"container\" id=\"progress-container\">\n    <mat-progress-bar mod e=\"indeterminate\"></mat-progress-bar>\n  </div>\n</ng-template>"
 
 /***/ }),
 
@@ -96,7 +96,7 @@ module.exports = "\n<form *ngIf=\"s; else loading\" (ngSubmit)=\"onSubmit()\" cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form *ngIf=\"t; else loading\" (ngSubmit)=\"onSubmit()\" class=\"mt-5 pt-5\">\n  <h1 class=\"font-weight-light text-center\">Editar Tour</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.name\"\n    />\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Descripción</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.description\"\n    />\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Email</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.email\"\n    />\n  </mat-form-field>\n\n  <div class=\"container text-center mb-2\" *ngIf=\"tourImages\">\n    <h4 class=\"font-weight-light\">{{tourImages.length}} imagen(es) han sido encontradas</h4>\n    <button (click)=\"openImagesDialog(); false\" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>\n  </div>\n\n  <h4 class=\"font-weight-light text-center\">Agregar <span *ngIf=\"tourImages\">más</span> imágenes</h4>\n  \n  <app-upload-images (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Añadir teléfono</mat-label>\n    <input matInput #tel type=\"tel\" />\n  </mat-form-field>\n\n  <div class=\"container text-center\">\n    <button\n      [disabled]=\"tel.value.length === 0\"\n      (click)=\"addPhone(tel.value); (false)\"\n      mat-raised-button\n      color=\"accent\"\n    >\n      Agregar teléfono<mat-icon>add</mat-icon>\n    </button>\n  </div>\n  <mat-list\n    role=\"list\"\n    *ngIf=\"t\"\n    class=\"container text-center rounded mt-2 mb-2\"\n  >\n    <mat-list-item\n      *ngFor=\"let p of t.phones.phones; let i = index\"\n      role=\"listitem\"\n      class=\"mb-2\"\n    >\n      <div class=\"phone p-1 shadow-sm\">\n        <h3>{{ p }}</h3>\n        <button\n          mat-button\n          color=\"warn\"\n          (click)=\"phones.phones.splice(i, 1); (false)\"\n        >\n          <mat-icon>delete</mat-icon>\n        </button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <mat-form-field appearance=\"outline\" *ngIf=\"!t.service_name\">\n    <mat-label>Vincular a servicio</mat-label>\n    <input #relatedService matInput [formControl]=\"serviceCtrl\" type=\"text\" [matAutocomplete]=\"auto\">\n    <mat-autocomplete #auto=\"matAutocomplete\">\n      <mat-option *ngFor=\"let service of filteredServices | async\" [value]=\"service.name\">\n        <span>{{service.name}}</span>\n      </mat-option>\n    </mat-autocomplete>\n  </mat-form-field>\n  <div *ngIf=\"!t.service_name\" class=\"container text-center mb-3\">\n    <button (click)=\"linkRelated(); false\" [disabled]=\"!serviceCtrl.value\" mat-raised-button color=\"accent\"><mat-icon>add</mat-icon></button>\n  </div>\n  <mat-list\n    *ngIf=\"t.service_name\"\n    role=\"list\"\n    class=\"container text-center mt-2 mb-2\"\n  >\n    <h3 class=\"font-weight-light\">Servicio relacionado</h3>\n    <mat-list-item class=\"card shadow-sm bg-transparent rounded\">\n      <div id=\"related_tour\">\n        <h3 class=\"font-weight-light\">{{ t.service_name }}</h3>\n        <button\n          mat-button\n          color=\"warn\"\n          (click)=\"deleteRelatedService(); (false)\"\n        >\n          <mat-icon>delete</mat-icon>\n        </button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <div class=\"text-center container\">\n    <button type=\"submit\" color=\"primary\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>\n\n<ng-template #loading>\n  <div class=\"container\" id=\"progress-container\">\n    <mat-progress-bar mod e=\"indeterminate\"></mat-progress-bar>\n  </div>\n</ng-template>\n"
+module.exports = "<form *ngIf=\"t; else loading\" (ngSubmit)=\"onSubmit()\" class=\"mt-5 pt-5 pb-3\">\n  <h1 class=\"font-weight-light text-center\">Editar Tour</h1>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Nombre</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.name\"\n    />\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Descripción</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.description\"\n    />\n  </mat-form-field>\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Email</mat-label>\n    <input\n      matInput\n      type=\"text\"\n      [ngModelOptions]=\"{ standalone: true }\"\n      [(ngModel)]=\"t.email\"\n    />\n  </mat-form-field>\n\n  <div class=\"container text-center mb-2\" *ngIf=\"tourImages\">\n    <h4 class=\"font-weight-light\">{{tourImages.length}} imagen(es) han sido encontradas</h4>\n    <button (click)=\"openImagesDialog(); false\" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>\n  </div>\n\n  <h4 class=\"font-weight-light text-center\">Agregar <span *ngIf=\"tourImages\">más</span> imágenes</h4>\n  \n  <app-upload-images [tablename]=\"'tour'\" (downloadUrlsChange)=\"catchUploadedImages($event)\"></app-upload-images>\n\n  <mat-form-field appearance=\"outline\">\n    <mat-label>Añadir teléfono</mat-label>\n    <input matInput #tel type=\"tel\" />\n  </mat-form-field>\n\n  <div class=\"container text-center\">\n    <button\n      [disabled]=\"tel.value.length === 0\"\n      (click)=\"addPhone(tel.value); (false)\"\n      mat-raised-button\n      color=\"accent\"\n    >\n      Agregar teléfono<mat-icon>add</mat-icon>\n    </button>\n  </div>\n  <mat-list\n    role=\"list\"\n    *ngIf=\"t\"\n    class=\"container text-center rounded mt-2 mb-2\"\n  >\n    <mat-list-item\n      *ngFor=\"let p of t.phones.phones; let i = index\"\n      role=\"listitem\"\n      class=\"mb-2\"\n    >\n      <div class=\"phone p-1 shadow-sm\">\n        <h3>{{ p }}</h3>\n        <button\n          mat-button\n          color=\"warn\"\n          (click)=\"phones.phones.splice(i, 1); (false)\"\n        >\n          <mat-icon>delete</mat-icon>\n        </button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <mat-form-field appearance=\"outline\" *ngIf=\"!t.service_name\">\n    <mat-label>Vincular a servicio</mat-label>\n    <input #relatedService matInput [formControl]=\"serviceCtrl\" type=\"text\" [matAutocomplete]=\"auto\">\n    <mat-autocomplete #auto=\"matAutocomplete\">\n      <mat-option *ngFor=\"let service of filteredServices | async\" [value]=\"service.name\">\n        <span>{{service.name}}</span>\n      </mat-option>\n    </mat-autocomplete>\n  </mat-form-field>\n  <div *ngIf=\"!t.service_name\" class=\"container text-center mb-3\">\n    <button (click)=\"linkRelated(); false\" [disabled]=\"!serviceCtrl.value\" mat-raised-button color=\"accent\"><mat-icon>add</mat-icon></button>\n  </div>\n  <mat-list\n    *ngIf=\"t.service_name\"\n    role=\"list\"\n    class=\"container text-center mt-2 mb-2\"\n  >\n    <h3 class=\"font-weight-light\">Servicio relacionado</h3>\n    <mat-list-item class=\"card shadow-sm bg-transparent rounded\">\n      <div id=\"related_tour\">\n        <h3 class=\"font-weight-light\">{{ t.service_name }}</h3>\n        <button\n          mat-button\n          color=\"warn\"\n          (click)=\"deleteRelatedService(); (false)\"\n        >\n          <mat-icon>delete</mat-icon>\n        </button>\n      </div>\n    </mat-list-item>\n  </mat-list>\n  <div class=\"text-center container\">\n    <button type=\"submit\" color=\"primary\" mat-raised-button><mat-icon>send</mat-icon></button>\n  </div>\n</form>\n\n<ng-template #loading>\n  <div class=\"container\" id=\"progress-container\">\n    <mat-progress-bar mod e=\"indeterminate\"></mat-progress-bar>\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -162,7 +162,7 @@ module.exports = "<div id=\"main-container\">\n  <div\n    class=\"dropzone shad
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-drawer-container class=\"drawer-container\" hasBackdrop=\"true\">\r\n  <mat-drawer #drawer mode=\"over\">\r\n    <div *ngIf=\"loggedUser\" class=\"container text-center\">\r\n      <h1>{{ loggedUser.fullname }}</h1>\r\n      <small class=\"text-secondary\">{{ loggedUser.username }}</small>\r\n      <hr />\r\n    </div>\r\n    <div id=\"body\">\r\n      <button\r\n        routerLinkActive=\"active-link\"\r\n        [routerLink]=\"['/admin/dashboard']\"\r\n        tabindex=\"-1\"\r\n        class=\"body-drawer-btn mb-1\"\r\n        mat-stroked-button\r\n      >\r\n        <mat-icon>assignment</mat-icon> Gestionar Tours y Servicios\r\n      </button>\r\n      <button\r\n        tabindex=\"-1\"\r\n        class=\"body-drawer-btn mt-1\"\r\n        mat-button\r\n        color=\"primary\"\r\n      >\r\n        <mat-icon color=\"accent\">account_circle</mat-icon> Perfil\r\n      </button>\r\n    </div>\r\n    <hr />\r\n    <footer class=\"shadow-sm\">\r\n      <div class=\"container\">\r\n        <span class=\"text-secondary\">\r\n          Justin A. Castilo Valladares |\r\n          {{ date | date: \"mediumDate\" }}\r\n        </span>\r\n        <br />\r\n        <small\r\n          ><a tabindex=\"-1\" href=\"www.justin-overview.com\">Website</a></small\r\n        >\r\n      </div>\r\n    </footer>\r\n  </mat-drawer>\r\n  <mat-drawer-content>\r\n    <nav\r\n      class=\"navbar navbar-expand-lg navbar-sm navbar-light pt-0 pb-0 pl-2 pr-2 mb-4\"\r\n    >\r\n      <a\r\n        *ngIf=\"_auth.isLoggedIn()\"\r\n        style=\"cursor: pointer\"\r\n        class=\"navbar-brand text-white\"\r\n        (click)=\"drawer.toggle()\"\r\n        ><mat-icon>sort</mat-icon></a\r\n      >\r\n      <a class=\"navbar-brand ml-1\" [routerLink]=\"['/general/history']\">\r\n        Ruta Turística del Norte\r\n      </a>\r\n      <button\r\n        mat-icon-button\r\n        class=\"navbar-toggler\"\r\n        type=\"button\"\r\n        (click)=\"toggleNavbar()\"\r\n      >\r\n        <mat-icon>menu</mat-icon>\r\n      </button>\r\n      <div class=\"collapse navbar-collapse\" [ngClass]=\"{ show: navbarOpen }\">\r\n        <ul id=\"links\" class=\"navbar-expand ml-0 navbar-nav\">\r\n          <li routerLinkActive=\"active-link\"></li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/history']\"\r\n            class=\"link\"\r\n          >\r\n            Historia\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/veda']\"\r\n            class=\"link\"\r\n          >\r\n            Veda\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/tours']\"\r\n            class=\"link\"\r\n          >\r\n            Oferta Turística\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/info']\"\r\n            class=\"link\"\r\n          >\r\n            +Info\r\n          </li>\r\n        </ul>\r\n        <div class=\"navbar-expand ml-auto navbar-nav social\">\r\n          <a\r\n            class=\"nav-item nav-link white p-1 m-1\"\r\n            *ngIf=\"!_auth.isLoggedIn(); else logout\"\r\n          >\r\n            <mat-icon (click)=\"openLoginDialog(); (false)\"\r\n              >exit_to_app</mat-icon\r\n            >\r\n          </a>\r\n          <ng-template #logout>\r\n            <a class=\"nav-item nav-link white p-1 m-1\" style=\"cursor: pointer;\" (click)=\"_auth.logout(); (false)\">\r\n              Salir\r\n            </a>\r\n          </ng-template>\r\n        </div>\r\n      </div>\r\n    </nav>\r\n    <div id=\"outlet\" class=\"\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </mat-drawer-content>\r\n</mat-drawer-container>\r\n"
+module.exports = "<mat-drawer-container class=\"drawer-container\" hasBackdrop=\"true\">\r\n  <mat-drawer #drawer mode=\"over\">\r\n    <div *ngIf=\"loggedUser\" class=\"container text-center\">\r\n      <h1>{{ loggedUser.fullname }}</h1>\r\n      <small class=\"text-secondary\">{{ loggedUser.username }}</small>\r\n      <hr />\r\n    </div>\r\n    <div id=\"body\">\r\n      <button\r\n        routerLinkActive=\"active-link\"\r\n        [routerLink]=\"['/admin/dashboard']\"\r\n        tabindex=\"-1\"\r\n        class=\"body-drawer-btn mb-1\"\r\n        mat-stroked-button\r\n      >\r\n        <mat-icon>assignment</mat-icon> Gestionar Tours y Servicios\r\n      </button>\r\n      <!-- <button\r\n        tabindex=\"-1\"\r\n        class=\"body-drawer-btn mt-1\"\r\n        mat-button\r\n        color=\"primary\"\r\n      >\r\n        <mat-icon color=\"accent\">account_circle</mat-icon> Perfil\r\n      </button> -->\r\n    </div>\r\n  </mat-drawer>\r\n  <mat-drawer-content>\r\n    <nav\r\n      class=\"navbar navbar-expand-lg navbar-sm navbar-light pt-0 pb-0 pl-2 pr-2 mb-4 animated bounceInRight\"\r\n    >\r\n      <a\r\n        *ngIf=\"_auth.isLoggedIn()\"\r\n        style=\"cursor: pointer\"\r\n        class=\"navbar-brand text-white\"\r\n        (click)=\"drawer.toggle()\"\r\n        ><mat-icon>sort</mat-icon></a\r\n      >\r\n      <a class=\"navbar-brand ml-1\" [routerLink]=\"['/general/history']\">\r\n        Ruta Turística del Norte\r\n      </a>\r\n      <button\r\n        mat-icon-button\r\n        class=\"navbar-toggler\"\r\n        type=\"button\"\r\n        (click)=\"toggleNavbar()\"\r\n      >\r\n        <mat-icon>menu</mat-icon>\r\n      </button>\r\n      <div class=\"collapse navbar-collapse\" [ngClass]=\"{ show: navbarOpen }\">\r\n        <ul id=\"links\" class=\"navbar-expand ml-0 navbar-nav\">\r\n          <li routerLinkActive=\"active-link\"></li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/history']\"\r\n            class=\"link\"\r\n          >\r\n            Historia\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/veda']\"\r\n            class=\"link\"\r\n          >\r\n            Veda\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/tours']\"\r\n            class=\"link\"\r\n          >\r\n            Oferta Turística\r\n          </li>\r\n          <li\r\n            routerLinkActive=\"active-link\"\r\n            [routerLink]=\"['/general/info']\"\r\n            class=\"link\"\r\n          >\r\n            +Info\r\n          </li>\r\n        </ul>\r\n        <div class=\"navbar-expand ml-auto navbar-nav social\">\r\n          <a\r\n            class=\"nav-item nav-link white p-1 m-1\"\r\n            *ngIf=\"!_auth.isLoggedIn(); else logout\"\r\n          >\r\n            <mat-icon (click)=\"openLoginDialog(); (false)\"\r\n              >exit_to_app</mat-icon\r\n            >\r\n          </a>\r\n          <ng-template #logout>\r\n            <a class=\"nav-item nav-link white p-1 m-1\" style=\"cursor: pointer;\" (click)=\"_auth.logout(); (false)\">\r\n              Salir\r\n            </a>\r\n          </ng-template>\r\n        </div>\r\n      </div>\r\n    </nav>\r\n    <div id=\"outlet\" class=\"\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </mat-drawer-content>\r\n</mat-drawer-container>\r\n"
 
 /***/ }),
 
@@ -206,7 +206,7 @@ module.exports = "<div class=\"d-flex flex-column w-100 mt-5 pt-5 justify-conten
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"see-loc\"></div>\n<div *ngIf=\"data.edit\" class=\"container text-center\">\n  <button mat-button (click)=\"editLoc();\"><mat-icon>done</mat-icon></button>\n</div>"
+module.exports = "<div class=\"d-flex flex-column h-100 justify-content center\">\n  <div id=\"see-loc\" class=\"d-flex flex-colum flex-grow-1\"></div>\n  <div *ngIf=\"data.edit\" class=\"container text-center\">\n    <button mat-button (click)=\"editLoc();\"><mat-icon>done</mat-icon></button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -217,7 +217,18 @@ module.exports = "<div id=\"see-loc\"></div>\n<div *ngIf=\"data.edit\" class=\"c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"tour\" id=\"tour-container\">\n  <h2 class=\"text-center text-primary\">{{ tour._name }}</h2>\n  <div class=\"container\">\n    <app-carousel *ngIf=\"tour._imgs_lazy\" [allowDelete]=\"false\" [images]=\"tour._imgs_lazy\"></app-carousel>\n  </div>\n  \n  <ul id=\"details\" class=\"container text-left p-3 shadow-sm\">\n    <h2 class=\"text-center text-muted font-weight-light\">Información</h2>\n    <hr />\n    <li>\n      <strong>Ubicación: </strong>\n      <button (click)=\"showLoc();\" mat-stroked-button><mat-icon>map</mat-icon></button>\n    </li>\n    <li>\n      <strong>Información adicional: </strong>\n      <p>{{ tour._additional_info }}</p>\n    </li>\n    <li *ngIf=\"tour._phones !== null\">\n      <mat-list>\n        <mat-list-item *ngFor=\"let p of tour._phones.phones\">\n          <mat-icon>phone</mat-icon>{{ p }}\n        </mat-list-item>\n      </mat-list>\n    </li>\n    <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>\n    <li *ngIf=\"rates; else loading_rates\">\n      <h3 class=\"font-weight-light text-center text-muted\">Tarifas</h3>\n      <table class=\"table\">\n        <thead>\n          <th scope=\"col\">#</th>\n          <th scope=\"col\">{{rates.header1}}</th>\n          <th scope=\"col\">{{rates.header2}}</th>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let v of rates._values; let i = index\">\n            <td>{{i+1}}</td>\n            <td>{{v.v1}}</td>\n            <td>{{v.v2}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </li>\n  </ul>\n\n  <h1 *ngIf=\"relatedTours && relatedTours.length > 0; else loading_related\" class=\"text-secondary text-center font-weight-light m-2\">Tours relacionados</h1>\n  <ng-template #loading_related *ngIf=\"showRelatedLoadingInfo\">\n    <div class=\"container text-center\">\n      <p class=\"animated pulse infinite\">Cargando información relacionada</p>\n    </div>\n  </ng-template>\n\n  <ng-template #loading_rates *ngIf=\"showLoadingRatesInfo\">\n    <div class=\"container text-center\">\n      <p class=\"animated pulse infinite\">Cargando información de tarifas</p>\n    </div>\n  </ng-template>\n  \n  <div *ngIf=\"relatedTours\" id=\"related-tours\">\n    <div *ngFor=\"let r of relatedTours\" class=\"related-tour shadow-sm rounded p-0 m-2\">\n      <h3 class=\"font-weight-light text-center mt-2\">{{r.name}}</h3>\n      <img class=\"main-img rounded shadow-sm\" src=\"{{r.imgs[0]}}\" alt=\"\">\n      <mat-accordion>\n        <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              + Info\n            </mat-panel-title>\n          </mat-expansion-panel-header>\n          <hr>\n          <p class=\"text-center text-secondary\"><i>{{r.description}}</i></p>\n          <hr>\n          <mat-list *ngIf=\"r.phones !== null\" class=\"p-0\">\n            <mat-list-item *ngFor=\"let p of r.phones.phones\"><mat-icon class=\"text-muted\">phone</mat-icon> - {{p}}</mat-list-item>\n          </mat-list>\n          <p><mat-icon class=\"text-muted\">mail</mat-icon> {{r.email}}</p>\n          <div class=\"container text-center\">\n            <button mat-stroked-button class=\"open-in-new\"><mat-icon>open_in_new</mat-icon></button>\n          </div>\n        </mat-expansion-panel>\n      </mat-accordion>\n    </div>\n    \n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"service\" id=\"service-container\">\n  <h2 class=\"text-center text-primary\">{{ service._name }}</h2>\n  <div class=\"container\">\n    <app-carousel *ngIf=\"service._imgs_lazy\" [allowDelete]=\"false\" [data]=\"data\"></app-carousel>\n  </div>\n  \n  <ul id=\"details\" class=\"container text-left p-3 shadow-sm\">\n    <h2 class=\"text-center text-muted font-weight-light\">Información</h2>\n    <hr />\n    <li>\n      <strong>Ubicación: </strong>\n      <button (click)=\"showLoc();\" mat-stroked-button><mat-icon>map</mat-icon></button>\n    </li>\n    <li>\n      <strong>Información adicional: </strong>\n      <p>{{ service._additional_info }}</p>\n    </li>\n    <li *ngIf=\"service._phones !== null\">\n      <mat-list>\n        <mat-list-item *ngFor=\"let p of service._phones.phones\">\n          <mat-icon>phone</mat-icon>{{ p }}\n        </mat-list-item>\n      </mat-list>\n    </li>\n    <li><mat-icon>mail</mat-icon>{{ service._email }}</li>\n    <li *ngIf=\"rates; else loading_rates\">\n      <h3 class=\"font-weight-light text-center text-muted\">Tarifas</h3>\n      <table class=\"table\">\n        <thead>\n          <th scope=\"col\">#</th>\n          <th scope=\"col\">{{rates.header1}}</th>\n          <th scope=\"col\">{{rates.header2}}</th>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let v of rates._values; let i = index\">\n            <td>{{i+1}}</td>\n            <td>{{v.v1}}</td>\n            <td>{{v.v2}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </li>\n  </ul>\n\n  <h1 *ngIf=\"relatedTours && relatedTours.length > 0; else loading_related\" class=\"text-secondary text-center font-weight-light m-2\">Tours relacionados</h1>\n  <ng-template #loading_related *ngIf=\"showRelatedLoadingInfo\">\n    <div class=\"container text-center\">\n      <p class=\"animated pulse infinite\">Cargando información relacionada</p>\n    </div>\n  </ng-template>\n\n  <ng-template #loading_rates *ngIf=\"showLoadingRatesInfo\">\n    <div class=\"container text-center\">\n      <p class=\"animated pulse infinite\">Cargando información de tarifas</p>\n    </div>\n  </ng-template>\n  \n  <div *ngIf=\"relatedTours\" id=\"related-tours\">\n    <div *ngFor=\"let r of relatedTours\" class=\"related-service shadow-sm rounded p-0 m-2\">\n      <h3 class=\"font-weight-light text-center mt-2\">{{r.name}}</h3>\n      <img class=\"main-img rounded shadow-sm\" src=\"{{r.imgs[0]}}\" alt=\"\">\n      <mat-accordion>\n        <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              + Info\n            </mat-panel-title>\n          </mat-expansion-panel-header>\n          <hr>\n          <p class=\"text-center text-secondary\"><i>{{r.description}}</i></p>\n          <hr>\n          <mat-list *ngIf=\"r.phones !== null\" class=\"p-0\">\n            <mat-list-item *ngFor=\"let p of r.phones.phones\"><mat-icon class=\"text-muted\">phone</mat-icon> - {{p}}</mat-list-item>\n          </mat-list>\n          <p><mat-icon class=\"text-muted\">mail</mat-icon> {{r.email}}</p>\n          <div class=\"container text-center\">\n            <button mat-stroked-button class=\"open-in-new\"><mat-icon>open_in_new</mat-icon></button>\n          </div>\n        </mat-expansion-panel>\n      </mat-accordion>\n    </div>\n    \n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/general/tour/tour.component.html":
+/*!****************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/general/tour/tour.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"tour\" class=\"d-flex flex-column justify-content-around h-100\">\n  <h3 class=\"text-primary font-weight-light text-center\">{{tour._name}}</h3>\n  <app-carousel *ngIf=\"tour.imgs.length > 0 && tour.imgs[0] !== null\" [allowDelete]=\"false\" [data]=\"data\"></app-carousel>\n  \n  <div class=\"container p-2\">\n    <p class=\"text-muted font-italic\">\n      {{tour._description}}\n    </p>\n    <p class=\"text-muted\">\n      <mat-icon>mail</mat-icon>{{tour._email}}\n    </p>\n    <ul class=\"list-group\" *ngIf=\"tour._phones.phones.length > 0\">\n      <li *ngFor=\"let p of tour._phones.phones\" class=\"list-group-item\">\n        <mat-icon>phone</mat-icon> {{p}}\n      </li>\n    </ul>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -228,7 +239,7 @@ module.exports = "<div *ngIf=\"tour\" id=\"tour-container\">\n  <h2 class=\"text
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main-container\" class=\"mt-5 pt-5\">\r\n  <div id=\"header\">\r\n    <mat-form-field appearance=\"outline\">\r\n      <mat-label>Filtrar por...</mat-label>\r\n      <mat-select panelClass=\"example-panel-green\" [(ngModel)]=\"filter\">\r\n        <mat-option\r\n          (click)=\"applyFilter(c); (false)\"\r\n          *ngFor=\"let c of _common.classification\"\r\n          [value]=\"c\"\r\n        >\r\n          {{ c }}\r\n        </mat-option>\r\n      </mat-select>\r\n      <div class=\"text-center p-0 mt-2\" *ngIf=\"filter\">\r\n        <button id=\"clear-btn\" (click)=\"reset(); (false)\" mat-raised-button>\r\n          <mat-icon>clear</mat-icon>\r\n        </button>\r\n      </div>\r\n    </mat-form-field>\r\n  </div>\r\n  <div *ngIf=\"_service.services; else loading\">\r\n    <h4 class=\"text-center text-primary\">\r\n      Servicios\r\n    </h4>\r\n    <ul id=\"content\" *ngIf=\"_service.services.length > 0; else empty\">\r\n      <mat-card\r\n        class=\"service animated bounceInRight\"\r\n        *ngFor=\"\r\n          let item of _service.services\r\n            | paginate\r\n              : {\r\n                  itemsPerPage: [limit],\r\n                  currentPage: _service.page,\r\n                  totalItems: [count]\r\n                };\r\n          let i = index\r\n        \"\r\n      >\r\n        <h1 class=\"text-center\">{{ item._name }}</h1>\r\n        <hr />\r\n        <div\r\n          id=\"img-container\"\r\n          class=\"p-0 text-center\"\r\n          (deferLoad)=\"item._imgs_lazy[0].show = true\"\r\n        >\r\n          <ng-container *ngIf=\"item._imgs_lazy[0].show\">\r\n            <img\r\n              class=\"main-img rounded shadow\"\r\n              alt=\"\"\r\n              src=\"{{ item._imgs_lazy[0].img }}\"\r\n            />\r\n          </ng-container>\r\n        </div>\r\n        <hr />\r\n        <mat-card-content class=\"text-left\">\r\n          <ul class=\"details\">\r\n            <li>\r\n              <mat-accordion>\r\n                <mat-expansion-panel\r\n                  panelClass=\"yellow-panel.mat-expansion-panel\"\r\n                >\r\n                  <mat-expansion-panel-header>\r\n                    <mat-panel-title class=\"font-weight-bold\">\r\n                      Información adicional\r\n                    </mat-panel-title>\r\n                    <mat-panel-description>\r\n                      Click para ver más\r\n                    </mat-panel-description>\r\n                  </mat-expansion-panel-header>\r\n                  <p>{{ item._additional_info }}</p>\r\n                </mat-expansion-panel>\r\n              </mat-accordion>\r\n            </li>\r\n            <li\r\n              *ngIf=\"\r\n                item._phones !== null && item._phones.phones.length > 0;\r\n                else noPhones\r\n              \"\r\n            >\r\n              <mat-list>\r\n                <mat-list-item *ngFor=\"let p of item._phones.phones\">\r\n                  <mat-icon>phone</mat-icon>{{ p }}\r\n                </mat-list-item>\r\n              </mat-list>\r\n            </li>\r\n            <ng-template #noPhones>\r\n              <mat-list>\r\n                <mat-list-item\r\n                  ><mat-icon color=\"warn\">info</mat-icon> No hay números de\r\n                  teléfono asociados</mat-list-item\r\n                >\r\n              </mat-list>\r\n            </ng-template>\r\n\r\n            <li>\r\n              <mat-icon class=\"accent-icon\">mail</mat-icon> {{ item._email }}\r\n            </li>\r\n          </ul>\r\n        </mat-card-content>\r\n        <hr />\r\n        <div class=\"container text-center\">\r\n          <button\r\n            routerLink=\"../tour/{{ item.id_service }}\"\r\n            class=\"detail-button\"\r\n            mat-raised-button\r\n          >\r\n            Ver más\r\n          </button>\r\n        </div>\r\n      </mat-card>\r\n    </ul>\r\n    <pagination-controls class=\"container text-center\" (pageChange)=\"pageChanged($event)\">\r\n    </pagination-controls>\r\n    <ng-template #empty>\r\n      <p>Sin información que mostrar</p>\r\n    </ng-template>\r\n  </div>\r\n\r\n  <div *ngIf=\"tours && tours.length > 0\">\r\n    <h4 class=\"text-center text-primary\">\r\n      Tours\r\n    </h4>\r\n    <ul>\r\n      <mat-card\r\n        class=\"service\"\r\n        *ngFor=\"\r\n          let t of tours\r\n            | paginate\r\n              : {\r\n                  itemsPerPage: [limit],\r\n                  currentPage: toursPage,\r\n                  id: 'second'\r\n                };\r\n          let i = index\r\n        \"\r\n      >\r\n        <h1 class=\"text-center\">{{ t._name }}</h1>\r\n        <hr />\r\n        <div\r\n          id=\"tour-img-container\"\r\n          class=\"p-0 text-center\"\r\n          (deferLoad)=\"t._imgs_lazy[0].show = true\"\r\n        >\r\n          <ng-container *ngIf=\"t._imgs_lazy[0].show\">\r\n            <img\r\n              class=\"main-img rounded shadow-sm\"\r\n              alt=\"\"\r\n              src=\"{{ t._imgs_lazy[1].img }}\"\r\n            />\r\n          </ng-container>\r\n        </div>\r\n        <hr>\r\n        <mat-card-content class=\"text-left\">\r\n          <ul class=\"details\">\r\n            <li>\r\n              <mat-accordion>\r\n                <mat-expansion-panel\r\n                  panelClass=\"yellow-panel.mat-expansion-panel\"\r\n                >\r\n                  <mat-expansion-panel-header>\r\n                    <mat-panel-title class=\"font-weight-bold\">\r\n                      Información adicional\r\n                    </mat-panel-title>\r\n                    <mat-panel-description>\r\n                      Click para ver más\r\n                    </mat-panel-description>\r\n                  </mat-expansion-panel-header>\r\n                  <p>{{ t._description }}</p>\r\n                </mat-expansion-panel>\r\n              </mat-accordion>\r\n            </li>\r\n          </ul>\r\n        </mat-card-content>\r\n        <hr>\r\n        <div class=\"container text-center\">\r\n          <button\r\n            class=\"detail-button\"\r\n            mat-raised-button\r\n          >\r\n            Ver más\r\n          </button>\r\n        </div>\r\n      </mat-card>\r\n    </ul>\r\n    <pagination-controls class=\"container text-center\" id=\"second\" (pageChange)=\"toursPageChanged($event)\">\r\n    </pagination-controls>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #loading>\r\n  <mat-progress-bar mode=\"indeterminate\"></mat-progress-bar>\r\n</ng-template>\r\n"
+module.exports = "<div id=\"main-container\" class=\"mt-5 pt-5\">\r\n  <div id=\"header\">\r\n    <mat-form-field appearance=\"outline\">\r\n      <mat-label>Filtrar por...</mat-label>\r\n      <mat-select panelClass=\"example-panel-green\" [(ngModel)]=\"filter\">\r\n        <mat-option\r\n          (click)=\"applyFilter(c); (false)\"\r\n          *ngFor=\"let c of _common.classification\"\r\n          [value]=\"c\"\r\n        >\r\n          {{ c }}\r\n        </mat-option>\r\n      </mat-select>\r\n      <div class=\"text-center p-0 mt-2\" *ngIf=\"filter\">\r\n        <button id=\"clear-btn\" (click)=\"reset(); (false)\" mat-raised-button>\r\n          <mat-icon>clear</mat-icon>\r\n        </button>\r\n      </div>\r\n    </mat-form-field>\r\n  </div>\r\n  <div *ngIf=\"_service.services; else loading\">\r\n    <h4 class=\"text-center text-primary\">\r\n      Servicios\r\n    </h4>\r\n    <ul id=\"content\" *ngIf=\"_service.services.length > 0; else empty\">\r\n      <mat-card\r\n        class=\"service animated bounceInRight\"\r\n        *ngFor=\"\r\n          let item of _service.services\r\n            | paginate\r\n              : {\r\n                  itemsPerPage: [limit],\r\n                  currentPage: _service.page,\r\n                  totalItems: [count]\r\n                };\r\n          let i = index\r\n        \"\r\n      >\r\n        <h1 class=\"text-center\">{{ item._name }}</h1>\r\n        <hr />\r\n        <div\r\n          id=\"img-container\"\r\n          class=\"p-0 text-center\"\r\n          (deferLoad)=\"item._imgs_lazy[0].show = true\"\r\n        >\r\n          <ng-container *ngIf=\"item._imgs_lazy[0].show\">\r\n            <img\r\n              class=\"main-img rounded shadow\"\r\n              alt=\"\"\r\n              src=\"{{ item._imgs_lazy[0].img }}\"\r\n            />\r\n          </ng-container>\r\n        </div>\r\n        <hr />\r\n        <mat-card-content class=\"text-left\">\r\n          <ul class=\"details\">\r\n            <li>\r\n              <mat-accordion>\r\n                <mat-expansion-panel\r\n                  panelClass=\"yellow-panel.mat-expansion-panel\"\r\n                >\r\n                  <mat-expansion-panel-header>\r\n                    <mat-panel-title class=\"font-weight-bold\">\r\n                      Información adicional\r\n                    </mat-panel-title>\r\n                    <mat-panel-description>\r\n                      Click para ver más\r\n                    </mat-panel-description>\r\n                  </mat-expansion-panel-header>\r\n                  <p>{{ item._additional_info }}</p>\r\n                </mat-expansion-panel>\r\n              </mat-accordion>\r\n            </li>\r\n            <li\r\n              *ngIf=\"\r\n                item._phones !== null && item._phones.phones.length > 0;\r\n                else noPhones\r\n              \"\r\n            >\r\n              <mat-list>\r\n                <mat-list-item *ngFor=\"let p of item._phones.phones\">\r\n                  <mat-icon>phone</mat-icon>{{ p }}\r\n                </mat-list-item>\r\n              </mat-list>\r\n            </li>\r\n            <ng-template #noPhones>\r\n              <mat-list>\r\n                <mat-list-item\r\n                  ><mat-icon color=\"warn\">info</mat-icon> No hay números de\r\n                  teléfono asociados</mat-list-item\r\n                >\r\n              </mat-list>\r\n            </ng-template>\r\n\r\n            <li>\r\n              <mat-icon class=\"accent-icon\">mail</mat-icon> {{ item._email }}\r\n            </li>\r\n          </ul>\r\n        </mat-card-content>\r\n        <hr />\r\n        <div class=\"container text-center\">\r\n          <button\r\n            routerLink=\"../tour/{{ item.id_service }}\"\r\n            class=\"detail-button\"\r\n            mat-raised-button\r\n          >\r\n            Ver más\r\n          </button>\r\n        </div>\r\n      </mat-card>\r\n    </ul>\r\n    <pagination-controls class=\"my-pagination container text-center\" (pageChange)=\"pageChanged($event)\">\r\n    </pagination-controls>\r\n    <ng-template #empty>\r\n      <p>Sin información que mostrar</p>\r\n    </ng-template>\r\n  </div>\r\n\r\n  <div *ngIf=\"tours && tours.length > 0\">\r\n    <h4 class=\"text-center text-primary\">\r\n      Tours\r\n    </h4>\r\n    <ul class=\"pl-0\">\r\n      <mat-card\r\n        class=\"service\"\r\n        *ngFor=\"\r\n          let t of tours\r\n            | paginate\r\n              : {\r\n                  itemsPerPage: [limit],\r\n                  currentPage: toursPage,\r\n                  id: 'second'\r\n                };\r\n          let i = index\r\n        \"\r\n      >\r\n        <h1 class=\"text-center\">{{ t._name }}</h1>\r\n        <hr />\r\n        <div\r\n          *ngIf=\"t.imgs[0] !== null\"\r\n          id=\"tour-img-container\"\r\n          class=\"p-0 text-center\"\r\n          (deferLoad)=\"t._imgs_lazy[0].show = true\"\r\n        >\r\n          <ng-container *ngIf=\"t._imgs_lazy[0].show\">\r\n            <img\r\n              class=\"main-img rounded shadow-sm\"\r\n              alt=\"\"\r\n              src=\"{{ t._imgs_lazy[1].img }}\"\r\n            />\r\n          </ng-container>\r\n        </div>\r\n        <hr>\r\n        <mat-card-content class=\"text-left\">\r\n          <ul class=\"details\">\r\n            <li>\r\n              <mat-accordion>\r\n                <mat-expansion-panel\r\n                  panelClass=\"yellow-panel.mat-expansion-panel\"\r\n                >\r\n                  <mat-expansion-panel-header>\r\n                    <mat-panel-title class=\"font-weight-bold\">\r\n                      Información adicional\r\n                    </mat-panel-title>\r\n                    <mat-panel-description>\r\n                      Click para ver más\r\n                    </mat-panel-description>\r\n                  </mat-expansion-panel-header>\r\n                  <p>{{ t._description }}</p>\r\n                </mat-expansion-panel>\r\n              </mat-accordion>\r\n            </li>\r\n          </ul>\r\n        </mat-card-content>\r\n        <hr>\r\n        <div class=\"container text-center\">\r\n          <button\r\n            class=\"detail-button\"\r\n            mat-raised-button\r\n            (click)=\"openTourInfo(i); false\"\r\n          >\r\n            Ver más\r\n          </button>\r\n        </div>\r\n      </mat-card>\r\n    </ul>\r\n    <pagination-controls class=\"my-pagination container text-center\" id=\"second\" (pageChange)=\"toursPageChanged($event)\">\r\n    </pagination-controls>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #loading>\r\n  <mat-progress-bar mode=\"indeterminate\"></mat-progress-bar>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -308,7 +319,7 @@ var AddServiceComponent = /** @class */ (function () {
         });
     }
     AddServiceComponent.prototype.openShowImages = function () {
-        this._dialog.openImagesDialog(this.downloadURLS);
+        this._dialog.openImagesDialog(this.downloadURLS, "service");
     };
     AddServiceComponent.prototype.ngOnInit = function () {
         this.classification = this._common.classification;
@@ -467,37 +478,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angularfire2/storage */ "./node_modules/angularfire2/storage/index.js");
 /* harmony import */ var angularfire2_storage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(angularfire2_storage__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
+/* harmony import */ var src_app_services_image_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/image.service */ "./src/app/services/image.service.ts");
+
 
 
 
 
 
 var ShowImagesComponent = /** @class */ (function () {
-    function ShowImagesComponent(images, fireStorage, snackbar, dialogRef, _common) {
-        this.images = images;
+    function ShowImagesComponent(data, fireStorage, snackbar, dialogRef, _common, _images) {
+        this.data = data;
         this.fireStorage = fireStorage;
         this.snackbar = snackbar;
         this.dialogRef = dialogRef;
         this._common = _common;
+        this._images = _images;
     }
     ShowImagesComponent.prototype.ngOnInit = function () {
-        this.images = this._common.setImgsLazyLoading(this.images);
+        this.data.images = this._common.setImgsLazyLoading(this.data.images);
     };
-    ShowImagesComponent.prototype.deleteImage = function (index) {
+    ShowImagesComponent.prototype.deleteImage = function (event) {
         var _this = this;
         this.fireStorage.storage
-            .refFromURL(this.images[index].img)
+            .refFromURL(this.data.images[event.index].img)
             .delete()
             .then(function () {
+            _this.data.table === "service"
+                ? _this._images
+                    .deleteServiceImage(_this.data.images[event.index].img)
+                    .subscribe({
+                    next: function () {
+                        _this._common.openSnackBar("Imagen eliminada de la base de datos", "Ok", 2500);
+                        _this.data.images.splice(event.index, 1);
+                    },
+                    error: function (err) { return console.log(err); }
+                })
+                : _this._images
+                    .deleteTourImage(_this.data.images[event.index].img)
+                    .subscribe({
+                    next: function () {
+                        _this._common.openSnackBar("Imagen eliminada de la base de datos", "Ok", 2500);
+                        _this.data.images.splice(event.index, 1);
+                    },
+                    error: function (err) { return console.log(err); }
+                });
             _this.snackbar.open("Imagen eliminada", "Ok", { duration: 2000 });
-            _this.images.splice(index, 1);
+            _this.data.images.splice(event.index, 1);
         })
-            .catch(function (err) {
-            return console.log(JSON.stringify(err));
-        });
+            .catch(function (err) { return console.log(JSON.stringify(err)); });
     };
     ShowImagesComponent.prototype.onNoClick = function () {
-        return this.dialogRef.close(this.images);
+        return this.dialogRef.close(this.data.images);
     };
     ShowImagesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -506,11 +537,11 @@ var ShowImagesComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./show-images.component.scss */ "./src/app/admin/add-service/show-images/show-images.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Array,
-            angularfire2_storage__WEBPACK_IMPORTED_MODULE_3__["AngularFireStorage"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, angularfire2_storage__WEBPACK_IMPORTED_MODULE_3__["AngularFireStorage"],
             _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"],
             _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
-            src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
+            src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"],
+            src_app_services_image_service__WEBPACK_IMPORTED_MODULE_5__["ImageService"]])
     ], ShowImagesComponent);
     return ShowImagesComponent;
 }());
@@ -852,12 +883,12 @@ var CarouselComponent = /** @class */ (function () {
     }
     CarouselComponent.prototype.ngOnInit = function () { };
     CarouselComponent.prototype.emitImageDeletion = function (index) {
-        this.deleteImageEvent.emit(index);
+        this.deleteImageEvent.emit({ index: index, table: this.data.table });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
-    ], CarouselComponent.prototype, "images", void 0);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], CarouselComponent.prototype, "data", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
@@ -888,7 +919,7 @@ var CarouselComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@media screen and (min-width: 601px) {\n  img {\n    height: 150px;\n  }\n}\n@media screen and (max-width: 700px) {\n  img {\n    height: 100px;\n  }\n}\n@media screen and (min-width: 601px) {\n  #main-container {\n    flex-wrap: nowrap;\n  }\n}\n@media screen and (max-width: 700px) {\n  #main-container {\n    flex-wrap: wrap;\n  }\n}\n@media screen and (min-width: 601px) {\n  .s-img {\n    height: 350px;\n  }\n}\n@media screen and (max-width: 700px) {\n  .s-img {\n    height: 250px;\n  }\n}\n@media screen and (min-width: 601px) {\n  .service {\n    width: 25%;\n  }\n}\n@media screen and (max-width: 700px) {\n  .service {\n    width: 95%;\n  }\n}\n@media screen and (min-width: 601px) {\n  mat-card {\n    width: 25%;\n  }\n}\n@media screen and (max-width: 700px) {\n  mat-card {\n    width: 95%;\n  }\n}\n.s-img {\n  margin: auto;\n  width: 100%;\n}\n#main-container {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  margin-top: 10%;\n}\n#services {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  width: 100%;\n}\n#tours {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  width: 100%;\n}\n#services-container {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n#header-container {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n#service-btn {\n  background-color: #FFCC06;\n}\n#tour-btn {\n  background-color: #008000;\n  color: white;\n}\n#tours-services-btn {\n  background-color: #fff8e7;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL0M6XFxVc2Vyc1xcanVzdGlcXERvY3VtZW50c1xcQW5ndWxhclByb2plY3RzXFxSdXRhVHVyaXN0aWNhRGVsTm9ydGUvc3JjXFxhcHBcXGFkbWluXFxkYXNoYm9hcmRcXGRhc2hib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL0M6XFxVc2Vyc1xcanVzdGlcXERvY3VtZW50c1xcQW5ndWxhclByb2plY3RzXFxSdXRhVHVyaXN0aWNhRGVsTm9ydGUvc3JjXFxhc3NldHNcXHVpLXV0aWxzXFxfdmFycy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0U7SUFDRSxhQUFBO0VDREY7QUFDRjtBREdBO0VBQ0U7SUFDRSxhQUFBO0VDREY7QUFDRjtBRElBO0VBQ0U7SUFDRSxpQkFBQTtFQ0ZGO0FBQ0Y7QURJQTtFQUNFO0lBQ0UsZUFBQTtFQ0ZGO0FBQ0Y7QURLQTtFQUNFO0lBQ0UsYUFBQTtFQ0hGO0FBQ0Y7QURLQTtFQUNFO0lBQ0UsYUFBQTtFQ0hGO0FBQ0Y7QURNQTtFQUNFO0lBQ0UsVUFBQTtFQ0pGO0FBQ0Y7QURNQTtFQUNFO0lBQ0UsVUFBQTtFQ0pGO0FBQ0Y7QURPQTtFQUNFO0lBQ0UsVUFBQTtFQ0xGO0FBQ0Y7QURPQTtFQUNFO0lBQ0UsVUFBQTtFQ0xGO0FBQ0Y7QURRQTtFQUNFLFlBQUE7RUFDQSxXQUFBO0FDTkY7QURTQTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLHNCQUFBO0VBQ0EsZUFBQTtBQ05GO0FEVUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw2QkFBQTtFQUNBLFdBQUE7QUNQRjtBRFVBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsNkJBQUE7RUFDQSxXQUFBO0FDUEY7QURVQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ1BGO0FEVUE7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDUEY7QURVQTtFQUNFLHlCRXBHYztBRDZGaEI7QURVQTtFQUNFLHlCRXZHZ0I7RUZ3R2hCLFlBQUE7QUNQRjtBRFVBO0VBQ0UseUJFM0dzQjtBRG9HeEIiLCJmaWxlIjoic3JjL2FwcC9hZG1pbi9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vYXNzZXRzL3VpLXV0aWxzL3ZhcnMnO1xyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcclxuICBpbWcge1xyXG4gICAgaGVpZ2h0OiAxNTBweDtcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzAwcHgpIHtcclxuICBpbWcge1xyXG4gICAgaGVpZ2h0OiAxMDBweDtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDYwMXB4KSB7XHJcbiAgI21haW4tY29udGFpbmVyIHtcclxuICAgIGZsZXgtd3JhcDogbm93cmFwO1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xyXG4gICNtYWluLWNvbnRhaW5lciB7XHJcbiAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xyXG4gIC5zLWltZyB7XHJcbiAgICBoZWlnaHQ6IDM1MHB4O1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xyXG4gIC5zLWltZyB7XHJcbiAgICBoZWlnaHQ6IDI1MHB4O1xyXG4gIH1cclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcclxuICAuc2VydmljZSB7XHJcbiAgICB3aWR0aDogMjUlXHJcbiAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XHJcbiAgLnNlcnZpY2Uge1xyXG4gICAgd2lkdGg6IDk1JVxyXG4gIH1cclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcclxuICBtYXQtY2FyZCB7XHJcbiAgICB3aWR0aDogMjUlO1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xyXG4gIG1hdC1jYXJkIHtcclxuICAgIHdpZHRoOiA5NSU7XHJcbiAgfVxyXG59XHJcblxyXG4ucy1pbWd7XHJcbiAgbWFyZ2luOiBhdXRvO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4jbWFpbi1jb250YWluZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBtYXJnaW4tdG9wOiAxMCU7XHJcbn1cclxuXHJcblxyXG4jc2VydmljZXMge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWV2ZW5seTtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuI3RvdXJzIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1ldmVubHk7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbiNzZXJ2aWNlcy1jb250YWluZXJ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxufVxyXG5cclxuI2hlYWRlci1jb250YWluZXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBmbGV4LXdyYXA6IHdyYXBcclxufVxyXG5cclxuI3NlcnZpY2UtYnRuIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAkcHJpbWFyeS1jb2xvclxyXG59XHJcblxyXG4jdG91ci1idG4ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICRzZWNvbmRhcnktY29sb3I7XHJcbiAgY29sb3I6IHdoaXRlXHJcbn1cclxuXHJcbiN0b3Vycy1zZXJ2aWNlcy1idG4ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICRzZWNvbmRhcnktbGlnaHQtY29sb3JcclxufSIsIkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDYwMXB4KSB7XG4gIGltZyB7XG4gICAgaGVpZ2h0OiAxNTBweDtcbiAgfVxufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzAwcHgpIHtcbiAgaW1nIHtcbiAgICBoZWlnaHQ6IDEwMHB4O1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xuICAjbWFpbi1jb250YWluZXIge1xuICAgIGZsZXgtd3JhcDogbm93cmFwO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xuICAjbWFpbi1jb250YWluZXIge1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgfVxufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcbiAgLnMtaW1nIHtcbiAgICBoZWlnaHQ6IDM1MHB4O1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xuICAucy1pbWcge1xuICAgIGhlaWdodDogMjUwcHg7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDYwMXB4KSB7XG4gIC5zZXJ2aWNlIHtcbiAgICB3aWR0aDogMjUlO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xuICAuc2VydmljZSB7XG4gICAgd2lkdGg6IDk1JTtcbiAgfVxufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcbiAgbWF0LWNhcmQge1xuICAgIHdpZHRoOiAyNSU7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XG4gIG1hdC1jYXJkIHtcbiAgICB3aWR0aDogOTUlO1xuICB9XG59XG4ucy1pbWcge1xuICBtYXJnaW46IGF1dG87XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4jbWFpbi1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgbWFyZ2luLXRvcDogMTAlO1xufVxuXG4jc2VydmljZXMge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWV2ZW5seTtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbiN0b3VycyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtZXZlbmx5O1xuICB3aWR0aDogMTAwJTtcbn1cblxuI3NlcnZpY2VzLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LXdyYXA6IHdyYXA7XG59XG5cbiNoZWFkZXItY29udGFpbmVyIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LXdyYXA6IHdyYXA7XG59XG5cbiNzZXJ2aWNlLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkNDMDY7XG59XG5cbiN0b3VyLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDgwMDA7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuI3RvdXJzLXNlcnZpY2VzLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY4ZTc7XG59IiwiJHByaW1hcnktY29sb3I6ICNGRkNDMDY7XHJcbiRzZWNvbmRhcnktY29sb3I6ICMwMDgwMDA7XHJcbiRzZWNvbmRhcnktbGlnaHQtY29sb3I6ICNmZmY4ZTc7XHJcbiR3YXJuOiAjZDUwMDAwIl19 */"
+module.exports = "@media screen and (min-width: 601px) {\n  img {\n    height: 150px;\n  }\n}\n@media screen and (max-width: 700px) {\n  img {\n    height: 100px;\n  }\n}\n@media screen and (min-width: 601px) {\n  #main-container {\n    flex-wrap: nowrap;\n  }\n}\n@media screen and (max-width: 700px) {\n  #main-container {\n    flex-wrap: wrap;\n  }\n}\n@media screen and (min-width: 601px) {\n  .s-img {\n    height: 350px;\n  }\n}\n@media screen and (max-width: 700px) {\n  .s-img {\n    height: 250px;\n  }\n}\n@media screen and (min-width: 601px) {\n  .service {\n    width: 25%;\n  }\n}\n@media screen and (max-width: 700px) {\n  .service {\n    width: 95%;\n  }\n}\n@media screen and (min-width: 601px) {\n  mat-card {\n    width: 25%;\n  }\n}\n@media screen and (max-width: 700px) {\n  mat-card {\n    width: 95%;\n  }\n}\n.s-img {\n  margin: auto;\n  width: 100%;\n}\n#main-container {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  margin-top: 10%;\n}\n#services {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  width: 100%;\n}\n#services-container {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n#header-container {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n#service-btn {\n  background-color: #FFCC06;\n}\n#tour-btn {\n  background-color: #008000;\n  color: white;\n}\n#tours-services-btn {\n  background-color: #fff8e7;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL0M6XFxVc2Vyc1xcanVzdGlcXERvY3VtZW50c1xcQW5ndWxhclByb2plY3RzXFxSdXRhVHVyaXN0aWNhRGVsTm9ydGUvc3JjXFxhcHBcXGFkbWluXFxkYXNoYm9hcmRcXGRhc2hib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRtaW4vZGFzaGJvYXJkL0M6XFxVc2Vyc1xcanVzdGlcXERvY3VtZW50c1xcQW5ndWxhclByb2plY3RzXFxSdXRhVHVyaXN0aWNhRGVsTm9ydGUvc3JjXFxhc3NldHNcXHVpLXV0aWxzXFxfdmFycy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0U7SUFDRSxhQUFBO0VDREY7QUFDRjtBREdBO0VBQ0U7SUFDRSxhQUFBO0VDREY7QUFDRjtBRElBO0VBQ0U7SUFDRSxpQkFBQTtFQ0ZGO0FBQ0Y7QURJQTtFQUNFO0lBQ0UsZUFBQTtFQ0ZGO0FBQ0Y7QURLQTtFQUNFO0lBQ0UsYUFBQTtFQ0hGO0FBQ0Y7QURLQTtFQUNFO0lBQ0UsYUFBQTtFQ0hGO0FBQ0Y7QURNQTtFQUNFO0lBQ0UsVUFBQTtFQ0pGO0FBQ0Y7QURNQTtFQUNFO0lBQ0UsVUFBQTtFQ0pGO0FBQ0Y7QURPQTtFQUNFO0lBQ0UsVUFBQTtFQ0xGO0FBQ0Y7QURPQTtFQUNFO0lBQ0UsVUFBQTtFQ0xGO0FBQ0Y7QURRQTtFQUNFLFlBQUE7RUFDQSxXQUFBO0FDTkY7QURTQTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLHNCQUFBO0VBQ0EsZUFBQTtBQ05GO0FEVUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw2QkFBQTtFQUNBLFdBQUE7QUNQRjtBRFdBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDUkY7QURXQTtFQUNFLFdBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7QUNSRjtBRFdBO0VBQ0UseUJFOUZjO0FEc0ZoQjtBRFdBO0VBQ0UseUJFakdnQjtFRmtHaEIsWUFBQTtBQ1JGO0FEV0E7RUFDRSx5QkVyR3NCO0FENkZ4QiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi8uLi9hc3NldHMvdWktdXRpbHMvdmFycyc7XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xyXG4gIGltZyB7XHJcbiAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xyXG4gIGltZyB7XHJcbiAgICBoZWlnaHQ6IDEwMHB4O1xyXG4gIH1cclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcclxuICAjbWFpbi1jb250YWluZXIge1xyXG4gICAgZmxleC13cmFwOiBub3dyYXA7XHJcbiAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XHJcbiAgI21haW4tY29udGFpbmVyIHtcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDYwMXB4KSB7XHJcbiAgLnMtaW1nIHtcclxuICAgIGhlaWdodDogMzUwcHg7XHJcbiAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XHJcbiAgLnMtaW1nIHtcclxuICAgIGhlaWdodDogMjUwcHg7XHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xyXG4gIC5zZXJ2aWNlIHtcclxuICAgIHdpZHRoOiAyNSVcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzAwcHgpIHtcclxuICAuc2VydmljZSB7XHJcbiAgICB3aWR0aDogOTUlXHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xyXG4gIG1hdC1jYXJkIHtcclxuICAgIHdpZHRoOiAyNSU7XHJcbiAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XHJcbiAgbWF0LWNhcmQge1xyXG4gICAgd2lkdGg6IDk1JTtcclxuICB9XHJcbn1cclxuXHJcbi5zLWltZ3tcclxuICBtYXJnaW46IGF1dG87XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbiNtYWluLWNvbnRhaW5lciB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIG1hcmdpbi10b3A6IDEwJTtcclxufVxyXG5cclxuXHJcbiNzZXJ2aWNlcyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtZXZlbmx5O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG5cclxuI3NlcnZpY2VzLWNvbnRhaW5lcntcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgZmxleC13cmFwOiB3cmFwO1xyXG59XHJcblxyXG4jaGVhZGVyLWNvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZsZXgtd3JhcDogd3JhcFxyXG59XHJcblxyXG4jc2VydmljZS1idG4ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICRwcmltYXJ5LWNvbG9yXHJcbn1cclxuXHJcbiN0b3VyLWJ0biB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogJHNlY29uZGFyeS1jb2xvcjtcclxuICBjb2xvcjogd2hpdGVcclxufVxyXG5cclxuI3RvdXJzLXNlcnZpY2VzLWJ0biB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogJHNlY29uZGFyeS1saWdodC1jb2xvclxyXG59IiwiQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcbiAgaW1nIHtcbiAgICBoZWlnaHQ6IDE1MHB4O1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MDBweCkge1xuICBpbWcge1xuICAgIGhlaWdodDogMTAwcHg7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDYwMXB4KSB7XG4gICNtYWluLWNvbnRhaW5lciB7XG4gICAgZmxleC13cmFwOiBub3dyYXA7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XG4gICNtYWluLWNvbnRhaW5lciB7XG4gICAgZmxleC13cmFwOiB3cmFwO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xuICAucy1pbWcge1xuICAgIGhlaWdodDogMzUwcHg7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XG4gIC5zLWltZyB7XG4gICAgaGVpZ2h0OiAyNTBweDtcbiAgfVxufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNjAxcHgpIHtcbiAgLnNlcnZpY2Uge1xuICAgIHdpZHRoOiAyNSU7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcwMHB4KSB7XG4gIC5zZXJ2aWNlIHtcbiAgICB3aWR0aDogOTUlO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA2MDFweCkge1xuICBtYXQtY2FyZCB7XG4gICAgd2lkdGg6IDI1JTtcbiAgfVxufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzAwcHgpIHtcbiAgbWF0LWNhcmQge1xuICAgIHdpZHRoOiA5NSU7XG4gIH1cbn1cbi5zLWltZyB7XG4gIG1hcmdpbjogYXV0bztcbiAgd2lkdGg6IDEwMCU7XG59XG5cbiNtYWluLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBtYXJnaW4tdG9wOiAxMCU7XG59XG5cbiNzZXJ2aWNlcyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtZXZlbmx5O1xuICB3aWR0aDogMTAwJTtcbn1cblxuI3NlcnZpY2VzLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LXdyYXA6IHdyYXA7XG59XG5cbiNoZWFkZXItY29udGFpbmVyIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LXdyYXA6IHdyYXA7XG59XG5cbiNzZXJ2aWNlLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkNDMDY7XG59XG5cbiN0b3VyLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDgwMDA7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuI3RvdXJzLXNlcnZpY2VzLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY4ZTc7XG59IiwiJHByaW1hcnktY29sb3I6ICNGRkNDMDY7XHJcbiRzZWNvbmRhcnktY29sb3I6ICMwMDgwMDA7XHJcbiRzZWNvbmRhcnktbGlnaHQtY29sb3I6ICNmZmY4ZTc7XHJcbiR3YXJuOiAjZDUwMDAwIl19 */"
 
 /***/ }),
 
@@ -923,7 +954,7 @@ var DashboardComponent = /** @class */ (function () {
         this._user.getServicesByUser().subscribe(function (data) {
             _this.services = data;
             _this._user.getToursByUser().subscribe({
-                next: function (data) { _this.tours = data; console.log(_this.tours); },
+                next: function (data) { _this.tours = data; },
                 error: function (err) { return _this._user.handleError(err); }
             });
         }, function (err) { return _this._user.handleError(err); });
@@ -1009,6 +1040,7 @@ var EditServiceComponent = /** @class */ (function () {
         if (id_service)
             this._service.getService(Number(id_service)).subscribe(function (service) {
                 _this.s = service;
+                console.log(_this.s);
                 _this.getServiceImages();
             }, function (err) { return _this._service.handleError(err); });
     };
@@ -1016,6 +1048,17 @@ var EditServiceComponent = /** @class */ (function () {
         this.s.phones.phones.unshift(phone);
     };
     EditServiceComponent.prototype.getServiceImages = function () {
+        var _this = this;
+        this._service.getServiceImages(this.s.id).subscribe({
+            next: function (images) {
+                _this.serviceImages = images;
+                console.log(_this.serviceImages);
+            },
+            error: function (err) { return _this._service.handleError(err); }
+        });
+    };
+    EditServiceComponent.prototype.openImagesDialog = function () {
+        this._dialog.openImagesDialog(this.serviceImages.map(function (i) { return (i = i.url); }), "service");
     };
     EditServiceComponent.prototype.editLocation = function () {
         var _this = this;
@@ -1105,7 +1148,6 @@ var EditTourComponent = /** @class */ (function () {
         if (id_tour)
             this._tour.getTour(Number(id_tour)).subscribe(function (tour) {
                 _this.t = tour;
-                console.log(_this.t);
                 _this.getToursNames();
             }, function (err) { return _this._tour.handleError(err); });
     };
@@ -1131,7 +1173,7 @@ var EditTourComponent = /** @class */ (function () {
             this.tourImages.push({ id: undefined, url: url });
     };
     EditTourComponent.prototype.openImagesDialog = function () {
-        this._dialog.openImagesDialog(this.tourImages.map(function (i) { return (i = i.url); }));
+        this._dialog.openImagesDialog(this.tourImages.map(function (i) { return (i = i.url); }), "tour");
     };
     EditTourComponent.prototype.getToursNames = function () {
         var _this = this;
@@ -1297,6 +1339,7 @@ var LoginDialogComponent = /** @class */ (function () {
                     _this._user.openSnackBar("Credenciales incorrectas", "Ok", 2500);
                     return;
                 }
+                _this._auth.logout();
                 _this._auth.login(new src_app_models_User__WEBPACK_IMPORTED_MODULE_6__["User"](data._fullname, data.logged, "", data._id));
                 _this._user.openSnackBar("Inicio de sesión exitoso", "Ok", 2500);
             },
@@ -1577,7 +1620,7 @@ var UploadImagesComponent = /** @class */ (function () {
     }
     UploadImagesComponent.prototype.ngOnInit = function () { };
     UploadImagesComponent.prototype.openShowImages = function () {
-        this._dialog.openImagesDialog(this.downloadURLS);
+        this._dialog.openImagesDialog(this.downloadURLS, this.tablename);
     };
     UploadImagesComponent.prototype.toggleHover = function (event) {
         this.isHovering = event;
@@ -1627,6 +1670,10 @@ var UploadImagesComponent = /** @class */ (function () {
         return (snapshot.state === "running" &&
             snapshot.bytesTransferred < snapshot.totalBytes);
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], UploadImagesComponent.prototype, "tablename", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -1902,6 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _project_info_project_info_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./project-info/project-info.component */ "./src/app/general/project-info/project-info.component.ts");
 /* harmony import */ var _password_recovery_password_recovery_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./password-recovery/password-recovery.component */ "./src/app/general/password-recovery/password-recovery.component.ts");
 /* harmony import */ var _admin_admin_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../admin/admin.module */ "./src/app/admin/admin.module.ts");
+/* harmony import */ var _tour_tour_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./tour/tour.component */ "./src/app/general/tour/tour.component.ts");
+
 
 
 
@@ -1927,11 +1976,12 @@ var GeneralModule = /** @class */ (function () {
                 _history_history_component__WEBPACK_IMPORTED_MODULE_3__["HistoryComponent"],
                 _general_root_component__WEBPACK_IMPORTED_MODULE_5__["GeneralRootComponent"],
                 _touristic_offer_touristic_offer_component__WEBPACK_IMPORTED_MODULE_7__["TouristicOfferComponent"],
-                _service_service_component__WEBPACK_IMPORTED_MODULE_9__["TourComponent"],
+                _service_service_component__WEBPACK_IMPORTED_MODULE_9__["ServiceComponent"],
                 _see_location_see_location_component__WEBPACK_IMPORTED_MODULE_10__["SeeLocationComponent"],
                 _veda_veda_component__WEBPACK_IMPORTED_MODULE_11__["VedaComponent"],
                 _project_info_project_info_component__WEBPACK_IMPORTED_MODULE_13__["ProjectInfoComponent"],
-                _password_recovery_password_recovery_component__WEBPACK_IMPORTED_MODULE_14__["PasswordRecoveryComponent"]
+                _password_recovery_password_recovery_component__WEBPACK_IMPORTED_MODULE_14__["PasswordRecoveryComponent"],
+                _tour_tour_component__WEBPACK_IMPORTED_MODULE_16__["TourComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -1940,7 +1990,7 @@ var GeneralModule = /** @class */ (function () {
                 ngx_pagination__WEBPACK_IMPORTED_MODULE_12__["NgxPaginationModule"],
                 _admin_admin_module__WEBPACK_IMPORTED_MODULE_15__["AdminModule"]
             ],
-            entryComponents: [_see_location_see_location_component__WEBPACK_IMPORTED_MODULE_10__["SeeLocationComponent"]],
+            entryComponents: [_see_location_see_location_component__WEBPACK_IMPORTED_MODULE_10__["SeeLocationComponent"], _tour_tour_component__WEBPACK_IMPORTED_MODULE_16__["TourComponent"]],
             exports: [_general_root_component__WEBPACK_IMPORTED_MODULE_5__["GeneralRootComponent"]]
         })
     ], GeneralModule);
@@ -1983,7 +2033,7 @@ var ROUTES = [
             { path: 'tours', component: _touristic_offer_touristic_offer_component__WEBPACK_IMPORTED_MODULE_2__["TouristicOfferComponent"] },
             { path: 'password-recovery', component: _password_recovery_password_recovery_component__WEBPACK_IMPORTED_MODULE_6__["PasswordRecoveryComponent"] },
             { path: 'info', component: _project_info_project_info_component__WEBPACK_IMPORTED_MODULE_5__["ProjectInfoComponent"] },
-            { path: 'tour/:id_service', component: _service_service_component__WEBPACK_IMPORTED_MODULE_3__["TourComponent"] }
+            { path: 'tour/:id_service', component: _service_service_component__WEBPACK_IMPORTED_MODULE_3__["ServiceComponent"] }
         ]
     }
 ];
@@ -2198,7 +2248,6 @@ var SeeLocationComponent = /** @class */ (function () {
         this.data = data;
     }
     SeeLocationComponent.prototype.ngOnInit = function () {
-        console.log(this.data.location);
         this.lp = new location_picker__WEBPACK_IMPORTED_MODULE_2__["default"]("see-loc", {
             lat: this.data.location.lat,
             lng: this.data.location.lng
@@ -2238,12 +2287,12 @@ module.exports = "@media screen and (min-width: 601px) {\n  .related-tour {\n   
 /*!******************************************************!*\
   !*** ./src/app/general/service/service.component.ts ***!
   \******************************************************/
-/*! exports provided: TourComponent */
+/*! exports provided: ServiceComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TourComponent", function() { return TourComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServiceComponent", function() { return ServiceComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -2256,14 +2305,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var TourComponent = /** @class */ (function () {
-    function TourComponent(_tours, route, _router, _dialog, _tour) {
-        this._tours = _tours;
+var ServiceComponent = /** @class */ (function () {
+    function ServiceComponent(_service, route, _router, _dialog, _tour) {
+        this._service = _service;
         this.route = route;
         this._router = _router;
         this._dialog = _dialog;
         this._tour = _tour;
-        this.degree = 45;
         this.moreSlides = 1;
         this.showRelatedLoadingInfo = true;
         this.showLoadingRatesInfo = true;
@@ -2298,14 +2346,15 @@ var TourComponent = /** @class */ (function () {
         };
         this.mode = "horizontal";
     }
-    TourComponent.prototype.ngOnInit = function () {
+    ServiceComponent.prototype.ngOnInit = function () {
         window.innerWidth < 700
             ? (this.mode = "vertical")
             : (this.mode = "horizontal");
         var id_service = this.route.snapshot.paramMap.get("id_service");
         if (this.route.snapshot.paramMap.get("id_service") &&
-            this._tours.services) {
-            this.tour = this._tours.services.find(function (t) { return t.id_service === Number(id_service); });
+            this._service.services) {
+            this.service = this._service.services.find(function (t) { return t.id_service === Number(id_service); });
+            this.data = { images: this.service._imgs_lazy, table: "service" };
             this.getServiceRates(Number(id_service));
             // get related tours
             this.handleGetRelatedToursSubscription(Number(id_service));
@@ -2313,7 +2362,7 @@ var TourComponent = /** @class */ (function () {
         else
             this._router.navigateByUrl("/general/tours");
     };
-    TourComponent.prototype.ngAfterViewInit = function () {
+    ServiceComponent.prototype.ngAfterViewInit = function () {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class
         var e = document.getElementsByTagName("owl-carousel-child")[0];
@@ -2322,35 +2371,33 @@ var TourComponent = /** @class */ (function () {
             e.style.marginLeft = "0px";
         }
     };
-    TourComponent.prototype.onResize = function (event) {
+    ServiceComponent.prototype.onResize = function (event) {
         window.innerWidth < 700
             ? (this.mode = "vertical")
             : (this.mode = "horizontal");
     };
-    TourComponent.prototype.getServiceRates = function (id_service) {
+    ServiceComponent.prototype.getServiceRates = function (id_service) {
         var _this = this;
-        this._tours.getServiceRates(id_service).subscribe({
+        this._service.getServiceRates(id_service).subscribe({
             next: function (rates) {
                 _this.rates = rates;
                 _this.rates === null
                     ? (_this.showLoadingRatesInfo = false)
                     : (_this.showLoadingRatesInfo = true);
             },
-            error: function (err) { return _this._tours.handleError(err); }
+            error: function (err) { return _this._service.handleError(err); }
         });
     };
-    TourComponent.prototype.handleGetRelatedToursSubscription = function (id_service) {
+    ServiceComponent.prototype.handleGetRelatedToursSubscription = function (id_service) {
         var _this = this;
         this._tour.getRelatedTours(id_service).subscribe(function (related_tours) {
             _this.relatedTours = related_tours;
-            console.log(_this.relatedTours);
             if (_this.relatedTours.length === 0)
                 _this.showRelatedLoadingInfo = false;
         }, function (err) { return _this._tour.handleError(err); });
     };
-    TourComponent.prototype.showLoc = function () {
-        var location = JSON.parse(this.tour._location);
-        console.log(location);
+    ServiceComponent.prototype.showLoc = function () {
+        var location = JSON.parse(this.service._location);
         this._dialog.showTourLocation({
             lat: location.lat,
             lng: location.lng
@@ -2361,8 +2408,8 @@ var TourComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object]),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
-    ], TourComponent.prototype, "onResize", null);
-    TourComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    ], ServiceComponent.prototype, "onResize", null);
+    ServiceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "app-tour",
             template: __webpack_require__(/*! raw-loader!./service.component.html */ "./node_modules/raw-loader/index.js!./src/app/general/service/service.component.html"),
@@ -2373,6 +2420,61 @@ var TourComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             src_app_services_dialog_manager_service__WEBPACK_IMPORTED_MODULE_3__["DialogManagerService"],
             src_app_services_tour_service__WEBPACK_IMPORTED_MODULE_5__["TourService"]])
+    ], ServiceComponent);
+    return ServiceComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/general/tour/tour.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/general/tour/tour.component.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dlbmVyYWwvdG91ci90b3VyLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/general/tour/tour.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/general/tour/tour.component.ts ***!
+  \************************************************/
+/*! exports provided: TourComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TourComponent", function() { return TourComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var src_app_models_Tour__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/Tour */ "./src/app/models/Tour.ts");
+
+
+
+
+var TourComponent = /** @class */ (function () {
+    function TourComponent(dialogRef, tour) {
+        this.dialogRef = dialogRef;
+        this.tour = tour;
+    }
+    TourComponent.prototype.ngOnInit = function () {
+        console.log(this.tour);
+        this.data = { images: this.tour.imgs, table: "tour" };
+    };
+    TourComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tour',
+            template: __webpack_require__(/*! raw-loader!./tour.component.html */ "./node_modules/raw-loader/index.js!./src/app/general/tour/tour.component.html"),
+            styles: [__webpack_require__(/*! ./tour.component.scss */ "./src/app/general/tour/tour.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            src_app_models_Tour__WEBPACK_IMPORTED_MODULE_3__["Tour"]])
     ], TourComponent);
     return TourComponent;
 }());
@@ -2407,16 +2509,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/services.service */ "./src/app/services/services.service.ts");
 /* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
 /* harmony import */ var src_app_services_tour_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/tour.service */ "./src/app/services/tour.service.ts");
+/* harmony import */ var src_app_services_dialog_manager_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/dialog-manager.service */ "./src/app/services/dialog-manager.service.ts");
+
 
 
 
 
 
 var TouristicOfferComponent = /** @class */ (function () {
-    function TouristicOfferComponent(_service, _common, _tour) {
+    function TouristicOfferComponent(_service, _common, _tour, _dialog) {
         this._service = _service;
         this._common = _common;
         this._tour = _tour;
+        this._dialog = _dialog;
         this.limit = 6;
         this.offset = 0;
         this.toursOffset = 0;
@@ -2449,7 +2554,6 @@ var TouristicOfferComponent = /** @class */ (function () {
         this._tour.getTours(this.limit, this.toursOffset).subscribe({
             next: function (tours) {
                 _this.tours = tours;
-                console.log(_this.tours);
                 _this._tour.setLazyLoading(_this.tours);
             },
             error: function (err) { return _this._tour.handleError(err); }
@@ -2479,6 +2583,10 @@ var TouristicOfferComponent = /** @class */ (function () {
         this.filter = "";
         this.getTableCountData(undefined, undefined);
     };
+    TouristicOfferComponent.prototype.openTourInfo = function (i) {
+        console.log(i);
+        this._dialog.showTourInfo(this.tours[i]);
+    };
     TouristicOfferComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "app-tours",
@@ -2487,7 +2595,8 @@ var TouristicOfferComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_services_service__WEBPACK_IMPORTED_MODULE_2__["Services"],
             src_app_services_common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"],
-            src_app_services_tour_service__WEBPACK_IMPORTED_MODULE_4__["TourService"]])
+            src_app_services_tour_service__WEBPACK_IMPORTED_MODULE_4__["TourService"],
+            src_app_services_dialog_manager_service__WEBPACK_IMPORTED_MODULE_5__["DialogManagerService"]])
     ], TouristicOfferComponent);
     return TouristicOfferComponent;
 }());
@@ -2759,10 +2868,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonService", function() { return CommonService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
 
 
 var CommonService = /** @class */ (function () {
-    function CommonService() {
+    function CommonService(_snackbar) {
+        this._snackbar = _snackbar;
         this.classification = [
             "Servicio de Alimentación",
             "Artesanía",
@@ -2781,11 +2893,16 @@ var CommonService = /** @class */ (function () {
         });
         return aux;
     };
+    CommonService.prototype.openSnackBar = function (message, action, duration) {
+        this._snackbar.open(message, action, {
+            duration: duration
+        });
+    };
     CommonService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], CommonService);
     return CommonService;
 }());
@@ -2813,6 +2930,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_rates_rates_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin/rates/rates.component */ "./src/app/admin/rates/rates.component.ts");
 /* harmony import */ var _admin_login_dialog_login_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../admin/login-dialog/login-dialog.component */ "./src/app/admin/login-dialog/login-dialog.component.ts");
 /* harmony import */ var _admin_search_related_search_related_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../admin/search-related/search-related.component */ "./src/app/admin/search-related/search-related.component.ts");
+/* harmony import */ var _general_tour_tour_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../general/tour/tour.component */ "./src/app/general/tour/tour.component.ts");
+
 
 
 
@@ -2836,12 +2955,22 @@ var DialogManagerService = /** @class */ (function () {
         });
         return dialogRef.afterClosed();
     };
-    DialogManagerService.prototype.openImagesDialog = function (images) {
+    DialogManagerService.prototype.showTourInfo = function (tour) {
+        var dialogRef;
+        dialogRef = this.dialog.open(_general_tour_tour_component__WEBPACK_IMPORTED_MODULE_9__["TourComponent"], {
+            width: "" + (window.innerWidth < 400 ? "90%" : "50%"),
+            height: "" + (window.innerHeight <= 812 ? "55%" : "50%"),
+            panelClass: "dialog",
+            data: tour
+        });
+        return dialogRef.afterClosed();
+    };
+    DialogManagerService.prototype.openImagesDialog = function (images, tablename) {
         var dialogRef;
         dialogRef = this.dialog.open(_admin_add_service_show_images_show_images_component__WEBPACK_IMPORTED_MODULE_4__["ShowImagesComponent"], {
             width: "" + (window.innerWidth < 400 ? "90%" : "75%"),
             height: "" + (window.innerHeight <= 812 ? "80%" : "70%"),
-            data: images,
+            data: { images: images, table: tablename },
             panelClass: "dialog"
         });
         return dialogRef.afterClosed();
@@ -2893,6 +3022,51 @@ var DialogManagerService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
     ], DialogManagerService);
     return DialogManagerService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/image.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/image.service.ts ***!
+  \*******************************************/
+/*! exports provided: ImageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageService", function() { return ImageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+var ImageService = /** @class */ (function () {
+    function ImageService(_http) {
+        this._http = _http;
+    }
+    ImageService.prototype.deleteTourImage = function (img) {
+        return this._http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].SERVER_BASE_URL + "deleteTourImage", {
+            img: img
+        });
+    };
+    ImageService.prototype.deleteServiceImage = function (img) {
+        return this._http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].SERVER_BASE_URL + "deleteServiceImage", {
+            img: img
+        });
+    };
+    ImageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: "root"
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ImageService);
+    return ImageService;
 }());
 
 
@@ -3125,6 +3299,8 @@ var UserService = /** @class */ (function () {
         this._auth = _auth;
     }
     UserService.prototype.login = function (username, password) {
+        console.log(username);
+        console.log(password);
         return this._http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].SERVER_BASE_URL + "login", {
             username: username,
             password: password
