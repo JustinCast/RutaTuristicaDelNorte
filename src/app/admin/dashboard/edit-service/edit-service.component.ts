@@ -6,7 +6,7 @@ import LocationPicker from "location-picker";
 import { ActivatedRoute } from "@angular/router";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
-import { nextTick } from 'q';
+import { nextTick } from "q";
 
 @Component({
   selector: "app-edit-service",
@@ -17,6 +17,7 @@ export class EditServiceComponent implements OnInit {
   s: any;
   map_code: string;
   l: LocationPicker;
+  serviceImages: Array<any>;
   constructor(
     private _active: ActivatedRoute,
     private _service: Services,
@@ -30,6 +31,7 @@ export class EditServiceComponent implements OnInit {
       this._service.getService(Number(id_service)).subscribe(
         service => {
           this.s = service;
+          console.log(this.s);
           this.getServiceImages();
         },
         (err: HttpErrorResponse) => this._service.handleError(err)
@@ -41,14 +43,26 @@ export class EditServiceComponent implements OnInit {
   }
 
   getServiceImages() {
+    this._service.getServiceImages(this.s.id).subscribe({
+      next: images => {
+        this.serviceImages = images;
+        console.log(this.serviceImages);
+      },
+      error: err => this._service.handleError(err)
+    });
+  }
 
+  openImagesDialog() {
+    this._dialog.openImagesDialog(
+      this.serviceImages.map(i => (i = i.url)),
+      "service"
+    );
   }
 
   editLocation() {
     this._dialog.openPickLocationDialog(this.s._location).subscribe({
       next: loc => {
-        if(!loc)
-          return;
+        if (!loc) return;
         this.s._location = JSON.stringify(loc);
         this._service.openSnackBar("Edición exitosa", "Ok", 2500);
       },

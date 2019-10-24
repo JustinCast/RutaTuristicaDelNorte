@@ -101,7 +101,7 @@ function getServiceImages(req, res) {
       console.log(`err when connecting on getServiceImages: ${err}`);
     } else {
       let query = {
-        text: "SELECT id, url FROM imges WHERE id_service_fk = $1;",
+        text: "SELECT id, url FROM images WHERE id_service_fk = $1;",
         values: [req.params.id_service]
       };
       client
