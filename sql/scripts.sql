@@ -199,14 +199,14 @@ AS
         END
     $$ LANGUAGE plpgsql;
 
-
-CREATE OR REPLACE FUNCTION save_user(_fullname VARCHAR, _username VARCHAR, _password VARCHAR)
+DROP FUNCTION save_user(_fullname VARCHAR, _username VARCHAR, _password VARCHAR);
+CREATE OR REPLACE FUNCTION save_user(_fullname VARCHAR, _username VARCHAR, _password VARCHAR, _email VARCHAR)
 RETURNS VOID
 AS
     $$
         BEGIN
-            INSERT INTO _user(fullname, username, password)
-            VALUES(_fullname, _username, crypt(_password, gen_salt('bf', 5)));
+            INSERT INTO _user(fullname, username, password, email)
+            VALUES(_fullname, _username, crypt(_password, gen_salt('bf', 5)), _email);
         END;
     $$ LANGUAGE plpgsql;
 
@@ -218,7 +218,7 @@ AS
     $$
         BEGIN
             RETURN QUERY SELECT fullname AS _fullname, id_user AS _id, (SELECT password = crypt(_password, password)
-            FROM _user WHERE username = _username) AS logged FROM _user;
+            FROM _user WHERE username = _username) AS logged FROM _user WHERE username = _username;
         END
     $$ LANGUAGE plpgsql;
 
@@ -447,3 +447,7 @@ AS
 
 
 SELECT * FROM get_tours(6, 0);
+SELECT * FROM _user;
+
+SELECT * FROM save_user('Justin Castillo prueba #1', 'jc',
+    '1524', 'justinalbertocas@gmail.com');

@@ -18,6 +18,8 @@ export class UserService {
   ) {}
 
   login(username: string, password: string): Observable<any> {
+    console.log(username)
+    console.log(password);
     return this._http.post<any>(`${environment.SERVER_BASE_URL}login`, {
       username: username,
       password: password
