@@ -10,7 +10,7 @@
       <mat-card *ngFor="let s of services; let i = index" class="service mb-2 mr-1 ml-1">
         <h3 class="text-center font-weight-light">{{s._name}}</h3>
         <hr>
-        <img class="s-img shadow-sm rounded" src="{{s.imgs[0]}}" alt="Imagen Servicio">
+        <img *ngIf="s.imgs[0]" class="s-img shadow-sm rounded" src="{{s.imgs[0]}}" alt="Imagen Servicio">
         <hr>
         <p><strong>Clasificación:</strong> <span>{{s._classification}}</span></p>
         <div class="text-center p-1">
@@ -31,7 +31,7 @@
     <mat-card *ngFor="let t of tours; let i = index" class="service mb-2 mr-1 ml-1">
       <h3 class="text-center font-weight-light">{{t._name}}</h3>
       <hr>
-      <img class="s-img shadow-sm rounded" src="{{t.imgs[0]}}" alt="Imagen Tour">
+      <img *ngIf="t.imgs[0]" class="s-img shadow-sm rounded" src="{{t.imgs[0]}}" alt="Imagen Tour">
       <hr>
       <p><strong>Descripción: </strong> <span>{{t.description}}</span></p>
       <div class="text-center p-1">
