@@ -1,7 +1,7 @@
-<div *ngIf="tour" id="tour-container">
-  <h2 class="text-center text-primary">{{ tour._name }}</h2>
+<div *ngIf="service" id="service-container">
+  <h2 class="text-center text-primary">{{ service._name }}</h2>
   <div class="container">
-    <app-carousel *ngIf="tour._imgs_lazy" [allowDelete]="false" [data]="data"></app-carousel>
+    <app-carousel *ngIf="service._imgs_lazy" [allowDelete]="false" [data]="data"></app-carousel>
   </div>
   
   <ul id="details" class="container text-left p-3 shadow-sm">
@@ -13,16 +13,16 @@
     </li>
     <li>
       <strong>Información adicional: </strong>
-      <p>{{ tour._additional_info }}</p>
+      <p>{{ service._additional_info }}</p>
     </li>
-    <li *ngIf="tour._phones !== null">
+    <li *ngIf="service._phones !== null">
       <mat-list>
-        <mat-list-item *ngFor="let p of tour._phones.phones">
+        <mat-list-item *ngFor="let p of service._phones.phones">
           <mat-icon>phone</mat-icon>{{ p }}
         </mat-list-item>
       </mat-list>
     </li>
-    <li><mat-icon>mail</mat-icon>{{ tour._email }}</li>
+    <li><mat-icon>mail</mat-icon>{{ service._email }}</li>
     <li *ngIf="rates; else loading_rates">
       <h3 class="font-weight-light text-center text-muted">Tarifas</h3>
       <table class="table">
@@ -56,7 +56,7 @@
   </ng-template>
   
   <div *ngIf="relatedTours" id="related-tours">
-    <div *ngFor="let r of relatedTours" class="related-tour shadow-sm rounded p-0 m-2">
+    <div *ngFor="let r of relatedTours" class="related-service shadow-sm rounded p-0 m-2">
       <h3 class="font-weight-light text-center mt-2">{{r.name}}</h3>
       <img class="main-img rounded shadow-sm" src="{{r.imgs[0]}}" alt="">
       <mat-accordion>

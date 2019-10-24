@@ -13,9 +13,8 @@ import { Rates } from "src/app/models/Rates";
   templateUrl: "./service.component.html",
   styleUrls: ["./service.component.scss"]
 })
-export class TourComponent implements OnInit, AfterViewInit {
-  tour: Service;
-  public degree = 45;
+export class ServiceComponent implements OnInit, AfterViewInit {
+  service: Service;
   public moreSlides = 1;
   relatedTours: Array<Tour>;
   rates: Rates;
@@ -55,7 +54,7 @@ export class TourComponent implements OnInit, AfterViewInit {
 
   public mode: string = "horizontal";
   constructor(
-    private _tours: Services,
+    private _service: Services,
     private route: ActivatedRoute,
     private _router: Router,
     private _dialog: DialogManagerService,
@@ -69,12 +68,12 @@ export class TourComponent implements OnInit, AfterViewInit {
     let id_service = this.route.snapshot.paramMap.get("id_service");
     if (
       this.route.snapshot.paramMap.get("id_service") &&
-      this._tours.services
+      this._service.services
     ) {
-      this.tour = this._tours.services.find(
+      this.service = this._service.services.find(
         t => t.id_service === Number(id_service)
       );
-      this.data = {images: this.tour._imgs_lazy, table: "service"}
+      this.data = {images: this.service._imgs_lazy, table: "service"}
       this.getServiceRates(Number(id_service));
       // get related tours
       this.handleGetRelatedToursSubscription(Number(id_service));
@@ -101,14 +100,14 @@ export class TourComponent implements OnInit, AfterViewInit {
   }
 
   getServiceRates(id_service: number) {
-    this._tours.getServiceRates(id_service).subscribe({
+    this._service.getServiceRates(id_service).subscribe({
       next: rates => {
         this.rates = rates;
         this.rates === null
           ? (this.showLoadingRatesInfo = false)
           : (this.showLoadingRatesInfo = true);
       },
-      error: (err: HttpErrorResponse) => this._tours.handleError(err)
+      error: (err: HttpErrorResponse) => this._service.handleError(err)
     });
   }
 
@@ -123,7 +122,7 @@ export class TourComponent implements OnInit, AfterViewInit {
   }
 
   showLoc() {
-    let location = JSON.parse(this.tour._location);
+    let location = JSON.parse(this.service._location);
     this._dialog.showTourLocation(
       {
         lat: location.lat,
