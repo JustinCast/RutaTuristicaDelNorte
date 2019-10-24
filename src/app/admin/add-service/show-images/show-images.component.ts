@@ -25,16 +25,17 @@ export class ShowImagesComponent implements OnInit {
     this.data.images = this._common.setImgsLazyLoading(this.data.images);
   }
 
-  deleteImage(index: number) {
+  deleteImage(event: any) {
+    console.log(event);
     this.fireStorage.storage
-      .refFromURL(this.data.images[index].img)
+      .refFromURL(this.data.images[event.index].img)
       .delete()
       .then(() => {
         this.data.table === "service"
-          ? this._images.deleteServiceImage(this.data.images[index].img)
-          : this._images.deleteTourImage(this.data.images[index].img);
+          ? this._images.deleteServiceImage(this.data.images[event.index].img)
+          : this._images.deleteTourImage(this.data.images[event.index].img);
         this.snackbar.open("Imagen eliminada", "Ok", { duration: 2000 });
-        this.data.images.splice(index, 1);
+        this.data.images.splice(event.index, 1);
       })
       .catch(err => console.log(JSON.stringify(err)));
   }

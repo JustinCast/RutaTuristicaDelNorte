@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./carousel.component.scss"]
 })
 export class CarouselComponent implements OnInit {
-  @Input() public data: any
+  @Input() public data: any;
   @Input() public allowDelete: boolean;
   @Output() deleteImageEvent = new EventEmitter();
 
@@ -42,10 +42,9 @@ export class CarouselComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   emitImageDeletion(index: number) {
-    this.deleteImageEvent.emit({index: index, });
+    this.deleteImageEvent.emit({ index: index, table: this.data.table });
   }
 }
