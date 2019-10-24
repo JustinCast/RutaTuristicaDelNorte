@@ -27,7 +27,7 @@
   </ng-template>
   
   <h1 *ngIf="tours && tours.length > 0" class="text-center text-muted font-weight-light">Tours</h1>
-  <div id="tours" *ngIf="tours && tours.length > 0; else noToursData">
+  <div id="tours" class="d-flex flex-row justify-content-evenly w-100 flex-wrap" *ngIf="tours && tours.length > 0; else noToursData">
     <mat-card *ngFor="let t of tours; let i = index" class="service mb-2 mr-1 ml-1">
       <h3 class="text-center font-weight-light">{{t._name}}</h3>
       <hr>
