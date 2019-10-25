@@ -236,7 +236,7 @@ AS
                        array_agg(i.url) imgs
            FROM service JOIN user_service us ON
                service.id = us.id AND us.id_user = _id_user
-           JOIN (
+           LEFT OUTER JOIN (
                SELECT url,
                       id_service_fk
                FROM images

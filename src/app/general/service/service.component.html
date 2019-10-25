@@ -1,4 +1,4 @@
-<div *ngIf="service" id="service-container">
+<div *ngIf="service" id="service-container" class="mb-3">
   <h2 class="text-center text-primary">{{ service._name }}</h2>
   <div class="container">
     <app-carousel *ngIf="service._imgs_lazy" [allowDelete]="false" [data]="data"></app-carousel>

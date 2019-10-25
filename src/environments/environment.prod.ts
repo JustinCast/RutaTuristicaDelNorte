@@ -1,13 +1,14 @@
 export const environment = {
   production: true,
   firebase:  {
-    apiKey: "AIzaSyBGBbJZGMUM80XKN96SdN5FTZYe9j43odg",
-    authDomain: "ruta-turistica-del-norte.firebaseapp.com",
-    databaseURL: "https://ruta-turistica-del-norte.firebaseio.com",
-    projectId: "ruta-turistica-del-norte",
-    storageBucket: "ruta-turistica-del-norte.appspot.com",
-    messagingSenderId: "194520690899",
-    appId: "1:194520690899:web:906cb44ae4561912"
+    apiKey: "AIzaSyD3W-GpggSqQ86r3cqEkd1tLiqkenvGKog",
+    authDomain: "rtdn-39bbf.firebaseapp.com",
+    databaseURL: "https://rtdn-39bbf.firebaseio.com",
+    projectId: "rtdn-39bbf",
+    storageBucket: "rtdn-39bbf.appspot.com",
+    messagingSenderId: "977602378278",
+    appId: "1:977602378278:web:c32ef6e9755c621dd304e7",
+    measurementId: "G-3YP6YP95FJ"
   },
   SERVER_BASE_URL: "api/",
   localstorage_key: 'loggedUser'

@@ -15,8 +15,7 @@ export class TourComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.tour);
-    this.data = {images: this.tour.imgs, table: "tour"}
+    this.data = {images: this.tour._imgs_lazy, table: "tour"}
   }
 
 }
