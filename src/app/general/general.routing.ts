@@ -15,7 +15,7 @@ export const ROUTES: Routes = [
       {path: 'tours', component: TouristicOfferComponent},
       {path: 'password-recovery', component: PasswordRecoveryComponent},
       {path: 'info', component: ProjectInfoComponent},
-      {path: 'tour/:id_service', component: ServiceComponent}
+      {path: 'service/:id_service', component: ServiceComponent}
     ]
   }
 ];
