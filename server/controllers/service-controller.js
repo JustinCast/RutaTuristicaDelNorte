@@ -72,10 +72,9 @@ function updateService(req, res) {
       console.log(`err when connecting on udpateService: ${err}`);
     } else {
       let updatedService = req.body;
-      console.log(req.body);
       let query = {
         text: "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8);",
-        values: [
+        values: [ 
           updatedService._location,
           updatedService._name,
           updatedService._classification,
@@ -86,6 +85,17 @@ function updateService(req, res) {
           updatedService.id
         ]
       };
+      client.query(query)
+      .then(() => {
+        ImagesCTRL.updateServiceImages(updatedService.imgs, updatedService.id);
+        client.end();
+        res.status(200).send()
+      })
+      .catch(err => {
+        client.end();
+        res.status(400).send(err);
+        console.log(`err when query on updateService: ${err}`);
+      });
     }
   });
 }

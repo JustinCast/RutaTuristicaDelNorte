@@ -6,7 +6,6 @@ import LocationPicker from "location-picker";
 import { ActivatedRoute } from "@angular/router";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Service } from "src/app/models/Service";
-import { nextTick } from "q";
 
 @Component({
   selector: "app-edit-service",
@@ -14,7 +13,7 @@ import { nextTick } from "q";
   styleUrls: ["./edit-service.component.scss"]
 })
 export class EditServiceComponent implements OnInit {
-  s: any;
+  s: Service;
   map_code: string;
   l: LocationPicker;
   serviceImages: Array<any>;
@@ -38,14 +37,18 @@ export class EditServiceComponent implements OnInit {
   }
 
   addPhone(phone) {
-    this.s.phones.phones.unshift(phone);
+    this.s._phones.phones.unshift(phone);
+  }
+
+  catchUploadedImages(url) {
+    if (url) this.serviceImages.push({ id: undefined, url: url });
   }
 
   getServiceImages() {
-    this._service.getServiceImages(this.s.id).subscribe({
+    console.log((this.s as any).id);
+    this._service.getServiceImages((this.s as any).id).subscribe({
       next: images => {
         this.serviceImages = images;
-        console.log(this.serviceImages);
       },
       error: err => this._service.handleError(err)
     });
@@ -71,6 +74,7 @@ export class EditServiceComponent implements OnInit {
   }
 
   onSubmit() {
+    this.s.imgs = this.serviceImages;
     this._service.updateService(this.s);
   }
 }

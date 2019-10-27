@@ -37,12 +37,13 @@ function deleteTourImage(req, res) {
         text: "DELETE FROM tour_images WHERE url = $1",
         values: [req.body.img]
       };
-      client.query(query)
-      .then(() => res.status(200).send())
-      .catch(err => {
-        client.end();
-        console.log(`err when query on deleteTourImage: ${err}`);
-      });
+      client
+        .query(query)
+        .then(() => res.status(200).send())
+        .catch(err => {
+          client.end();
+          console.log(`err when query on deleteTourImage: ${err}`);
+        });
     }
   });
 }
@@ -87,6 +88,31 @@ function saveTourImages(images, id_tour) {
           client.end();
           console.log(`err when query on saveTourImages: ${err}`);
         });
+      });
+    }
+  });
+}
+
+function updateServiceImages(images, id_service) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on updateServiceImages: ${err}`);
+    } else {
+      images.forEach(i => {
+        let query = {
+          text:
+            "INSERT INTO images (url, id_service_fk) VALUES ($1, $2) ON CONFLICT DO NOTHING;",
+          values: [i.url, id_service]
+        };
+        client
+          .query(query)
+          .then(() => client.end())
+          .catch(err => {
+            client.end();
+            console.log(`err when query on updateServiceImages: ${err}`);
+          });
       });
     }
   });
@@ -150,5 +176,6 @@ module.exports = {
   getServiceImages: getServiceImages,
   getTourImages: getTourImages,
   deleteTourImage: deleteTourImage,
-  deleteServiceImage: deleteServiceImage
+  deleteServiceImage: deleteServiceImage,
+  updateServiceImages: updateServiceImages
 };

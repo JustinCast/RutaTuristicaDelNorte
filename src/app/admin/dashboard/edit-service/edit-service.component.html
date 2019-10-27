@@ -60,6 +60,10 @@
     <button (click)="openImagesDialog(); false" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>
   </div>
 
+  <h4 class="font-weight-light text-center">Agregar <span *ngIf="serviceImages">más</span> imágenes</h4>
+  
+  <app-upload-images [tablename]="'tour'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
+
   <div class="text-center container">
     <button type="submit" color="primary" mat-raised-button><mat-icon>send</mat-icon></button>
   </div>

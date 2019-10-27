@@ -339,6 +339,30 @@ RETURNS VOID AS
         END;
     $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION update_service(
+    _location JSON,
+    _name VARCHAR,
+    _classification VARCHAR,
+    _additional_info VARCHAR,
+    _email VARCHAR,
+    _website VARCHAR,
+    _phones JSON,
+    _id_service INTEGER
+) RETURNS VOID AS
+    $$
+        BEGIN
+            UPDATE service SET
+                               name = _name,
+                               location = _location,
+                               classification = _classification,
+                               additional_info = _additional_info,
+                               email = _email,
+                               website = _website,
+                               phones = _phones
+            WHERE id = _id_service;
+        END;
+    $$ LANGUAGE plpgsql;
+
 
 CREATE OR REPLACE FUNCTION get_related_services_by_user()
 RETURNS VOID AS
