@@ -469,9 +469,11 @@ AS
         END;
     $$ LANGUAGE plpgsql;
 
-
+SELECT id_user, s.id, s.name FROM user_service JOIN service s on user_service.id = s.id;
+UPDATE user_service SET id_user = 19 WHERE id = 50;
 -- inserciones de usuarios
 -- 1
+SELECT * FROM _user
 SELECT * FROM save_user(
     'Esteban Cruz Pizarro',
     'EstebanCruzPizarro',
@@ -581,7 +583,26 @@ SELECT * FROM save_user(
     ''
     );
 
+-- 15
+SELECT * FROM save_user(
+    'Alvaro Wiessel',
+    'alvsel',
+    'sselwi',
+    'alvaro.wiessel@gmail.com'
+    );
 
+-- 16
+SELECT * FROM save_user(
+    'Kenneth Dominguez',
+    'kendo',
+    'thguez',
+    'kennethdgcs@gmail.com'
+    );
 
-
-SELECT * FROM _user;
+-- 17
+SELECT * FROM save_user(
+    'Antonio Flores',
+    'nioan',
+    'resflo',
+    'floresantonio160@gmail.com'
+    );
