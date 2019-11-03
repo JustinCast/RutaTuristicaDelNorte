@@ -41,7 +41,6 @@ export class LoginDialogComponent implements OnInit {
       )
       .subscribe({
         next: data => {
-          console.log(data)
           if(!data.logged || data.logged === null) {
             this._user.openSnackBar("Credenciales incorrectas", "Ok", 2500);
             return;
@@ -56,7 +55,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
   passwordRecovery() {
-    console.log(this.loginFG.get("username").value);
     this._user.passwordRecovery(this.loginFG.get("username").value).subscribe({
       next: () => this._user.openSnackBar("Email enviado", "Ok", 2500),
       error: (err: HttpErrorResponse) => this._user.handleError(err)

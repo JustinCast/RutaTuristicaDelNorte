@@ -470,12 +470,118 @@ AS
     $$ LANGUAGE plpgsql;
 
 
-SELECT * FROM get_tours(6, 0);
+-- inserciones de usuarios
+-- 1
+SELECT * FROM save_user(
+    'Esteban Cruz Pizarro',
+    'EstebanCruzPizarro',
+    'estCrzPizarro',
+    'esteban.papito@hotmail.com'
+    );
+
+-- 2
+SELECT * FROM save_user(
+    'Luis Lira',
+    'llira',
+    'iraluis',
+    'ventas@hamiltonleisure.com'
+    );
+-- 3
+SELECT * FROM save_user(
+    'Sisney Irigoyen',
+    'sisiriyen',
+    'yengoiri',
+    'sisneyirigoyen12@hotmail.com'
+    );
+
+-- 4
+SELECT * FROM save_user(
+    'Yalvin Santiago Arana',
+    'yaladele',
+    'ledeyala',
+    'adalenycastrol@gmail.com'
+    );
+
+-- 5
+SELECT * FROM save_user(
+    'Posada rural y senderos Oasis',
+    'posasenoasis',
+    'ruralpossen',
+    'posadaoasis@hotmail.com'
+    );
+
+-- 6
+SELECT * FROM save_user(
+    'Jorge Alberto Bonilla Zeledón',
+    'zelebotober',
+    'joralboze',
+    'jbonillazeledon@gmail.com'
+    );
+
+-- 7
+SELECT * FROM save_user(
+    'Paraíso Tropical',
+    'caltropi',
+    'sotropi',
+    'paraisotropicalcanonegro@gmail.com'
+    );
+
+-- 8
+SELECT * FROM save_user(
+    'Marlon Castro',
+    'troloncas',
+    'martrocas',
+    'castroflores81@gmail.com'
+    );
+
+-- 9
+SELECT * FROM save_user(
+    'Geri Brown',
+    'rownrige',
+    'norbri',
+    'geri.brown@cincoramas.com'
+    );
+
+-- 10
+SELECT * FROM save_user(
+    'Jimmy Gutiérrez Canales',
+    'lesnaca',
+    'mmyrrez',
+    'jimmygutierrezcanales@gmail.com'
+    );
+
+-- 11
+SELECT * FROM save_user(
+    'Juan Carlos Quesada',
+    'sadalos',
+    'jucaque',
+    'hoteljabiru@gmail.com'
+    );
+
+-- 12
+SELECT * FROM save_user(
+    'Argell Saballos',
+    'osbasa',
+    'gelarba',
+    'honitsha@gmail.com'
+    );
+
+-- 13
+SELECT * FROM save_user(
+    'Carmen Lidia Jiménez',
+    'nezlidia',
+    'menlidi',
+    ''
+    );
+-- 14
+SELECT * FROM save_user(
+    'Cabinas Felicia',
+    'cialife',
+    'nascia',
+    ''
+    );
+
+
+
+
 SELECT * FROM _user;
-
-SELECT * FROM save_user('Justin Castillo prueba #1', 'jc',
-    '1524', 'justinalbertocas@gmail.com');
-
-DELETE FROM tour_images;
-
-Select * from tour;
