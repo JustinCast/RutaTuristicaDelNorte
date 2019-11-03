@@ -46,7 +46,8 @@ export class LoginDialogComponent implements OnInit {
             return;
           }
           this._auth.logout();
-          this._auth.login(new User(data._fullname, data.logged, "", data._id));
+          console.log(data)
+          this._auth.login(new User(data._fullname, this.loginFG.get("username").value, "", data.id));
           this._user.openSnackBar("Inicio de sesión exitoso", "Ok", 2500);
         },
         error: (err: HttpErrorResponse) =>

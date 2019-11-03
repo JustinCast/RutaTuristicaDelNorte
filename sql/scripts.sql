@@ -213,7 +213,7 @@ AS
 
 DROP FUNCTION login(_username VARCHAR, _password VARCHAR);
 CREATE OR REPLACE FUNCTION login(_username VARCHAR, _password VARCHAR)
-RETURNS TABLE (_fullname VARCHAR, _id INTEGER, logged BOOLEAN)
+RETURNS TABLE (_fullname VARCHAR _id INTEGER, logged BOOLEAN)
 AS
     $$
         BEGIN

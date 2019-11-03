@@ -2,7 +2,7 @@
   <mat-drawer #drawer mode="over">
     <div *ngIf="loggedUser" class="container text-center">
       <h1>{{ loggedUser.fullname }}</h1>
-      <small class="text-secondary">{{ loggedUser.username }}</small>
+      <small class="text-secondary">Nombre de usuario: {{ loggedUser.username }}</small>
       <hr />
     </div>
     <div id="body">
