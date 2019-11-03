@@ -468,9 +468,7 @@ AS
                     ON u.id_user = rpc.id_user_fk WHERE u.username = $1;
         END;
     $$ LANGUAGE plpgsql;
-
-SELECT id_user, s.id, s.name FROM user_service JOIN service s on user_service.id = s.id;
-UPDATE user_service SET id_user = 19 WHERE id = 50;
+SELECT * FROM get_services(3, 0, '');
 -- inserciones de usuarios
 -- 1
 SELECT * FROM _user
