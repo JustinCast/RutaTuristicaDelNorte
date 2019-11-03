@@ -22,9 +22,9 @@
     <h4 class="text-center text-primary">
       Servicios
     </h4>
-    <ul id="content" *ngIf="_service.services.length > 0; else empty">
+    <ul id="content" class="animated bounceInDown" *ngIf="_service.services.length > 0; else empty">
       <mat-card
-        class="service animated bounceInRight"
+        class="service"
         *ngFor="
           let item of _service.services
             | paginate
@@ -120,7 +120,7 @@
     <h4 class="text-center text-primary">
       Tours
     </h4>
-    <ul class="pl-0">
+    <ul class="pl-0 animated bounceInDown">
       <mat-card
         class="service"
         *ngFor="

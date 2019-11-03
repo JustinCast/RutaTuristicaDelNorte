@@ -42,9 +42,6 @@ export class UserService {
     let id = (JSON.parse(
       localStorage.getItem(`${environment.localstorage_key}`)
     ) as User).id;
-    console.log(JSON.parse(
-      localStorage.getItem(`${environment.localstorage_key}`)
-    ))
     return this._http.get<any>(
       `${environment.SERVER_BASE_URL}getServicesByUser/${id}`
     );

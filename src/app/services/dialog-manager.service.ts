@@ -47,7 +47,7 @@ export class DialogManagerService {
     let dialogRef: MatDialogRef<ShowImagesComponent>;
     dialogRef = this.dialog.open(ShowImagesComponent, {
       width: `${window.innerWidth < 400 ? "90%" : "75%"}`,
-      height: `${window.innerHeight <= 812 ? "80%" : "70%"}`,
+      height: `${window.innerHeight <= 812 ? "70%" : "70%"}`,
       data: { images: images, table: tablename },
       panelClass: "dialog"
     });
