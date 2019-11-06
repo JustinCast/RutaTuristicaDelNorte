@@ -45,10 +45,10 @@ export class EditServiceComponent implements OnInit {
   }
 
   getServiceImages() {
-    console.log((this.s as any).id);
     this._service.getServiceImages((this.s as any).id).subscribe({
       next: images => {
         this.serviceImages = images;
+        console.log(this.serviceImages);
       },
       error: err => this._service.handleError(err)
     });
