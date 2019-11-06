@@ -9,7 +9,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 @Component({
   selector: "app-login-dialog",
   templateUrl: "./login-dialog.component.html",
-  styleUrls: ["./login-dialog.component.scss"]
+  styleUrls: ["./login-dialog.component.scss"],
 })
 export class LoginDialogComponent implements OnInit {
   loginFG: FormGroup;
@@ -25,7 +25,7 @@ export class LoginDialogComponent implements OnInit {
   ngOnInit() {
     this.loginFG = this._fb.group({
       username: ["", Validators.required],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
     });
   }
 
@@ -41,24 +41,34 @@ export class LoginDialogComponent implements OnInit {
       )
       .subscribe({
         next: data => {
-          if(!data.logged || data.logged === null) {
+          if (!data.logged || data.logged === null) {
             this._user.openSnackBar("Credenciales incorrectas", "Ok", 2500);
             return;
           }
           this._auth.logout();
-          console.log(data)
-          this._auth.login(new User(data._fullname, this.loginFG.get("username").value, "", data._id));
+          console.log(data);
+          this._auth.login(
+            new User(
+              data._fullname,
+              this.loginFG.get("username").value,
+              "",
+              data._id
+            )
+          );
           this._user.openSnackBar("Inicio de sesión exitoso", "Ok", 2500);
         },
         error: (err: HttpErrorResponse) =>
-          this._user.openSnackBar("Error de inicio de sesión", "Ok", 2500)
+          this._user.openSnackBar("Error de inicio de sesión", "Ok", 2500),
       });
   }
 
   passwordRecovery() {
     this._user.passwordRecovery(this.loginFG.get("username").value).subscribe({
-      next: () => this._user.openSnackBar("Email enviado", "Ok", 2500),
-      error: (err: HttpErrorResponse) => this._user.handleError(err)
+      next: data => {
+        this._user.openSnackBar("Email enviado", "Ok", 2500);
+        console.log(data)
+      },
+      error: (err: HttpErrorResponse) => this._user.handleError(err),
     });
   }
 }

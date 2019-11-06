@@ -451,6 +451,8 @@ CREATE OR REPLACE FUNCTION gen_recovery_code(_username VARCHAR)
 RETURNS TABLE(email VARCHAR, code VARCHAR)
 AS
     $$
+        DECLARE
+            last_inserted_val INTEGER;
         BEGIN
 
             INSERT INTO recovery_password_code(code, id_user_fk, date)
@@ -458,20 +460,20 @@ AS
                    (SELECT floor(random()*(999999-0+1))+0),
                    (SELECT id_user FROM _user WHERE _user.username = $1),
                    (SELECT NOW())
-            );
+            ) RETURNING id INTO last_inserted_val;
 
             RETURN QUERY SELECT
                                 u.email email,
                                 rpc.code code
             FROM _user u
                 JOIN recovery_password_code rpc
-                    ON u.id_user = rpc.id_user_fk WHERE u.username = $1;
+                    ON u.id_user = rpc.id_user_fk WHERE u.username = $1 AND rpc.id = last_inserted_val;
         END;
     $$ LANGUAGE plpgsql;
-SELECT * FROM get_services(3, 0, '');
+
+
 -- inserciones de usuarios
 -- 1
-SELECT * FROM _user
 SELECT * FROM save_user(
     'Esteban Cruz Pizarro',
     'EstebanCruzPizarro',
