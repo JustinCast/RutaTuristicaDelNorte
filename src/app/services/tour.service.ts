@@ -25,6 +25,10 @@ export class TourService {
       );
   }
 
+  deleteTour(id_tour: number) {
+    return this._http.delete(`${environment.SERVER_BASE_URL}deleteTour/${id_tour}`);
+  }
+
   getTour(id_tour: number): Observable<Tour> {
     return this._http.get<Tour>(
       `${environment.SERVER_BASE_URL}getTour/${id_tour}`

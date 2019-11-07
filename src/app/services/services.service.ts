@@ -31,6 +31,10 @@ export class Services {
     });
   }
 
+  deleteService(id_service: number) {
+    return this._http.delete(`${environment.SERVER_BASE_URL}deleteService/${id_service}`);
+  }
+
   updateService(updatedService: Service) {
     this._http
       .put(`${environment.SERVER_BASE_URL}updateService`, updatedService)

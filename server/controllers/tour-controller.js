@@ -38,6 +38,34 @@ function saveTour(req, res) {
   });
 }
 
+function deleteTour(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on deleteTour: ${err}`);
+    } else {
+      let query = {
+        text: 'SELECT * FROM delete_tour($1);',
+        values: [Number(req.params.id_tour)]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send();
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on deleteTour: ${err}`);
+        });
+    }
+  });
+}
+
 /**
  * Functions to get all the services in the db
  * @param {*} req
@@ -189,6 +217,7 @@ function updateTour(req, res) {
 
 module.exports = {
   saveTour: saveTour,
+  deleteTour: deleteTour,
   getTours: getTours,
   getTour: getTour,
   getRelatedTours: getRelatedTours,

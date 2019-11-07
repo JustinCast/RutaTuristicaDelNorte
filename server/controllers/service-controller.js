@@ -58,6 +58,34 @@ function saveService(req, res) {
   });
 }
 
+function deleteService(req, res) {
+  client = new pg.Client(db);
+
+  client.connect(err => {
+    if (err) {
+      client.end();
+      res.status(400).send(err);
+      console.log(`err when connecting on deleteService: ${err}`);
+    } else {
+      let query = {
+        text: 'SELECT * FROM delete_service($1);',
+        values: [Number(req.params.id_service)]
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send();
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on deleteService: ${err}`);
+        });
+    }
+  });
+}
+
 /**
  * updateService function
  * @param {*} req
@@ -290,6 +318,7 @@ module.exports = {
   updateService: updateService,
   getServices: getServices,
   getService: getService,
+  deleteService: deleteService,
   getServiceNameId: getServiceNameId,
   getServicesCount: getServicesCount,
   getServiceRates: getServiceRates,

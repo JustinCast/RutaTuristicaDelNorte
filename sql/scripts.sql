@@ -498,9 +498,28 @@ AS
                     ON u.id_user = rpc.id_user_fk WHERE u.username = $1 AND rpc.id = last_inserted_val;
         END;
     $$ LANGUAGE plpgsql;
-SELECT id, url FROM images WHERE id_service_fk = 51;
 
-SELECT * FROM _user;
+DROP FUNCTION delete_service(id_service INTEGER);
+CREATE OR REPLACE FUNCTION delete_service(id_service INTEGER)
+RETURNS VOID AS
+$$
+    BEGIN
+        DELETE FROM user_service WHERE id = $1;
+        DELETE FROM images WHERE id_service_fk = $1;
+        DELETE FROM service_rates WHERE id_service_fk = $1;
+        DELETE FROM service WHERE id = $1;
+    END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION delete_tour(id_tour INTEGER)
+RETURNS VOID AS
+$$
+    BEGIN
+        DELETE FROM user_tour WHERE id = $1;
+        DELETE FROM tour_images WHERE id_tour_fk = $1;
+        DELETE FROM tour WHERE id = $1;
+    END;
+$$ LANGUAGE plpgsql;
 -- inserciones de usuarios
 -- 1
 SELECT * FROM save_user(
