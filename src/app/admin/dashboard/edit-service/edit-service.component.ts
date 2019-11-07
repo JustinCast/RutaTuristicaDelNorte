@@ -10,7 +10,7 @@ import { Service } from "src/app/models/Service";
 @Component({
   selector: "app-edit-service",
   templateUrl: "./edit-service.component.html",
-  styleUrls: ["./edit-service.component.scss"]
+  styleUrls: ["./edit-service.component.scss"],
 })
 export class EditServiceComponent implements OnInit {
   s: any;
@@ -45,13 +45,17 @@ export class EditServiceComponent implements OnInit {
   }
 
   getServiceImages() {
-    this._service.getServiceImages(this.s._id).subscribe({
-      next: images => {
-        this.serviceImages = images;
-        console.log(this.serviceImages);
-      },
-      error: err => this._service.handleError(err)
-    });
+    this._service
+      .getServiceImages(
+        Number(this._active.snapshot.paramMap.get("id_service"))
+      )
+      .subscribe({
+        next: images => {
+          this.serviceImages = images;
+          console.log(this.serviceImages);
+        },
+        error: err => this._service.handleError(err),
+      });
   }
 
   openImagesDialog() {
@@ -69,7 +73,7 @@ export class EditServiceComponent implements OnInit {
         this._service.openSnackBar("Edición exitosa", "Ok", 2500);
       },
       error: err =>
-        this._service.openSnackBar(`Ha ocurrido un error: ${err}`, "Ok", 2500)
+        this._service.openSnackBar(`Ha ocurrido un error: ${err}`, "Ok", 2500),
     });
   }
 

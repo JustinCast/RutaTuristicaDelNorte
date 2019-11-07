@@ -65,7 +65,7 @@ export class Services {
   }
 
   getServiceImages(id_service: number): Observable<Array<string>> {
-    return this._http.get<Array<string>>(`${environment.SERVER_BASE_URL}getServiceImages/${id_service}`);
+    return this._http.get<any>(`${environment.SERVER_BASE_URL}getServiceImages/${id_service}`);
   }
 
   setLazyLoading(): void {
