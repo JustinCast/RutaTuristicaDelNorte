@@ -49,7 +49,6 @@ export class LinkServiceComponent implements OnInit {
     let newRelated = this.servicesNames.find(
       s => s.name === this.serviceCtrl.value
     );
-    console.log(newRelated);
     newRelated ? (this.selectedServiceToLink.emit(newRelated)) : null;
   }
 

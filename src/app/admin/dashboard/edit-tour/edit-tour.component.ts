@@ -31,7 +31,6 @@ export class EditTourComponent implements OnInit {
       this._tour.getTour(Number(id_tour)).subscribe(
         tour => {
           this.t = tour;
-          console.log(this.t);
           this.getTourImages();
         },
         (err: HttpErrorResponse) => this._tour.handleError(err)
