@@ -74,7 +74,7 @@
     <app-upload-images [tablename]="'service'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
     <div class="container text-center">
       <button
-        [disabled]="!addServiceFG.valid !== undefined || !location"
+        [disabled]="!addServiceFG.valid || !location"
         mat-raised-button
       >
         <mat-icon>send</mat-icon>

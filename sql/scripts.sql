@@ -164,13 +164,12 @@ BEGIN
                        s.phones _phones,
                        s.id id_service,
                        array_agg(i.url) as imgs
-                FROM service AS s INNER
-                JOIN images i on s.id = i.id_service_fk WHERE s.classification = _filter
+                FROM service AS s
+                LEFT OUTER JOIN images i on s.id = i.id_service_fk WHERE s.classification LIKE '%'|| _filter ||'%'
                 group by s.id LIMIT _limit OFFSET _offset;
             END IF;
         END;
 $$;
-
 DROP FUNCTION get_tours(_limit INTEGER, _offset INTEGER);
 CREATE OR REPLACE FUNCTION get_tours(_limit INTEGER, _offset INTEGER)
     RETURNS TABLE (
@@ -523,7 +522,7 @@ $$ LANGUAGE plpgsql;
 
 
 
-SELECT * FROM user_service;
+SELECT * FROM service;
 -- inserciones de usuarios
 -- 1
 SELECT * FROM save_user(

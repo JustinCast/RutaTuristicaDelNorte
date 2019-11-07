@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { FormArray, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Rates } from 'src/app/models/Rates';
@@ -6,7 +6,8 @@ import { Rates } from 'src/app/models/Rates';
 @Component({
   selector: "app-rates",
   templateUrl: "./rates.component.html",
-  styleUrls: ["./rates.component.scss"]
+  styleUrls: ["./rates.component.scss"],
+  encapsulation: ViewEncapsulation.None 
 })
 export class RatesComponent implements OnInit {
   ratesFG: FormGroup;

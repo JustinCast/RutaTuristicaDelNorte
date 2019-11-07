@@ -37,6 +37,7 @@ export class TouristicOfferComponent implements OnInit {
   }
 
   getTableCountData(columm: string, value: string) {
+    console.log(value);
     this._service.page = 1;
     this._service.getServicesCount(columm, value).subscribe({
       next: count => {
@@ -82,7 +83,6 @@ export class TouristicOfferComponent implements OnInit {
 
   applyFilter() {
     this.getTableCountData("classification", this.filter);
-    //this._tours.getServices(this.limit, this.offset, this.filter);
   }
 
   reset() {

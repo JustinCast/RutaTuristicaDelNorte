@@ -22,93 +22,95 @@
     <h4 class="text-center text-primary">
       Servicios
     </h4>
-    <ul id="content" class="animated bounceInDown" *ngIf="_service.services.length > 0; else empty">
-      <mat-card
-        class="service"
-        *ngFor="
-          let item of _service.services
-            | paginate
-              : {
-                  itemsPerPage: [limit],
-                  currentPage: _service.page,
-                  totalItems: [count]
-                };
-          let i = index
-        "
-      >
-        <h1 class="text-center">{{ item._name }}</h1>
-        <hr />
+    <div class="container-fluid" *ngIf="_service.services.length > 0; else empty">
+      <div class="card-columns">
         <div
-          id="img-container"
-          class="p-0 text-center"
-          (deferLoad)="item._imgs_lazy[0].show = true"
+          class="card p-2 shadow-sm border border-warning"
+          *ngFor="
+            let item of _service.services
+              | paginate
+                : {
+                    itemsPerPage: [limit],
+                    currentPage: _service.page,
+                    totalItems: [count]
+                  };
+            let i = index
+          "
         >
-          <ng-container *ngIf="item._imgs_lazy[0].show">
-            <img
-              class="main-img rounded shadow"
-              alt=""
-              src="{{ item._imgs_lazy[0].img }}"
-            />
-          </ng-container>
-        </div>
-        <hr />
-        <mat-card-content class="text-left">
-          <ul class="details">
-            <li>
-              <mat-accordion>
-                <mat-expansion-panel
-                  panelClass="yellow-panel.mat-expansion-panel"
-                >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="font-weight-bold">
-                      Información adicional
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Click para ver más
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>{{ item._additional_info }}</p>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </li>
-            <li
-              *ngIf="
-                item._phones !== null && item._phones.phones.length > 0;
-                else noPhones
-              "
-            >
-              <mat-list>
-                <mat-list-item *ngFor="let p of item._phones.phones">
-                  <mat-icon>phone</mat-icon>{{ p }}
-                </mat-list-item>
-              </mat-list>
-            </li>
-            <ng-template #noPhones>
-              <mat-list>
-                <mat-list-item
-                  ><mat-icon color="warn">info</mat-icon> No hay números de
-                  teléfono asociados</mat-list-item
-                >
-              </mat-list>
-            </ng-template>
-
-            <li>
-              <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
-            </li>
-          </ul>
-        </mat-card-content>
-        <hr />
-        <div class="container text-center">
-          <button
-            routerLink="../service/{{ item.id_service }}"
-            class="detail-button"
-            mat-raised-button
+          <h1 class="text-center">{{ item._name }}</h1>
+          <hr />
+          <div
+            id="img-container"
+            class="p-0 text-center"
+            (deferLoad)="item._imgs_lazy[0].show = true"
           >
-            Ver más
-          </button>
+            <ng-container *ngIf="item._imgs_lazy[0].show">
+              <img
+                class="main-img rounded"
+                alt=""
+                src="{{ item._imgs_lazy[0].img }}"
+              />
+            </ng-container>
+          </div>
+          <hr />
+          <mat-card-content class="text-left">
+            <ul class="details">
+              <li>
+                <mat-accordion>
+                  <mat-expansion-panel
+                    panelClass="yellow-panel.mat-expansion-panel"
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title class="font-weight-bold">
+                        Información adicional
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Click para ver más
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>{{ item._additional_info }}</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </li>
+              <li
+                *ngIf="
+                  item._phones !== null && item._phones.phones.length > 0;
+                  else noPhones
+                "
+              >
+                <mat-list>
+                  <mat-list-item *ngFor="let p of item._phones.phones">
+                    <mat-icon>phone</mat-icon>{{ p }}
+                  </mat-list-item>
+                </mat-list>
+              </li>
+              <ng-template #noPhones>
+                <mat-list>
+                  <mat-list-item
+                    ><mat-icon color="warn">info</mat-icon> No hay números de
+                    teléfono asociados</mat-list-item
+                  >
+                </mat-list>
+              </ng-template>
+  
+              <li>
+                <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
+              </li>
+            </ul>
+          </mat-card-content>
+          <hr />
+          <div class="container text-center">
+            <button
+              routerLink="../service/{{ item.id_service }}"
+              class="detail-button"
+              mat-raised-button
+            >
+              Ver más
+            </button>
+          </div>
         </div>
-      </mat-card>
-    </ul>
+      </div>
+    </div>
     <pagination-controls class="my-pagination container text-center" (pageChange)="pageChanged($event)">
     </pagination-controls>
     <ng-template #empty>
