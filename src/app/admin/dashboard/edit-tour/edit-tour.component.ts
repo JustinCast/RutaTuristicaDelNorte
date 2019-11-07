@@ -11,7 +11,7 @@ import { DialogManagerService } from "src/app/services/dialog-manager.service";
 @Component({
   selector: "app-edit-tour",
   templateUrl: "./edit-tour.component.html",
-  styleUrls: ["./edit-tour.component.scss"]
+  styleUrls: ["./edit-tour.component.scss"],
 })
 export class EditTourComponent implements OnInit {
   t: any;
@@ -60,17 +60,19 @@ export class EditTourComponent implements OnInit {
   getTourImages() {
     this._tour.getTourImages(this.t.id).subscribe({
       next: images => (this.tourImages = images),
-      error: err => this._tour.handleError(err)
+      error: err => this._tour.handleError(err),
     });
   }
 
   catchUploadedImages(url) {
-    if(url)
-      this.tourImages.push({id: undefined, url: url});
+    if (url) this.tourImages.push({ id: undefined, url: url });
   }
 
   openImagesDialog() {
-    this._dialog.openImagesDialog(this.tourImages.map(i => (i = i.url)), "tour");
+    this._dialog.openImagesDialog(
+      this.tourImages.map(i => (i = i.url)),
+      "tour"
+    );
   }
 
   getToursNames() {
@@ -80,7 +82,7 @@ export class EditTourComponent implements OnInit {
         this.getTourImages();
         this.configFormControl();
       },
-      error: err => this._service.handleError(err)
+      error: err => this._service.handleError(err),
     });
   }
 
@@ -89,11 +91,11 @@ export class EditTourComponent implements OnInit {
   }
 
   onSubmit() {
-    this.t.imgs = this.tourImages.map(i => i = i.url);
+    this.t.imgs = this.tourImages.map(i => (i = i.url));
     this._tour.updateTour(this.t).subscribe({
       next: () =>
         this._tour.openSnackBar("Tour actualizado con éxito", "Ok", 2500),
-      error: err => this._tour.handleError(err)
+      error: err => this._tour.handleError(err),
     });
   }
 
@@ -104,7 +106,7 @@ export class EditTourComponent implements OnInit {
         this.t.related_service = undefined;
         this.t.service_name = undefined;
       },
-      error: (err: HttpErrorResponse) => this._tour.handleError(err)
+      error: (err: HttpErrorResponse) => this._tour.handleError(err),
     });
   }
 

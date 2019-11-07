@@ -87,7 +87,7 @@ function updateService(req, res) {
       };
       client.query(query)
       .then(() => {
-        ImagesCTRL.updateServiceImages(updatedService.imgs, updatedService.id);
+        ImagesCTRL.updateServiceImages(updatedService.imgs, updatedService._id);
         client.end();
         res.status(200).send()
       })
@@ -152,16 +152,8 @@ function getService(req, res) {
       console.log(`err when connecting on getService: ${err}`);
     } else {
       let query = {
-        text: `SELECT id,
-                      name _name,
-                      location _location,
-                      classification _classification,
-                      additional_info _additional_info,
-                      email _email,
-                      website _website,
-                      phones _phones  
-               FROM service WHERE id = $1`,
-        values: [req.params.id_service]
+        text: `SELECT * FROM get_service_for_update($1)`,
+        values: [Number(req.params.id_service)]
       };
       client
         .query(query)

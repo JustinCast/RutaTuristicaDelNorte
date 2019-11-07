@@ -14,7 +14,7 @@ export const environment = {
     appId: "1:977602378278:web:c32ef6e9755c621dd304e7",
     measurementId: "G-3YP6YP95FJ"
   },
-  SERVER_BASE_URL: "api/",
+  SERVER_BASE_URL: "http://localhost:5000/api/",
   localstorage_key: 'loggedUser'
 };
 

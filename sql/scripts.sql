@@ -404,6 +404,34 @@ BEGIN
             WHERE id_service_fk = id_service;
         END;
 $$;
+DROP FUNCTION get_service_for_update(id_service INTEGER);
+CREATE OR REPLACE FUNCTION get_service_for_update(id_service INTEGER)
+RETURNS TABLE (
+    _id INTEGER,
+    _name VARCHAR,
+    _location VARCHAR,
+    _classification VARCHAR,
+    _additional_info VARCHAR,
+    _email VARCHAR,
+    _website VARCHAR,
+    _phones JSON
+) AS
+$$
+    BEGIN
+        RETURN QUERY SELECT s.id AS _id,
+                            s.name _name,
+                            s.location _location,
+                            s.classification _classification,
+                            s.additional_info _additional_info,
+                            s.email _email,
+                            s.website _website,
+                            s.phones _phones
+        FROM service AS s WHERE s.id = $1;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT * FROM get_service_for_update(51);
 
 DROP FUNCTION get_tour_for_update(id_tour INTEGER);
 CREATE OR REPLACE FUNCTION get_tour_for_update(id_tour INTEGER)
@@ -470,8 +498,9 @@ AS
                     ON u.id_user = rpc.id_user_fk WHERE u.username = $1 AND rpc.id = last_inserted_val;
         END;
     $$ LANGUAGE plpgsql;
+SELECT id, url FROM images WHERE id_service_fk = 51;
 
-
+SELECT * FROM _user;
 -- inserciones de usuarios
 -- 1
 SELECT * FROM save_user(
