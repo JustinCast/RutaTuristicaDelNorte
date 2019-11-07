@@ -56,7 +56,7 @@ export class AddTourComponent implements OnInit {
       (JSON.parse(
         localStorage.getItem(`${environment.localstorage_key}`)
       ) as User).id,
-      this.related
+      this.related.id
     );
     this._tour.saveTour(tour);
   }
