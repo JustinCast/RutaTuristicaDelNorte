@@ -13,7 +13,7 @@
   </div>
         
   <div class="rounded" formArrayName="items" style="overflow-y: auto; background-color: rgba(250, 250, 250, 0.863)">
-    <div class="row" *ngFor="let item of ratesFG.get('items').controls; let i = index " [formGroupName]="i">
+    <div class="row" *ngFor="let item of ratesFG.get('items')['controls']; let i = index " [formGroupName]="i">
       <mat-form-field appearance="outline" class="col-sm w-50">
         <input matInput formControlName="v1" type="text" placeholder="Inserte un valor" />
       </mat-form-field>
