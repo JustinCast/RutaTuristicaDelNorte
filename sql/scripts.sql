@@ -522,9 +522,31 @@ $$ LANGUAGE plpgsql;
 
 
 
-SELECT * FROM service;
+SELECT * FROM _user;
 -- inserciones de usuarios
 -- 1
+
+SELECT * FROM save_user(
+    'Fernando Sandí',
+    'fdosandi',
+    'sandifdo',
+    'guillermo.barquero@sinac.go.cr'
+    );
+
+SELECT * FROM save_user(
+    'Luis Guillermo Ramírez Barquero',
+    'lgrod',
+    'lgrodbarq',
+    'guillermo.barquero@sinac.go.cr'
+    );
+
+SELECT * FROM save_user(
+    'Noylin Barquero',
+    'noylinb',
+    'noylin123',
+    'ndn-bazu@outlook.com'
+    );
+
 SELECT * FROM save_user(
     'Esteban Cruz Pizarro',
     'EstebanCruzPizarro',
