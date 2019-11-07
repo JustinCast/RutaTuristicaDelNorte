@@ -521,8 +521,9 @@ $$
 $$ LANGUAGE plpgsql;
 
 
-
-SELECT * FROM _user;
+DELETE FROM images WHERE id_service_fk = 5;
+SELECT * FROM service_rates;
+SELECT * FROM service;
 -- inserciones de usuarios
 -- 1
 

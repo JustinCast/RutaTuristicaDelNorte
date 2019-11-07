@@ -1,15 +1,21 @@
 <div *ngIf="service" id="service-container" class="mb-3">
   <h2 class="text-center text-primary">{{ service._name }}</h2>
   <div class="container">
-    <app-carousel *ngIf="service._imgs_lazy" [allowDelete]="false" [data]="data"></app-carousel>
+    <app-carousel
+      *ngIf="service._imgs_lazy"
+      [allowDelete]="false"
+      [data]="data"
+    ></app-carousel>
   </div>
-  
+
   <ul id="details" class="container text-left p-3 shadow-sm">
     <h2 class="text-center text-muted font-weight-light">Información</h2>
     <hr />
     <li>
       <strong>Ubicación: </strong>
-      <button (click)="showLoc();" mat-stroked-button><mat-icon>map</mat-icon></button>
+      <button (click)="showLoc()" mat-stroked-button>
+        <mat-icon>map</mat-icon>
+      </button>
     </li>
     <li>
       <strong>Información adicional: </strong>
@@ -23,26 +29,35 @@
       </mat-list>
     </li>
     <li><mat-icon>mail</mat-icon>{{ service._email }}</li>
+    <li>
+      <mat-icon>language</mat-icon><a href="{{ service._website }}"> Sitio web</a
+      >
+    </li>
     <li *ngIf="rates; else loading_rates">
       <h3 class="font-weight-light text-center text-muted">Tarifas</h3>
       <table class="table">
         <thead>
           <th scope="col">#</th>
-          <th scope="col">{{rates.header1}}</th>
-          <th scope="col">{{rates.header2}}</th>
+          <th scope="col">{{ rates.header1 }}</th>
+          <th scope="col">{{ rates.header2 }}</th>
         </thead>
         <tbody>
           <tr *ngFor="let v of rates._values; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{v.v1}}</td>
-            <td>{{v.v2}}</td>
+            <td>{{ i + 1 }}</td>
+            <td>{{ v.v1 }}</td>
+            <td>{{ v.v2 }}</td>
           </tr>
         </tbody>
       </table>
     </li>
   </ul>
 
-  <h1 *ngIf="relatedTours && relatedTours.length > 0; else loading_related" class="text-secondary text-center font-weight-light m-2">Tours relacionados</h1>
+  <h1
+    *ngIf="relatedTours && relatedTours.length > 0; else loading_related"
+    class="text-secondary text-center font-weight-light m-2"
+  >
+    Tours relacionados
+  </h1>
   <ng-template #loading_related *ngIf="showRelatedLoadingInfo">
     <div class="container text-center">
       <p class="animated pulse infinite">Cargando información relacionada</p>
@@ -54,11 +69,14 @@
       <p class="animated pulse infinite">Cargando información de tarifas</p>
     </div>
   </ng-template>
-  
+
   <div *ngIf="relatedTours" id="related-tours">
-    <div *ngFor="let r of relatedTours" class="related-service shadow-sm rounded p-0 m-2">
-      <h3 class="font-weight-light text-center mt-2">{{r.name}}</h3>
-      <img class="main-img rounded shadow-sm" src="{{r.imgs[0]}}" alt="">
+    <div
+      *ngFor="let r of relatedTours"
+      class="related-service shadow-sm rounded p-0 m-2"
+    >
+      <h3 class="font-weight-light text-center mt-2">{{ r.name }}</h3>
+      <img class="main-img rounded shadow-sm" src="{{ r.imgs[0] }}" alt="" />
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -66,16 +84,20 @@
               + Info
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <hr>
-          <p class="text-center text-secondary"><i>{{r.description}}</i></p>
-          <hr>
+          <hr />
+          <p class="text-center text-secondary">
+            <i>{{ r.description }}</i>
+          </p>
+          <hr />
           <mat-list *ngIf="r.phones !== null" class="p-0">
-            <mat-list-item *ngFor="let p of r.phones.phones"><mat-icon class="text-muted">phone</mat-icon> - {{p}}</mat-list-item>
+            <mat-list-item *ngFor="let p of r.phones.phones"
+              ><mat-icon class="text-muted">phone</mat-icon> -
+              {{ p }}</mat-list-item
+            >
           </mat-list>
-          <p><mat-icon class="text-muted">mail</mat-icon> {{r.email}}</p>
+          <p><mat-icon class="text-muted">mail</mat-icon> {{ r.email }}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    
   </div>
 </div>
