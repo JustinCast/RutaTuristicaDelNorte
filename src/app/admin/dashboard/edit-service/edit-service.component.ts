@@ -52,7 +52,6 @@ export class EditServiceComponent implements OnInit {
       .subscribe({
         next: images => {
           this.serviceImages = images;
-          console.log(this.serviceImages);
         },
         error: err => this._service.handleError(err),
       });
@@ -79,6 +78,7 @@ export class EditServiceComponent implements OnInit {
 
   onSubmit() {
     this.s.imgs = this.serviceImages;
+    console.log(this.s);
     this._service.updateService(this.s);
   }
 }

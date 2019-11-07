@@ -13,12 +13,12 @@ import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
 import { AUTH_PROVIDERS } from "../services/auth.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AddTourComponent } from "./add-tour/add-tour.component";
-import { SearchRelatedComponent } from "./search-related/search-related.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EditServiceComponent } from './dashboard/edit-service/edit-service.component';
 import { EditTourComponent } from './dashboard/edit-tour/edit-tour.component';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LinkServiceComponent } from './link-service/link-service.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +32,10 @@ import { CarouselComponent } from './carousel/carousel.component';
     DashboardComponent,
     EditServiceComponent,
     AddTourComponent,
-    SearchRelatedComponent,
     EditTourComponent,
     UploadImagesComponent,
-    CarouselComponent
+    CarouselComponent,
+    LinkServiceComponent
   ],
   imports: [
     CommonModule,
@@ -48,8 +48,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     PickLocationComponent,
     ShowImagesComponent,
     RatesComponent,
-    LoginDialogComponent,
-    SearchRelatedComponent
+    LoginDialogComponent
   ],
   providers: [AUTH_PROVIDERS],
   exports: [AdminRootComponent, CarouselComponent]

@@ -13,9 +13,8 @@ api.get('/getService/:id_service', ServiceCTRL.getService);
 api.get('/getServiceNameId/:name/:id_user', ServiceCTRL.getServiceNameId);
 api.get('/getServicesCount', ServiceCTRL.getServicesCount);
 api.get('/getServiceRates/:id_service', ServiceCTRL.getServiceRates);
-api.get('/getServiceNames', ServiceCTRL.getServiceNames);
+api.get('/getServiceNames/:id_user', ServiceCTRL.getServiceNames);
 api.delete('/deleteService/:id_service', ServiceCTRL.deleteService);
-api.get('/getServiceImages/:id_service', ImagesCTRL.getServiceImages);
 
 // tour queries
 api.post('/saveTour', TourCTRL.saveTour);
@@ -27,6 +26,7 @@ api.delete('/deleteTour/:id_tour', TourCTRL.deleteTour);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 
 // images queries
+api.get('/getServiceImages/:id_service', ImagesCTRL.getServiceImages);
 api.get('/getTourImages/:id_tour', ImagesCTRL.getTourImages);
 api.post('/deleteTourImage', ImagesCTRL.deleteTourImage);
 api.post('/deleteServiceImage', ImagesCTRL.deleteServiceImage);

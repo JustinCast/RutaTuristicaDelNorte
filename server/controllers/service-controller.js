@@ -31,8 +31,8 @@ function saveService(req, res) {
           service._email,
           service._website,
           service._phones,
-          req.body._id_user
-        ]
+          req.body._id_user,
+        ],
       };
       client
         .query(query)
@@ -68,8 +68,8 @@ function deleteService(req, res) {
       console.log(`err when connecting on deleteService: ${err}`);
     } else {
       let query = {
-        text: 'SELECT * FROM delete_service($1);',
-        values: [Number(req.params.id_service)]
+        text: "SELECT * FROM delete_service($1);",
+        values: [Number(req.params.id_service)],
       };
       client
         .query(query)
@@ -102,7 +102,7 @@ function updateService(req, res) {
       let updatedService = req.body;
       let query = {
         text: "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8);",
-        values: [ 
+        values: [
           updatedService._location,
           updatedService._name,
           updatedService._classification,
@@ -110,20 +110,24 @@ function updateService(req, res) {
           updatedService._email,
           updatedService._website,
           updatedService._phones,
-          updatedService.id
-        ]
+          updatedService._id,
+        ],
       };
-      client.query(query)
-      .then(() => {
-        ImagesCTRL.updateServiceImages(updatedService.imgs, updatedService._id);
-        client.end();
-        res.status(200).send()
-      })
-      .catch(err => {
-        client.end();
-        res.status(400).send(err);
-        console.log(`err when query on updateService: ${err}`);
-      });
+      client
+        .query(query)
+        .then(() => {
+          ImagesCTRL.updateServiceImages(
+            updatedService.imgs,
+            updatedService._id
+          );
+          client.end();
+          res.status(200).send();
+        })
+        .catch(err => {
+          client.end();
+          res.status(400).send(err);
+          console.log(`err when query on updateService: ${err}`);
+        });
     }
   });
 }
@@ -147,8 +151,8 @@ function getServices(req, res) {
         values: [
           Number(req.query.limit),
           Number(req.query.offset),
-          req.query.filter
-        ]
+          req.query.filter,
+        ],
       };
       client
         .query(query)
@@ -181,7 +185,7 @@ function getService(req, res) {
     } else {
       let query = {
         text: `SELECT * FROM get_service_for_update($1)`,
-        values: [Number(req.params.id_service)]
+        values: [Number(req.params.id_service)],
       };
       client
         .query(query)
@@ -208,7 +212,7 @@ function getServiceRates(req, res) {
     } else {
       let query = {
         text: `SELECT * FROM get_service_rates($1)`,
-        values: [req.params.id_service]
+        values: [req.params.id_service],
       };
       client
         .query(query)
@@ -239,7 +243,7 @@ function getServiceNameId(req, res) {
     } else {
       let query = {
         text: `SELECT * FROM get_service_name_id($1, $2)`,
-        values: [req.params.id_user, req.params.name]
+        values: [req.params.id_user, req.params.name],
       };
       client
         .query(query)
@@ -297,7 +301,12 @@ function getServiceNames(req, res) {
       res.status(400).send(err);
       console.log(`err when connecting on getServiceNames: ${err}`);
     } else {
-      let query = `SELECT id, name FROM service;`;
+      let query = {
+        text: `SELECT 
+              service.id, 
+              service.name FROM service JOIN user_service us ON us.id_user = $1 AND us.id = service.id`,
+        values: [req.params.id_user],
+      };
       client
         .query(query)
         .then(data => {
@@ -322,5 +331,5 @@ module.exports = {
   getServiceNameId: getServiceNameId,
   getServicesCount: getServicesCount,
   getServiceRates: getServiceRates,
-  getServiceNames: getServiceNames
+  getServiceNames: getServiceNames,
 };

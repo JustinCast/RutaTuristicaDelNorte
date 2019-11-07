@@ -26,6 +26,7 @@
       </div>
     </mat-list-item>
   </mat-list>
+  <app-link-service (selectedServiceToLink)="catchSelectedServiceToLink($event)"></app-link-service>
   <mat-form-field appearance="outline">
     <mat-label>Correo electrónico</mat-label>
     <input type="email" matInput [formControl]="tourFG.get('email')">

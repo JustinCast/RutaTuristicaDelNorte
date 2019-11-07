@@ -3,9 +3,6 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Tour } from "src/app/models/Tour";
 import { TourService } from "src/app/services/tour.service";
-import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/User';
 
@@ -17,14 +14,13 @@ import { User } from 'src/app/models/User';
 export class AddTourComponent implements OnInit {
   tourFG: FormGroup;
   phones = { phones: [] };
-  related: any; // servicio relacionado
+  related: any = null; // servicio relacionado
   
   // Download URL
   downloadURLS: Array<string> = [];
 
   constructor(
     private _fb: FormBuilder,
-    private _dialog: DialogManagerService,
     private _tour: TourService
   ) {
     this.tourFG = this._fb.group({
@@ -46,6 +42,10 @@ export class AddTourComponent implements OnInit {
       this.downloadURLS.push(downloadURLS);
   }
 
+  catchSelectedServiceToLink(id_service) {
+    this.related = id_service;
+  }
+
   onSubmit() {
     let tour = new Tour(
       this.tourFG.get("name").value,
@@ -56,12 +56,8 @@ export class AddTourComponent implements OnInit {
       (JSON.parse(
         localStorage.getItem(`${environment.localstorage_key}`)
       ) as User).id,
-      this.related !== undefined ? this.related.id : null
+      this.related
     );
     this._tour.saveTour(tour);
-  }
-
-  getRelated() {
-    this._dialog.getRelated().subscribe(related => (this.related = related));
   }
 }

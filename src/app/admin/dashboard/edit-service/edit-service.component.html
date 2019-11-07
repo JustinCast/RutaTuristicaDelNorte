@@ -45,7 +45,7 @@
     <mat-list-item *ngFor="let p of s._phones.phones; let i = index;" role="listitem" class="mb-2">
       <div class="phone p-1 shadow-sm">
         <h3>{{p}}</h3>
-        <button mat-button color="warn" (click)="_phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+        <button mat-button color="warn" (click)="s._phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
       </div>
     </mat-list-item>
   </mat-list>
@@ -54,10 +54,17 @@
     <mat-label>Correo</mat-label>
     <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="s._email">
   </mat-form-field>
-
+  <mat-form-field appearance="outline">
+    <mat-label>Sitio web</mat-label>
+    <input
+      matInput
+      [ngModelOptions]="{standalone: true}" [(ngModel)]="s._website"
+      type="url"
+    />
+  </mat-form-field>
   <div class="container text-center mb-2" *ngIf="serviceImages">
     <h4 class="font-weight-light">{{serviceImages.length}} imagen(es) han sido encontradas</h4>
-    <button (click)="openImagesDialog(); false" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>
+    <button *ngIf="serviceImages.length > 0" (click)="openImagesDialog(); false" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>
   </div>
 
   <h4 class="font-weight-light text-center">Agregar <span *ngIf="serviceImages">más</span> imágenes</h4>

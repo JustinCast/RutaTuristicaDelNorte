@@ -7,7 +7,6 @@ import { RatesComponent } from "../admin/rates/rates.component";
 import { LoginDialogComponent } from "../admin/login-dialog/login-dialog.component";
 import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
-import { SearchRelatedComponent } from "../admin/search-related/search-related.component";
 import { Service } from "../models/Service";
 import { Tour } from '../models/Tour';
 import { TourComponent } from '../general/tour/tour.component';
@@ -73,16 +72,6 @@ export class DialogManagerService {
       .open(RatesComponent, {
         width: `${window.innerWidth < 400 ? "99.99%" : "99.99%"}`,
         height: `${window.innerHeight <= 812 ? "95%" : "80%"}`,
-        panelClass: "dialog"
-      })
-      .afterClosed();
-  }
-
-  public getRelated(): Observable<number> {
-    return this.dialog
-      .open(SearchRelatedComponent, {
-        width: `${window.innerWidth < 400 ? "95%" : "95%"}`,
-        height: `${window.innerHeight <= 812 ? "50%" : "80%"}`,
         panelClass: "dialog"
       })
       .afterClosed();

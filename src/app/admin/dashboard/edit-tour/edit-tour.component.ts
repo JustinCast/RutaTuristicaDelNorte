@@ -15,13 +15,8 @@ import { DialogManagerService } from "src/app/services/dialog-manager.service";
 })
 export class EditTourComponent implements OnInit {
   t: any;
-  filteredServices: Observable<any[]>;
-  servicesNames: Array<any>;
-  serviceCtrl = new FormControl();
   tourImages: Array<any>;
-
-  // Download URL
-  downloadURLS: Array<string> = [];
+  addedImages: Array<any>;
 
   constructor(
     private _active: ActivatedRoute,
@@ -36,25 +31,11 @@ export class EditTourComponent implements OnInit {
       this._tour.getTour(Number(id_tour)).subscribe(
         tour => {
           this.t = tour;
-          this.getToursNames();
+          console.log(this.t);
+          this.getTourImages();
         },
         (err: HttpErrorResponse) => this._tour.handleError(err)
       );
-  }
-
-  configFormControl() {
-    this.filteredServices = this.serviceCtrl.valueChanges.pipe(
-      startWith(""),
-      map(value => this._filterTours(value))
-    );
-  }
-
-  private _filterTours(value: string): any[] {
-    const filterValue = value.toLowerCase();
-
-    return this.servicesNames.filter(service =>
-      service.name.toLowerCase().includes(filterValue)
-    );
   }
 
   getTourImages() {
@@ -65,7 +46,16 @@ export class EditTourComponent implements OnInit {
   }
 
   catchUploadedImages(url) {
-    if (url) this.tourImages.push({ id: undefined, url: url });
+    this.addedImages = [];
+    if (url) {
+      this.addedImages.push({ id: undefined, url: url });
+      this.tourImages.push({ id: undefined, url: url });
+    }
+  }
+
+  catchSelectedServiceToLink(related) {
+    this.t.related_service = related.id;
+    this.t.service_name = related.name;
   }
 
   openImagesDialog() {
@@ -75,23 +65,12 @@ export class EditTourComponent implements OnInit {
     );
   }
 
-  getToursNames() {
-    this._service.getServicesNames().subscribe({
-      next: data => {
-        this.servicesNames = data;
-        this.getTourImages();
-        this.configFormControl();
-      },
-      error: err => this._service.handleError(err),
-    });
-  }
-
   addPhone(phone) {
     this.t.phones.phones.unshift(phone);
   }
 
   onSubmit() {
-    this.t.imgs = this.tourImages.map(i => (i = i.url));
+    if (this.addedImages) this.t.imgs = this.addedImages.map(i => (i = i.url));
     this._tour.updateTour(this.t).subscribe({
       next: () =>
         this._tour.openSnackBar("Tour actualizado con éxito", "Ok", 2500),
@@ -108,12 +87,5 @@ export class EditTourComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => this._tour.handleError(err),
     });
-  }
-
-  linkRelated() {
-    let newRelated = this.servicesNames.find(
-      s => s.name === this.serviceCtrl.value
-    );
-    newRelated ? (this.t.related_service = newRelated.id) : null;
   }
 }

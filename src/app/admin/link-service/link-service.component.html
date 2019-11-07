@@ -1,0 +1,15 @@
+<form class="w-100 text-center">
+  <mat-form-field appearance="outline">
+    <mat-label>Vincular a servicio</mat-label>
+    <input #relatedService matInput [formControl]="serviceCtrl" type="text" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let service of filteredServices | async" [value]="service.name">
+        <span>{{service.name}}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div class="container text-center mb-3">
+    <button (click)="linkRelated(); false" [disabled]="!serviceCtrl.value" mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+  </div>
+</form>

@@ -118,7 +118,7 @@ CREATE OR REPLACE FUNCTION save_tour_image(url VARCHAR, id_tour INTEGER)
 RETURNS VOID AS
     $$
         BEGIN
-            INSERT INTO tour_images (url, id_tour_fk) VALUES(url, id_tour);
+            INSERT INTO tour_images (url, id_tour_fk) VALUES(url, id_tour) ON CONFLICT DO NOTHING;
         END;
     $$ LANGUAGE plpgsql;
 
@@ -352,18 +352,18 @@ CREATE OR REPLACE FUNCTION update_service(
     $$
         BEGIN
             UPDATE service SET
-                               name = _name,
-                               location = _location,
-                               classification = _classification,
-                               additional_info = _additional_info,
-                               email = _email,
-                               website = _website,
-                               phones = _phones
-            WHERE id = _id_service;
+                               name = $2,
+                               location = $1,
+                               classification = $3,
+                               additional_info = $4,
+                               email = $5,
+                               website = $6,
+                               phones = $7
+            WHERE id = $8;
         END;
     $$ LANGUAGE plpgsql;
 
-
+SELECT * FROM service;
 CREATE OR REPLACE FUNCTION get_related_services_by_user()
 RETURNS VOID AS
     $$
@@ -520,6 +520,10 @@ $$
         DELETE FROM tour WHERE id = $1;
     END;
 $$ LANGUAGE plpgsql;
+
+
+
+SELECT * FROM user_service;
 -- inserciones de usuarios
 -- 1
 SELECT * FROM save_user(

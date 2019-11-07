@@ -1,4 +1,4 @@
-<div class="d-flex flex-column justify-content-between h-100 pb-2">
+<div class="d-flex flex-column justify-content-around h-100 pb-2">
   <app-carousel (deleteImageEvent)="deleteImage($event)" [allowDelete]="true" [data]="data"></app-carousel>
   <div class="container text-center mt-1">
     <button mat-raised-button (click)="dialogRef.close()" color="primary"><mat-icon>check</mat-icon></button>

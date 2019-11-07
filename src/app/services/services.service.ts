@@ -88,8 +88,11 @@ export class Services {
   }
 
   getServicesNames(): Observable<any[]> {
+    let user_id = (JSON.parse(
+      localStorage.getItem(`${environment.localstorage_key}`)
+    ) as User).id;
     return this._http.get<any[]>(
-      `${environment.SERVER_BASE_URL}getServiceNames`
+      `${environment.SERVER_BASE_URL}getServiceNames/${user_id}`
     );
   }
 
