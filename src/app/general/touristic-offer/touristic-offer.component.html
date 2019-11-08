@@ -22,9 +22,11 @@
     <h4 class="text-center text-primary">
       Servicios
     </h4>
-    <div class="container-fluid" *ngIf="_service.services.length > 0; else empty">
+    <div
+      class="container-fluid"
+      *ngIf="_service.services.length > 0; else empty"
+    >
       <div class="card-columns">
-
         <div
           class="card p-2 shadow-sm border border-warning"
           *ngFor="
@@ -39,7 +41,11 @@
           "
         >
           <div class="text-left">
-            <nga-read-more class="h5" [text]="item._name" [textLength]="22"></nga-read-more>
+            <nga-read-more
+              class="h5"
+              [text]="item._name"
+              [textLength]="22"
+            ></nga-read-more>
           </div>
           <hr />
           <div
@@ -93,7 +99,10 @@
         </div>
       </div>
     </div>
-    <pagination-controls class="my-pagination container text-center" (pageChange)="pageChanged($event)">
+    <pagination-controls
+      class="my-pagination container text-center"
+      (pageChange)="pageChanged($event)"
+    >
     </pagination-controls>
     <ng-template #empty>
       <p>Sin información que mostrar</p>
@@ -104,71 +113,83 @@
     <h4 class="text-center text-primary">
       Tours
     </h4>
-    <ul class="pl-0 animated bounceInDown">
-      <mat-card
-        class="service"
-        *ngFor="
-          let t of tours
-            | paginate
-              : {
-                  itemsPerPage: [limit],
-                  currentPage: toursPage,
-                  id: 'second'
-                };
-          let i = index
-        "
-      >
-        <h1 class="text-center">{{ t._name }}</h1>
-        <hr />
+    <div class="container-fluid">
+      <div class="card-columns">
         <div
-          *ngIf="t.imgs[0] !== null"
-          id="tour-img-container"
-          class="p-0 text-center"
-          (deferLoad)="t._imgs_lazy[0].show = true"
+          class="card p-2 shadow-sm border border-warning"
+          *ngFor="
+            let t of tours
+              | paginate
+                : {
+                    itemsPerPage: [limit],
+                    currentPage: toursPage,
+                    id: 'second'
+                  };
+            let i = index
+          "
         >
-          <ng-container *ngIf="t._imgs_lazy[0].show">
-            <img
-              class="main-img rounded shadow-sm"
-              alt=""
-              src="{{ t._imgs_lazy[0].img }}"
-            />
-          </ng-container>
-        </div>
-        <hr>
-        <mat-card-content class="text-left">
-          <ul class="details">
-            <li>
-              <mat-accordion>
-                <mat-expansion-panel
-                  panelClass="yellow-panel.mat-expansion-panel"
-                >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="font-weight-bold">
-                      Información adicional
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Click para ver más
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>{{ t._description }}</p>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </li>
-          </ul>
-        </mat-card-content>
-        <hr>
-        <div class="container text-center">
-          <button
-            class="detail-button"
-            mat-raised-button
-            (click)="openTourInfo(i); false"
+          <div class="text-left">
+            <nga-read-more
+              class="h5"
+              [text]="t._name"
+              [textLength]="22"
+            ></nga-read-more>
+          </div>
+          <hr />
+          <div
+            *ngIf="t.imgs[0] !== null"
+            id="tour-img-container"
+            class="p-0 text-center"
+            (deferLoad)="t._imgs_lazy[0].show = true"
           >
-            Ver más
-          </button>
+            <ng-container *ngIf="t._imgs_lazy[0].show">
+              <img
+                class="card-img-top img-fluid rounded shadow-sm"
+                alt=""
+                src="{{ t._imgs_lazy[0].img }}"
+              />
+            </ng-container>
+          </div>
+          <hr />
+          <mat-card-content class="text-left">
+            <ul class="details">
+              <li>
+                <mat-accordion>
+                  <mat-expansion-panel
+                    panelClass="yellow-panel.mat-expansion-panel"
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title class="font-weight-bold">
+                        Info
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Click para ver más
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>{{ t._description }}</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </li>
+            </ul>
+          </mat-card-content>
+          <hr />
+          <div class="container text-center">
+            <button
+              class="detail-button"
+              mat-raised-button
+              (click)="openTourInfo(i); (false)"
+            >
+              Ver más
+            </button>
+          </div>
         </div>
-      </mat-card>
-    </ul>
-    <pagination-controls class="my-pagination container text-center" id="second" (pageChange)="toursPageChanged($event)">
+      </div>
+    </div>
+    <pagination-controls
+      class="my-pagination container text-center"
+      id="second"
+      (pageChange)="toursPageChanged($event)"
+    >
     </pagination-controls>
   </div>
 </div>

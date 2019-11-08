@@ -522,8 +522,9 @@ $$ LANGUAGE plpgsql;
 
 
 DELETE FROM images WHERE id_service_fk = 5;
-SELECT * FROM service_rates;
-SELECT * FROM service;
+
+SELECT * FROM delete_tour(19);
+SELECT * FROM tour;
 -- inserciones de usuarios
 -- 1
 
