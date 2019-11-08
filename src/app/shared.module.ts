@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
 import { OwlModule } from 'ngx-owl-carousel';
+import { NgaReadMoreModule } from 'nga-read-more';
 
 @NgModule({
   declarations: [],
@@ -56,7 +57,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     DeferLoadModule,
     MatTabsModule,
     MatAutocompleteModule,
-    OwlModule
+    OwlModule,
+    NgaReadMoreModule
   ],
   exports: [
     MatMenuModule,
@@ -83,7 +85,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     DeferLoadModule,
     MatTabsModule,
     MatAutocompleteModule,
-    OwlModule
+    OwlModule,
+    NgaReadMoreModule
   ]
 })
 export class SharedModule {}

@@ -24,6 +24,7 @@
     </h4>
     <div class="container-fluid" *ngIf="_service.services.length > 0; else empty">
       <div class="card-columns">
+
         <div
           class="card p-2 shadow-sm border border-warning"
           *ngFor="
@@ -37,7 +38,9 @@
             let i = index
           "
         >
-          <h1 class="text-center">{{ item._name }}</h1>
+          <div class="text-left">
+            <nga-read-more class="h5" [text]="item._name" [textLength]="22"></nga-read-more>
+          </div>
           <hr />
           <div
             id="img-container"
@@ -46,7 +49,7 @@
           >
             <ng-container *ngIf="item._imgs_lazy[0].show">
               <img
-                class="main-img rounded"
+                class="card-img-top img-fluid rounded"
                 alt=""
                 src="{{ item._imgs_lazy[0].img }}"
               />
@@ -61,8 +64,8 @@
                     panelClass="yellow-panel.mat-expansion-panel"
                   >
                     <mat-expansion-panel-header>
-                      <mat-panel-title class="font-weight-bold">
-                        Información adicional
+                      <mat-panel-title>
+                        Info
                       </mat-panel-title>
                       <mat-panel-description>
                         Click para ver más
@@ -72,27 +75,6 @@
                   </mat-expansion-panel>
                 </mat-accordion>
               </li>
-              <li
-                *ngIf="
-                  item._phones !== null && item._phones.phones.length > 0;
-                  else noPhones
-                "
-              >
-                <mat-list>
-                  <mat-list-item *ngFor="let p of item._phones.phones">
-                    <mat-icon>phone</mat-icon>{{ p }}
-                  </mat-list-item>
-                </mat-list>
-              </li>
-              <ng-template #noPhones>
-                <mat-list>
-                  <mat-list-item
-                    ><mat-icon color="warn">info</mat-icon> No hay números de
-                    teléfono asociados</mat-list-item
-                  >
-                </mat-list>
-              </ng-template>
-  
               <li>
                 <mat-icon class="accent-icon">mail</mat-icon> {{ item._email }}
               </li>

@@ -58,7 +58,6 @@ export class Services {
       .subscribe(
         services => {
           this.services = services;
-          console.log(this.services);
           this.setLazyLoading();
         },
         (err: HttpErrorResponse) => this.handleError(err)

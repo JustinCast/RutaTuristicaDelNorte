@@ -29,6 +29,7 @@ export class TouristicOfferComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.offset);
     if (!this._service.services) {
       this.getTableCountData(undefined, undefined);
     }
@@ -37,7 +38,6 @@ export class TouristicOfferComponent implements OnInit {
   }
 
   getTableCountData(columm: string, value: string) {
-    console.log(value);
     this._service.page = 1;
     this._service.getServicesCount(columm, value).subscribe({
       next: count => {
@@ -61,6 +61,7 @@ export class TouristicOfferComponent implements OnInit {
   }
 
   pageChanged(event) {
+    console.log(this.offset)
     this._service.page < event
       ? (this.offset += this.limit)
       : (this.offset -= this.limit);
@@ -91,7 +92,6 @@ export class TouristicOfferComponent implements OnInit {
   }
 
   openTourInfo(i: number) {
-    console.log(i)
     this._dialog.showTourInfo(this.tours[i])
   }
 }
