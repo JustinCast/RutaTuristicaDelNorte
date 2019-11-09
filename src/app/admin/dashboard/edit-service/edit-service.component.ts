@@ -5,7 +5,6 @@ import { CommonService } from "src/app/services/common.service";
 import LocationPicker from "location-picker";
 import { ActivatedRoute } from "@angular/router";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
-import { Service } from "src/app/models/Service";
 
 @Component({
   selector: "app-edit-service",
@@ -78,7 +77,6 @@ export class EditServiceComponent implements OnInit {
 
   onSubmit() {
     this.s.imgs = this.serviceImages;
-    console.log(this.s);
     this._service.updateService(this.s);
   }
 }

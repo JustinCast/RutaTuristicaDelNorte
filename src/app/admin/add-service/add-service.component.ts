@@ -23,7 +23,7 @@ export class AddServiceComponent implements OnInit, OnDestroy {
   location: JSON;
   locationIcon: string;
 
-  rates: Rates;
+  rates: Rates = new Rates("Campo 1", "Campo 2");
   ratesIcon: string;
   phones = { phones: [] };
 
@@ -99,9 +99,12 @@ export class AddServiceComponent implements OnInit, OnDestroy {
    * Open the Rates Dialog wich returns set rates in a 'Rates' model format
    */
   addRates() {
-    this._dialog.openRatesDialog().subscribe((rates: Rates) => {
-      this.rates = rates;
-      this.ratesIcon = "check";
+    this._dialog.openRatesDialog(this.rates).subscribe((rates: Rates) => {
+      console.log(rates)
+      if(rates) {
+        this.rates = rates;
+        this.ratesIcon = "check";
+      }
     });
   }
 }

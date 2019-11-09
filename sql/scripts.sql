@@ -221,6 +221,8 @@ AS
         END
     $$ LANGUAGE plpgsql;
 
+
+
 DROP FUNCTION get_services_by_user(_id INTEGER);
 CREATE OR REPLACE FUNCTION get_services_by_user(_id_user INTEGER)
 RETURNS TABLE (id_service INTEGER, _name VARCHAR, _classification VARCHAR, imgs VARCHAR[])

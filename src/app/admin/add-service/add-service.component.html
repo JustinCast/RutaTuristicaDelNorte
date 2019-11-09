@@ -69,7 +69,7 @@
     </mat-form-field>
     <div class="container text-center">
       <button (click)="addRates(); false" class="mb-3" mat-raised-button color="primary">Agregar tarifas<mat-icon>add</mat-icon></button>
-      <mat-icon [ngStyle]="{'color': rates === undefined ? 'red': 'green'}" class="ml-1">{{ratesIcon}}</mat-icon>
+      <mat-icon [ngStyle]="{'color': rates.items ? 'green': 'red'}" class="ml-1">{{ratesIcon}}</mat-icon>
     </div>
     <app-upload-images [tablename]="'service'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
     <div class="container text-center">

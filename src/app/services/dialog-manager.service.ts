@@ -8,11 +8,11 @@ import { LoginDialogComponent } from "../admin/login-dialog/login-dialog.compone
 import { Observable } from "rxjs";
 import { Rates } from "../models/Rates";
 import { Service } from "../models/Service";
-import { Tour } from '../models/Tour';
-import { TourComponent } from '../general/tour/tour.component';
+import { Tour } from "../models/Tour";
+import { TourComponent } from "../general/tour/tour.component";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class DialogManagerService {
   constructor(private dialog: MatDialog) {}
@@ -23,7 +23,7 @@ export class DialogManagerService {
       width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
       height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
       panelClass: "dialog",
-      data: value !== undefined ? JSON.parse(value) : null
+      data: value !== undefined ? JSON.parse(value) : null,
     });
     return dialogRef.afterClosed();
   }
@@ -32,7 +32,7 @@ export class DialogManagerService {
     let dialogRef: MatDialogRef<TourComponent>;
     dialogRef = this.dialog.open(TourComponent, {
       panelClass: "dialog",
-      data: tour
+      data: tour,
     });
     return dialogRef.afterClosed();
   }
@@ -46,7 +46,7 @@ export class DialogManagerService {
       width: `${window.innerWidth < 400 ? "90%" : "75%"}`,
       height: `${window.innerHeight <= 812 ? "70%" : "70%"}`,
       data: { images: images, table: tablename },
-      panelClass: "dialog"
+      panelClass: "dialog",
     });
     return dialogRef.afterClosed();
   }
@@ -59,26 +59,24 @@ export class DialogManagerService {
         panelClass: "dialog",
         data: {
           location: location,
-          edit: edit
-        }
+          edit: edit,
+        },
       })
       .afterClosed();
   }
 
-  public openRatesDialog(): Observable<Rates> {
+  public openRatesDialog(rates: Rates): Observable<Rates> {
     return this.dialog
       .open(RatesComponent, {
         width: `${window.innerWidth < 400 ? "99.99%" : "99.99%"}`,
         height: `${window.innerHeight <= 812 ? "95%" : "80%"}`,
-        panelClass: "dialog"
+        panelClass: "custom-dialog",
+        data: { rates: rates },
       })
       .afterClosed();
   }
 
   public openLoginDialog() {
-    this.dialog
-      .open(LoginDialogComponent, {
-      })
-      .afterClosed();
+    this.dialog.open(LoginDialogComponent, {}).afterClosed();
   }
 }
