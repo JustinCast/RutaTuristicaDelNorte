@@ -31,8 +31,6 @@ export class DialogManagerService {
   public showTourInfo(tour: Tour) {
     let dialogRef: MatDialogRef<TourComponent>;
     dialogRef = this.dialog.open(TourComponent, {
-      width: `${window.innerWidth < 400 ? "90%" : "50%"}`,
-      height: `${window.innerHeight <= 812 ? "55%" : "50%"}`,
       panelClass: "dialog",
       data: tour
     });
@@ -80,9 +78,6 @@ export class DialogManagerService {
   public openLoginDialog() {
     this.dialog
       .open(LoginDialogComponent, {
-        width: `${window.innerWidth < 400 ? "90%" : "30%"}`,
-        height: `${window.innerHeight <= 812 ? "55%" : "40%"}`,
-        panelClass: "dialog"
       })
       .afterClosed();
   }

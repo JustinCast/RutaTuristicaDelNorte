@@ -1,13 +1,12 @@
-<div *ngIf="service" id="service-container" class="mb-3">
+<div *ngIf="service" class="mb-3 d-flex flex-column justify-content-aroundo h-100">
   <h2 class="text-center text-primary">{{ service._name }}</h2>
-  <div class="container">
+  <div class="container pb-0">
     <app-carousel
       *ngIf="service._imgs_lazy"
       [allowDelete]="false"
       [data]="data"
     ></app-carousel>
   </div>
-
   <ul id="details" class="container text-left p-3 shadow-sm">
     <h2 class="text-center text-muted font-weight-light">Información</h2>
     <hr />
@@ -30,8 +29,8 @@
     </li>
     <li><mat-icon>mail</mat-icon>{{ service._email }}</li>
     <li *ngIf="service.website && service.website.length > 0">
-      <mat-icon>language</mat-icon><a href="{{ service._website }}"> Sitio web</a
-      >
+      <mat-icon>language</mat-icon
+      ><a href="{{ service._website }}"> Sitio web</a>
     </li>
     <li *ngIf="rates; else loading_rates">
       <h3 class="font-weight-light text-center text-muted">Tarifas</h3>
@@ -52,52 +51,23 @@
     </li>
   </ul>
 
-  <h1
-    *ngIf="relatedTours && relatedTours.length > 0; else loading_related"
-    class="text-secondary text-center font-weight-light m-2"
-  >
-    Tours relacionados
-  </h1>
-  <ng-template #loading_related *ngIf="showRelatedLoadingInfo">
-    <div class="container text-center">
-      <p class="animated pulse infinite">Cargando información relacionada</p>
-    </div>
-  </ng-template>
-
   <ng-template #loading_rates *ngIf="showLoadingRatesInfo">
     <div class="container text-center">
       <p class="animated pulse infinite">Cargando información de tarifas</p>
     </div>
   </ng-template>
 
-  <div *ngIf="relatedTours" id="related-tours">
-    <div
-      *ngFor="let r of relatedTours"
-      class="related-service shadow-sm rounded p-0 m-2"
-    >
-      <h3 class="font-weight-light text-center mt-2">{{ r.name }}</h3>
-      <img class="main-img rounded shadow-sm" src="{{ r.imgs[0] }}" alt="" />
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              + Info
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <hr />
-          <p class="text-center text-secondary">
-            <i>{{ r.description }}</i>
-          </p>
-          <hr />
-          <mat-list *ngIf="r.phones !== null" class="p-0">
-            <mat-list-item *ngFor="let p of r.phones.phones"
-              ><mat-icon class="text-muted">phone</mat-icon> -
-              {{ p }}</mat-list-item
-            >
-          </mat-list>
-          <p><mat-icon class="text-muted">mail</mat-icon> {{ r.email }}</p>
-        </mat-expansion-panel>
-      </mat-accordion>
+  <div *ngIf="relatedTours && relatedTours.length > 0" class="container-fluid">
+    <h1 class="font-weight-light text-center">Tours relacionados</h1>
+    <div class="card-columns">
+      <div *ngFor="let r of relatedTours" class="tour card">
+        <img src="{{ r.imgs[0] }}" class="card-img-top img-fluid rounded shadow-sm" alt="{{ r._name }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{r._name}}</h5>
+          <hr>
+          <button mat-raised-button class="btn-details text-white">Ver detalles</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

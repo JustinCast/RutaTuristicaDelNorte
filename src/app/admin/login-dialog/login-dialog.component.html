@@ -1,4 +1,4 @@
-<form *ngIf="!password_recovery_flag; else password_recovery" [formGroup]="loginFG" (ngSubmit)="onSubmit()" class="p-2">
+<form *ngIf="!password_recovery_flag; else password_recovery" [formGroup]="loginFG" (ngSubmit)="onSubmit()" class="p-2 container-fluid">
   <h1 class="text-muted text-center font-weight-light">Inicio de sesión</h1>
   <div class="container" id="fields-container">
     <mat-form-field appearance="outline">

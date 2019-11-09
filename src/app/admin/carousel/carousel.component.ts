@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from "@angular/core";
 
 @Component({
   selector: "app-carousel",
   templateUrl: "./carousel.component.html",
-  styleUrls: ["./carousel.component.scss"]
+  styleUrls: ["./carousel.component.scss"],
+  encapsulation: ViewEncapsulation.None 
 })
 export class CarouselComponent implements OnInit {
   @Input() public data: any;
@@ -28,12 +29,12 @@ export class CarouselComponent implements OnInit {
         nav: true
       },
       1000: {
-        items: 2,
+        items: 1,
         nav: true,
         loop: false
       },
       1500: {
-        items: 3,
+        items: 1,
         nav: true,
         loop: false
       }

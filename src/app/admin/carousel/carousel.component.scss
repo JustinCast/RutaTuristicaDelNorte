@@ -1,12 +1,5 @@
-// @media screen and (min-width: 601px) {
-//   img {
-//     height: z;
-//     width: 100%;
-//   }
-// }
-// @media screen and (max-width: 700px) {
-//   img {
-//     height: 250px;
-//     width: 250px;
-//   }
-// }
+.c-img {
+  width: 100%;
+  object-fit: cover;
+  height: 50vw;
+}

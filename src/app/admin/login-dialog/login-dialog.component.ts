@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
@@ -10,6 +10,7 @@ import { HttpErrorResponse } from "@angular/common/http";
   selector: "app-login-dialog",
   templateUrl: "./login-dialog.component.html",
   styleUrls: ["./login-dialog.component.scss"],
+  encapsulation: ViewEncapsulation.None 
 })
 export class LoginDialogComponent implements OnInit {
   loginFG: FormGroup;
