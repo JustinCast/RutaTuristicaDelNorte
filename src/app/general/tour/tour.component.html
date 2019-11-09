@@ -1,8 +1,10 @@
 <div *ngIf="tour" class="d-flex flex-column justify-content-around h-100">
   <h3 class="text-primary font-weight-light text-center">{{tour._name}}</h3>
-  <app-carousel *ngIf="tour.imgs.length > 0 && tour.imgs[0] !== null" [allowDelete]="false" [data]="data"></app-carousel>
+  <div class="container-fluid flex-grow-0 h-25" style="overflow-y: visible;">
+    <app-carousel *ngIf="tour.imgs.length > 0 && tour.imgs[0] !== null" [allowDelete]="false" [data]="data"></app-carousel>
+  </div>
   
-  <div class="container p-2">
+  <div class="flex-grow-2 container p-2">
     <p class="text-muted font-italic">
       {{tour._description}}
     </p>
