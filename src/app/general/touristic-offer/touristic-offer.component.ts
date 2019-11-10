@@ -12,13 +12,8 @@ import { DialogManagerService } from 'src/app/services/dialog-manager.service';
   styleUrls: ["./touristic-offer.component.scss"]
 })
 export class TouristicOfferComponent implements OnInit {
-  limit: number = 6;
-  offset: number = 0;
-  toursOffset: number = 0;
-  toursPage: number = 1;
   filter: string = "";
   imagesList = [];
-  count: number;
   tours: Array<Tour>;
 
   constructor(
@@ -29,7 +24,6 @@ export class TouristicOfferComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.offset);
     if (!this._service.services) {
       this.getTableCountData(undefined, undefined);
     }
@@ -41,43 +35,43 @@ export class TouristicOfferComponent implements OnInit {
     this._service.page = 1;
     this._service.getServicesCount(columm, value).subscribe({
       next: count => {
-        this.count = count;
+        this._service.count = count;
         this._service.services = undefined;
         if (!this._service.services)
-          this._service.getServices(this.limit, this.offset, this.filter);
+          this._service.getServices(this._service.limit, this._service.offset, this.filter);
       },
       error: (err: HttpErrorResponse) => this._service.handleError(err)
     });
   }
 
   getTours() {
-    this._tour.getTours(this.limit, this.toursOffset).subscribe({
+    this._tour.getTours(this._tour.limit, this._tour.toursOffset).subscribe({
       next: tours => {
         this.tours = tours;
         this._tour.setLazyLoading(this.tours);
+        this._tour.getTableToursCount();
       },
       error: (err: HttpErrorResponse) => this._tour.handleError(err)
     });
   }
 
   pageChanged(event) {
-    console.log(this.offset)
     this._service.page < event
-      ? (this.offset += this.limit)
-      : (this.offset -= this.limit);
+      ? (this._service.offset += this._service.limit)
+      : (this._service.offset -= this._service.limit);
     this._service.page = event;
 
     this._service.services = undefined;
-    this._service.getServices(this.limit, this.offset, this.filter);
+    this._service.getServices(this._service.limit, this._service.offset, this.filter);
   }
 
 
   toursPageChanged(event) {
-    this.toursPage < event
-      ? (this.toursOffset += this.limit)
-      : (this.toursOffset -= this.limit);
+    this._tour.toursPage < event
+      ? (this._tour.toursOffset += this._tour.limit)
+      : (this._tour.toursOffset -= this._tour.limit);
 
-    this.toursPage = event;
+    this._tour.toursPage = event;
     this.tours = undefined;
     this.getTours();
   }

@@ -3,20 +3,21 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
 import { Tour } from "src/app/models/Tour";
 import { TourService } from "src/app/services/tour.service";
-import { environment } from 'src/environments/environment';
-import { User } from 'src/app/models/User';
-import { Rates } from 'src/app/models/Rates';
+import { environment } from "src/environments/environment";
+import { User } from "src/app/models/User";
+import { Rates } from "src/app/models/Rates";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-add-tour",
   templateUrl: "./add-tour.component.html",
-  styleUrls: ["./add-tour.component.scss"]
+  styleUrls: ["./add-tour.component.scss"],
 })
 export class AddTourComponent implements OnInit {
   tourFG: FormGroup;
   phones = { phones: [] };
   related: any = null; // servicio relacionado
-  
+
   // Download URL
   downloadURLS: Array<string> = [];
 
@@ -34,7 +35,7 @@ export class AddTourComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       phone: [""],
-      email: ["", Validators.required]
+      email: ["", Validators.required],
     });
   }
 
@@ -45,8 +46,7 @@ export class AddTourComponent implements OnInit {
   }
 
   catchUploadedImages(downloadURLS) {
-    if(downloadURLS)
-      this.downloadURLS.push(downloadURLS);
+    if (downloadURLS) this.downloadURLS.push(downloadURLS);
   }
 
   catchSelectedServiceToLink(id_service) {
@@ -68,7 +68,16 @@ export class AddTourComponent implements OnInit {
       undefined,
       this.rates
     );
-    this._tour.saveTour(tour);
+    this._tour.saveTour(tour).subscribe(
+      () => {
+        this._tour.openSnackBar("Tour guardado con éxito", "Ok", 2500);
+        this.tourFG.reset();
+        this.downloadURLS = [];
+        this.phones = { phones: [] };
+        this.rates = new Rates("Campo 1", "Campo 2");
+      },
+      (err: HttpErrorResponse) => this._tour.handleError(err)
+    );
   }
 
   /**
@@ -76,8 +85,8 @@ export class AddTourComponent implements OnInit {
    */
   addRates() {
     this._dialog.openRatesDialog(this.rates).subscribe((rates: Rates) => {
-      console.log(rates)
-      if(rates) {
+      console.log(rates);
+      if (rates) {
         this.rates = rates;
         this.ratesIcon = "check";
       }

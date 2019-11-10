@@ -14,6 +14,9 @@ import { CommonService } from './common.service';
 export class Services {
   public services: Array<Service>;
   public page: number;
+  limit: number = 6;
+  offset: number = 0;
+  count: number;
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar, private _common: CommonService) {}
 
   getServicesCount(column: String, value: String): Observable<number> {

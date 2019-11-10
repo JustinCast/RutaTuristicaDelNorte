@@ -101,8 +101,10 @@ CREATE OR REPLACE FUNCTION save_service_rates(header1 VARCHAR, header2 VARCHAR, 
     RETURNS VOID AS
     $$
         BEGIN
-           INSERT INTO service_rates (header1, header2, values, observations, id_service_fk)
-           VALUES (header1, header2, _values, observations, id_service);
+            IF($1 IS NOT NULL AND $2 IS NOT NULL AND $3 IS NOT NULL) THEN
+                INSERT INTO service_rates (header1, header2, values, observations, id_service_fk)
+                VALUES ($1, $2, $3, $4, $5);
+            END IF;
         END;
     $$ LANGUAGE plpgsql;
 

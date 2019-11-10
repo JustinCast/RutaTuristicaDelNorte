@@ -79,6 +79,10 @@ export class AddServiceComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(() => {
+        this.addServiceFG.reset();
+        this.phones = { phones: [] };
+        this.rates = new Rates("Campo 1", "Campo 2");
+        this.downloadURLS = [];
         this._tour.openSnackBar("Servicio guardado correctamente", "Ok", 2500);
       });
   }

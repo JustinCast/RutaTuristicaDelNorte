@@ -225,6 +225,31 @@ function updateTour(req, res) {
   });
 }
 
+function getTableToursCount(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on getTableToursCount: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT COUNT(*) FROM tour;",
+        values: []
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows[0].count);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on getTableToursCount: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
   saveTour: saveTour,
   deleteTour: deleteTour,
@@ -232,5 +257,6 @@ module.exports = {
   getTour: getTour,
   getRelatedTours: getRelatedTours,
   deleteRelatedService: deleteRelatedService,
-  updateTour: updateTour
+  updateTour: updateTour,
+  getTableToursCount: getTableToursCount
 };

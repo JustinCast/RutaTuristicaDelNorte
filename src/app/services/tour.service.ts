@@ -5,9 +5,14 @@ import { Tour } from "../models/Tour";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class TourService {
+  limit: number = 6;
+  toursOffset: number = 0;
+  toursPage: number = 1;
+  count: number;
+
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
 
   getTours(limit: number, offset: number): Observable<Array<Tour>> {
@@ -16,17 +21,23 @@ export class TourService {
     );
   }
 
-  saveTour(tour: Tour) {
+  getTableToursCount() {
     this._http
-      .post(`${environment.SERVER_BASE_URL}saveTour`, tour)
-      .subscribe(
-        () => this.openSnackBar("Tour guardado con éxito", "Ok", 2500),
-        (err: HttpErrorResponse) => this.handleError(err)
-      );
+      .get<any>(`${environment.SERVER_BASE_URL}getTableToursCount`)
+      .subscribe({
+        next: count => (this.count = Number(count)),
+        error: (err: HttpErrorResponse) => this.handleError(err),
+      });
+  }
+
+  saveTour(tour: Tour): Observable<any> {
+    return this._http.post(`${environment.SERVER_BASE_URL}saveTour`, tour);
   }
 
   deleteTour(id_tour: number) {
-    return this._http.delete(`${environment.SERVER_BASE_URL}deleteTour/${id_tour}`);
+    return this._http.delete(
+      `${environment.SERVER_BASE_URL}deleteTour/${id_tour}`
+    );
   }
 
   getTour(id_tour: number): Observable<Tour> {
@@ -76,7 +87,7 @@ export class TourService {
 
   openSnackBar(message: string, action: string, duration: number) {
     this._snackbar.open(message, action, {
-      duration: duration
+      duration: duration,
     });
   }
 

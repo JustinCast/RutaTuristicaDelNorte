@@ -33,9 +33,9 @@
             let item of _service.services
               | paginate
                 : {
-                    itemsPerPage: [limit],
+                    itemsPerPage: [_service.limit],
                     currentPage: _service.page,
-                    totalItems: [count]
+                    totalItems: [_service.count]
                   };
             let i = index
           "
@@ -121,8 +121,9 @@
             let t of tours
               | paginate
                 : {
-                    itemsPerPage: [limit],
-                    currentPage: toursPage,
+                    itemsPerPage: [_tour.limit],
+                    currentPage: _tour.toursPage,
+                    totalItems: [_tour.count],
                     id: 'second'
                   };
             let i = index
