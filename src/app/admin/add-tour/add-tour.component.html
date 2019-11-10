@@ -1,36 +1,63 @@
-<form class="text-center pt-5 pb-3 mt-5" [formGroup]="tourFG" (ngSubmit)="onSubmit(); false">
+<form
+  class="text-center pt-5 pb-3 mt-5"
+  [formGroup]="tourFG"
+  (ngSubmit)="onSubmit(); (false)"
+>
   <h1 class="font-weight-light text-center">Añadir tour</h1>
   <mat-form-field appearance="outline">
     <mat-label>Nombre</mat-label>
-    <input matInput [formControl]="tourFG.get('name')">
+    <input matInput [formControl]="tourFG.get('name')" />
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Descripción</mat-label>
-    <input matInput [formControl]="tourFG.get('description')">
+    <input matInput [formControl]="tourFG.get('description')" />
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Ingrese teléfono de contacto</mat-label>
-    <input
-      matInput
-      #tel
-      type="tel"
-      [formControl]="tourFG.get('phone')"
-    />
+    <input matInput #tel type="tel" [formControl]="tourFG.get('phone')" />
   </mat-form-field>
-  <button [disabled]="tel.value.length === 0" class="mb-2" (click)="addPhone(tel.value); false" mat-raised-button color="accent">Agregar teléfono<mat-icon>add</mat-icon></button>
-  <mat-list role="list" *ngIf="phones.phones.length > 0" class="rounded mt-3 mb-3 p-0">
-    <mat-list-item *ngFor="let p of phones.phones; let i = index;" role="listitem">
+  <button
+    [disabled]="tel.value.length === 0"
+    class="mb-2"
+    (click)="addPhone(tel.value); (false)"
+    mat-raised-button
+    color="accent"
+  >
+    Agregar teléfono<mat-icon>add</mat-icon>
+  </button>
+  <mat-list
+    role="list"
+    *ngIf="phones.phones.length > 0"
+    class="rounded mt-3 mb-3 p-0"
+  >
+    <mat-list-item
+      *ngFor="let p of phones.phones; let i = index"
+      role="listitem"
+    >
       <div class="phone">
-        <h3>{{p}}</h3>
-        <button mat-button color="warn" (click)="phones.phones.splice(i, 1); false"><mat-icon>delete</mat-icon></button>
+        <h3>{{ p }}</h3>
+        <button
+          mat-button
+          color="warn"
+          (click)="phones.phones.splice(i, 1); (false)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </mat-list-item>
   </mat-list>
-  <app-link-service (selectedServiceToLink)="catchSelectedServiceToLink($event)"></app-link-service>
+  <app-link-service
+    (selectedServiceToLink)="catchSelectedServiceToLink($event)"
+  ></app-link-service>
   <mat-form-field appearance="outline">
     <mat-label>Correo electrónico</mat-label>
-    <input type="email" matInput [formControl]="tourFG.get('email')">
-    <mat-error *ngIf="tourFG.get('email').hasError('email') && !tourFG.get('email').hasError('required')">
+    <input type="email" matInput [formControl]="tourFG.get('email')" />
+    <mat-error
+      *ngIf="
+        tourFG.get('email').hasError('email') &&
+        !tourFG.get('email').hasError('required')
+      "
+    >
       Introduzca una dirección válida
     </mat-error>
     <mat-error *ngIf="tourFG.get('email').hasError('required')">
@@ -38,9 +65,30 @@
     </mat-error>
   </mat-form-field>
 
-  <app-upload-images [tablename]="'tour'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
+  <div class="container text-center">
+    <button
+      (click)="addRates(); (false)"
+      class="mb-3"
+      mat-raised-button
+      color="primary"
+    >
+      {{ rates.items ? "Editar" : "Agregar" }} tarifas | <mat-icon>{{ rates.items ? "edit" : "add" }}</mat-icon>
+    </button>
+    <mat-icon
+      [ngStyle]="{ color: rates.items ? 'green' : 'red' }"
+      class="ml-1"
+      >{{ ratesIcon }}</mat-icon
+    >
+  </div>
+
+  <app-upload-images
+    [tablename]="'tour'"
+    (downloadUrlsChange)="catchUploadedImages($event)"
+  ></app-upload-images>
 
   <div class="container text-center">
-    <button type="submit" [disabled]="!tourFG.valid" mat-raised-button><mat-icon>send</mat-icon></button>
+    <button type="submit" [disabled]="!tourFG.valid" mat-raised-button>
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </form>

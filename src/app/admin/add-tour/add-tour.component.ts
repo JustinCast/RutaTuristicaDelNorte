@@ -5,6 +5,7 @@ import { Tour } from "src/app/models/Tour";
 import { TourService } from "src/app/services/tour.service";
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/User';
+import { Rates } from 'src/app/models/Rates';
 
 @Component({
   selector: "app-add-tour",
@@ -19,9 +20,13 @@ export class AddTourComponent implements OnInit {
   // Download URL
   downloadURLS: Array<string> = [];
 
+  rates: Rates = new Rates("Campo 1", "Campo 2");
+  ratesIcon: string;
+
   constructor(
     private _fb: FormBuilder,
-    private _tour: TourService
+    private _tour: TourService,
+    private _dialog: DialogManagerService
   ) {
     this.tourFG = this._fb.group({
       name: ["", Validators.required],
@@ -56,8 +61,23 @@ export class AddTourComponent implements OnInit {
       (JSON.parse(
         localStorage.getItem(`${environment.localstorage_key}`)
       ) as User).id,
-      this.related !== null ? this.related.id : null
+      this.related !== null ? this.related.id : null,
+      undefined,
+      this.rates
     );
     this._tour.saveTour(tour);
+  }
+
+  /**
+   * Open the Rates Dialog wich returns set rates in a 'Rates' model format
+   */
+  addRates() {
+    this._dialog.openRatesDialog(this.rates).subscribe((rates: Rates) => {
+      console.log(rates)
+      if(rates) {
+        this.rates = rates;
+        this.ratesIcon = "check";
+      }
+    });
   }
 }

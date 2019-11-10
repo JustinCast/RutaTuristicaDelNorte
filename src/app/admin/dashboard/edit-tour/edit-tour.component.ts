@@ -7,6 +7,7 @@ import { FormControl } from "@angular/forms";
 import { Services } from "src/app/services/services.service";
 import { startWith, map } from "rxjs/operators";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
+import { Rates } from "src/app/models/Rates";
 
 @Component({
   selector: "app-edit-tour",
@@ -17,7 +18,7 @@ export class EditTourComponent implements OnInit {
   t: any;
   tourImages: Array<any>;
   addedImages: Array<any>;
-
+  r: Rates;
   constructor(
     private _active: ActivatedRoute,
     private _tour: TourService,
@@ -31,6 +32,13 @@ export class EditTourComponent implements OnInit {
       this._tour.getTour(Number(id_tour)).subscribe(
         tour => {
           this.t = tour;
+          console.log(this.t);
+          this.r = new Rates(
+            this.t.header1 === null ? "Campo 1" : this.t.header1,
+            this.t.header2 === null ? "Campo 2" : this.t.header2,
+            this.t.values === null ? undefined : this.t.values,
+            this.t.observations === null ? undefined : this.t.observations
+          );
           this.getTourImages();
         },
         (err: HttpErrorResponse) => this._tour.handleError(err)
@@ -70,10 +78,19 @@ export class EditTourComponent implements OnInit {
 
   onSubmit() {
     if (this.addedImages) this.t.imgs = this.addedImages.map(i => (i = i.url));
+    this.t.rates = this.r;
     this._tour.updateTour(this.t).subscribe({
       next: () =>
         this._tour.openSnackBar("Tour actualizado con éxito", "Ok", 2500),
       error: err => this._tour.handleError(err),
+    });
+  }
+
+  manageRates() {
+    this._dialog.openRatesDialog(this.r).subscribe((rates: Rates) => {
+      if (rates) {
+        this.r = rates;
+      }
     });
   }
 

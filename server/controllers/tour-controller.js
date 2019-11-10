@@ -12,14 +12,18 @@ function saveTour(req, res) {
     } else {
       let tour = req.body;
       let query = {
-        text: "SELECT * FROM save_tour($1, $2, $3, $4, $5, $6)",
+        text: "SELECT * FROM save_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
         values: [
           tour.name,
           tour.description,
           tour.phones,
           tour.email,
           tour.id_user,
-          tour.related_service
+          tour.related_service,
+          tour._rates.header1,
+          tour._rates.header2,
+          JSON.stringify(tour._rates.items),
+          tour._rates.observations
         ]
       };
       client
@@ -184,20 +188,25 @@ function getRelatedTours(req, res) {
 
 function updateTour(req, res) {
   client = new pg.Client(db);
+  let updatedTour = req.body;
   client.connect(err => {
     if (err) {
       client.end();
       console.log(`err when connecting on updateTour: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM update_tour($1, $2, $3, $4, $5, $6);",
+        text: "SELECT * FROM update_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
         values: [
-          req.body.name,
-          req.body.description,
-          req.body.email,
-          req.body.related_service,
-          req.body.phones,
-          Number(req.params.id_tour)
+          updatedTour.name,
+          updatedTour.description,
+          updatedTour.email,
+          updatedTour.related_service,
+          updatedTour.phones,
+          Number(req.params.id_tour),
+          updatedTour.rates.header1,
+          updatedTour.rates.header2,
+          JSON.stringify(updatedTour.rates.items),
+          updatedTour.rates.observations
         ]
       };
       client

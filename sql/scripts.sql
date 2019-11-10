@@ -304,10 +304,19 @@ AS
         END
     $$ LANGUAGE plpgsql;
 
-
-ALTER TABLE tour ADD COLUMN phones JSON;
-
-CREATE OR REPLACE FUNCTION save_tour(_name VARCHAR, _description VARCHAR, _phones JSON, _email VARCHAR, _id_user INTEGER, _related_service INTEGER)
+DROP FUNCTION save_tour(_name VARCHAR, _description VARCHAR, _phones JSON, _email VARCHAR, _id_user INTEGER, _related_service INTEGER);
+CREATE OR REPLACE FUNCTION save_tour(
+    _name VARCHAR,
+    _description VARCHAR,
+    _phones JSON,
+    _email VARCHAR,
+    _id_user INTEGER,
+    _related_service INTEGER,
+    header1 VARCHAR,
+    header2 VARCHAR,
+    "values" JSON,
+    observations VARCHAR
+)
 RETURNS INTEGER AS
     $$
         DECLARE
@@ -318,6 +327,9 @@ RETURNS INTEGER AS
 
             INSERT INTO user_tour (id_user, id) VALUES (_id_user, id_tour);
 
+            IF($7 IS NOT NULL AND $8 IS NOT NULL) THEN
+                INSERT INTO tour_rates (header1, header2, "values", observations, id_tour_fk) VALUES ($7, $8, $9, $10, id_tour);
+            END IF;
             RETURN id_tour;
         END;
     $$ LANGUAGE plpgsql;
@@ -462,7 +474,19 @@ SELECT * FROM get_service_for_update(51);
 
 DROP FUNCTION get_tour_for_update(id_tour INTEGER);
 CREATE OR REPLACE FUNCTION get_tour_for_update(id_tour INTEGER)
-RETURNS TABLE (id INTEGER, name VARCHAR, description VARCHAR, email VARCHAR, phones JSON, related_service INTEGER,service_name VARCHAR)
+RETURNS TABLE (
+    id INTEGER,
+    name VARCHAR,
+    description VARCHAR,
+    email VARCHAR,
+    phones JSON,
+    related_service INTEGER,
+    service_name VARCHAR,
+    header1 VARCHAR,
+    header2 VARCHAR,
+    "values" JSON,
+    observations VARCHAR
+)
 AS
     $$
         BEGIN
@@ -473,20 +497,30 @@ AS
                    tour.email,
                    tour.phones,
                    tour.related_service,
-                   s.name service_name
+                   s.name service_name,
+                   tr.header1,
+                   tr.header2,
+                   tr."values",
+                   tr.observations
             FROM tour
             LEFT JOIN service s on tour.related_service = s.id
+            LEFT JOIN tour_rates tr on tour.id = tr.id_tour_fk
             WHERE tour.id = $1;
         END;
     $$ LANGUAGE plpgsql;
 
+DROP FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR, _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER);
 CREATE OR REPLACE FUNCTION update_tour(
     _name VARCHAR,
     _description VARCHAR,
     _email VARCHAR,
     _related_service INTEGER,
     _phones JSON,
-    id_tour INTEGER
+    id_tour INTEGER,
+    _header1 VARCHAR,
+    _header2 VARCHAR,
+    _values JSON,
+    observations VARCHAR
 )
 RETURNS VOID
 AS
@@ -498,6 +532,17 @@ AS
                             related_service = $4,
                             phones = $5
             WHERE id = $6;
+
+            UPDATE tour_rates SET
+                                 header1 = $7,
+                                 header2 = $8,
+                                 "values" = $9,
+                                 observations = $10
+            WHERE id_tour_fk = $6;
+
+            IF NOT FOUND THEN
+                INSERT INTO tour_rates (header1, header2, "values", observations, id_tour_fk) values ($7, $8, $9, $10, $6);
+            END IF;
         END;
     $$ LANGUAGE plpgsql;
 
@@ -548,11 +593,6 @@ $$
     END;
 $$ LANGUAGE plpgsql;
 
-
-DELETE FROM images WHERE id_service_fk = 5;
-
-SELECT * FROM delete_tour(19);
-SELECT * FROM tour;
 -- inserciones de usuarios
 -- 1
 

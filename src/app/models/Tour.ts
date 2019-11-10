@@ -1,3 +1,5 @@
+import { Rates } from './Rates';
+
 export class Tour {
   constructor(
     public name?: string,
@@ -7,7 +9,8 @@ export class Tour {
     public email?: string,
     public id_user?: number,
     public related_service?: number,
-    public _imgs_lazy?: Array<any>
+    public _imgs_lazy?: Array<any>,
+    public _rates?: Rates,
     ) {}
     
 }
