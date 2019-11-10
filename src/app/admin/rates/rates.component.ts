@@ -19,10 +19,11 @@ export class RatesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.rates)
     this.rates = this.rates.rates as Rates;
     this.ratesFG = this._fb.group({
-      header1: ["", Validators.required],
-      header2: ["Tarifa Neta", Validators.required],
+      header1: [""],
+      header2: ["Tarifa Neta"],
       items: this._fb.array([this.createItem(undefined, undefined)]),
       observations: [""],
     });

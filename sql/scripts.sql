@@ -348,7 +348,11 @@ CREATE OR REPLACE FUNCTION update_service(
     _email VARCHAR,
     _website VARCHAR,
     _phones JSON,
-    _id_service INTEGER
+    _id_service INTEGER,
+    _header1 VARCHAR,
+    _header2 VARCHAR,
+    _values JSON,
+    observations VARCHAR
 ) RETURNS VOID AS
     $$
         BEGIN
@@ -361,6 +365,17 @@ CREATE OR REPLACE FUNCTION update_service(
                                website = $6,
                                phones = $7
             WHERE id = $8;
+
+            UPDATE service_rates SET
+                                     header1 = $9,
+                                     header2 = $10,
+                                     "values" = $11,
+                                     observations = $12
+            WHERE id_service_fk = $8;
+
+            IF NOT FOUND THEN
+                INSERT INTO service_rates (header1, header2, "values", observations, id_service_fk) values ($9, $10, $11, $12, $8);
+            END IF;
         END;
     $$ LANGUAGE plpgsql;
 
@@ -415,7 +430,11 @@ RETURNS TABLE (
     _additional_info VARCHAR,
     _email VARCHAR,
     _website VARCHAR,
-    _phones JSON
+    _phones JSON,
+    header1 VARCHAR,
+    header2 VARCHAR,
+    "values" JSON,
+    observations VARCHAR
 ) AS
 $$
     BEGIN
@@ -426,9 +445,16 @@ $$
                             s.additional_info _additional_info,
                             s.email _email,
                             s.website _website,
-                            s.phones _phones
-        FROM service AS s WHERE s.id = $1;
-    END;
+                            s.phones _phones,
+                            sr.header1,
+                            sr.header2,
+                            sr."values",
+                            sr.observations
+        FROM service
+            AS s
+        LEFT JOIN service_rates sr on s.id = sr.id_service_fk
+        WHERE s.id = $1;
+    END
 $$ LANGUAGE plpgsql;
 
 

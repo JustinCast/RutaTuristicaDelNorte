@@ -5,6 +5,7 @@ import { CommonService } from "src/app/services/common.service";
 import LocationPicker from "location-picker";
 import { ActivatedRoute } from "@angular/router";
 import { DialogManagerService } from "src/app/services/dialog-manager.service";
+import { Rates } from "src/app/models/Rates";
 
 @Component({
   selector: "app-edit-service",
@@ -16,6 +17,7 @@ export class EditServiceComponent implements OnInit {
   map_code: string;
   l: LocationPicker;
   serviceImages: Array<any>;
+  r: Rates;
   constructor(
     private _active: ActivatedRoute,
     private _service: Services,
@@ -29,6 +31,12 @@ export class EditServiceComponent implements OnInit {
       this._service.getService(Number(id_service)).subscribe(
         service => {
           this.s = service;
+          this.r = new Rates(
+            this.s.header1 === null ? "Campo 1" : this.s.header1,
+            this.s.header2 === null ? "Campo 2" : this.s.header2,
+            this.s.values === null ? undefined : this.s.values,
+            this.s.observations === null ? undefined : this.s.observations,
+          );
           this.getServiceImages();
         },
         (err: HttpErrorResponse) => this._service.handleError(err)
@@ -77,6 +85,15 @@ export class EditServiceComponent implements OnInit {
 
   onSubmit() {
     this.s.imgs = this.serviceImages;
+    this.s.rates = this.r;
     this._service.updateService(this.s);
+  }
+
+  manageRates() {
+    this._dialog.openRatesDialog(this.r).subscribe((rates: Rates) => {
+      if (rates) {
+        this.r = rates;
+      }
+    });
   }
 }

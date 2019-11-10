@@ -46,6 +46,9 @@
             <td>{{ v.v1 }}</td>
             <td>{{ v.v2 }}</td>
           </tr>
+          <div class="text-center" *ngIf="rates.observations !== null">
+            <p><strong>Observaciones: </strong>{{rates.observations}}</p>
+          </div>
         </tbody>
       </table>
     </li>

@@ -101,7 +101,8 @@ function updateService(req, res) {
     } else {
       let updatedService = req.body;
       let query = {
-        text: "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8);",
+        text:
+          "SELECT * FROM update_service($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);",
         values: [
           updatedService._location,
           updatedService._name,
@@ -111,6 +112,10 @@ function updateService(req, res) {
           updatedService._website,
           updatedService._phones,
           updatedService._id,
+          updatedService.rates.header1,
+          updatedService.rates.header2,
+          JSON.stringify(updatedService.rates.items),
+          updatedService.rates.observations
         ],
       };
       client

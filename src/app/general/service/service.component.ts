@@ -103,6 +103,7 @@ export class ServiceComponent implements OnInit, AfterViewInit {
     this._service.getServiceRates(id_service).subscribe({
       next: rates => {
         this.rates = rates;
+        console.log(this.rates);
         this.rates === null
           ? (this.showLoadingRatesInfo = false)
           : (this.showLoadingRatesInfo = true);
