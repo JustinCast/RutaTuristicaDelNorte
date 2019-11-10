@@ -1,6 +1,36 @@
+@media (min-width: 34em) {
+  .custom-dialog {
+    width: 95vw !important;
+  }
+}
+
+@media (min-width: 48em) {
+  .custom-dialog {
+    width: 80vw !important;
+  }
+}
+
+@media (min-width: 62em) {
+  .custom-dialog {
+    width: 70vw !important;
+    height: 75vh !important;
+  }
+}
+
+@media (min-width: 75em) {
+  .custom-dialog {
+    width: 65vw !important;
+    height: 85vh !important;
+  }
+}
+
 .mat-dialog-container {
+  padding: 0px !important;
   width: 100% !important;
-  height: 85% !important;
+}
+
+.custom-dialog {
+  max-width: 99vw !important;
 }
 
 .owl-carousel .owl-stage {

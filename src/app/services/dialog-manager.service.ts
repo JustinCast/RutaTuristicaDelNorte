@@ -31,7 +31,7 @@ export class DialogManagerService {
   public showTourInfo(tour: Tour) {
     let dialogRef: MatDialogRef<TourComponent>;
     dialogRef = this.dialog.open(TourComponent, {
-      panelClass: "dialog",
+      panelClass: "custom-dialog",
       data: tour,
     });
     return dialogRef.afterClosed();

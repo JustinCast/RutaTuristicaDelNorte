@@ -593,6 +593,8 @@ $$
     END;
 $$ LANGUAGE plpgsql;
 
+SELECT * FROM service;
+SELECT * FROM delete_service(10);
 -- inserciones de usuarios
 -- 1
 
