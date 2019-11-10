@@ -593,8 +593,10 @@ $$
     END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM service;
-SELECT * FROM delete_service(10);
+SELECT * FROM service JOIN service_rates sr on service.id = sr.id_service_fk;
+SELECT * FROM delete_service(49);
+
+SELECT * FROM images;
 -- inserciones de usuarios
 -- 1
 
