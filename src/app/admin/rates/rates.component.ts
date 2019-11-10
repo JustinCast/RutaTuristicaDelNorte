@@ -19,7 +19,6 @@ export class RatesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.rates)
     this.rates = this.rates.rates as Rates;
     this.ratesFG = this._fb.group({
       header1: [""],

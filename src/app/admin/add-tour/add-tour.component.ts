@@ -23,6 +23,8 @@ export class AddTourComponent implements OnInit {
   rates: Rates = new Rates("Campo 1", "Campo 2");
   ratesIcon: string;
 
+  serviceName: string;
+
   constructor(
     private _fb: FormBuilder,
     private _tour: TourService,
@@ -49,6 +51,7 @@ export class AddTourComponent implements OnInit {
 
   catchSelectedServiceToLink(id_service) {
     this.related = id_service;
+    this.serviceName = this.related.name;
   }
 
   onSubmit() {
@@ -79,5 +82,10 @@ export class AddTourComponent implements OnInit {
         this.ratesIcon = "check";
       }
     });
+  }
+
+  deleteRelatedService() {
+    this.related = null;
+    this.serviceName = undefined;
   }
 }

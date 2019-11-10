@@ -49,6 +49,25 @@
   <app-link-service
     (selectedServiceToLink)="catchSelectedServiceToLink($event)"
   ></app-link-service>
+  <mat-list
+    *ngIf="serviceName"
+    role="list"
+    class="container text-center mt-2 mb-2 pb-4"
+  >
+    <h3 class="font-weight-light">Servicio relacionado</h3>
+    <mat-list-item class="card shadow-sm bg-transparent rounded">
+      <div id="related_tour">
+        <span class="font-weight-light">{{ serviceName }}</span>
+        <button
+          mat-button
+          color="warn"
+          (click)="deleteRelatedService(); (false)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
   <mat-form-field appearance="outline">
     <mat-label>Correo electrónico</mat-label>
     <input type="email" matInput [formControl]="tourFG.get('email')" />
