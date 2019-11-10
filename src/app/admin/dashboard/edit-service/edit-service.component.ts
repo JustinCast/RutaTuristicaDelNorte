@@ -17,6 +17,7 @@ export class EditServiceComponent implements OnInit {
   map_code: string;
   l: LocationPicker;
   serviceImages: Array<any>;
+  addedImages: Array<any>;
   r: Rates;
   constructor(
     private _active: ActivatedRoute,
@@ -48,7 +49,11 @@ export class EditServiceComponent implements OnInit {
   }
 
   catchUploadedImages(url) {
-    if (url) this.serviceImages.push({ id: undefined, url: url });
+    this.addedImages = [];
+    if (url) {
+      this.addedImages.push({ id: undefined, url: url });
+      this.serviceImages.push({ id: undefined, url: url });
+    }
   }
 
   getServiceImages() {
@@ -84,7 +89,7 @@ export class EditServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    this.s.imgs = this.serviceImages;
+    if (this.addedImages) this.s.imgs = this.addedImages.map(i => (i = i.url));
     this.s.rates = this.r;
     this._service.updateService(this.s);
   }

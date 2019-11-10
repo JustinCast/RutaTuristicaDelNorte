@@ -334,24 +334,6 @@ RETURNS INTEGER AS
         END;
     $$ LANGUAGE plpgsql;
 
-DROP FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR, _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER);
-CREATE OR REPLACE FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR,
-    _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER)
-RETURNS VOID AS
-    $$
-        BEGIN
-           UPDATE service SET
-                              location = _location,
-                              name = _name,
-                              classification = _classification,
-                              additional_info = _additional_info,
-                              email = _email,
-                              website = _website,
-                              phones = _phones
-            WHERE id = _id;
-        END;
-    $$ LANGUAGE plpgsql;
-
 CREATE OR REPLACE FUNCTION update_service(
     _location JSON,
     _name VARCHAR,
@@ -386,7 +368,9 @@ CREATE OR REPLACE FUNCTION update_service(
             WHERE id_service_fk = $8;
 
             IF NOT FOUND THEN
-                INSERT INTO service_rates (header1, header2, "values", observations, id_service_fk) values ($9, $10, $11, $12, $8);
+                IF($9 IS NOT NULL AND $10 IS NOT NULL AND $11 IS NOT NULL AND $12 IS NOT NULL) THEN
+                    INSERT INTO service_rates (header1, header2, "values", observations, id_service_fk) values ($9, $10, $11, $12, $8);
+                END IF;
             END IF;
         END;
     $$ LANGUAGE plpgsql;
@@ -541,7 +525,9 @@ AS
             WHERE id_tour_fk = $6;
 
             IF NOT FOUND THEN
-                INSERT INTO tour_rates (header1, header2, "values", observations, id_tour_fk) values ($7, $8, $9, $10, $6);
+                IF($7 IS NOT NULL AND $8 IS NOT NULL AND $9 IS NOT NULL AND $10 IS NOT NULL) THEN
+                    INSERT INTO tour_rates (header1, header2, "values", observations, id_tour_fk) values ($7, $8, $9, $10, $6);
+                END IF;
             END IF;
         END;
     $$ LANGUAGE plpgsql;
@@ -589,6 +575,7 @@ $$
     BEGIN
         DELETE FROM user_tour WHERE id = $1;
         DELETE FROM tour_images WHERE id_tour_fk = $1;
+        DELETE FROM tour_rates WHERE id_tour_fk = $1;
         DELETE FROM tour WHERE id = $1;
     END;
 $$ LANGUAGE plpgsql;

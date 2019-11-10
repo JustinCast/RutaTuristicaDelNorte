@@ -115,16 +115,14 @@ function updateService(req, res) {
           updatedService.rates.header1,
           updatedService.rates.header2,
           JSON.stringify(updatedService.rates.items),
-          updatedService.rates.observations
+          updatedService.rates.observations,
         ],
       };
       client
         .query(query)
         .then(() => {
-          ImagesCTRL.updateServiceImages(
-            updatedService.imgs,
-            updatedService._id
-          );
+          if (req.body.imgs)
+            ImagesCTRL.saveImages(req.body.imgs, updatedService._id);
           client.end();
           res.status(200).send();
         })
