@@ -175,11 +175,9 @@ $$;
 DROP FUNCTION get_tours(_limit INTEGER, _offset INTEGER);
 CREATE OR REPLACE FUNCTION get_tours(_limit INTEGER, _offset INTEGER)
     RETURNS TABLE (
+        _id INTEGER,
         _name VARCHAR,
         _description VARCHAR,
-        _email VARCHAR,
-        _related_service INTEGER,
-        _phones JSON,
         imgs VARCHAR[]
     )
 AS
@@ -187,11 +185,9 @@ AS
         BEGIN
             RETURN QUERY
                 SELECT
+                    t.id AS _id,
                     t.name _name,
                     t.description _description,
-                    t.email _email,
-                    t.related_service _related_service,
-                    t.phones _phones,
                     array_agg(ti.url) as imgs
                 FROM tour t
                 LEFT OUTER JOIN tour_images ti on t.id = ti.id_tour_fk
@@ -494,6 +490,28 @@ AS
             WHERE tour.id = $1;
         END;
     $$ LANGUAGE plpgsql;
+
+DROP FUNCTION get_tour_additional_info(id_tour INTEGER);
+CREATE OR REPLACE FUNCTION get_tour_additional_info(id_tour INTEGER)
+RETURNS TABLE(email VARCHAR, phones JSONB, header1 VARCHAR, header2 VARCHAR, "values" JSONB, observations VARCHAR)
+AS
+$$
+    BEGIN
+
+        RETURN QUERY SELECT t.email,
+                            t.phones::JSONB,
+                            tr.header1,
+                            tr.header2,
+                            tr."values"::JSONB,
+                            tr.observations
+        FROM tour t
+            LEFT JOIN tour_rates tr
+                ON tr.id_tour_fk = t.id
+        WHERE t.id = $1 GROUP BY tr.header1, t.phones::JSONB, t.email, tr.header2, tr."values"::JSONB, tr.observations, t.id;
+    END
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_tour_additional_info(29);
 
 DROP FUNCTION update_tour(_location VARCHAR, _name VARCHAR, _classification VARCHAR, _additional_info VARCHAR, _email VARCHAR, _website VARCHAR, _phones JSON, _id INTEGER);
 CREATE OR REPLACE FUNCTION update_tour(

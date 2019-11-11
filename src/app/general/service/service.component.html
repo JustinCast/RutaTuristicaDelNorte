@@ -44,7 +44,7 @@
           <tr *ngFor="let v of rates._values; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ v.v1 }}</td>
-            <td>{{ v.v2 }}</td>
+            <td>$ {{ v.v2 }}</td>
           </tr>
           <div class="text-center" *ngIf="rates.observations !== null">
             <p><strong>Observaciones: </strong>{{rates.observations}}</p>

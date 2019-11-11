@@ -63,6 +63,10 @@ export class TourService {
     tours.forEach(t => (t._imgs_lazy = this.setImgsLazyLoading(t.imgs)));
   }
 
+  getTourAdditionalInfo(id_tour: number): Observable<any> {
+    return this._http.get(`${environment.SERVER_BASE_URL}getTourAdditionalInfo/${id_tour}`);
+  }
+
   public setImgsLazyLoading(imgs): Array<any> {
     let aux = [];
     imgs.forEach(img => {

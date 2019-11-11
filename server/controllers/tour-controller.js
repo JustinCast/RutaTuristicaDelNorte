@@ -12,7 +12,8 @@ function saveTour(req, res) {
     } else {
       let tour = req.body;
       let query = {
-        text: "SELECT * FROM save_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
+        text:
+          "SELECT * FROM save_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
         values: [
           tour.name,
           tour.description,
@@ -23,8 +24,8 @@ function saveTour(req, res) {
           tour._rates.header1,
           tour._rates.header2,
           JSON.stringify(tour._rates.items),
-          tour._rates.observations
-        ]
+          tour._rates.observations,
+        ],
       };
       client
         .query(query)
@@ -52,8 +53,8 @@ function deleteTour(req, res) {
       console.log(`err when connecting on deleteTour: ${err}`);
     } else {
       let query = {
-        text: 'SELECT * FROM delete_tour($1);',
-        values: [Number(req.params.id_tour)]
+        text: "SELECT * FROM delete_tour($1);",
+        values: [Number(req.params.id_tour)],
       };
       client
         .query(query)
@@ -86,7 +87,7 @@ function getTours(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_tours($1, $2);",
-        values: [Number(req.query.limit), Number(req.query.offset)]
+        values: [Number(req.query.limit), Number(req.query.offset)],
       };
       client
         .query(query)
@@ -119,7 +120,7 @@ function getTour(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_tour_for_update($1);",
-        values: [Number(req.params.id_tour)]
+        values: [Number(req.params.id_tour)],
       };
       client
         .query(query)
@@ -170,7 +171,7 @@ function getRelatedTours(req, res) {
     } else {
       let query = {
         text: "SELECT * FROM get_related_tours($1);",
-        values: [Number(req.params.related_service)]
+        values: [Number(req.params.related_service)],
       };
       client
         .query(query)
@@ -195,7 +196,8 @@ function updateTour(req, res) {
       console.log(`err when connecting on updateTour: ${err}`);
     } else {
       let query = {
-        text: "SELECT * FROM update_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
+        text:
+          "SELECT * FROM update_tour($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",
         values: [
           updatedTour.name,
           updatedTour.description,
@@ -206,13 +208,13 @@ function updateTour(req, res) {
           updatedTour.rates.header1,
           updatedTour.rates.header2,
           JSON.stringify(updatedTour.rates.items),
-          updatedTour.rates.observations
-        ]
+          updatedTour.rates.observations,
+        ],
       };
       client
         .query(query)
         .then(() => {
-          if(req.body.imgs)
+          if (req.body.imgs)
             ImagesCTRL.saveTourImages(req.body.imgs, req.params.id_tour);
           res.status(204).send();
           client.end();
@@ -234,7 +236,7 @@ function getTableToursCount(req, res) {
     } else {
       let query = {
         text: "SELECT COUNT(*) FROM tour;",
-        values: []
+        values: [],
       };
       client
         .query(query)
@@ -250,6 +252,31 @@ function getTableToursCount(req, res) {
   });
 }
 
+function getTourAdditionalInfo(req, res) {
+  client = new pg.Client(db);
+  client.connect(err => {
+    if (err) {
+      client.end();
+      console.log(`err when connecting on getTourAdditionalInfo: ${err}`);
+    } else {
+      let query = {
+        text: "SELECT * FROM get_tour_additional_info($1)",
+        values: [req.params.id],
+      };
+      client
+        .query(query)
+        .then(data => {
+          res.status(200).send(data.rows[0]);
+          client.end();
+        })
+        .catch(err => {
+          client.end();
+          console.log(`err when query on getTourAdditionalInfo: ${err}`);
+        });
+    }
+  });
+}
+
 module.exports = {
   saveTour: saveTour,
   deleteTour: deleteTour,
@@ -258,5 +285,6 @@ module.exports = {
   getRelatedTours: getRelatedTours,
   deleteRelatedService: deleteRelatedService,
   updateTour: updateTour,
-  getTableToursCount: getTableToursCount
+  getTableToursCount: getTableToursCount,
+  getTourAdditionalInfo: getTourAdditionalInfo
 };

@@ -25,6 +25,7 @@ api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);
 api.delete('/deleteTour/:id_tour', TourCTRL.deleteTour);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 api.get('/getTableToursCount', TourCTRL.getTableToursCount);
+api.get('/getTourAdditionalInfo/:id', TourCTRL.getTourAdditionalInfo);
 
 // images queries
 api.get('/getServiceImages/:id_service', ImagesCTRL.getServiceImages);

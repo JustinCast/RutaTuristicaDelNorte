@@ -16,15 +16,36 @@
   </div>
 
   <div class="container p-2">
-    <p class="text-muted font-italic">
+    <p class="text-muted font-italic" *ngIf="tour._description">
       {{ tour._description }}
     </p>
-    <p class="text-muted"><mat-icon>mail</mat-icon>{{ tour._email }}</p>
-    <ul class="list-group" *ngIf="tour._phones.phones.length > 0">
-      <li *ngFor="let p of tour._phones.phones" class="list-group-item">
+    <p *ngIf="tour.email" class="text-muted"><mat-icon>mail</mat-icon>{{ tour.email }}</p>
+    <ul class="list-group" *ngIf="tour.phones && tour.phones.phones.length > 0">
+      <li *ngFor="let p of tour.phones.phones" class="list-group-item">
         <mat-icon>phone</mat-icon> {{ p }}
       </li>
     </ul>
+
+    <div *ngIf="rates && rates.items" class="mt-3">
+      <h3 *ngIf="rates" class="font-weight-light text-center text-muted">Tarifas</h3>
+      <table class="table">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">{{ rates.header1 }}</th>
+          <th scope="col">{{ rates.header2 }}</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of rates.items; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ v.v1 }}</td>
+            <td>$ {{ v.v2 }}</td>
+          </tr>
+          <div class="text-center" *ngIf="rates.observations !== null">
+            <p><strong>Observaciones: </strong>{{rates.observations}}</p>
+          </div>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="mt-2 mb-4 container text-center">
