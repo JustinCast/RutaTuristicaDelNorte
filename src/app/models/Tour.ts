@@ -11,6 +11,7 @@ export class Tour {
     public related_service?: number,
     public _imgs_lazy?: Array<any>,
     public _rates?: Rates,
+    public id?: number
     ) {}
     
 }

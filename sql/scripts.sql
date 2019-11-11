@@ -603,7 +603,7 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM service JOIN service_rates sr on service.id = sr.id_service_fk;
 SELECT * FROM delete_service(49);
 
-SELECT * FROM images;
+SELECT * FROM service;
 -- inserciones de usuarios
 -- 1
 

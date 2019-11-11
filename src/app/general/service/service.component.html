@@ -63,12 +63,12 @@
   <div *ngIf="relatedTours && relatedTours.length > 0" class="container-fluid">
     <h1 class="font-weight-light text-center">Tours relacionados</h1>
     <div class="card-columns">
-      <div *ngFor="let r of relatedTours" class="tour card">
+      <div *ngFor="let r of relatedTours let i = index" class="tour card">
         <img src="{{ r.imgs[0] }}" class="card-img-top img-fluid rounded shadow-sm" alt="{{ r._name }}" />
         <div class="card-body">
           <h5 class="card-title">{{r._name}}</h5>
           <hr>
-          <button mat-raised-button class="btn-details text-white">Ver detalles</button>
+          <button (click)="openTourInfo(i)" mat-raised-button class="btn-details text-white">Ver detalles</button>
         </div>
       </div>
     </div>

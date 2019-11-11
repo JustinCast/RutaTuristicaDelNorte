@@ -25,7 +25,7 @@ export class TourComponent implements OnInit {
   }
 
   getTourAdditionalInfo() {
-    this._tour.getTourAdditionalInfo((this.tour as any)._id).subscribe({
+    this._tour.getTourAdditionalInfo((this.tour as any)._id || this.tour.id).subscribe({
       next: result => {
         this.tour.email = result.email;
         this.tour.phones = result.phones;

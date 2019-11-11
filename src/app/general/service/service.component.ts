@@ -103,7 +103,6 @@ export class ServiceComponent implements OnInit, AfterViewInit {
     this._service.getServiceRates(id_service).subscribe({
       next: rates => {
         this.rates = rates;
-        console.log(this.rates);
         this.rates === null
           ? (this.showLoadingRatesInfo = false)
           : (this.showLoadingRatesInfo = true);
@@ -116,10 +115,16 @@ export class ServiceComponent implements OnInit, AfterViewInit {
     this._tour.getRelatedTours(id_service).subscribe(
       related_tours => {
         this.relatedTours = related_tours;
+        console.log(this.relatedTours);
         if (this.relatedTours.length === 0) this.showRelatedLoadingInfo = false;
       },
       (err: HttpErrorResponse) => this._tour.handleError(err)
     );
+  }
+
+  openTourInfo(i: number) {
+    this._tour.setLazyLoading(this.relatedTours);
+    this._dialog.showTourInfo(this.relatedTours[i]);
   }
 
   showLoc() {
