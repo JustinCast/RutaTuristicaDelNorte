@@ -3,7 +3,7 @@
   style="overflow-y: auto;"
   class="d-flex flex-column justify-content-around pt-2 h-100"
 >
-  <div class="container-fluid mt-4" style="overflow-y: scroll;">
+  <div id="c-container" class="container-fluid flex-grow-3" style="overflow-y: auto;">
     <app-carousel
       *ngIf="tour.imgs.length > 0 && tour.imgs[0] !== null"
       [allowDelete]="false"
@@ -15,7 +15,7 @@
     <h3 class="text-primary font-weight-light text-center">{{ tour._name }}</h3>
   </div>
 
-  <div class="container p-2">
+  <div class="container p-2 h-25 mh-25">
     <p class="text-muted font-italic" *ngIf="tour._description">
       {{ tour._description }}
     </p>
@@ -30,13 +30,11 @@
       <h3 *ngIf="rates" class="font-weight-light text-center text-muted">Tarifas</h3>
       <table class="table">
         <thead>
-          <th scope="col">#</th>
-          <th scope="col">{{ rates.header1 }}</th>
-          <th scope="col">{{ rates.header2 }}</th>
+          <th scope="col-sm">{{ rates.header1 }}</th>
+          <th scope="col-sm">{{ rates.header2 }}</th>
         </thead>
         <tbody>
           <tr *ngFor="let v of rates.items; let i = index">
-            <td>{{ i + 1 }}</td>
             <td>{{ v.v1 }}</td>
             <td>$ {{ v.v2 }}</td>
           </tr>
@@ -46,16 +44,16 @@
         </tbody>
       </table>
     </div>
+    <div class="mt-2 mb-4 container text-center">
+      <button
+        (click)="dialogRef.close(); (false)"
+        mat-raised-button
+        color="primary"
+        type="submit"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <div class="mt-2 mb-4 container text-center">
-    <button
-      (click)="dialogRef.close(); (false)"
-      mat-raised-button
-      color="primary"
-      type="submit"
-    >
-      <mat-icon>check</mat-icon>
-    </button>
-  </div>
 </div>
