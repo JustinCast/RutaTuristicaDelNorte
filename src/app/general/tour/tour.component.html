@@ -16,8 +16,8 @@
   </div>
 
   <div class="container p-2 h-25 mh-25">
-    <p class="text-muted font-italic" *ngIf="tour._description">
-      {{ tour._description }}
+    <p class="text-muted font-italic" *ngIf="tour._description || tour.description">
+      {{ tour._description || tour.description }}
     </p>
     <p *ngIf="tour.email" class="text-muted"><mat-icon>mail</mat-icon>{{ tour.email }}</p>
     <ul class="list-group" *ngIf="tour.phones && tour.phones.phones.length > 0">

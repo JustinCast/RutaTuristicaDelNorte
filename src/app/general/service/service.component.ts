@@ -73,7 +73,6 @@ export class ServiceComponent implements OnInit, AfterViewInit {
       this.service = this._service.services.find(
         t => t.id_service === Number(id_service)
       );
-      console.log(this.service);
       this.data = {images: this.service._imgs_lazy, table: "service"}
       this.getServiceRates(Number(id_service));
       // get related tours

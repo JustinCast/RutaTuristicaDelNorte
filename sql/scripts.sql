@@ -600,10 +600,7 @@ $$
     END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM service JOIN service_rates sr on service.id = sr.id_service_fk;
-SELECT * FROM delete_service(49);
-
-SELECT * FROM service;
+UPDATE tour SET related_service = 7 WHERE id = 23;
 -- inserciones de usuarios
 -- 1
 
