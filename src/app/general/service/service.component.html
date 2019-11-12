@@ -28,7 +28,7 @@
       </mat-list>
     </li>
     <li><mat-icon>mail</mat-icon>{{ service._email }}</li>
-    <li *ngIf="service.website && service.website.length > 0">
+    <li *ngIf="service._website && service._website.length > 0">
       <mat-icon>language</mat-icon
       ><a href="{{ service._website }}"> Sitio web</a>
     </li>
@@ -46,7 +46,7 @@
             <td>{{ v.v1 }}</td>
             <td>$ {{ v.v2 }}</td>
           </tr>
-          <div class="text-center" *ngIf="rates.observations !== null">
+          <div class="text-center" *ngIf="rates.observations !== null && rates.observations.length > 0">
             <p><strong>Observaciones: </strong>{{rates.observations}}</p>
           </div>
         </tbody>
