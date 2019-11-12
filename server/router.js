@@ -23,6 +23,7 @@ api.get('/getTour/:id_tour', TourCTRL.getTour);
 api.put('/updateTour/:id_tour', TourCTRL.updateTour)
 api.get('/deleteRelatedService', TourCTRL.deleteRelatedService);
 api.delete('/deleteTour/:id_tour', TourCTRL.deleteTour);
+api.delete('/deleteRates/:id_tour', TourCTRL.deleteRates);
 api.get('/getRelatedTours/:related_service', TourCTRL.getRelatedTours);
 api.get('/getTableToursCount', TourCTRL.getTableToursCount);
 api.get('/getTourAdditionalInfo/:id', TourCTRL.getTourAdditionalInfo);

@@ -79,6 +79,10 @@ export class TourService {
     return this._http.get(`${environment.SERVER_BASE_URL}deleteRelatedService`);
   }
 
+  deleteRates(id_tour: number): Observable<any> {
+    return this._http.delete(`${environment.SERVER_BASE_URL}deleteRates/${id_tour}`);
+  }
+
   /**
    * Get all related tours when open a specific service
    * @param related_service

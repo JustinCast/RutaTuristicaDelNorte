@@ -29,18 +29,47 @@
   </mat-form-field>
 
   <div class="container text-center mb-2" *ngIf="tourImages">
-    <h4 class="font-weight-light">{{tourImages.length}} imagen(es) han sido encontradas</h4>
-    <button *ngIf="tourImages.length > 0" (click)="openImagesDialog(); false" mat-stroked-button><mat-icon>insert_photo</mat-icon> Presiona para ver</button>
+    <h4 class="font-weight-light">
+      {{ tourImages.length }} imagen(es) han sido encontradas
+    </h4>
+    <button
+      *ngIf="tourImages.length > 0"
+      (click)="openImagesDialog(); (false)"
+      mat-stroked-button
+    >
+      <mat-icon>insert_photo</mat-icon> Presiona para ver
+    </button>
   </div>
 
   <!--RATES-->
   <div class="container text-center">
-    <button (click)="manageRates(); false" class="mb-3" mat-raised-button color="primary">{{r.items ? 'Editar' : 'Agregar'}} tarifas<mat-icon>add</mat-icon></button>
-    <mat-icon [ngStyle]="{'color': r.items ? 'green': 'red'}" class="ml-1">{{ratesIcon}}</mat-icon>
+    <button
+      (click)="manageRates(); (false)"
+      mat-raised-button
+      color="primary"
+    >
+      {{ r.items && r.items.length > 0 ? "Editar" : "Agregar" }} tarifas
+    </button>
+    <mat-icon [ngStyle]="{ color: r.items ? 'green' : 'red' }" class="ml-1">{{
+      ratesIcon
+    }}</mat-icon>
+    <button
+      *ngIf="r.items && r.items.length > 0"
+      (click)="deleteRates(); (false)"
+      mat-raised-button
+      color="warn"
+    >
+      Eliminar tarifas
+    </button>
   </div>
   <!--END RATES-->
-  <h4 class="font-weight-light text-center">Agregar <span *ngIf="tourImages">más</span> imágenes</h4>
-  <app-upload-images [tablename]="'tour'" (downloadUrlsChange)="catchUploadedImages($event)"></app-upload-images>
+  <h4 class="font-weight-light text-center">
+    Agregar <span *ngIf="tourImages">más</span> imágenes
+  </h4>
+  <app-upload-images
+    [tablename]="'tour'"
+    (downloadUrlsChange)="catchUploadedImages($event)"
+  ></app-upload-images>
 
   <mat-form-field appearance="outline">
     <mat-label>Añadir teléfono</mat-label>
@@ -79,7 +108,10 @@
       </div>
     </mat-list-item>
   </mat-list>
-  <app-link-service *ngIf="t.related_service === null" (selectedServiceToLink)="catchSelectedServiceToLink($event)"></app-link-service>
+  <app-link-service
+    *ngIf="t.related_service === null"
+    (selectedServiceToLink)="catchSelectedServiceToLink($event)"
+  ></app-link-service>
   <mat-list
     *ngIf="t.service_name"
     role="list"
@@ -100,7 +132,9 @@
     </mat-list-item>
   </mat-list>
   <div class="text-center container">
-    <button type="submit" color="primary" mat-raised-button><mat-icon>send</mat-icon></button>
+    <button type="submit" color="primary" mat-raised-button>
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </form>
 
