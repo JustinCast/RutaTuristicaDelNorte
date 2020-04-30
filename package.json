@@ -34,7 +34,7 @@
     "firebase": "^6.1.0",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "location-picker": "^1.1.1",
     "nga-read-more": "0.0.3",
     "ngx-owl-carousel": "^2.0.7",
